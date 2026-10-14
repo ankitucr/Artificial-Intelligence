@@ -1,0 +1,490 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+from .transaction_engine import TransactionEngine
+from .verification_engine import VerificationEngine
+from .error_analyzer import ErrorAnalyzer
+from .recovery_engine import RecoveryEngine
+from .workspace_executor import WorkspaceExecutor
+
+
+class Phase32Controller:
+    """
+    Controlled Phase 32 execution layer.
+
+    Responsibilities:
+    - Preserve worker/API failures.
+    - Diagnose failures before workspace modification.
+    - Snapshot proposed files before modification.
+    - Execute workspace changes.
+    - Independently verify Python files.
+    - Commit successful transactions.
+    - Roll back failed transactions.
+    - Produce recovery feedback for the next worker attempt.
+    """
+
+    def __init__(self, tool_runtime):
+        self.tool_runtime = tool_runtime
+
+        workspace_root = (
+            Path(__file__).resolve().parents[1] / "workspace"
+        )
+
+        self.workspace_root = workspace_root
+        self.transaction = TransactionEngine(workspace_root)
+        self.verification = VerificationEngine(tool_runtime)
+        self.error_analyzer = ErrorAnalyzer()
+        self.recovery = RecoveryEngine()
+
+    def _diagnose(
+        self,
+        error: str,
+        attempt: int,
+        *,
+        worker_result: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+
+        diagnosis = self.error_analyzer.analyze(
+            {"error": error}
+        )
+
+        recovery = self.recovery.decide(
+            diagnosis,
+            attempt,
+        )
+
+        return {
+            "diagnosis": diagnosis,
+            "recovery": recovery,
+            "recovery_feedback": self._feedback(
+                diagnosis,
+                recovery,
+                error,
+            ),
+            "worker_error": error,
+            "worker_result": worker_result,
+        }
+
+    @staticmethod
+    def _feedback(
+        diagnosis: dict[str, Any],
+        recovery: dict[str, Any],
+        error: str,
+    ) -> str:
+
+        return (
+            "PHASE 32 RECOVERY DIAGNOSIS\n"
+            f"Error type: {diagnosis.get('error_type')}\n"
+            f"Root cause: {diagnosis.get('root_cause')}\n"
+            f"Recommended recovery: "
+            f"{recovery.get('action')}\n"
+            f"Original error: {error}\n\n"
+            "No workspace changes were committed for this failed attempt.\n"
+            "Use this diagnosis to produce a corrected attempt."
+        )
+
+    @staticmethod
+    def _parse_actions(output: str) -> dict[str, Any]:
+
+        if not output or not output.strip():
+            raise ValueError("Worker returned empty output.")
+
+        text = output.strip()
+
+        if text.startswith("```"):
+            lines = text.splitlines()
+
+            if lines and lines[0].startswith("```"):
+                lines = lines[1:]
+
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+
+            text = "\n".join(lines).strip()
+
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+
+            start = text.find("{")
+            end = text.rfind("}")
+
+            if start == -1 or end == -1 or end <= start:
+                raise ValueError(
+                    "Worker output is not valid JSON."
+                )
+
+            try:
+                data = json.loads(
+                    text[start:end + 1]
+                )
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    f"Worker output contains invalid JSON: {exc}"
+                ) from exc
+
+        if not isinstance(data, dict):
+            raise ValueError(
+                "Worker JSON root must be an object."
+            )
+
+        files = data.get("files")
+        commands = data.get("commands")
+
+        if not isinstance(files, list):
+            raise ValueError(
+                "Worker JSON field 'files' must be a list."
+            )
+
+        if not isinstance(commands, list):
+            raise ValueError(
+                "Worker JSON field 'commands' must be a list."
+            )
+
+        return data
+
+    @staticmethod
+    def _file_paths(actions: dict[str, Any]) -> list[str]:
+
+        paths = []
+
+        for item in actions.get("files", []):
+            if not isinstance(item, dict):
+                continue
+
+            path = item.get("path")
+
+            if isinstance(path, str) and path.strip():
+                paths.append(path)
+
+        return paths
+
+    def execute(
+        self,
+        worker_output: str,
+        attempt: int = 1,
+        worker_result: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+
+        # ------------------------------------------------------------
+        # WORKER/API FAILURE
+        # ------------------------------------------------------------
+        #
+        # This must happen before parsing worker_output.
+        # API failures legitimately have empty output.
+        #
+        if worker_result is not None:
+            worker_success = worker_result.get(
+                "success",
+                True,
+            )
+
+            worker_error = worker_result.get(
+                "error"
+            )
+
+            if worker_success is False:
+                error = (
+                    str(worker_error)
+                    if worker_error
+                    else "Worker execution failed."
+                )
+
+                recovery_data = self._diagnose(
+                    error,
+                    attempt,
+                    worker_result=worker_result,
+                )
+
+                return {
+                    "success": False,
+                    "stage": "worker",
+                    "error": error,
+                    **recovery_data,
+                }
+
+        # ------------------------------------------------------------
+        # PARSE WORKER OUTPUT
+        # ------------------------------------------------------------
+
+        try:
+            actions = self._parse_actions(
+                worker_output
+            )
+
+        except Exception as exc:
+
+            error = str(exc)
+
+            recovery_data = self._diagnose(
+                error,
+                attempt,
+                worker_result=worker_result,
+            )
+
+            return {
+                "success": False,
+                "stage": "parse",
+                "error": error,
+                **recovery_data,
+            }
+
+        files = actions.get(
+            "files",
+            [],
+        )
+
+        commands = actions.get(
+            "commands",
+            [],
+        )
+
+        paths = self._file_paths(actions)
+
+        transaction_id = None
+
+        # ------------------------------------------------------------
+        # TRANSACTION BEGIN
+        # ------------------------------------------------------------
+
+        try:
+
+            if paths:
+                transaction = self.transaction.begin(
+                    paths
+                )
+
+                if not transaction.get(
+                    "success",
+                    False,
+                ):
+                    error = (
+                        "Failed to create workspace "
+                        "transaction snapshot."
+                    )
+
+                    recovery_data = self._diagnose(
+                        error,
+                        attempt,
+                    )
+
+                    return {
+                        "success": False,
+                        "stage": "transaction_begin",
+                        "error": error,
+                        **recovery_data,
+                    }
+
+                transaction_id = transaction.get(
+                    "transaction_id"
+                )
+
+        except Exception as exc:
+
+            error = (
+                f"Transaction begin failed: {exc}"
+            )
+
+            recovery_data = self._diagnose(
+                error,
+                attempt,
+            )
+
+            return {
+                "success": False,
+                "stage": "transaction_begin",
+                "error": error,
+                **recovery_data,
+            }
+
+        # ------------------------------------------------------------
+        # APPLY + EXECUTE
+        # ------------------------------------------------------------
+
+        executor = WorkspaceExecutor(
+            self.tool_runtime
+        )
+
+        execution = executor.execute_worker_output(
+            worker_output
+        )
+
+        if not execution.get(
+            "success",
+            False,
+        ):
+
+            error = str(
+                execution.get(
+                    "error",
+                    "Workspace execution failed.",
+                )
+            )
+
+            # Preserve nested execution errors too.
+            nested = execution.get(
+                "result"
+            )
+
+            if isinstance(nested, dict):
+
+                nested_error = nested.get(
+                    "error"
+                )
+
+                if nested_error:
+                    error = str(
+                        nested_error
+                    )
+
+            recovery_data = self._diagnose(
+                error,
+                attempt,
+            )
+
+            rollback = None
+
+            if transaction_id:
+                try:
+                    rollback = self.transaction.rollback(
+                        transaction_id
+                    )
+                except Exception as exc:
+                    rollback = {
+                        "success": False,
+                        "error": str(exc),
+                    }
+
+            return {
+                "success": False,
+                "stage": "execution",
+                "error": error,
+                "execution": execution,
+                "transaction": {
+                    "transaction_id": transaction_id,
+                    "rollback": rollback,
+                },
+                **recovery_data,
+            }
+
+        # ------------------------------------------------------------
+        # INDEPENDENT VERIFICATION
+        # ------------------------------------------------------------
+
+        verification = self.verification.verify_files(
+            paths
+        )
+
+        if not verification.get(
+            "success",
+            False,
+        ):
+
+            error = (
+                "Independent verification failed."
+            )
+
+            recovery_data = self._diagnose(
+                error,
+                attempt,
+            )
+
+            rollback = None
+
+            if transaction_id:
+                try:
+                    rollback = self.transaction.rollback(
+                        transaction_id
+                    )
+                except Exception as exc:
+                    rollback = {
+                        "success": False,
+                        "error": str(exc),
+                    }
+
+            return {
+                "success": False,
+                "stage": "verification",
+                "error": error,
+                "execution": execution,
+                "verification": verification,
+                "transaction": {
+                    "transaction_id": transaction_id,
+                    "rollback": rollback,
+                },
+                **recovery_data,
+            }
+
+        # ------------------------------------------------------------
+        # COMMIT
+        # ------------------------------------------------------------
+
+        commit_result = None
+
+        if transaction_id:
+
+            try:
+                commit_result = self.transaction.commit(
+                    transaction_id
+                )
+
+            except Exception as exc:
+
+                commit_result = {
+                    "success": False,
+                    "error": str(exc),
+                }
+
+            if not commit_result.get(
+                "success",
+                False,
+            ):
+
+                error = (
+                    "Transaction commit failed."
+                )
+
+                recovery_data = self._diagnose(
+                    error,
+                    attempt,
+                )
+
+                rollback = None
+
+                try:
+                    rollback = self.transaction.rollback(
+                        transaction_id
+                    )
+                except Exception as exc:
+                    rollback = {
+                        "success": False,
+                        "error": str(exc),
+                    }
+
+                return {
+                    "success": False,
+                    "stage": "commit",
+                    "error": error,
+                    "execution": execution,
+                    "verification": verification,
+                    "transaction": {
+                        "transaction_id": transaction_id,
+                        "commit": commit_result,
+                        "rollback": rollback,
+                    },
+                    **recovery_data,
+                }
+
+        return {
+            "success": True,
+            "stage": "committed",
+            "execution": execution,
+            "verification": verification,
+            "transaction": {
+                "transaction_id": transaction_id,
+                "commit": commit_result,
+            },
+        }

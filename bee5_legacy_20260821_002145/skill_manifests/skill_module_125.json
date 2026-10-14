@@ -1,0 +1,169 @@
+{
+  "skill": "skill_module_125",
+  "signature": {
+    "hash": "a6ccc3b1e16170d8fbdd65d7a0a02036b493225b87cb59a7af4019e2a75e2489",
+    "tokens": [
+      "allows",
+      "and",
+      "another",
+      "append",
+      "are",
+      "between",
+      "character",
+      "complexity",
+      "computes",
+      "current_row",
+      "def",
+      "deletions",
+      "distance",
+      "dynamic",
+      "edit",
+      "ensure",
+      "enumerate",
+      "for",
+      "fuzzy",
+      "how",
+      "implementation",
+      "insertions",
+      "int",
+      "into",
+      "len",
+      "len1",
+      "len2",
+      "less",
+      "levenshtein",
+      "levenshtein_distance",
+      "list",
+      "many",
+      "matching",
+      "matrix",
+      "measuring",
+      "min",
+      "needed",
+      "one",
+      "previous_row",
+      "programming",
+      "range",
+      "return",
+      "shorter",
+      "single",
+      "space",
+      "str",
+      "string",
+      "strings",
+      "substitutions",
+      "that",
+      "the",
+      "tolerance",
+      "transform",
+      "two",
+      "typo",
+      "use",
+      "useful",
+      "uses",
+      "with"
+    ],
+    "functions": [
+      "levenshtein_distance"
+    ],
+    "imports": [],
+    "calls": [
+      "append",
+      "enumerate",
+      "len",
+      "list",
+      "min",
+      "range"
+    ],
+    "operators": [
+      "Add",
+      "Eq",
+      "Gt",
+      "NotEq",
+      "Sub"
+    ],
+    "capability": "Computes the Levenshtein edit distance between two strings"
+  },
+  "metadata": {
+    "name": "levenshtein_distance",
+    "capability": "Computes the Levenshtein edit distance between two strings",
+    "purpose": "Allows measuring how many single-character insertions, deletions, or substitutions are needed to transform one string into another, useful for fuzzy matching and typo tolerance",
+    "primary_function": "levenshtein_distance",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    \"\"\"Return the Levenshtein distance between strings s1 and s2.\n\n    The implementation uses a dynamic programming matrix with O(min(len(s1), len(s2)))\n    space complexity.\n    \"\"\"\n    if s1 == s2:\n        return 0\n    len1, len2 = len(s1), len(s2)\n    # Ensure that s1 is the shorter string to use less space\n    if len1 > len2:\n        s1, s2 = s2, s1\n        len1, len2 = len2, len1\n    previous_row = list(range(len1 + 1))\n    for i, c2 in enumerate(s2, 1):\n        current_row = [i]\n        for j, c1 in enumerate(s1, 1):\n            insertions = previous_row[j] + 1\n            deletions = current_row[j - 1] + 1\n            substitutions = previous_row[j - 1] + (c1 != c2)\n            current_row.append(min(insertions, deletions, substitutions))\n        previous_row = current_row\n    return previous_row[-1]",
+    "tests": [
+      {
+        "args": [
+          "kitten",
+          "sitting"
+        ],
+        "kwargs": {},
+        "expected": 3
+      },
+      {
+        "args": [
+          "",
+          "abc"
+        ],
+        "kwargs": {},
+        "expected": 3
+      },
+      {
+        "args": [
+          "same",
+          "same"
+        ],
+        "kwargs": {},
+        "expected": 0
+      },
+      {
+        "args": [
+          "café",
+          "cafe"
+        ],
+        "kwargs": {},
+        "expected": 1
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 100.0,
+    "novelty": 1.0,
+    "similarity": 0.0,
+    "closest_skill": null,
+    "tests": {
+      "passed": 4,
+      "total": 4,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 3,
+          "actual": 3
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": 3,
+          "actual": 3
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 1,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_171102"
+  },
+  "created_at": "2026-08-20 17:11:09"
+}

@@ -1,0 +1,769 @@
+{
+  "version": 1,
+  "experiences": [
+    {
+      "timestamp": 1791477093.7958653,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791477869.4353278,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791477980.1575592,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791478038.9560964,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791478039.2683077,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791534918.1749141,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791534918.4571216,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791544700.452408,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791623555.5570507,
+      "task": "Fix calculator.py so calculate() returns 2 and make the provided test pass.",
+      "problem_pattern": "fix calculator.py so calculate() returns <n> and make the provided test pass. | test_failure | the test expected calculate() to return <n> but the implementation returned <n>.",
+      "error_type": "test_failure",
+      "root_cause": "",
+      "error_message": "The test expected calculate() to return 2 but the implementation returned 1.",
+      "method": "phase33_verified_repair",
+      "solution": "return 2",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return 1",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791623555.783011,
+      "task": "This is an intentional rollback test. The candidates must fail the provided test.",
+      "problem_pattern": "this is an intentional rollback test. the candidates must fail the provided test. | test_failure | intentional rollback verification",
+      "error_type": "test_failure",
+      "root_cause": "",
+      "error_message": "intentional rollback verification",
+      "method": "phase33_test",
+      "solution": "return 20",
+      "verification": {
+        "syntax": true,
+        "test": false,
+        "independent_test": false
+      },
+      "success": false,
+      "trusted": false,
+      "source": "phase33",
+      "metadata": {
+        "stage": "test",
+        "test": {
+          "success": false,
+          "returncode": 1,
+          "command": [
+            "python",
+            "test_rollback.py"
+          ],
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"/data/data/com.termux/files/home/pika/workspace/__phase33_real_e2e__/test_rollback.py\", line 4, in <module>\n    raise RuntimeError(\"ROLLBACK_TEST_FAILURE\")\nRuntimeError: ROLLBACK_TEST_FAILURE\n",
+          "timeout": false
+        }
+      },
+      "replay_context": {
+        "target_path": "rollback.py",
+        "old_text": "return 10",
+        "test_path": "test_rollback.py"
+      }
+    },
+    {
+      "timestamp": 1791623555.9591806,
+      "task": "This is an intentional rollback test. The candidates must fail the provided test.",
+      "problem_pattern": "this is an intentional rollback test. the candidates must fail the provided test. | test_failure | intentional rollback verification",
+      "error_type": "test_failure",
+      "root_cause": "",
+      "error_message": "intentional rollback verification",
+      "method": "phase33_test",
+      "solution": "return 30",
+      "verification": {
+        "syntax": true,
+        "test": false,
+        "independent_test": false
+      },
+      "success": false,
+      "trusted": false,
+      "source": "phase33",
+      "metadata": {
+        "stage": "test",
+        "test": {
+          "success": false,
+          "returncode": 1,
+          "command": [
+            "python",
+            "test_rollback.py"
+          ],
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"/data/data/com.termux/files/home/pika/workspace/__phase33_real_e2e__/test_rollback.py\", line 4, in <module>\n    raise RuntimeError(\"ROLLBACK_TEST_FAILURE\")\nRuntimeError: ROLLBACK_TEST_FAILURE\n",
+          "timeout": false
+        }
+      },
+      "replay_context": {
+        "target_path": "rollback.py",
+        "old_text": "return 10",
+        "test_path": "test_rollback.py"
+      }
+    },
+    {
+      "timestamp": 1791735624.5037384,
+      "task": "Fix inventory valuation: stock value must account for quantity and unit price; reorder flag must be true when quantity is below the reorder threshold.",
+      "problem_pattern": "fix inventory valuation: stock value must account for quantity and unit price; reorder flag must be true when quantity is below the reorder threshold. | test_failure | inventory calculation ignores quantity and uses an incorrect reorder threshold comparison | inventory valuation and reorder tests fail",
+      "error_type": "test_failure",
+      "root_cause": "inventory calculation ignores quantity and uses an incorrect reorder threshold comparison",
+      "error_message": "inventory valuation and reorder tests fail",
+      "method": "phase33_verified_repair",
+      "solution": "        total += item.get(\"quantity\", 0) * item.get(\"price\", 0)\n        if item.get(\"quantity\", 0) < reorder_at:\n            reorder.append(item.get(\"sku\"))",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "inventory_value_new.py",
+        "old_text": "        total += item.get(\"price\", 0)\n        if item.get(\"quantity\", 0) > reorder_at:\n            reorder.append(item.get(\"sku\"))",
+        "test_path": "test_inventory_value_new.py"
+      }
+    },
+    {
+      "timestamp": 1791735624.7049568,
+      "task": "Fix salesperson payout calculation: commission is a percentage of sales, and payout equals base pay plus commission.",
+      "problem_pattern": "fix salesperson payout calculation: commission is a percentage of sales, and payout equals base pay plus commission. | test_failure | commission percentage is treated as a flat amount and payout combines base pay and commission incorrectly | commission and payout tests fail",
+      "error_type": "test_failure",
+      "root_cause": "commission percentage is treated as a flat amount and payout combines base pay and commission incorrectly",
+      "error_message": "commission and payout tests fail",
+      "method": "phase33_syntax",
+      "solution": "total += item.get(\"quantity\", 0) * item.get(\"price\", 0)\n        if item.get(\"quantity\", 0) < reorder_at:\n            reorder.append(item.get(\"sku\"))",
+      "verification": {
+        "syntax": false,
+        "test": false,
+        "independent_test": false
+      },
+      "success": false,
+      "trusted": false,
+      "source": "phase33",
+      "metadata": {
+        "stage": "syntax",
+        "validation": {
+          "success": false,
+          "returncode": 1,
+          "command": [
+            "python",
+            "-m",
+            "py_compile",
+            "commission_payout_new.py"
+          ],
+          "stdout": "",
+          "stderr": "Sorry: IndentationError: unexpected indent (commission_payout_new.py, line 2)",
+          "timeout": false
+        }
+      },
+      "replay_context": {
+        "target_path": "commission_payout_new.py",
+        "old_text": "def payout(sales, commission_percent, base_pay):\n    commission = commission_percent\n    total = sales - commission\n    return {\"commission\": commission, \"payout\": total - base_pay}",
+        "test_path": "test_commission_payout_new.py"
+      }
+    },
+    {
+      "timestamp": 1791735629.2493284,
+      "task": "Fix salesperson payout calculation: commission is a percentage of sales, and payout equals base pay plus commission.",
+      "problem_pattern": "fix salesperson payout calculation: commission is a percentage of sales, and payout equals base pay plus commission. | test_failure | commission percentage is treated as a flat amount and payout combines base pay and commission incorrectly | commission and payout tests fail",
+      "error_type": "test_failure",
+      "root_cause": "commission percentage is treated as a flat amount and payout combines base pay and commission incorrectly",
+      "error_message": "commission and payout tests fail",
+      "method": "phase33_verified_repair",
+      "solution": "def payout(sales, commission_percent, base_pay):\n    commission = sales * (commission_percent / 100)\n    total = base_pay + commission\n    return {\"commission\": commission, \"payout\": total}\n",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "commission_payout_new.py",
+        "old_text": "def payout(sales, commission_percent, base_pay):\n    commission = commission_percent\n    total = sales - commission\n    return {\"commission\": commission, \"payout\": total - base_pay}\n",
+        "test_path": "test_commission_payout_new.py"
+      }
+    },
+    {
+      "timestamp": 1791741654.2480392,
+      "task": "Fix percentage discount calculation",
+      "problem_pattern": "fix percentage discount calculation | test_failure | discount percentage calculation is incorrect | independent discount assertions failed",
+      "error_type": "test_failure",
+      "root_cause": "discount percentage calculation is incorrect",
+      "error_message": "independent discount assertions failed",
+      "method": "phase33_verified_repair",
+      "solution": "    return price * (1 - percent / 100)",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "discount.py",
+        "old_text": "    return price - percent",
+        "test_path": "test_discount.py"
+      }
+    },
+    {
+      "timestamp": 1791745234.581366,
+      "task": "Fix percentage discount calculation",
+      "problem_pattern": "fix percentage discount calculation | test_failure | percentage must be applied to original price | discount(<n>, <n>) must return <n>",
+      "error_type": "test_failure",
+      "root_cause": "Percentage must be applied to original price",
+      "error_message": "discount(100, 20) must return 80",
+      "method": "phase33_test",
+      "solution": "def discount(price, percent):\n    return price + percent\n",
+      "verification": {
+        "syntax": true,
+        "test": false,
+        "independent_test": false
+      },
+      "success": false,
+      "trusted": false,
+      "source": "phase33",
+      "metadata": {
+        "stage": "test",
+        "test": {
+          "success": false,
+          "returncode": 1,
+          "command": [
+            "python",
+            "test_discount.py"
+          ],
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"/data/data/com.termux/files/usr/tmp/pika_wrong_candidate_356ex9lk/test_discount.py\", line 2, in <module>\n    assert discount(100, 20) == 80\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+          "timeout": false
+        }
+      },
+      "replay_context": {
+        "target_path": "discount.py",
+        "old_text": "def discount(price, percent):\n    return price - percent\n",
+        "test_path": "test_discount.py"
+      }
+    },
+    {
+      "timestamp": 1791796886.5823407,
+      "task": "Repair calculate_total so it adds two numbers.",
+      "problem_pattern": "repair calculate_total so it adds two numbers. | test_failure | calculate_total subtracts instead of adding | expected <n> but got <n>",
+      "error_type": "test_failure",
+      "root_cause": "calculate_total subtracts instead of adding",
+      "error_message": "Expected 15 but got 5",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "pika_real_repair_r48hxve0/calc.py",
+        "old_text": "return a - b",
+        "test_path": "pika_real_repair_r48hxve0/test_calc.py"
+      }
+    },
+    {
+      "timestamp": 1791797228.437508,
+      "task": "Repair calculate_total so it adds two numbers.",
+      "problem_pattern": "repair calculate_total so it adds two numbers. | test_failure | calculate_total subtracts instead of adding | expected <n> but got <n>",
+      "error_type": "test_failure",
+      "root_cause": "calculate_total subtracts instead of adding",
+      "error_message": "Expected 15 but got 5",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "pika_real_repair_ub5hhw_o/calc.py",
+        "old_text": "return a - b",
+        "test_path": "pika_real_repair_ub5hhw_o/test_calc.py"
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_causes": [
+        "add function uses subtraction instead of addition"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "return a + b",
+          "success_count": 8,
+          "failure_count": 0,
+          "verified_count": 8,
+          "last_used": 1791544700.4524329,
+          "replay_context": {
+            "target_path": "calculator.py",
+            "old_text": "return a - b",
+            "test_path": "test_calculator.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 8,
+      "successes": 8,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791544700.452442
+    },
+    {
+      "problem_pattern": "fix calculator.py so calculate() returns <n> and make the provided test pass. | test_failure | the test expected calculate() to return <n> but the implementation returned <n>.",
+      "error_type": "test_failure",
+      "root_causes": [],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "return 2",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791623555.5570726,
+          "replay_context": {
+            "target_path": "calculator.py",
+            "old_text": "return 1",
+            "test_path": "test_calculator.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791623555.5570827
+    },
+    {
+      "problem_pattern": "this is an intentional rollback test. the candidates must fail the provided test. | test_failure | intentional rollback verification",
+      "error_type": "test_failure",
+      "root_causes": [],
+      "solutions": [],
+      "failed_methods": [
+        {
+          "method": "phase33_test",
+          "solution": "return 20",
+          "success_count": 0,
+          "failure_count": 2,
+          "verified_count": 0,
+          "last_used": 1791623555.9592006,
+          "replay_context": {
+            "target_path": "rollback.py",
+            "old_text": "return 10",
+            "test_path": "test_rollback.py"
+          }
+        }
+      ],
+      "attempts": 2,
+      "successes": 0,
+      "failures": 2,
+      "confidence": 0.0,
+      "updated_at": 1791623555.9592087
+    },
+    {
+      "problem_pattern": "fix inventory valuation: stock value must account for quantity and unit price; reorder flag must be true when quantity is below the reorder threshold. | test_failure | inventory calculation ignores quantity and uses an incorrect reorder threshold comparison | inventory valuation and reorder tests fail",
+      "error_type": "test_failure",
+      "root_causes": [
+        "inventory calculation ignores quantity and uses an incorrect reorder threshold comparison"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "        total += item.get(\"quantity\", 0) * item.get(\"price\", 0)\n        if item.get(\"quantity\", 0) < reorder_at:\n            reorder.append(item.get(\"sku\"))",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791735624.5037599,
+          "replay_context": {
+            "target_path": "inventory_value_new.py",
+            "old_text": "        total += item.get(\"price\", 0)\n        if item.get(\"quantity\", 0) > reorder_at:\n            reorder.append(item.get(\"sku\"))",
+            "test_path": "test_inventory_value_new.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791735624.5037687
+    },
+    {
+      "problem_pattern": "fix salesperson payout calculation: commission is a percentage of sales, and payout equals base pay plus commission. | test_failure | commission percentage is treated as a flat amount and payout combines base pay and commission incorrectly | commission and payout tests fail",
+      "error_type": "test_failure",
+      "root_causes": [
+        "commission percentage is treated as a flat amount and payout combines base pay and commission incorrectly"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "def payout(sales, commission_percent, base_pay):\n    commission = sales * (commission_percent / 100)\n    total = base_pay + commission\n    return {\"commission\": commission, \"payout\": total}\n",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791735629.2493463,
+          "replay_context": {
+            "target_path": "commission_payout_new.py",
+            "old_text": "def payout(sales, commission_percent, base_pay):\n    commission = commission_percent\n    total = sales - commission\n    return {\"commission\": commission, \"payout\": total - base_pay}\n",
+            "test_path": "test_commission_payout_new.py"
+          }
+        }
+      ],
+      "failed_methods": [
+        {
+          "method": "phase33_syntax",
+          "solution": "total += item.get(\"quantity\", 0) * item.get(\"price\", 0)\n        if item.get(\"quantity\", 0) < reorder_at:\n            reorder.append(item.get(\"sku\"))",
+          "success_count": 0,
+          "failure_count": 1,
+          "verified_count": 0,
+          "last_used": 1791735624.7049785,
+          "replay_context": {
+            "target_path": "commission_payout_new.py",
+            "old_text": "def payout(sales, commission_percent, base_pay):\n    commission = commission_percent\n    total = sales - commission\n    return {\"commission\": commission, \"payout\": total - base_pay}",
+            "test_path": "test_commission_payout_new.py"
+          }
+        }
+      ],
+      "attempts": 2,
+      "successes": 1,
+      "failures": 1,
+      "confidence": 0.5,
+      "updated_at": 1791735629.2493558
+    },
+    {
+      "problem_pattern": "fix percentage discount calculation | test_failure | discount percentage calculation is incorrect | independent discount assertions failed",
+      "error_type": "test_failure",
+      "root_causes": [
+        "discount percentage calculation is incorrect"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "    return price * (1 - percent / 100)",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791741654.2480695,
+          "replay_context": {
+            "target_path": "discount.py",
+            "old_text": "    return price - percent",
+            "test_path": "test_discount.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791741654.2480788
+    },
+    {
+      "problem_pattern": "fix percentage discount calculation | test_failure | percentage must be applied to original price | discount(<n>, <n>) must return <n>",
+      "error_type": "test_failure",
+      "root_causes": [
+        "Percentage must be applied to original price"
+      ],
+      "solutions": [],
+      "failed_methods": [
+        {
+          "method": "phase33_test",
+          "solution": "def discount(price, percent):\n    return price + percent\n",
+          "success_count": 0,
+          "failure_count": 1,
+          "verified_count": 0,
+          "last_used": 1791745234.5813932,
+          "replay_context": {
+            "target_path": "discount.py",
+            "old_text": "def discount(price, percent):\n    return price - percent\n",
+            "test_path": "test_discount.py"
+          }
+        }
+      ],
+      "attempts": 1,
+      "successes": 0,
+      "failures": 1,
+      "confidence": 0.0,
+      "updated_at": 1791745234.5814028
+    },
+    {
+      "problem_pattern": "repair calculate_total so it adds two numbers. | test_failure | calculate_total subtracts instead of adding | expected <n> but got <n>",
+      "error_type": "test_failure",
+      "root_causes": [
+        "calculate_total subtracts instead of adding"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "return a + b",
+          "success_count": 2,
+          "failure_count": 0,
+          "verified_count": 2,
+          "last_used": 1791797228.437539,
+          "replay_context": {
+            "target_path": "pika_real_repair_r48hxve0/calc.py",
+            "old_text": "return a - b",
+            "test_path": "pika_real_repair_r48hxve0/test_calc.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 2,
+      "successes": 2,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791797228.4375474
+    }
+  ]
+}

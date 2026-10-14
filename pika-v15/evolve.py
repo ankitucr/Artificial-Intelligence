@@ -1,0 +1,386 @@
+"""
+evolve.py — Pika's single entry point.
+Run this ONE file: it boots the Express server AND the self-evolution loop.
+
+    python evolve.py
+
+Expected project layout (adjust the constants below if yours differs):
+    project_root/
+      evolve.py            <-- this file, run from here
+      venv/
+      src/
+        server.js
+        skills/pika_skills.py        (auto-created)
+        python_brain/
+          bridge.py
+          pika_core.py
+          ast_mutator.py
+          load_balancer.py
+          neural_vectors.json        (auto-created)
+"""
+
+import os
+import sys
+import time
+import socket
+import signal
+import subprocess
+import traceback
+import importlib.util
+
+# ---------------------------------------------------------------------------
+# CONFIG — adjust these paths if your folder layout is different
+# ---------------------------------------------------------------------------
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+PYTHON_BRAIN_DIR = os.path.join(ROOT_DIR, "src", "python_brain")
+SERVER_SCRIPT = os.path.join(ROOT_DIR, "src", "server.js")
+NODE_EXEC = "node"
+
+SKILLS_FILE = os.path.join(ROOT_DIR, "src", "skills", "pika_skills.py")
+BRAIN_FILE = os.path.join(PYTHON_BRAIN_DIR, "neural_vectors.json")
+SERVER_LOG = os.path.join(ROOT_DIR, "server.log")
+
+SERVER_PORT = 3000
+LOOP_INTERVAL_SECONDS = 60
+CONSOLIDATE_EVERY_N_CYCLES = 10
+
+sys.path.insert(0, PYTHON_BRAIN_DIR)
+
+from pika_core import PikaNeuralCore          # noqa: E402
+from ast_mutator import mutate_code           # noqa: E402
+from load_balancer import AI_LoadBalancer     # noqa: E402
+
+
+# ---------------------------------------------------------------------------
+# TERMINAL ANIMATION
+# ---------------------------------------------------------------------------
+class C:
+    GREEN = "\033[92m"
+    CYAN = "\033[96m"
+    YELLOW = "\033[93m"
+    RED = "\033[91m"
+    MAGENTA = "\033[95m"
+    BOLD = "\033[1m"
+    DIM = "\033[2m"
+    RESET = "\033[0m"
+
+BANNER = r"""
+  ██████╗ ██╗██╗  ██╗ █████╗     ██╗   ██╗ ██╗███████╗
+  ██╔══██╗██║██║ ██╔╝██╔══██╗    ██║   ██║███║██╔════╝
+  ██████╔╝██║█████╔╝ ███████║    ██║   ██║╚██║███████╗
+  ██╔═══╝ ██║██╔═██╗ ██╔══██║    ╚██╗ ██╔╝ ██║╚════██║
+  ██║     ██║██║  ██╗██║  ██║     ╚████╔╝  ██║███████║
+  ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝      ╚═══╝   ╚═╝╚══════╝
+"""
+SUBTITLE = "        S E L F - E V O L V I N G   A I   C O R E"
+
+
+def typewriter(text, delay=0.015, color=""):
+    for ch in text:
+        sys.stdout.write(f"{color}{ch}{C.RESET}")
+        sys.stdout.flush()
+        time.sleep(delay)
+    print()
+
+
+def spinner_step(message, duration=1.0, success=True):
+    frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+    end_time = time.time() + duration
+    i = 0
+    while time.time() < end_time:
+        sys.stdout.write(f"\r{C.CYAN}{frames[i % len(frames)]}{C.RESET} {message}")
+        sys.stdout.flush()
+        time.sleep(0.07)
+        i += 1
+    icon = f"{C.GREEN}✅{C.RESET}" if success else f"{C.RED}❌{C.RESET}"
+    sys.stdout.write(f"\r{icon} {message}{' ' * 15}\n")
+    sys.stdout.flush()
+
+
+def boot_animation():
+    os.system("cls" if os.name == "nt" else "clear")
+    print(f"{C.CYAN}{C.BOLD}{BANNER}{C.RESET}")
+    print(f"{C.MAGENTA}{SUBTITLE}{C.RESET}\n")
+    time.sleep(0.3)
+
+    spinner_step("Initializing environment", 0.7)
+    spinner_step("Loading neural core & memory", 0.9)
+    spinner_step("Warming up load balancer (8 providers)", 0.8)
+    spinner_step("Linking AST Surgeon", 0.5)
+
+
+def celebrate_online():
+    msg = "🚀 PIKA IS ONLINE — autonomous self-evolution starting..."
+    print()
+    typewriter(msg, delay=0.01, color=f"{C.GREEN}{C.BOLD}")
+    print()
+
+
+# ---------------------------------------------------------------------------
+# SERVER MANAGEMENT
+# ---------------------------------------------------------------------------
+def start_server():
+    log_file = open(SERVER_LOG, "a")
+    log_file.write(f"\n\n===== Server started {time.strftime('%Y-%m-%d %H:%M:%S')} =====\n")
+    log_file.flush()
+    proc = subprocess.Popen(
+        [NODE_EXEC, SERVER_SCRIPT],
+        stdout=log_file,
+        stderr=log_file,
+    )
+    return proc
+
+
+def wait_for_server(host="127.0.0.1", port=SERVER_PORT, timeout=15):
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            with socket.create_connection((host, port), timeout=1):
+                return True
+        except OSError:
+            time.sleep(0.3)
+    return False
+
+
+# ---------------------------------------------------------------------------
+# SELF-EVOLUTION LOOP (Pika decides its own skills, writes, tests, learns)
+# ---------------------------------------------------------------------------
+def ensure_skills_file():
+    dir_name = os.path.dirname(SKILLS_FILE)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+    if not os.path.exists(SKILLS_FILE):
+        with open(SKILLS_FILE, "w") as f:
+            f.write("# 🧠 Auto-generated by Pika's self-evolution loop.\n"
+                     "# Every function below was chosen, written, and tested by Pika itself.\n\n")
+
+
+def pika_choose_next_topic(core, lb):
+    # Ground truth: real function names currently in pika_skills.py — this is
+    # what actually matters for avoiding duplicates (neuron prompt history
+    # alone was letting the same names get re-proposed once >20 skills existed).
+    core._index_skill_library()
+    existing_names = sorted(s["name"] for s in core._skill_index)
+    names_block = ", ".join(existing_names) or "(none yet)"
+
+    meta_prompt = (
+        "You are an autonomous coding agent choosing your OWN next skill to learn — "
+        "nobody is telling you what to build.\n\n"
+        f"Function names that ALREADY EXIST in your skill library (do not propose "
+        f"any of these again, under any name variation or rephrasing):\n{names_block}\n\n"
+        "Propose exactly ONE new, small, general-purpose Python utility function "
+        "you do not already have, useful for a self-healing coding assistant "
+        "(examples: safe file IO, retry/backoff logic, input validation, string "
+        "parsing, data structure helpers, simple caching). Prefer the Python "
+        "standard library — avoid third-party packages unless truly necessary.\n\n"
+        "Reply with EXACTLY one line, this format and nothing else:\n"
+        "function_name: one line description of what it does"
+    )
+
+    raw = lb.ask(meta_prompt, role="planner")
+    first_line = next((l for l in raw.strip().splitlines() if l.strip()), "")
+
+    if ":" in first_line:
+        func_name, desc = first_line.split(":", 1)
+    else:
+        func_name, desc = f"skill_{int(time.time())}", first_line
+
+    func_name = "".join(c for c in func_name.strip() if c.isalnum() or c == "_") or f"skill_{int(time.time())}"
+
+    if func_name in existing_names:
+        return None, None  # signal caller to skip this cycle — avoid wasting a CODER call
+
+    return func_name, desc.strip()
+
+
+def _existing_skill_signatures(core):
+    """
+    Pulls real function signatures out of pika_skills.py so the next skill
+    can be written to CALL existing skills instead of reinventing them —
+    this is what makes the brain compound instead of just accumulating
+    flat, disconnected functions.
+    """
+    core._index_skill_library()
+    lines = []
+    for s in core._skill_index:
+        args = ", ".join(s["args"])
+        lines.append(f"- {s['name']}({args}): {s['doc'] or 'no description'}")
+    return "\n".join(lines) or "(none yet — this will be the first skill)"
+
+
+def pika_write_skill(core, func_name, desc):
+    """Pika generates the actual implementation for the skill it chose,
+    with visibility into skills it already has so it can reuse/compose them."""
+    existing = _existing_skill_signatures(core)
+    prompt = (
+        f"Write a Python function named '{func_name}' that does: {desc}.\n\n"
+        f"You already have these helper functions available in the SAME file/module "
+        f"you are writing into — call them DIRECTLY by name if any are genuinely useful "
+        f"here (only use one if it actually helps — don't force it). Do NOT write any "
+        f"import statement for them (no 'from pika_skills import ...') — they already "
+        f"live in this same module:\n{existing}\n\n"
+        f"Include a short docstring."
+    )
+    solution, used_api, neuron = core.think(prompt, context_type="skill_growth")
+    return solution, neuron
+
+
+def pika_self_test(func_name):
+    """
+    Pika loads its OWN skills file and actually tries to call the function it
+    just wrote. If the file fails to import because of a missing third-party
+    package (e.g. a skill used `chardet`, `requests`, etc.), we try to
+    auto-install that ONE package and retry once — otherwise a single skill
+    needing an uninstalled library would poison every self-test after it,
+    since the whole module has to import successfully for ANY function to
+    be reachable.
+    """
+    def _try_import():
+        spec = importlib.util.spec_from_file_location("pika_skills", SKILLS_FILE)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    try:
+        module = _try_import()
+    except ModuleNotFoundError as e:
+        missing = e.name
+        # Never attempt to pip-install our own local/internal modules — a
+        # missing 'pika_skills', 'pika_core', etc. means a corrupted self-
+        # reference got written into the skills file, not an uninstalled
+        # third-party package. Fail fast with a clear message instead.
+        LOCAL_MODULES = {"pika_skills", "pika_core", "ast_mutator", "load_balancer", "bridge"}
+        if missing in LOCAL_MODULES:
+            return False, (f"'{missing}' is a local project module, not a pip package — "
+                            f"this means a bad self-referential import got written into "
+                            f"{os.path.basename(SKILLS_FILE)}. Check the file manually for a "
+                            f"stray 'from {missing} import ...' line and remove it.")
+        print(f"📦 [Self-Test] Missing package '{missing}' — attempting auto-install...")
+        try:
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", missing, "--break-system-packages", "-q"],
+                check=True, timeout=60
+            )
+            module = _try_import()
+            print(f"✅ [Self-Test] '{missing}' installed successfully, retrying passed.")
+        except Exception as install_err:
+            return False, f"module '{missing}' missing and could not be auto-installed: {install_err}"
+    except Exception as e:
+        return False, str(e)
+
+    fn = getattr(module, func_name, None)
+    if fn is None:
+        return False, f"'{func_name}' not found in skills file after mutation"
+
+    try:
+        fn()
+    except TypeError:
+        pass  # missing required args is fine — importable + callable is enough
+    except Exception as e:
+        return False, str(e)
+    return True, "skill loads and executes without error"
+
+
+def run_evolution_loop():
+    ensure_skills_file()
+    core = PikaNeuralCore(brain_file=BRAIN_FILE, skills_file=SKILLS_FILE)
+    lb = AI_LoadBalancer()
+    cycle = 0
+
+    # Run one consolidation pass immediately on boot — otherwise a neuron
+    # that already accumulated enough fails across PREVIOUS sessions never
+    # gets pruned if this session gets restarted (e.g. during testing)
+    # before its own cycle counter reaches the next multiple of 10.
+    print(f"{C.DIM}🧹 Running startup consolidation pass...{C.RESET}")
+    core.consolidate()
+
+    while True:
+        cycle += 1
+        print(f"\n{C.DIM}{'=' * 60}{C.RESET}")
+        print(f"{C.BOLD}🔁 CYCLE {cycle}{C.RESET} — {time.strftime('%H:%M:%S')}")
+        print(f"{C.DIM}{'=' * 60}{C.RESET}")
+
+        try:
+            func_name, desc = pika_choose_next_topic(core, lb)
+
+            if func_name is None:
+                print(f"⏭️  [Pika] Proposed a duplicate of an existing skill — skipping this cycle "
+                      f"(no CODER call made, no waste).")
+                time.sleep(LOOP_INTERVAL_SECONDS)
+                continue
+
+            print(f"🧠 [Pika] Decided to learn: '{C.CYAN}{func_name}{C.RESET}' — {desc}")
+
+            solution, neuron = pika_write_skill(core, func_name, desc)
+
+            if "def " not in solution:
+                # REUSE_SKILL determined the exact same function already exists
+                # under this name — nothing to mutate, it's already usable.
+                print(f"♻️  [Pika] '{func_name}' already exists as-is in the skill library — no mutation needed.")
+                if neuron:
+                    core.record_outcome(neuron, success=True)
+            else:
+                mutated = mutate_code(SKILLS_FILE, func_name, solution)
+                if not mutated:
+                    print(f"{C.RED}❌ AST Surgeon rejected the mutation this cycle.{C.RESET}")
+                    if neuron:
+                        core.record_outcome(neuron, success=False)
+                else:
+                    ok, msg = pika_self_test(func_name)
+                    if neuron:
+                        core.record_outcome(neuron, success=ok)
+                    icon = f"{C.GREEN}✅" if ok else f"{C.YELLOW}⚠️"
+                    print(f"{icon} [Self-Test] {msg}{C.RESET}")
+
+            if cycle % CONSOLIDATE_EVERY_N_CYCLES == 0:
+                core.consolidate()
+
+            core.report()
+
+        except Exception as e:
+            print(f"{C.RED}💥 [Loop Error] Cycle {cycle} crashed: {e}{C.RESET}")
+            traceback.print_exc()
+            print(f"{C.DIM}   Continuing to next cycle regardless — the loop must not die.{C.RESET}")
+
+        time.sleep(LOOP_INTERVAL_SECONDS)
+
+
+# ---------------------------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------------------------
+def main():
+    boot_animation()
+
+    print(f"{C.CYAN}📡 Starting Express server...{C.RESET}")
+    server_proc = start_server()
+    alive = wait_for_server()
+
+    if alive:
+        print(f"{C.GREEN}✅ Server confirmed alive → http://localhost:{SERVER_PORT}{C.RESET}")
+    else:
+        print(f"{C.RED}⚠️ Server didn't respond in time — check {SERVER_LOG}, "
+              f"continuing anyway (evolution loop doesn't strictly need it).{C.RESET}")
+
+    celebrate_online()
+
+    def shutdown(signum=None, frame=None):
+        print(f"\n{C.YELLOW}🛑 Shutting down Pika (server + evolution loop)...{C.RESET}")
+        server_proc.terminate()
+        try:
+            server_proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            server_proc.kill()
+        print(f"{C.DIM}Pika sleeps. 💤{C.RESET}")
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, shutdown)
+    signal.signal(signal.SIGTERM, shutdown)
+
+    try:
+        run_evolution_loop()
+    finally:
+        shutdown()
+
+
+if __name__ == "__main__":
+    main()

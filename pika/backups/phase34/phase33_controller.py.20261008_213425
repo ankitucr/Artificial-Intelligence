@@ -1,0 +1,122 @@
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Any
+
+from core.self_healing import SelfHealingEngine
+
+
+class Phase33Controller:
+    """
+    Phase 33 integration boundary.
+
+    Converts a diagnosed Phase 32 code/test failure into
+    a bounded self-healing operation.
+
+    The controller does not generate arbitrary code itself.
+    A provider-independent candidate generator supplies
+    repair candidates.
+
+    SelfHealingEngine then owns:
+        rank -> transaction -> edit -> verify -> test
+        -> commit / rollback
+    """
+
+    SUPPORTED_ERROR_TYPES = {
+        "code_error",
+        "test_failure",
+    }
+
+    def __init__(
+        self,
+        workspace_root: str | Path,
+        max_candidates: int = 3,
+    ):
+        self.root = (
+            Path(workspace_root)
+            .expanduser()
+            .resolve()
+        )
+
+        self.max_candidates = max(
+            1,
+            int(max_candidates),
+        )
+
+        self.healer = SelfHealingEngine(
+            self.root,
+            max_retries=2,
+            max_candidates=self.max_candidates,
+        )
+
+    @staticmethod
+    def _is_supported(
+        diagnosis: dict[str, Any],
+    ) -> bool:
+
+        return (
+            diagnosis.get("error_type")
+            in Phase33Controller.SUPPORTED_ERROR_TYPES
+        )
+
+    def repair(
+        self,
+        *,
+        diagnosis: dict[str, Any],
+        relative_path: str,
+        old_text: str,
+        candidates: list[str],
+        test_path: str,
+        task: str = "",
+    ) -> dict[str, Any]:
+
+        if not self._is_supported(
+            diagnosis
+        ):
+            return {
+                "success": False,
+                "stage": "unsupported",
+                "error": (
+                    "Phase 33 self-healing does not "
+                    "handle this error type."
+                ),
+                "diagnosis": diagnosis,
+            }
+
+        if not candidates:
+            return {
+                "success": False,
+                "stage": "generation",
+                "error": (
+                    "No repair candidates were generated."
+                ),
+                "diagnosis": diagnosis,
+            }
+
+        limited_candidates = candidates[
+            : self.max_candidates
+        ]
+
+        result = self.healer.repair_candidates(
+            relative_path=relative_path,
+            old_text=old_text,
+            candidates=limited_candidates,
+            test_path=test_path,
+            task=task,
+        )
+
+        return {
+            "success": bool(
+                result.get("success")
+            ),
+            "stage": (
+                "healed"
+                if result.get("success")
+                else result.get(
+                    "stage",
+                    "failed",
+                )
+            ),
+            "diagnosis": diagnosis,
+            "repair": result,
+        }

@@ -1,0 +1,151 @@
+{
+  "skill": "skill_module_169",
+  "signature": {
+    "hash": "0de489183751563dda9cd5a45389c1aff7a9306fedebdf1f3acff7510cd17c2f",
+    "tokens": [
+      "and",
+      "applications",
+      "calculates",
+      "common",
+      "def",
+      "finding",
+      "for",
+      "gcd",
+      "lcm",
+      "lcm_calculator",
+      "least",
+      "mathematical",
+      "more",
+      "multiple",
+      "num",
+      "number",
+      "numbers",
+      "real",
+      "result",
+      "return",
+      "skill",
+      "smallest",
+      "such",
+      "that",
+      "the",
+      "this",
+      "two",
+      "useful",
+      "various",
+      "while",
+      "world"
+    ],
+    "functions": [
+      "gcd",
+      "lcm"
+    ],
+    "imports": [],
+    "calls": [
+      "gcd"
+    ],
+    "operators": [
+      "FloorDiv",
+      "Mod",
+      "Mult"
+    ],
+    "capability": "This skill calculates the least common multiple of two or more numbers."
+  },
+  "metadata": {
+    "name": "lcm_calculator",
+    "capability": "This skill calculates the least common multiple of two or more numbers.",
+    "purpose": "The least common multiple is useful in various mathematical and real-world applications, such as finding the smallest number that is a multiple of two or more numbers.",
+    "primary_function": "lcm",
+    "code": "def lcm(*numbers):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n    result = numbers[0]\n    for num in numbers[1:]:\n        result = result * num // gcd(result, num)\n    return result",
+    "tests": [
+      {
+        "args": [
+          2,
+          3
+        ],
+        "kwargs": {},
+        "expected": 6
+      },
+      {
+        "args": [
+          10,
+          15,
+          20
+        ],
+        "kwargs": {},
+        "expected": 60
+      },
+      {
+        "args": [
+          7,
+          7
+        ],
+        "kwargs": {},
+        "expected": 7
+      },
+      {
+        "args": [
+          1,
+          1,
+          1
+        ],
+        "kwargs": {},
+        "expected": 1
+      },
+      {
+        "args": [
+          12,
+          18
+        ],
+        "kwargs": {},
+        "expected": 36
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "CANDIDATE",
+    "score": 85.78,
+    "novelty": 0.5938,
+    "similarity": 0.4062,
+    "closest_skill": "skill_module_153",
+    "tests": {
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 6,
+          "actual": 6
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": 60,
+          "actual": 60
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": 7,
+          "actual": 7
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "test": 5,
+          "passed": true,
+          "expected": 36,
+          "actual": 36
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 1,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_185442"
+  },
+  "created_at": "2026-08-20 18:54:49"
+}

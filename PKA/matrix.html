@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>P.K.A. MATRIX EVOLUTION</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #000; color: #00ff41; font-family: 'Courier New', monospace; overflow: hidden; }
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; }
+        .glass { background: rgba(0, 20, 0, 0.85); border: 1px solid #00ff41; box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); }
+        .btn-side { width: 100%; padding: 10px; border: 1px solid #004d1a; margin-bottom: 5px; text-align: left; font-size: 12px; transition: 0.3s; }
+        .btn-side:hover { background: #00ff41; color: #000; cursor: pointer; }
+        .matrix-terminal { height: 250px; overflow-y: auto; font-size: 10px; border: 1px solid #004d1a; padding: 10px; background: black; }
+        .status-bar { border-top: 1px solid #00ff41; background: rgba(0,0,0,0.9); }
+    </style>
+</head>
+<body class="h-screen flex flex-col p-4">
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="glass p-4 mb-4 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold tracking-widest uppercase">P.K.A. NEURAL CORE : GOD-MODE</h1>
+            <p class="text-[10px] opacity-70">EVOLUTION_STATE: HYPER_CONSCIOUS</p>
+        </div>
+        <div class="w-1/3 text-right">
+            <p class="text-xs mb-1">REAL MARKET READINESS: <span id="readyPercent">87%</span></p>
+            <div class="w-full bg-gray-900 h-2 border border-green-800">
+                <div id="readyBar" class="bg-green-500 h-full" style="width: 87%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-1 gap-4 overflow-hidden">
+        <div class="w-48 glass p-2 overflow-y-auto">
+            <h3 class="text-xs font-bold mb-4 border-b border-green-900">SYSTEM NODES</h3>
+            <button onclick="showFunc('system')" class="btn-side">💻 SYSTEM TOOLS</button>
+            <button onclick="showFunc('broker')" class="btn-side">💰 BROKER API</button>
+            <button onclick="showFunc('radar')" class="btn-side">📡 MARKET RADAR</button>
+            <button onclick="showFunc('brain')" class="btn-side">🧠 NEURAL CORE</button>
+            <button onclick="showFunc('cleaner')" class="btn-side">🧼 AUTO CLEANER</button>
+            <button onclick="showFunc('recover')" class="btn-side">🛡️ DATA RECOVERY</button>
+        </div>
+
+        <div class="flex-1 flex flex-col gap-4 overflow-hidden">
+            <div class="glass flex-1 p-2 flex flex-col">
+                <h3 class="text-xs font-bold mb-2 uppercase">🧬 REAL-TIME EVOLUTION MATRIX (IQ: <span id="iqCount">3,893,694</span>)</h3>
+                <div id="evolutionDisplay" class="matrix-terminal text-green-300">
+                    Initializing Mutation Engine...<br>
+                    Scanning for code vulnerabilities...<br>
+                    Applying Anti-Crash Patch on toUpperCase()...<br>
+                    Evolving Neural Pathways batch #250,000...
+                </div>
+            </div>
+            <div class="glass flex-1 p-2 flex flex-col">
+                <h3 class="text-xs font-bold mb-2 uppercase">📊 LIVE TRADE MATRIX (BANK: $100,000)</h3>
+                <div id="tradeDisplay" class="matrix-terminal text-blue-400">
+                    [OMNI-RADAR] BTC/USDT Price: $67,477.42<br>
+                    [ANALYSIS] Bearish Lean detected. Sentiment: -0.42<br>
+                    [BROKER] Executing Risk-Check via Kelly Criterion...<br>
+                    [SUCCESS] Order Layered in VM Sandbox.
+                </div>
+            </div>
+        </div>
+
+        <div id="activeInfo" class="w-64 glass p-4 text-xs">
+            <h3 class="font-bold border-b border-green-900 mb-4 uppercase">NODE STATUS</h3>
+            <div id="nodeContent">
+                Select a system node from the left to monitor active processes.
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar p-2 flex justify-between text-[10px]">
+        <p>ACTIVE EVOLUTION COUNT: <span id="evolveCount" class="font-bold">11,361</span></p>
+        <p>SYSTEM UPTIME: <span id="uptime">02:14:55</span></p>
+        <p>RAM USAGE: <span id="ramUsage">4.2GB FREE</span></p>
+    </div>
+
+    <script>
+        // Matrix Rain Background
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*";
+        const fontSize = 16;
+        const columns = canvas.width/fontSize;
+        const rainDrops = Array.from({ length: columns }).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+                if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
+                rainDrops[i]++;
+            }
+        }
+        setInterval(draw, 30);
+
+        // Sidebar logic
+        function showFunc(type) {
+            const content = document.getElementById('nodeContent');
+            if(type === 'system') content.innerHTML = "<b> SYSTEM TOOLS</b><br><br>Executing Shell Commands...<br>Python ML Runner Active.<br>Permission: OS-Level Root.";
+            if(type === 'broker') content.innerHTML = "<b> BROKER API</b><br><br>Balance: $100,000<br>Risk Limit: 10% [Kelly Sync]<br>Active Orders: 0";
+            if(type === 'radar') content.innerHTML = "<b> MARKET RADAR</b><br><br>Target: BTC/USDT<br>Scan Success: 100%<br>Latency: 45ms";
+            if(type === 'brain') content.innerHTML = "<b> NEURAL CORE</b><br><br>IQ State: 3.8M+<br>State: Hyper Conscious<br>Link: Dual-Engine Active.";
+        }
+    </script>
+</body>
+</html>

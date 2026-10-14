@@ -1,0 +1,93 @@
+from typing import Any
+
+
+class Planner:
+    """
+    Phase 7 adaptive planner.
+
+    The planner remains deterministic and lightweight.
+    Persistent memory is used as planning context rather than
+    allowing the planner to invent unsupported facts.
+    """
+
+    def plan(
+        self,
+        task: str,
+        memories: dict[str, Any] | None = None,
+    ) -> list[str]:
+
+        memories = memories or {}
+
+        steps = [
+            f"Understand task: {task}",
+        ]
+
+        # ---------------------------------------------------------
+        # Previous successful experience
+        # ---------------------------------------------------------
+
+        episodes = memories.get(
+            "episodes",
+            [],
+        )
+
+        if episodes:
+            steps.append(
+                "Review relevant previous successful experiences."
+            )
+
+        # ---------------------------------------------------------
+        # Previous failures
+        # ---------------------------------------------------------
+
+        failures = memories.get(
+            "failures",
+            [],
+        )
+
+        if failures:
+            steps.append(
+                "Inspect relevant previous failures "
+                "and avoid repeating their problems."
+            )
+
+        # ---------------------------------------------------------
+        # Learned lessons
+        # ---------------------------------------------------------
+
+        lessons = memories.get(
+            "lessons",
+            [],
+        )
+
+        if lessons:
+            steps.append(
+                "Apply relevant learned lessons "
+                "before executing the task."
+            )
+
+        # ---------------------------------------------------------
+        # Core execution
+        # ---------------------------------------------------------
+
+        steps.extend([
+            "Select required capability.",
+            "Execute through the selected agent.",
+            "Evaluate the result independently.",
+        ])
+
+        # ---------------------------------------------------------
+        # Recovery planning
+        # ---------------------------------------------------------
+
+        steps.append(
+            "If evaluation fails, use evaluator feedback "
+            "to correct the next attempt."
+        )
+
+        steps.append(
+            "Store the resulting experience and lesson "
+            "in persistent memory."
+        )
+
+        return steps

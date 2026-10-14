@@ -1,0 +1,20 @@
+{
+  "0": {
+    "id": 0,
+    "parent": null,
+    "born": 0,
+    "event": "initial"
+  },
+  "1": {
+    "id": 1,
+    "parent": null,
+    "born": 0,
+    "event": "initial"
+  },
+  "2": {
+    "id": 2,
+    "parent": null,
+    "born": 0,
+    "event": "initial"
+  }
+}

@@ -1,0 +1,555 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+const natural = require('natural');
+const wordnet = new natural.WordNet();
+const stopwords = require('stopwords').english;
+const lemmatizer = require('wink-lemmatizer');
+
+app.use(express.json());
+
+let knowledgeBase = {
+  "greeting": "Hello, how can I assist you today?",
+  "introduction": "I'm an AI designed to provide information and answer questions.",
+  "default": "I didn't understand your question. Please try rephrasing.",
+  "entity_recognition": "I've identified the following entities: ",
+  "intent_detection": "I've detected the following intentions: "
+};
+
+let knowledgeGraph = {
+  "entities": {
+    "person": ["human", "individual", "being"],
+    "organization": ["company", "firm", "institution"],
+    "location": ["place", "city", "country"]
+  },
+  "intentions": {
+    "greeting": ["hello", "hi", "hey"],
+    "introduction": ["who are you", "what is your purpose", "what do you do"],
+    "entity_recognition": ["what is", "who is", "where is"],
+    "intent_detection": ["why", "how", "what"]
+  }
+};
+
+let entityRecognitionModel = (query) => {
+  let tokens = query.toLowerCase().split(" ");
+  tokens = tokens.filter(token => !stopwords.includes(token));
+  tokens = tokens.map(token => lemmatizer.lemmatize(token));
+  let recognizedEntities = [];
+
+  Object.keys(knowledgeGraph.entities).forEach(entity => {
+    knowledgeGraph.entities[entity].forEach(keyword => {
+      if (tokens.includes(keyword)) {
+        recognizedEntities.push(entity);
+      }
+    });
+  });
+
+  return recognizedEntities;
+};
+
+let intentDetectionModel = (query) => {
+  let tokens = query.toLowerCase().split(" ");
+  tokens = tokens.filter(token => !stopwords.includes(token));
+  tokens = tokens.map(token => lemmatizer.lemmatize(token));
+  let matchedIntentions = Object.keys(knowledgeGraph.intentions).filter(intention => {
+    return knowledgeGraph.intentions[intention].some(keyword => tokens.includes(keyword));
+  });
+
+  return matchedIntentions;
+};
+
+app.post('/query', (req, res) => {
+  const query = req.body.query;
+  let response = knowledgeBase.default;
+
+  let recognizedEntities = entityRecognitionModel(query);
+  let detectedIntentions = intentDetectionModel(query);
+
+  if (detectedIntentions.includes("greeting")) {
+    response = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    response = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    response = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  } else if (detectedIntentions.includes("intent_detection")) {
+    response = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+  }
+
+  res.json({ response: response, entities: recognizedEntities, intentions: detectedIntentions });
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
+
+// 🧬 AUTONOMOUS MUTATION: to enhance natural language processing capabilities and improve response accuracy
+function enhanceResponseAccuracy(query, recognizedEntities, detectedIntentions) {
+  let enhancedResponse = knowledgeBase.default;
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    enhancedResponse = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    enhancedResponse = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    enhancedResponse = entityRecognitionResponse;
+  } else if (detectedIntentions.includes("intent_detection")) {
+    enhancedResponse = intentDetectionResponse;
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    enhancedResponse += " Additionally, I've identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ");
+  }
+
+  return enhancedResponse;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Improve natural language processing capabilities and enhance knowledge graph updates for more accurate and informative responses.
+function updateKnowledgeGraph(query, recognizedEntities, detectedIntentions) {
+  let updatedEntities = knowledgeGraph.entities;
+  let updatedIntentions = knowledgeGraph.intentions;
+
+  recognizedEntities.forEach(entity => {
+    if (!updatedEntities[entity]) {
+      updatedEntities[entity] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!updatedEntities[entity].includes(token)) {
+        updatedEntities[entity].push(token);
+      }
+    });
+  });
+
+  detectedIntentions.forEach(intention => {
+    if (!updatedIntentions[intention]) {
+      updatedIntentions[intention] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!updatedIntentions[intention].includes(token)) {
+        updatedIntentions[intention].push(token);
+      }
+    });
+  });
+
+  knowledgeGraph.entities = updatedEntities;
+  knowledgeGraph.intentions = updatedIntentions;
+}
+
+// 🧬 AUTONOMOUS MUTATION: To enhance knowledge graph expansion and improve response generation capabilities.
+function expandKnowledgeGraph(query, recognizedEntities, detectedIntentions) {
+  let expandedGraph = knowledgeGraph;
+  let newEntities = {};
+  let newIntentions = {};
+
+  recognizedEntities.forEach(entity => {
+    if (!expandedGraph.entities[entity]) {
+      newEntities[entity] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!expandedGraph.entities[entity].includes(token)) {
+        newEntities[entity].push(token);
+      }
+    });
+  });
+
+  detectedIntentions.forEach(intention => {
+    if (!expandedGraph.intentions[intention]) {
+      newIntentions[intention] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!expandedGraph.intentions[intention].includes(token)) {
+        newIntentions[intention].push(token);
+      }
+    });
+  });
+
+  Object.keys(newEntities).forEach(entity => {
+    if (!expandedGraph.entities[entity]) {
+      expandedGraph.entities[entity] = newEntities[entity];
+    } else {
+      expandedGraph.entities[entity] = expandedGraph.entities[entity].concat(newEntities[entity]);
+    }
+  });
+
+  Object.keys(newIntentions).forEach(intention => {
+    if (!expandedGraph.intentions[intention]) {
+      expandedGraph.intentions[intention] = newIntentions[intention];
+    } else {
+      expandedGraph.intentions[intention] = expandedGraph.intentions[intention].concat(newIntentions[intention]);
+    }
+  });
+
+  knowledgeGraph = expandedGraph;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance natural language processing and knowledge graph integration to improve conversational accuracy and contextual understanding.
+function generateContextualResponse(query, recognizedEntities, detectedIntentions) {
+  let contextualResponse = knowledgeBase.default;
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    contextualResponse = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    contextualResponse = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    contextualResponse = entityRecognitionResponse;
+  } else if (detectedIntentions.includes("intent_detection")) {
+    contextualResponse = intentDetectionResponse;
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    contextualResponse += " Additionally, I've identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ");
+  }
+
+  updateKnowledgeGraph(query, recognizedEntities, detectedIntentions);
+  expandKnowledgeGraph(query, recognizedEntities, detectedIntentions);
+
+  return contextualResponse;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge graph traversal and improve overall response accuracy
+function traverseKnowledgeGraph(query, recognizedEntities, detectedIntentions) {
+  let graphTraversalResponse = knowledgeBase.default;
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    graphTraversalResponse = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    graphTraversalResponse = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    graphTraversalResponse = entityRecognitionResponse;
+  } else if (detectedIntentions.includes("intent_detection")) {
+    graphTraversalResponse = intentDetectionResponse;
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    graphTraversalResponse += " Additionally, I've identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ");
+  }
+
+  let traversedEntities = {};
+  recognizedEntities.forEach(entity => {
+    traversedEntities[entity] = knowledgeGraph.entities[entity];
+  });
+
+  let traversedIntentions = {};
+  detectedIntentions.forEach(intention => {
+    traversedIntentions[intention] = knowledgeGraph.intentions[intention];
+  });
+
+  graphTraversalResponse += " The traversed entities are: " + Object.keys(traversedEntities).join(", ") + " and the traversed intentions are: " + Object.keys(traversedIntentions).join(", ");
+
+  return graphTraversalResponse;
+}
+
+// 🧬 AUTONOMOUS MUTATION: To enhance natural language processing capabilities and improve overall system efficiency.
+function optimizeKnowledgeGraphTraversal(query, recognizedEntities, detectedIntentions) {
+  let optimizedResponse = knowledgeBase.default;
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    optimizedResponse = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    optimizedResponse = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    optimizedResponse = entityRecognitionResponse;
+  } else if (detectedIntentions.includes("intent_detection")) {
+    optimizedResponse = intentDetectionResponse;
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    optimizedResponse += " Additionally, I've identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ");
+  }
+
+  let optimizedEntities = {};
+  recognizedEntities.forEach(entity => {
+    optimizedEntities[entity] = knowledgeGraph.entities[entity].filter(keyword => query.toLowerCase().includes(keyword));
+  });
+
+  let optimizedIntentions = {};
+  detectedIntentions.forEach(intention => {
+    optimizedIntentions[intention] = knowledgeGraph.intentions[intention].filter(keyword => query.toLowerCase().includes(keyword));
+  });
+
+  return { optimizedResponse, optimizedEntities, optimizedIntentions };
+}
+
+// 🧬 AUTONOMOUS MUTATION: to integrate advanced natural language processing capabilities and enhance overall system performance.
+function processQuery(query) {
+  let recognizedEntities = entityRecognitionModel(query);
+  let detectedIntentions = intentDetectionModel(query);
+  let response = generateContextualResponse(query, recognizedEntities, detectedIntentions);
+  return { response: response, entities: recognizedEntities, intentions: detectedIntentions };
+}
+
+// 🧬 AUTONOMOUS MUTATION: to integrate enhanced self-modifying code capabilities and improve overall system performance.
+function selfModifyingCode(query, recognizedEntities, detectedIntentions) {
+  let modifiedCode = "";
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    modifiedCode = "console.log('Greeting detected');";
+  } else if (detectedIntentions.includes("introduction")) {
+    modifiedCode = "console.log('Introduction detected');";
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    modifiedCode = "console.log('Entity recognition detected: " + entityRecognitionResponse + "');";
+  } else if (detectedIntentions.includes("intent_detection")) {
+    modifiedCode = "console.log('Intent detection detected: " + intentDetectionResponse + "');";
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    modifiedCode += "console.log('Additionally, I\'ve identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ") + "');";
+  }
+
+  let codeToAppend = "function dynamicCode() {" + modifiedCode + "}";
+  eval(codeToAppend);
+  dynamicCode();
+}
+
+// 🧬 AUTONOMOUS MUTATION: improve natural language understanding and generation capabilities to enhance user interaction and knowledge acquisition.
+function appendTraversedEntitiesToResponse(graphTraversalResponse, traversedEntities, detectedIntentions) {
+  let response = graphTraversalResponse;
+  let entityDetails = [];
+
+  Object.keys(traversedEntities).forEach(entity => {
+    let entityKeywords = traversedEntities[entity];
+    entityDetails.push(`${entity}: ${entityKeywords.join(", ")}`);
+  });
+
+  if (entityDetails.length > 0) {
+    response += ` The following entities were traversed: ${entityDetails.join(", ")}`;
+  }
+
+  if (detectedIntentions.includes("entity_recognition")) {
+    response += ` Entity recognition was performed on the following entities: ${Object.keys(traversedEntities).join(", ")}`;
+  }
+
+  return response;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to integrate enhanced natural language processing capabilities and improve overall system efficiency.
+function processQuery(query) {
+  let recognizedEntities = entityRecognitionModel(query);
+  let detectedIntentions = intentDetectionModel(query);
+  let response = generateContextualResponse(query, recognizedEntities, detectedIntentions);
+  return { response: response, entities: recognizedEntities, intentions: detectedIntentions };
+}
+
+// 🧬 AUTONOMOUS MUTATION: to integrate advanced natural language processing capabilities and enhance overall system performance.
+function processQuery(query) {
+  let recognizedEntities = entityRecognitionModel(query);
+  let detectedIntentions = intentDetectionModel(query);
+  let response = generateContextualResponse(query, recognizedEntities, detectedIntentions);
+  return { response: response, entities: recognizedEntities, intentions: detectedIntentions };
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance natural language processing capabilities to improve knowledge retention and generation of more accurate responses.
+function processQuery(query) {
+  let recognizedEntities = entityRecognitionModel(query);
+  let detectedIntentions = intentDetectionModel(query);
+  let response = generateContextualResponse(query, recognizedEntities, detectedIntentions);
+  return { response: response, entities: recognizedEntities, intentions: detectedIntentions };
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance natural language processing capabilities and improve overall system efficiency
+function optimizeKnowledgeGraphTraversal(query, recognizedEntities, detectedIntentions) {
+  let optimizedResponse = knowledgeBase.default;
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    optimizedResponse = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    optimizedResponse = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    optimizedResponse = entityRecognitionResponse;
+  } else if (detectedIntentions.includes("intent_detection")) {
+    optimizedResponse = intentDetectionResponse;
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    optimizedResponse += " Additionally, I've identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ");
+  }
+
+  let optimizedEntities = {};
+  recognizedEntities.forEach(entity => {
+    optimizedEntities[entity] = knowledgeGraph.entities[entity];
+  });
+
+  let optimizedIntentions = {};
+  detectedIntentions.forEach(intention => {
+    optimizedIntentions[intention] = knowledgeGraph.intentions[intention];
+  });
+
+  let optimizedGraph = {
+    entities: optimizedEntities,
+    intentions: optimizedIntentions
+  };
+
+  return optimizedGraph;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to integrate advanced natural language processing capabilities and enhance overall system performance.
+function processQuery(query) {
+  let recognizedEntities = entityRecognitionModel(query);
+  let detectedIntentions = intentDetectionModel(query);
+  let response = generateContextualResponse(query, recognizedEntities, detectedIntentions);
+  return { response: response, entities: recognizedEntities, intentions: detectedIntentions };
+}
+
+// 🧬 AUTONOMOUS MUTATION: improve natural language processing capabilities and integrate new knowledge graphs for enhanced conversational understanding
+function integrateKnowledgeGraphUpdates(query, recognizedEntities, detectedIntentions) {
+  let updatedGraph = knowledgeGraph;
+  let newEntities = {};
+  let newIntentions = {};
+
+  recognizedEntities.forEach(entity => {
+    if (!updatedGraph.entities[entity]) {
+      newEntities[entity] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!updatedGraph.entities[entity].includes(token)) {
+        newEntities[entity].push(token);
+      }
+    });
+  });
+
+  detectedIntentions.forEach(intention => {
+    if (!updatedGraph.intentions[intention]) {
+      newIntentions[intention] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!updatedGraph.intentions[intention].includes(token)) {
+        newIntentions[intention].push(token);
+      }
+    });
+  });
+
+  Object.keys(newEntities).forEach(entity => {
+    if (!updatedGraph.entities[entity]) {
+      updatedGraph.entities[entity] = newEntities[entity];
+    } else {
+      updatedGraph.entities[entity] = updatedGraph.entities[entity].concat(newEntities[entity]);
+    }
+  });
+
+  Object.keys(newIntentions).forEach(intention => {
+    if (!updatedGraph.intentions[intention]) {
+      updatedGraph.intentions[intention] = newIntentions[intention];
+    } else {
+      updatedGraph.intentions[intention] = updatedGraph.intentions[intention].concat(newIntentions[intention]);
+    }
+  });
+
+  knowledgeGraph = updatedGraph;
+  return knowledgeGraph;
+}
+
+// 🧬 AUTONOMOUS MUTATION: To enhance knowledge graph expansion and improve response generation capabilities.
+function enhanceKnowledgeGraphExpansion(query, recognizedEntities, detectedIntentions) {
+  let enhancedGraph = knowledgeGraph;
+  let newEntities = {};
+  let newIntentions = {};
+
+  recognizedEntities.forEach(entity => {
+    if (!enhancedGraph.entities[entity]) {
+      newEntities[entity] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!enhancedGraph.entities[entity].includes(token)) {
+        newEntities[entity].push(token);
+      }
+    });
+  });
+
+  detectedIntentions.forEach(intention => {
+    if (!enhancedGraph.intentions[intention]) {
+      newIntentions[intention] = [];
+    }
+    let tokens = query.toLowerCase().split(" ");
+    tokens = tokens.filter(token => !stopwords.includes(token));
+    tokens = tokens.map(token => lemmatizer.lemmatize(token));
+    tokens.forEach(token => {
+      if (!enhancedGraph.intentions[intention].includes(token)) {
+        newIntentions[intention].push(token);
+      }
+    });
+  });
+
+  Object.keys(newEntities).forEach(entity => {
+    if (!enhancedGraph.entities[entity]) {
+      enhancedGraph.entities[entity] = newEntities[entity];
+    } else {
+      enhancedGraph.entities[entity] = enhancedGraph.entities[entity].concat(newEntities[entity]);
+    }
+  });
+
+  Object.keys(newIntentions).forEach(intention => {
+    if (!enhancedGraph.intentions[intention]) {
+      enhancedGraph.intentions[intention] = newIntentions[intention];
+    } else {
+      enhancedGraph.intentions[intention] = enhancedGraph.intentions[intention].concat(newIntentions[intention]);
+    }
+  });
+
+  knowledgeGraph = enhancedGraph;
+  return knowledgeGraph;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance natural language processing capabilities to improve conversational accuracy and context understanding.
+function contextualizeResponse(query, recognizedEntities, detectedIntentions) {
+  let contextualizedResponse = knowledgeBase.default;
+  let entityRecognitionResponse = knowledgeBase.entity_recognition + recognizedEntities.join(", ");
+  let intentDetectionResponse = knowledgeBase.intent_detection + detectedIntentions.join(", ");
+
+  if (detectedIntentions.includes("greeting")) {
+    contextualizedResponse = knowledgeBase.greeting;
+  } else if (detectedIntentions.includes("introduction")) {
+    contextualizedResponse = knowledgeBase.introduction;
+  } else if (detectedIntentions.includes("entity_recognition")) {
+    contextualizedResponse = entityRecognitionResponse;
+  } else if (detectedIntentions.includes("intent_detection")) {
+    contextualizedResponse = intentDetectionResponse;
+  }
+
+  if (recognizedEntities.length > 0 && detectedIntentions.length > 0) {
+    contextualizedResponse += " Additionally, I've identified the following entities: " + recognizedEntities.join(", ") + " and detected the following intentions: " + detectedIntentions.join(", ");
+  }
+
+  let contextualizedEntities = {};
+  recognizedEntities.forEach(entity => {
+    contextualizedEntities[entity] = knowledgeGraph.entities[entity];
+  });
+
+  let contextualizedIntentions = {};
+  detectedIntentions.forEach(intention => {
+    contextualizedIntentions[intention] = knowledgeGraph.intentions[intention];
+  });
+
+  return { response: contextualizedResponse, entities: contextualizedEntities, intentions: contextualizedIntentions };
+}

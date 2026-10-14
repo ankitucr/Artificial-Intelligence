@@ -1,0 +1,10 @@
+    duckduckgo_search()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/bee5/permanent_skills/skill_module_duckduckgo_search.py", line 7, in duckduckgo_search
+    c.execute("SELECT * FROM skill_modules WHERE name=?", (duckduckgo_search,))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: Error binding parameter 1: type 'function' is not supported
+
+----- END EXECUTION -----
+
+

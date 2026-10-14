@@ -1,0 +1,12 @@
+[
+  {
+    "round": "llm-1",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: Mutation is identical."
+  },
+  {
+    "round": "llm-2",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: Mutation is identical."
+  }
+]

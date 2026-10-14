@@ -1,0 +1,145 @@
+{
+  "skill": "skill_module_137",
+  "signature": {
+    "hash": "d3126a765ae59bf51f4f7fd3902cd82ccc20e8f012521c86f37fc7acf3fe8e38",
+    "tokens": [
+      "ability",
+      "adds",
+      "and",
+      "applications",
+      "capability",
+      "check",
+      "computational",
+      "crucial",
+      "def",
+      "false",
+      "for",
+      "given",
+      "int",
+      "is_prime",
+      "mathematical",
+      "number",
+      "numbers",
+      "play",
+      "prime",
+      "prime_checker",
+      "range",
+      "return",
+      "role",
+      "skill",
+      "the",
+      "this",
+      "true",
+      "useful",
+      "various",
+      "where"
+    ],
+    "functions": [
+      "is_prime"
+    ],
+    "imports": [],
+    "calls": [
+      "int",
+      "range"
+    ],
+    "operators": [
+      "Add",
+      "Eq",
+      "LtE",
+      "Mod",
+      "Pow"
+    ],
+    "capability": "This skill adds the ability to check if a given number is prime."
+  },
+  "metadata": {
+    "name": "prime_checker",
+    "capability": "This skill adds the ability to check if a given number is prime.",
+    "purpose": "This capability is useful for various mathematical and computational applications where prime numbers play a crucial role.",
+    "primary_function": "is_prime",
+    "code": "def is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True",
+    "tests": [
+      {
+        "args": [
+          25
+        ],
+        "kwargs": {},
+        "expected": false
+      },
+      {
+        "args": [
+          23
+        ],
+        "kwargs": {},
+        "expected": true
+      },
+      {
+        "args": [
+          1
+        ],
+        "kwargs": {},
+        "expected": false
+      },
+      {
+        "args": [
+          37
+        ],
+        "kwargs": {},
+        "expected": true
+      },
+      {
+        "args": [
+          48
+        ],
+        "kwargs": {},
+        "expected": false
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 100.0,
+    "novelty": 1.0,
+    "similarity": 0.0,
+    "closest_skill": null,
+    "tests": {
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "test": 5,
+          "passed": true,
+          "expected": false,
+          "actual": false
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 3,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_174848"
+  },
+  "created_at": "2026-08-20 17:49:54"
+}

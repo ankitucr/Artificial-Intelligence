@@ -1,0 +1,12 @@
+[
+    {
+        "error": "NameError: name null is not defined",
+        "solution": "def calculate_total(prices):\n    total = 0\n    for price in prices:\n        if price is None:\n            continue\n        total += price\n    return total",
+        "description": "Auto-fixed calculate_total"
+    },
+    {
+        "error": "Traceback (most recent call last):\n  File \"/data/data/com.termux/files/home/pika-v15/test_math.py\", line 8, in <module>\n    divide_numbers(10, 0)\n    ~~~~~~~~~~~~~~^^^^^^^\n  File \"/data/data/com.termux/files/home/pika-v15/test_math.py\", line 3, in divide_numbers\n    result = a / b\n             ~~^~~\nZeroDivisionError: division by zero\n",
+        "solution": "def divide_numbers(a, b):\n    \"\"\"\n    Divide a by b, handling division by zero gracefully.\n\n    Parameters\n    ----------\n    a : numeric\n        Numerator.\n    b : numeric\n        Denominator.\n\n    Returns\n    -------\n    float\n        The result of a / b if b is not zero.\n    None\n        If b is zero, indicating an undefined result.\n    \"\"\"\n    if b == 0:\n        # Avoid ZeroDivisionError; you could also raise an exception instead.\n        return None\n    return a / b",
+        "description": "Auto-fixed divide_numbers"
+    }
+]

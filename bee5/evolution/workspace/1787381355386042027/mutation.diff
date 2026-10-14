@@ -1,0 +1,15 @@
+--- /data/data/com.termux/files/home/bee5/evolution/workspace/1787381355386042027/parent.py
++++ /data/data/com.termux/files/home/bee5/evolution/workspace/1787381355386042027/candidate.py
+@@ -1,3 +1,6 @@
++import re as _bee5_re
++_BEE5_PUNCT_RE = _bee5_re.compile(r"\s+([,.!?;:])")
++
+ #!/usr/bin/env python3
+ 
+ def normalize_text(text: str) -> str:
+@@ -13,4 +16,4 @@
+     """
+ 
+     text = str(text)
+-    return " ".join(text.strip().split())
++    return _BEE5_PUNCT_RE.sub(r"\1", " ".join(text.strip().split()))

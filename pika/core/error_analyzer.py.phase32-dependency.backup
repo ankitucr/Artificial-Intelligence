@@ -1,0 +1,286 @@
+from __future__ import annotations
+
+import re
+from typing import Any
+
+
+class ErrorAnalyzer:
+    """
+    Converts raw execution errors into structured root-cause
+    categories that PIKA can act on.
+    """
+
+    DEPENDENCY_PATTERNS = (
+        "modulenotfounderror",
+        "no module named",
+        "cannot import name",
+        "package is not installed",
+        "distribution was not found",
+        "could not find a version",
+    )
+
+    CODE_PATTERNS = (
+        "syntaxerror",
+        "indentationerror",
+        "nameerror",
+        "typeerror",
+        "attributeerror",
+        "keyerror",
+        "indexerror",
+        "valueerror",
+        "unboundlocalerror",
+        "recursionerror",
+    )
+
+    TEST_PATTERNS = (
+        "failed",
+        "failure",
+        "assertionerror",
+        "test failed",
+        "tests failed",
+        "error during collection",
+        "collected",
+    )
+
+    CONFIG_PATTERNS = (
+        "environment variable",
+        "configuration",
+        "config",
+        ".env",
+        "invalid configuration",
+        "missing configuration",
+    )
+
+    PERMISSION_PATTERNS = (
+        "permission denied",
+        "operation not permitted",
+        "access denied",
+    )
+
+    NETWORK_PATTERNS = (
+        "connection refused",
+        "connection reset",
+        "timed out",
+        "timeout",
+        "dns",
+        "name or service not known",
+        "network is unreachable",
+        "connection error",
+    )
+
+    COMMAND_POLICY_PATTERNS = (
+        "only 'python -m py_compile'",
+        "command is not allowed",
+        "command not allowed",
+        "workspace command",
+    )
+
+    @staticmethod
+    def _text(
+        result: dict[str, Any],
+    ) -> str:
+
+        pieces: list[str] = []
+
+        for key in (
+            "error",
+            "stderr",
+            "stdout",
+            "message",
+        ):
+            value = result.get(key)
+
+            if value:
+                pieces.append(str(value))
+
+        nested = result.get("result")
+
+        if isinstance(nested, dict):
+            for key in (
+                "error",
+                "stderr",
+                "stdout",
+                "message",
+            ):
+                value = nested.get(key)
+
+                if value:
+                    pieces.append(str(value))
+
+        return "\n".join(pieces).lower()
+
+    @staticmethod
+    def _extract_package(
+        text: str,
+    ) -> str | None:
+
+        patterns = (
+            r"no module named ['\"]([^'\"]+)['\"]",
+            r"no module named ([a-zA-Z0-9_.-]+)",
+        )
+
+        for pattern in patterns:
+            match = re.search(
+                pattern,
+                text,
+            )
+
+            if match:
+                return match.group(1).split(".")[0]
+
+        return None
+
+    @staticmethod
+    def _contains_any(
+        text: str,
+        patterns: tuple[str, ...],
+    ) -> bool:
+
+        return any(
+            pattern in text
+            for pattern in patterns
+        )
+
+    def analyze(
+        self,
+        result: dict[str, Any],
+    ) -> dict[str, Any]:
+
+        text = self._text(result)
+
+        if not text:
+            return {
+                "success": True,
+                "error_type": "unknown",
+                "confidence": 0.0,
+                "root_cause": "No error information available.",
+                "recommended_action": "inspect_result",
+                "retry_allowed": False,
+            }
+
+        if self._contains_any(
+            text,
+            self.COMMAND_POLICY_PATTERNS,
+        ):
+            return {
+                "success": True,
+                "error_type": "command_policy",
+                "confidence": 0.99,
+                "root_cause": (
+                    "The requested command is blocked "
+                    "by the workspace execution policy."
+                ),
+                "recommended_action": "change_execution_strategy",
+                "retry_allowed": True,
+            }
+
+        if self._contains_any(
+            text,
+            self.DEPENDENCY_PATTERNS,
+        ):
+            package = self._extract_package(text)
+
+            return {
+                "success": True,
+                "error_type": "dependency_missing",
+                "confidence": 0.97,
+                "package": package,
+                "root_cause": (
+                    "A required software dependency "
+                    "appears to be unavailable."
+                ),
+                "recommended_action": "install_dependency",
+                "retry_allowed": True,
+            }
+
+        if self._contains_any(
+            text,
+            self.PERMISSION_PATTERNS,
+        ):
+            return {
+                "success": True,
+                "error_type": "permission_error",
+                "confidence": 0.96,
+                "root_cause": (
+                    "The operation does not have sufficient "
+                    "permissions."
+                ),
+                "recommended_action": "inspect_permissions",
+                "retry_allowed": True,
+            }
+
+        if self._contains_any(
+            text,
+            self.NETWORK_PATTERNS,
+        ):
+            return {
+                "success": True,
+                "error_type": "network_error",
+                "confidence": 0.90,
+                "root_cause": (
+                    "The operation appears to have failed "
+                    "because of a network/runtime connection problem."
+                ),
+                "recommended_action": "retry_with_backoff",
+                "retry_allowed": True,
+            }
+
+        if self._contains_any(
+            text,
+            self.CONFIG_PATTERNS,
+        ):
+            return {
+                "success": True,
+                "error_type": "configuration_error",
+                "confidence": 0.88,
+                "root_cause": (
+                    "The failure appears related to "
+                    "configuration or environment settings."
+                ),
+                "recommended_action": "repair_configuration",
+                "retry_allowed": True,
+            }
+
+        if self._contains_any(
+            text,
+            self.CODE_PATTERNS,
+        ):
+            return {
+                "success": True,
+                "error_type": "code_error",
+                "confidence": 0.94,
+                "root_cause": (
+                    "The program appears to contain "
+                    "a runtime or syntax-level code error."
+                ),
+                "recommended_action": "repair_code",
+                "retry_allowed": True,
+            }
+
+        if self._contains_any(
+            text,
+            self.TEST_PATTERNS,
+        ):
+            return {
+                "success": True,
+                "error_type": "test_failure",
+                "confidence": 0.82,
+                "root_cause": (
+                    "The implementation did not satisfy "
+                    "one or more tests."
+                ),
+                "recommended_action": "inspect_test_failure",
+                "retry_allowed": True,
+            }
+
+        return {
+            "success": True,
+            "error_type": "unknown",
+            "confidence": 0.40,
+            "root_cause": (
+                "The error could not be confidently "
+                "classified."
+            ),
+            "recommended_action": "deep_diagnosis",
+            "retry_allowed": True,
+        }

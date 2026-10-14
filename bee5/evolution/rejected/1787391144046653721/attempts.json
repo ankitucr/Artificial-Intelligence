@@ -1,0 +1,17 @@
+[
+  {
+    "round": "llm-1",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: Rejected: replacement contains a destructive truncating slice (matched pattern '\\\\[\\\\s*:\\\\s*-?\\\\d+\\\\s*\\\\]'). Do not limit, truncate, or discard tokens to make a test pass. Fix the actual formatting/semantic defect instead."
+  },
+  {
+    "round": "llm-2",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: Rejected: replacement contains a destructive truncating slice (matched pattern '\\\\[\\\\s*:\\\\s*-?\\\\d+\\\\s*\\\\]'). Do not limit, truncate, or discard tokens to make a test pass. Fix the actual formatting/semantic defect instead."
+  },
+  {
+    "round": "llm-3",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: Mutation target must occur exactly once; found 0."
+  }
+]

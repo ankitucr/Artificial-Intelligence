@@ -1,0 +1,46 @@
+{
+  "status": "ACTIVE",
+  "score": 100.0,
+  "novelty": 1.0,
+  "similarity": 0.0,
+  "closest_skill": null,
+  "tests": {
+    "passed": 5,
+    "total": 5,
+    "results": [
+      {
+        "test": 1,
+        "passed": true,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "test": 2,
+        "passed": true,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "test": 3,
+        "passed": true,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "test": 4,
+        "passed": true,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "test": 5,
+        "passed": true,
+        "expected": true,
+        "actual": true
+      }
+    ]
+  },
+  "determinism": true,
+  "generation_attempt": 1,
+  "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_175408"
+}

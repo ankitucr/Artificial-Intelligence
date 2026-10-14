@@ -1,0 +1,1671 @@
+{
+  "candidate_count": 61,
+  "active_count": 158,
+  "exact_duplicate_groups": [
+    {
+      "hash": "9b6ec6f481777552",
+      "files": [
+        "skill_module_101.py",
+        "skill_module_115.py"
+      ]
+    },
+    {
+      "hash": "b69400c09b9110bd",
+      "files": [
+        "skill_module_116.py",
+        "skill_module_117.py"
+      ]
+    },
+    {
+      "hash": "8e4bb474e019033d",
+      "files": [
+        "skill_module_126.py",
+        "skill_module_130.py",
+        "skill_module_135.py"
+      ]
+    },
+    {
+      "hash": "b0183859b4b6233b",
+      "files": [
+        "skill_module_127.py",
+        "skill_module_131.py"
+      ]
+    },
+    {
+      "hash": "85052e0ec40c7510",
+      "files": [
+        "skill_module_129.py",
+        "skill_module_134.py",
+        "skill_module_136.py",
+        "skill_module_140.py",
+        "skill_module_145.py",
+        "skill_module_147.py",
+        "skill_module_149.py",
+        "skill_module_150.py"
+      ]
+    },
+    {
+      "hash": "c3a66ccfe749cd27",
+      "files": [
+        "skill_module_133.py",
+        "skill_module_137.py",
+        "skill_module_138.py"
+      ]
+    },
+    {
+      "hash": "829363bc9ee83251",
+      "files": [
+        "skill_module_139.py",
+        "skill_module_141.py",
+        "skill_module_142.py",
+        "skill_module_143.py",
+        "skill_module_148.py"
+      ]
+    },
+    {
+      "hash": "407a38a3989767d7",
+      "files": [
+        "skill_module_93.py",
+        "skill_module_94.py"
+      ]
+    }
+  ],
+  "high_similarity_pairs": [
+    {
+      "score": 1.0,
+      "file_a": "skill_module_93.py",
+      "file_b": "skill_module_94.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_149.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_147.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_147.py",
+      "file_b": "skill_module_149.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_145.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_145.py",
+      "file_b": "skill_module_149.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_145.py",
+      "file_b": "skill_module_147.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_143.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_142.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_142.py",
+      "file_b": "skill_module_143.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_141.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_141.py",
+      "file_b": "skill_module_143.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_141.py",
+      "file_b": "skill_module_142.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_140.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_140.py",
+      "file_b": "skill_module_149.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_140.py",
+      "file_b": "skill_module_147.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_140.py",
+      "file_b": "skill_module_145.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_139.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_139.py",
+      "file_b": "skill_module_143.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_139.py",
+      "file_b": "skill_module_142.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_139.py",
+      "file_b": "skill_module_141.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_137.py",
+      "file_b": "skill_module_138.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_136.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_136.py",
+      "file_b": "skill_module_149.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_136.py",
+      "file_b": "skill_module_147.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_136.py",
+      "file_b": "skill_module_145.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_136.py",
+      "file_b": "skill_module_140.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_134.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_134.py",
+      "file_b": "skill_module_149.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_134.py",
+      "file_b": "skill_module_147.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_134.py",
+      "file_b": "skill_module_145.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_134.py",
+      "file_b": "skill_module_140.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_134.py",
+      "file_b": "skill_module_136.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_133.py",
+      "file_b": "skill_module_138.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_133.py",
+      "file_b": "skill_module_137.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_130.py",
+      "file_b": "skill_module_135.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_150.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_149.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_147.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_145.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_140.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_136.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_129.py",
+      "file_b": "skill_module_134.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_127.py",
+      "file_b": "skill_module_131.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_135.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_130.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_116.py",
+      "file_b": "skill_module_117.py"
+    },
+    {
+      "score": 1.0,
+      "file_a": "skill_module_101.py",
+      "file_b": "skill_module_115.py"
+    },
+    {
+      "score": 0.998,
+      "file_a": "skill_module_97.py",
+      "file_b": "skill_module_98.py"
+    },
+    {
+      "score": 0.9957,
+      "file_a": "skill_module_112.py",
+      "file_b": "skill_module_96.py"
+    },
+    {
+      "score": 0.9944,
+      "file_a": "skill_module_102.py",
+      "file_b": "skill_module_124.py"
+    },
+    {
+      "score": 0.9926,
+      "file_a": "skill_module_94.py",
+      "file_b": "skill_module_98.py"
+    },
+    {
+      "score": 0.9926,
+      "file_a": "skill_module_93.py",
+      "file_b": "skill_module_98.py"
+    },
+    {
+      "score": 0.9906,
+      "file_a": "skill_module_94.py",
+      "file_b": "skill_module_97.py"
+    },
+    {
+      "score": 0.9906,
+      "file_a": "skill_module_93.py",
+      "file_b": "skill_module_97.py"
+    },
+    {
+      "score": 0.9886,
+      "file_a": "skill_module_118.py",
+      "file_b": "skill_module_119.py"
+    },
+    {
+      "score": 0.987,
+      "file_a": "skill_module_131.py",
+      "file_b": "skill_module_138.py"
+    },
+    {
+      "score": 0.987,
+      "file_a": "skill_module_131.py",
+      "file_b": "skill_module_137.py"
+    },
+    {
+      "score": 0.987,
+      "file_a": "skill_module_131.py",
+      "file_b": "skill_module_133.py"
+    },
+    {
+      "score": 0.987,
+      "file_a": "skill_module_127.py",
+      "file_b": "skill_module_138.py"
+    },
+    {
+      "score": 0.987,
+      "file_a": "skill_module_127.py",
+      "file_b": "skill_module_137.py"
+    },
+    {
+      "score": 0.987,
+      "file_a": "skill_module_127.py",
+      "file_b": "skill_module_133.py"
+    },
+    {
+      "score": 0.9665,
+      "file_a": "skill_module_111.py",
+      "file_b": "skill_module_114.py"
+    },
+    {
+      "score": 0.9609,
+      "file_a": "skill_module_95.py",
+      "file_b": "skill_module_99.py"
+    },
+    {
+      "score": 0.9573,
+      "file_a": "skill_module_92.py",
+      "file_b": "skill_module_94.py"
+    },
+    {
+      "score": 0.9573,
+      "file_a": "skill_module_92.py",
+      "file_b": "skill_module_93.py"
+    },
+    {
+      "score": 0.955,
+      "file_a": "skill_module_108.py",
+      "file_b": "skill_module_96.py"
+    },
+    {
+      "score": 0.9505,
+      "file_a": "skill_module_108.py",
+      "file_b": "skill_module_112.py"
+    },
+    {
+      "score": 0.9503,
+      "file_a": "skill_module_92.py",
+      "file_b": "skill_module_98.py"
+    },
+    {
+      "score": 0.9482,
+      "file_a": "skill_module_92.py",
+      "file_b": "skill_module_97.py"
+    },
+    {
+      "score": 0.9466,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_120.py"
+    },
+    {
+      "score": 0.9093,
+      "file_a": "skill_module_120.py",
+      "file_b": "skill_module_96.py"
+    },
+    {
+      "score": 0.9048,
+      "file_a": "skill_module_112.py",
+      "file_b": "skill_module_120.py"
+    },
+    {
+      "score": 0.8758,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_112.py"
+    },
+    {
+      "score": 0.8737,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_90.py"
+    },
+    {
+      "score": 0.8721,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_96.py"
+    },
+    {
+      "score": 0.8716,
+      "file_a": "skill_module_102.py",
+      "file_b": "skill_module_120.py"
+    },
+    {
+      "score": 0.8672,
+      "file_a": "skill_module_108.py",
+      "file_b": "skill_module_120.py"
+    },
+    {
+      "score": 0.8652,
+      "file_a": "skill_module_111.py",
+      "file_b": "skill_module_113.py"
+    },
+    {
+      "score": 0.8624,
+      "file_a": "skill_module_114.py",
+      "file_b": "skill_module_124.py"
+    },
+    {
+      "score": 0.862,
+      "file_a": "skill_module_120.py",
+      "file_b": "skill_module_90.py"
+    },
+    {
+      "score": 0.8579,
+      "file_a": "skill_module_122.py",
+      "file_b": "skill_module_123.py"
+    },
+    {
+      "score": 0.8428,
+      "file_a": "skill_module_120.py",
+      "file_b": "skill_module_124.py"
+    },
+    {
+      "score": 0.841,
+      "file_a": "skill_module_113.py",
+      "file_b": "skill_module_114.py"
+    },
+    {
+      "score": 0.8376,
+      "file_a": "skill_module_111.py",
+      "file_b": "skill_module_124.py"
+    },
+    {
+      "score": 0.8359,
+      "file_a": "skill_module_103.py",
+      "file_b": "skill_module_99.py"
+    },
+    {
+      "score": 0.8347,
+      "file_a": "skill_module_102.py",
+      "file_b": "skill_module_114.py"
+    },
+    {
+      "score": 0.8262,
+      "file_a": "skill_module_108.py",
+      "file_b": "skill_module_114.py"
+    },
+    {
+      "score": 0.8241,
+      "file_a": "skill_module_105.py",
+      "file_b": "skill_module_106.py"
+    },
+    {
+      "score": 0.8227,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_124.py"
+    },
+    {
+      "score": 0.8181,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_102.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_135.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_135.py",
+      "file_b": "skill_module_143.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_135.py",
+      "file_b": "skill_module_142.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_135.py",
+      "file_b": "skill_module_141.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_135.py",
+      "file_b": "skill_module_139.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_130.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_130.py",
+      "file_b": "skill_module_143.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_130.py",
+      "file_b": "skill_module_142.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_130.py",
+      "file_b": "skill_module_141.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_130.py",
+      "file_b": "skill_module_139.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_148.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_143.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_142.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_141.py"
+    },
+    {
+      "score": 0.8144,
+      "file_a": "skill_module_126.py",
+      "file_b": "skill_module_139.py"
+    },
+    {
+      "score": 0.8095,
+      "file_a": "skill_module_119.py",
+      "file_b": "skill_module_121.py"
+    },
+    {
+      "score": 0.8095,
+      "file_a": "skill_module_118.py",
+      "file_b": "skill_module_121.py"
+    },
+    {
+      "score": 0.8032,
+      "file_a": "skill_module_100.py",
+      "file_b": "skill_module_108.py"
+    },
+    {
+      "score": 0.803,
+      "file_a": "skill_module_90.py",
+      "file_b": "skill_module_96.py"
+    }
+  ],
+  "candidate_active_matches": [
+    {
+      "score": 1.0,
+      "candidate": "skill_module_99.py",
+      "active": "skill_module_99.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_98.py",
+      "active": "skill_module_98.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_97.py",
+      "active": "skill_module_97.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_96.py",
+      "active": "skill_module_96.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_95.py",
+      "active": "skill_module_95.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_94.py",
+      "active": "skill_module_93.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_93.py",
+      "active": "skill_module_93.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_92.py",
+      "active": "skill_module_92.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_90.py",
+      "active": "skill_module_90.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_86.py",
+      "active": "skill_module_86.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_85.py",
+      "active": "skill_module_85.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_81.py",
+      "active": "skill_module_81.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_80.py",
+      "active": "skill_module_80.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_79.py",
+      "active": "skill_module_79.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_345.py",
+      "active": "skill_module_345.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_150.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_149.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_148.py",
+      "active": "skill_module_139.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_147.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_145.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_143.py",
+      "active": "skill_module_139.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_142.py",
+      "active": "skill_module_139.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_141.py",
+      "active": "skill_module_139.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_140.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_139.py",
+      "active": "skill_module_139.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_138.py",
+      "active": "skill_module_133.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_137.py",
+      "active": "skill_module_133.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_136.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_135.py",
+      "active": "skill_module_126.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_134.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_133.py",
+      "active": "skill_module_133.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_131.py",
+      "active": "skill_module_127.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_130.py",
+      "active": "skill_module_126.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_129.py",
+      "active": "skill_module_129.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_127.py",
+      "active": "skill_module_127.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_126.py",
+      "active": "skill_module_126.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_124.py",
+      "active": "skill_module_124.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_123.py",
+      "active": "skill_module_123.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_122.py",
+      "active": "skill_module_122.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_121.py",
+      "active": "skill_module_121.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_120.py",
+      "active": "skill_module_120.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_119.py",
+      "active": "skill_module_119.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_118.py",
+      "active": "skill_module_118.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_117.py",
+      "active": "skill_module_116.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_116.py",
+      "active": "skill_module_116.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_115.py",
+      "active": "skill_module_101.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_114.py",
+      "active": "skill_module_114.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_113.py",
+      "active": "skill_module_113.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_112.py",
+      "active": "skill_module_112.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_111.py",
+      "active": "skill_module_111.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_109.py",
+      "active": "skill_module_109.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_108.py",
+      "active": "skill_module_108.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_107.py",
+      "active": "skill_module_107.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_106.py",
+      "active": "skill_module_106.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_105.py",
+      "active": "skill_module_105.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_104.py",
+      "active": "skill_module_104.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_103.py",
+      "active": "skill_module_103.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_102.py",
+      "active": "skill_module_102.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_101.py",
+      "active": "skill_module_101.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_100.py",
+      "active": "skill_module_100.py"
+    },
+    {
+      "score": 1.0,
+      "candidate": "skill_module_1.py",
+      "active": "skill_module_1.py"
+    }
+  ],
+  "metadata": [
+    {
+      "file": "skill_module_1.py",
+      "normalized_hash": "31260501f26919b5",
+      "bytes": 199,
+      "lines": 5,
+      "functions": [
+        "read_from_duckduckgo"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_100.py",
+      "normalized_hash": "d8efc3b6556a27ee",
+      "bytes": 1288,
+      "lines": 45,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_101.py",
+      "normalized_hash": "9b6ec6f481777552",
+      "bytes": 760,
+      "lines": 25,
+      "functions": [
+        "calculate_statistics",
+        "generate_random_data",
+        "main"
+      ],
+      "imports": [
+        "random",
+        "statistics"
+      ]
+    },
+    {
+      "file": "skill_module_102.py",
+      "normalized_hash": "54ca4e185a64470d",
+      "bytes": 1234,
+      "lines": 39,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_103.py",
+      "normalized_hash": "1efd1993a399f157",
+      "bytes": 849,
+      "lines": 30,
+      "functions": [
+        "calculate_statistics",
+        "process_text",
+        "main"
+      ],
+      "imports": [
+        "statistics"
+      ]
+    },
+    {
+      "file": "skill_module_104.py",
+      "normalized_hash": "d0d594a35c14a3c0",
+      "bytes": 768,
+      "lines": 24,
+      "functions": [
+        "calculate_statistics",
+        "process_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_105.py",
+      "normalized_hash": "cd6aca354d495c20",
+      "bytes": 839,
+      "lines": 27,
+      "functions": [
+        "calculate_statistics",
+        "process_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_106.py",
+      "normalized_hash": "ae9d535f62f7d15e",
+      "bytes": 839,
+      "lines": 27,
+      "functions": [
+        "calculate_statistics",
+        "analyze_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_107.py",
+      "normalized_hash": "c106efb48500bec4",
+      "bytes": 1100,
+      "lines": 36,
+      "functions": [
+        "calculate_statistics",
+        "word_frequency",
+        "process_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_108.py",
+      "normalized_hash": "44c2897e37845e1f",
+      "bytes": 1232,
+      "lines": 44,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_109.py",
+      "normalized_hash": "735303beaa81c3e2",
+      "bytes": 1012,
+      "lines": 28,
+      "functions": [
+        "calculate_statistics",
+        "analyze_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_111.py",
+      "normalized_hash": "83694f69add72c9a",
+      "bytes": 1067,
+      "lines": 35,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_112.py",
+      "normalized_hash": "40b392b6b3583a84",
+      "bytes": 1245,
+      "lines": 45,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_113.py",
+      "normalized_hash": "872d80d7246aeb6c",
+      "bytes": 956,
+      "lines": 32,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": [
+        "statistics"
+      ]
+    },
+    {
+      "file": "skill_module_114.py",
+      "normalized_hash": "17b845036ddf2645",
+      "bytes": 1113,
+      "lines": 38,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_115.py",
+      "normalized_hash": "9b6ec6f481777552",
+      "bytes": 760,
+      "lines": 25,
+      "functions": [
+        "calculate_statistics",
+        "generate_random_data",
+        "main"
+      ],
+      "imports": [
+        "random",
+        "statistics"
+      ]
+    },
+    {
+      "file": "skill_module_116.py",
+      "normalized_hash": "b69400c09b9110bd",
+      "bytes": 695,
+      "lines": 22,
+      "functions": [
+        "calculate_statistics",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_117.py",
+      "normalized_hash": "b69400c09b9110bd",
+      "bytes": 695,
+      "lines": 22,
+      "functions": [
+        "calculate_statistics",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_118.py",
+      "normalized_hash": "ff9a0f1c2104f121",
+      "bytes": 944,
+      "lines": 23,
+      "functions": [
+        "calculate_statistics",
+        "process_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_119.py",
+      "normalized_hash": "83c5e296fabb8b2a",
+      "bytes": 945,
+      "lines": 24,
+      "functions": [
+        "calculate_statistics",
+        "process_text",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_120.py",
+      "normalized_hash": "5e088fdbeedd8933",
+      "bytes": 1341,
+      "lines": 45,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_121.py",
+      "normalized_hash": "ab9279904a8dc824",
+      "bytes": 687,
+      "lines": 15,
+      "functions": [
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_122.py",
+      "normalized_hash": "06292ab21e27e648",
+      "bytes": 1023,
+      "lines": 34,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_123.py",
+      "normalized_hash": "2c779530c8d2f9b5",
+      "bytes": 1020,
+      "lines": 34,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_124.py",
+      "normalized_hash": "96a9d87bc9bfdbdd",
+      "bytes": 1222,
+      "lines": 39,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_126.py",
+      "normalized_hash": "8e4bb474e019033d",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_127.py",
+      "normalized_hash": "b0183859b4b6233b",
+      "bytes": 155,
+      "lines": 7,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_129.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_130.py",
+      "normalized_hash": "8e4bb474e019033d",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_131.py",
+      "normalized_hash": "b0183859b4b6233b",
+      "bytes": 155,
+      "lines": 7,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_133.py",
+      "normalized_hash": "c3a66ccfe749cd27",
+      "bytes": 156,
+      "lines": 7,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_134.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_135.py",
+      "normalized_hash": "8e4bb474e019033d",
+      "bytes": 435,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_136.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_137.py",
+      "normalized_hash": "c3a66ccfe749cd27",
+      "bytes": 156,
+      "lines": 7,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_138.py",
+      "normalized_hash": "c3a66ccfe749cd27",
+      "bytes": 156,
+      "lines": 7,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_139.py",
+      "normalized_hash": "829363bc9ee83251",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_140.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_141.py",
+      "normalized_hash": "829363bc9ee83251",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_142.py",
+      "normalized_hash": "829363bc9ee83251",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_143.py",
+      "normalized_hash": "829363bc9ee83251",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_145.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_147.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_148.py",
+      "normalized_hash": "829363bc9ee83251",
+      "bytes": 427,
+      "lines": 21,
+      "functions": [
+        "int_to_roman"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_149.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_150.py",
+      "normalized_hash": "85052e0ec40c7510",
+      "bytes": 264,
+      "lines": 12,
+      "functions": [
+        "is_prime"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_345.py",
+      "normalized_hash": "51a69b22ae3268a2",
+      "bytes": 255,
+      "lines": 7,
+      "functions": [
+        "get_info"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_79.py",
+      "normalized_hash": "6eb0164557cf965b",
+      "bytes": 1244,
+      "lines": 33,
+      "functions": [
+        "extract_common_prefixes",
+        "calculate_prefix_frequency",
+        "compare_prefix_frequencies"
+      ],
+      "imports": [
+        "collections",
+        "re"
+      ]
+    },
+    {
+      "file": "skill_module_80.py",
+      "normalized_hash": "d754978d159a2974",
+      "bytes": 1352,
+      "lines": 40,
+      "functions": [
+        "extract_word_suffixes",
+        "calculate_suffix_frequency",
+        "compare_suffix_frequencies",
+        "main"
+      ],
+      "imports": [
+        "collections",
+        "re"
+      ]
+    },
+    {
+      "file": "skill_module_81.py",
+      "normalized_hash": "d5752dcd4fe2a568",
+      "bytes": 1528,
+      "lines": 43,
+      "functions": [
+        "extract_common_word_endings",
+        "calculate_ending_frequency",
+        "compare_ending_frequencies",
+        "main"
+      ],
+      "imports": [
+        "collections",
+        "re"
+      ]
+    },
+    {
+      "file": "skill_module_85.py",
+      "normalized_hash": "dab567e9967460de",
+      "bytes": 1111,
+      "lines": 33,
+      "functions": [
+        "extract_word_prefixes",
+        "calculate_prefix_frequency",
+        "compare_prefix_frequencies",
+        "main"
+      ],
+      "imports": [
+        "collections",
+        "re"
+      ]
+    },
+    {
+      "file": "skill_module_86.py",
+      "normalized_hash": "46846b3732db15b8",
+      "bytes": 1555,
+      "lines": 43,
+      "functions": [
+        "extract_common_word_suffixes",
+        "calculate_suffix_frequency",
+        "compare_suffix_frequencies",
+        "main"
+      ],
+      "imports": [
+        "collections",
+        "re"
+      ]
+    },
+    {
+      "file": "skill_module_90.py",
+      "normalized_hash": "2c8d90118ce1a235",
+      "bytes": 1115,
+      "lines": 41,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_92.py",
+      "normalized_hash": "95f7f1f7f846e65d",
+      "bytes": 834,
+      "lines": 26,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_93.py",
+      "normalized_hash": "407a38a3989767d7",
+      "bytes": 816,
+      "lines": 26,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_94.py",
+      "normalized_hash": "407a38a3989767d7",
+      "bytes": 816,
+      "lines": 26,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_95.py",
+      "normalized_hash": "572d71b14226dee6",
+      "bytes": 773,
+      "lines": 29,
+      "functions": [
+        "calculate_statistics",
+        "process_text",
+        "main"
+      ],
+      "imports": [
+        "statistics"
+      ]
+    },
+    {
+      "file": "skill_module_96.py",
+      "normalized_hash": "f2b6f51b008c130b",
+      "bytes": 1254,
+      "lines": 45,
+      "functions": [
+        "calculate_median",
+        "calculate_mode",
+        "calculate_statistics",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_97.py",
+      "normalized_hash": "bfd1ab8d80597fd2",
+      "bytes": 824,
+      "lines": 26,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_98.py",
+      "normalized_hash": "01881475807aab7b",
+      "bytes": 827,
+      "lines": 26,
+      "functions": [
+        "calculate_statistics",
+        "find_mode",
+        "analyze_data",
+        "main"
+      ],
+      "imports": []
+    },
+    {
+      "file": "skill_module_99.py",
+      "normalized_hash": "fe393557de774005",
+      "bytes": 778,
+      "lines": 30,
+      "functions": [
+        "calculate_statistics",
+        "analyze_text",
+        "main"
+      ],
+      "imports": [
+        "statistics"
+      ]
+    }
+  ]
+}

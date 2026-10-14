@@ -1,0 +1,170 @@
+import asyncio
+
+from core.brain import PIKABrain
+from core.planner import Planner
+from core.runtime import (
+    create_runtime,
+    create_tool_runtime,
+)
+from memory.manager import MemoryManager
+from evaluation.evaluator import Evaluator
+from learning.experience import ExperienceEngine
+
+
+async def run_task(
+    brain: PIKABrain,
+    task: str,
+):
+    print()
+    print("=" * 64)
+    print("TASK:")
+    print(task)
+    print("=" * 64)
+
+    result = await brain.think(task)
+
+    print()
+    print("PIKA RESULT")
+    print("=" * 64)
+
+    print()
+    print("STATUS:")
+    print("SUCCESS" if result.get("success") else "FAILED")
+
+    print()
+    print("TASK ANALYSIS:")
+    print(result.get("task_analysis"))
+
+    print()
+    print("DECISION TRACE:")
+    for index, decision in enumerate(
+        result.get("decision_trace", []),
+        start=1,
+    ):
+        print(f"Decision {index}:", decision)
+
+    print()
+    print("AGENT:")
+    print(result.get("agent"))
+
+    print()
+    print("TOOL USED:")
+    print(result.get("tool_used"))
+
+    print()
+    print("ATTEMPTS:")
+    print(len(result.get("attempts", [])))
+
+    print()
+    print("OUTPUT:")
+    print(result.get("output", ""))
+
+    print()
+    print("EVALUATION:")
+    print(result.get("evaluation"))
+
+    return result
+async def main():
+
+    print("=" * 64)
+    print("PIKA PHASE 28")
+    print("ADAPTIVE DECISION BRAIN")
+    print("=" * 64)
+
+    router = create_runtime()
+    tool_runtime = create_tool_runtime()
+
+    memory = MemoryManager()
+
+    brain = PIKABrain(
+        router=router,
+        memory=memory,
+        planner=Planner(),
+        evaluator=Evaluator(),
+        experience=ExperienceEngine(),
+        tool_runtime=tool_runtime,
+        max_retries=2,
+    )
+
+    print()
+    print("BRAIN: ONLINE")
+    print("DECISION ENGINE: ONLINE")
+    print("API WORKER: COHERE")
+    print("MODEL: command-a-03-2025")
+
+    print()
+    print("REGISTERED AGENTS:")
+    print(router.list())
+
+    print()
+    print("REGISTERED SKILLS:")
+    print(tool_runtime.skills.list())
+
+    print()
+    print("REGISTERED TOOLS:")
+    print(tool_runtime.tools.list())
+
+    # ---------------------------------------------------------
+    # TEST 1
+    # Deterministic tool
+    # ---------------------------------------------------------
+
+    await run_task(
+        brain,
+        "Calculate the product of 25 and 8.",
+    )
+
+    # ---------------------------------------------------------
+    # TEST 2
+    # Text tool
+    # ---------------------------------------------------------
+
+    await run_task(
+        brain,
+        'Find the length of this text: "PIKA autonomous brain"',
+    )
+
+    # ---------------------------------------------------------
+    # TEST 3
+    # Coding → API worker
+    # ---------------------------------------------------------
+
+    await run_task(
+        brain,
+        "Write a Python function named multiply_numbers "
+        "that multiplies two numbers. Return only the function code.",
+    )
+
+    # ---------------------------------------------------------
+    # TEST 4
+    # Unsupported deterministic operation.
+    #
+    # ToolRuntime must refuse to guess and Brain must
+    # automatically escalate to the API worker.
+    # ---------------------------------------------------------
+
+    await run_task(
+        brain,
+        "Calculate 25 divided by 5.",
+    )
+
+    print()
+    print("=" * 64)
+    print("PHASE 28 SUMMARY")
+    print("=" * 64)
+
+    print()
+    print("MEMORY:")
+    print(
+        f"episodes={len(memory.episodes)} "
+        f"failures={len(memory.failures)}"
+    )
+
+    print()
+    print(
+        "PIKA PHASE 28 ADAPTIVE DECISION TEST: COMPLETE"
+    )
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

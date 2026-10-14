@@ -1,0 +1,4807 @@
+{
+  "synapses": {},
+  "grammar": {
+    "evolution ke": {
+      "ke": 2
+    },
+    "ke ke": {
+      "liye": 2
+    },
+    "ke liye": {
+      "data": 2
+    },
+    "liye data": {
+      "modeling": 2
+    },
+    "kya haal": {
+      "chaal": 2,
+      "hai": {
+        "weight": 0.95,
+        "lastUsed": 1771824067121
+      }
+    },
+    "haal chaal": {
+      "hai": 2
+    },
+    "what is": {
+      "quantum": 4,
+      "blackhole": 2,
+      "smart": 4,
+      "a": 2,
+      "artificial": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755186790
+      }
+    },
+    "is quantum": {
+      "entanglement": 4
+    },
+    "quantum entanglement": {
+      "ya": 2
+    },
+    "entanglement ya": {
+      "black": 2
+    },
+    "ya black": {
+      "hole": 2
+    },
+    "black hole": {
+      "kya": 2
+    },
+    "hole kya": {
+      "hai": 2
+    },
+    "who is": {
+      "nikola": 10
+    },
+    "is nikola": {
+      "tesla": 10
+    },
+    "tell me": {
+      "about": 2
+    },
+    "me about": {
+      "neural": 2
+    },
+    "about neural": {
+      "networks": 2
+    },
+    "blackhole ke": {
+      "baare": 2
+    },
+    "ke baare": {
+      "me": 4
+    },
+    "baare me": {
+      "batao": 2
+    },
+    "is smart": {
+      "money": 4
+    },
+    "smart money": {
+      "concept": 4
+    },
+    "money concept": {
+      "in": 4
+    },
+    "concept in": {
+      "trading": 4
+    },
+    "explain order": {
+      "blocks": 2
+    },
+    "order blocks": {
+      "in": 2
+    },
+    "blocks in": {
+      "forex": 2
+    },
+    "is a": {
+      "memory": 2
+    },
+    "a memory": {
+      "leak": 2
+    },
+    "memory leak": {
+      "in": 2
+    },
+    "leak in": {
+      "c": 2
+    },
+    "or sab": {
+      "badhiya": 2
+    },
+    "is baar": {
+      "kya": 2
+    },
+    "baar kya": {
+      "sikha": 2
+    },
+    "jab koi": {
+      "hello": 2
+    },
+    "koi hello": {
+      "bole": 2
+    },
+    "hello bole": {
+      "to": 2
+    },
+    "bole to": {
+      "use": 2
+    },
+    "to use": {
+      "jawab": 2
+    },
+    "use jawab": {
+      "dena": 2
+    },
+    "jawab dena": {
+      "hai": 2
+    },
+    "dena hai": {
+      "hello": 2
+    },
+    "hai hello": {
+      "mera": 2
+    },
+    "hello mera": {
+      "name": 2
+    },
+    "mera name": {
+      "pika": 2,
+      "ankit": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771702233393
+      }
+    },
+    "name pika": {
+      "hai": 2
+    },
+    "pika hai": {
+      "me": 2
+    },
+    "hai me": {
+      "abhi": 2
+    },
+    "me abhi": {
+      "sikh": 2
+    },
+    "abhi sikh": {
+      "rahi": 2
+    },
+    "sikh rahi": {
+      "hu": 2
+    },
+    "batao mujhe": {
+      "artificial": 2
+    },
+    "mujhe artificial": {
+      "intelligence": 2
+    },
+    "artificial intelligence": {
+      "ke": 2,
+      "ek": 2
+    },
+    "intelligence ke": {
+      "baare": 2
+    },
+    "kya kar": {
+      "rhe": 2
+    },
+    "kar rhe": {
+      "ho": 2
+    },
+    "sahi nhi": {
+      "chal": 2
+    },
+    "nhi chal": {
+      "rha": 2
+    },
+    "chal rha": {
+      "hai": 4
+    },
+    "rha hai": {
+      "ui": 2
+    },
+    "doctype html": {
+      "html": 2
+    },
+    "html html": {
+      "langen": 2
+    },
+    "html langen": {
+      "head": 2
+    },
+    "langen head": {
+      "meta": 2
+    },
+    "head meta": {
+      "charsetutf8": 2
+    },
+    "meta charsetutf8": {
+      "meta": 2
+    },
+    "charsetutf8 meta": {
+      "nameviewport": 2
+    },
+    "meta nameviewport": {
+      "contentwidthdevicewidth": 2
+    },
+    "nameviewport contentwidthdevicewidth": {
+      "initialscale10": 2
+    },
+    "contentwidthdevicewidth initialscale10": {
+      "maximumscale10": 2
+    },
+    "initialscale10 maximumscale10": {
+      "userscalableno": 2
+    },
+    "maximumscale10 userscalableno": {
+      "titlepkacorestabletitle": 2
+    },
+    "userscalableno titlepkacorestabletitle": {
+      "style": 2
+    },
+    "titlepkacorestabletitle style": {
+      "root": 2
+    },
+    "style root": {
+      "aicolor": 2
+    },
+    "root aicolor": {
+      "00ffff": 2
+    },
+    "aicolor 00ffff": {
+      "usercolor": 2
+    },
+    "00ffff usercolor": {
+      "00ff00": 2
+    },
+    "usercolor 00ff00": {
+      "bgdark": 2
+    },
+    "00ff00 bgdark": {
+      "000000": 2
+    },
+    "bgdark 000000": {
+      "boxsizing": 2
+    },
+    "000000 boxsizing": {
+      "borderbox": 2
+    },
+    "boxsizing borderbox": {
+      "margin": 2
+    },
+    "borderbox margin": {
+      "0": 2
+    },
+    "margin 0": {
+      "padding": 2
+    },
+    "0 padding": {
+      "0": 2
+    },
+    "padding 0": {
+      "body": 2
+    },
+    "0 body": {
+      "backgroundcolor": 2
+    },
+    "body backgroundcolor": {
+      "varbgdark": 2
+    },
+    "backgroundcolor varbgdark": {
+      "color": 2
+    },
+    "varbgdark color": {
+      "varaicolor": 2
+    },
+    "color varaicolor": {
+      "fontfamily": 2,
+      "borderbottomleftradius": 2,
+      "padding": 4
+    },
+    "varaicolor fontfamily": {
+      "courier": 2
+    },
+    "fontfamily courier": {
+      "new": 2
+    },
+    "courier new": {
+      "courier": 2
+    },
+    "new courier": {
+      "monospace": 2
+    },
+    "courier monospace": {
+      "display": 2
+    },
+    "monospace display": {
+      "flex": 2
+    },
+    "display flex": {
+      "flexdirection": 8,
+      "justifycontent": 6,
+      "alignitems": 2
+    },
+    "flex flexdirection": {
+      "column": 8
+    },
+    "flexdirection column": {
+      "height": 2,
+      "justifycontent": 2,
+      "position": 2,
+      "gap": 2
+    },
+    "column height": {
+      "100dvh": 2
+    },
+    "height 100dvh": {
+      "overflow": 2
+    },
+    "100dvh overflow": {
+      "hidden": 2
+    },
+    "overflow hidden": {
+      "webkitfontsmoothing": 2,
+      "side": 2,
+      "transform": 2
+    },
+    "hidden webkitfontsmoothing": {
+      "antialiased": 2
+    },
+    "webkitfontsmoothing antialiased": {
+      "1": 2
+    },
+    "antialiased 1": {
+      "top": 2
+    },
+    "1 top": {
+      "bar": 2
+    },
+    "top bar": {
+      "topbar": 2
+    },
+    "bar topbar": {
+      "textalign": 2
+    },
+    "topbar textalign": {
+      "center": 2
+    },
+    "textalign center": {
+      "padding": 2
+    },
+    "center padding": {
+      "12px": 2,
+      "10px": 4
+    },
+    "padding 12px": {
+      "fontsize": 2,
+      "18px": 2,
+      "15px": 2
+    },
+    "12px fontsize": {
+      "13px": 2
+    },
+    "fontsize 13px": {
+      "fontweight": 2
+    },
+    "13px fontweight": {
+      "bold": 2
+    },
+    "fontweight bold": {
+      "letterspacing": 2
+    },
+    "bold letterspacing": {
+      "1px": 2
+    },
+    "letterspacing 1px": {
+      "borderbottom": 2
+    },
+    "1px borderbottom": {
+      "1px": 2
+    },
+    "borderbottom 1px": {
+      "solid": 2
+    },
+    "1px solid": {
+      "varaicolor": 6,
+      "varusercolor": 2,
+      "rgba0": 2
+    },
+    "solid varaicolor": {
+      "flexshrink": 2,
+      "color": 4
+    },
+    "varaicolor flexshrink": {
+      "0": 2
+    },
+    "flexshrink 0": {
+      "background": 2,
+      "display": 2
+    },
+    "0 background": {
+      "000": 2
+    },
+    "background 000": {
+      "zindex": 2,
+      "bordertop": 2
+    },
+    "000 zindex": {
+      "10": 2
+    },
+    "zindex 10": {
+      "2": 2
+    },
+    "10 2": {
+      "visual": 2
+    },
+    "2 visual": {
+      "deck": 2
+    },
+    "visual deck": {
+      "locked": 2
+    },
+    "deck locked": {
+      "to": 2
+    },
+    "locked to": {
+      "top": 2
+    },
+    "to top": {
+      "45": 2
+    },
+    "top 45": {
+      "of": 2
+    },
+    "45 of": {
+      "screen": 2
+    },
+    "of screen": {
+      "visualdeck": 2
+    },
+    "screen visualdeck": {
+      "flex": 2
+    },
+    "visualdeck flex": {
+      "0": 2
+    },
+    "flex 0": {
+      "0": 2
+    },
+    "0 0": {
+      "0": 2,
+      "6": 2,
+      "114": 2,
+      "45vh": 2,
+      "5px": 2,
+      "06": 2,
+      "03": 2,
+      "033zpathpath": 2
+    },
+    "0 45vh": {
+      "display": 2
+    },
+    "45vh display": {
+      "flex": 2
+    },
+    "flex justifycontent": {
+      "spacebetween": 2,
+      "center": 4
+    },
+    "justifycontent spacebetween": {
+      "alignitems": 2
+    },
+    "spacebetween alignitems": {
+      "center": 2
+    },
+    "alignitems center": {
+      "padding": 4,
+      "transform": 2,
+      "cursor": 2
+    },
+    "padding 10px": {
+      "overflow": 2,
+      "15px": 2
+    },
+    "10px overflow": {
+      "hidden": 2
+    },
+    "hidden side": {
+      "processing": 2
+    },
+    "side processing": {
+      "codes": 2
+    },
+    "processing codes": {
+      "hardware": 2
+    },
+    "codes hardware": {
+      "accelerated": 2
+    },
+    "hardware accelerated": {
+      "codestream": 2,
+      "scroll": 2
+    },
+    "accelerated codestream": {
+      "width": 2
+    },
+    "codestream width": {
+      "25": 2
+    },
+    "width 25": {
+      "height": 2
+    },
+    "25 height": {
+      "100": 2
+    },
+    "height 100": {
+      "display": 2
+    },
+    "100 display": {
+      "flex": 2
+    },
+    "column justifycontent": {
+      "flexend": 2
+    },
+    "justifycontent flexend": {
+      "fontsize": 2
+    },
+    "flexend fontsize": {
+      "10px": 2
+    },
+    "fontsize 10px": {
+      "lineheight": 2
+    },
+    "10px lineheight": {
+      "16": 2
+    },
+    "lineheight 16": {
+      "color": 2
+    },
+    "16 color": {
+      "rgba0": 2
+    },
+    "color rgba0": {
+      "255": 2
+    },
+    "rgba0 255": {
+      "255": 6
+    },
+    "255 255": {
+      "04": 2,
+      "02": 2,
+      "alpha": 2
+    },
+    "255 04": {
+      "textshadow": 2
+    },
+    "04 textshadow": {
+      "0": 2
+    },
+    "textshadow 0": {
+      "0": 2
+    },
+    "0 5px": {
+      "rgba025525502": 2
+    },
+    "5px rgba025525502": {
+      "overflow": 2
+    },
+    "rgba025525502 overflow": {
+      "hidden": 2
+    },
+    "hidden transform": {
+      "translatez0": 2
+    },
+    "transform translatez0": {
+      "3": 2,
+      "prevents": 2,
+      "stop": 2
+    },
+    "translatez0 prevents": {
+      "ui": 2
+    },
+    "prevents ui": {
+      "lag": 2,
+      "freeze": 2
+    },
+    "ui lag": {
+      "codeline": 2
+    },
+    "lag codeline": {
+      "opacity": 2
+    },
+    "codeline opacity": {
+      "08": 2
+    },
+    "opacity 08": {
+      "transition": 2
+    },
+    "08 transition": {
+      "color": 2
+    },
+    "transition color": {
+      "03s": 2
+    },
+    "color 03s": {
+      "orb": 2
+    },
+    "03s orb": {
+      "container": 2
+    },
+    "orb container": {
+      "orbcontainer": 2
+    },
+    "container orbcontainer": {
+      "width": 2
+    },
+    "orbcontainer width": {
+      "50": 2
+    },
+    "width 50": {
+      "display": 2
+    },
+    "50 display": {
+      "flex": 2
+    },
+    "justifycontent center": {
+      "alignitems": 4
+    },
+    "center alignitems": {
+      "center": 4
+    },
+    "center transform": {
+      "translatez0": 2
+    },
+    "translatez0 3": {
+      "chat": 2
+    },
+    "3 chat": {
+      "section": 2
+    },
+    "chat section": {
+      "hardware": 2
+    },
+    "section hardware": {
+      "accelerated": 2
+    },
+    "accelerated scroll": {
+      "chatsection": 2
+    },
+    "scroll chatsection": {
+      "flex": 2
+    },
+    "chatsection flex": {
+      "1": 2
+    },
+    "flex 1": {
+      "display": 2,
+      "overflowy": 2,
+      "background": 2
+    },
+    "1 display": {
+      "flex": 2
+    },
+    "column position": {
+      "relative": 2
+    },
+    "position relative": {
+      "webkitmaskimage": 2
+    },
+    "relative webkitmaskimage": {
+      "lineargradientto": 2
+    },
+    "webkitmaskimage lineargradientto": {
+      "bottom": 2
+    },
+    "lineargradientto bottom": {
+      "transparent": 4
+    },
+    "bottom transparent": {
+      "0": 4
+    },
+    "transparent 0": {
+      "black": 4
+    },
+    "0 black": {
+      "15": 4
+    },
+    "black 15": {
+      "maskimage": 2,
+      "paddingtop": 2
+    },
+    "15 maskimage": {
+      "lineargradientto": 2
+    },
+    "maskimage lineargradientto": {
+      "bottom": 2
+    },
+    "15 paddingtop": {
+      "10px": 2
+    },
+    "paddingtop 10px": {
+      "chathistory": 2
+    },
+    "10px chathistory": {
+      "flex": 2
+    },
+    "chathistory flex": {
+      "1": 2
+    },
+    "1 overflowy": {
+      "auto": 2
+    },
+    "overflowy auto": {
+      "padding": 2
+    },
+    "auto padding": {
+      "15px": 2
+    },
+    "padding 15px": {
+      "display": 2
+    },
+    "15px display": {
+      "flex": 2
+    },
+    "column gap": {
+      "15px": 2
+    },
+    "gap 15px": {
+      "scrollbehavior": 2
+    },
+    "15px scrollbehavior": {
+      "smooth": 2
+    },
+    "scrollbehavior smooth": {
+      "ios": 2
+    },
+    "smooth ios": {
+      "scroll": 2
+    },
+    "ios scroll": {
+      "fix": 2
+    },
+    "scroll fix": {
+      "webkitoverflowscrolling": 2
+    },
+    "fix webkitoverflowscrolling": {
+      "touch": 2
+    },
+    "webkitoverflowscrolling touch": {
+      "chatspacer": 2
+    },
+    "touch chatspacer": {
+      "margintop": 2
+    },
+    "chatspacer margintop": {
+      "auto": 2
+    },
+    "margintop auto": {
+      "message": 2
+    },
+    "auto message": {
+      "maxwidth": 2
+    },
+    "message maxwidth": {
+      "85": 2
+    },
+    "maxwidth 85": {
+      "padding": 2
+    },
+    "85 padding": {
+      "12px": 2
+    },
+    "12px 18px": {
+      "borderradius": 2
+    },
+    "18px borderradius": {
+      "8px": 2
+    },
+    "borderradius 8px": {
+      "fontsize": 2
+    },
+    "8px fontsize": {
+      "14px": 2
+    },
+    "fontsize 14px": {
+      "lineheight": 2,
+      "outline": 2
+    },
+    "14px lineheight": {
+      "14": 2
+    },
+    "lineheight 14": {
+      "wordwrap": 2
+    },
+    "14 wordwrap": {
+      "breakword": 2
+    },
+    "wordwrap breakword": {
+      "background": 2
+    },
+    "breakword background": {
+      "rgba0": 2
+    },
+    "background rgba0": {
+      "0": 2
+    },
+    "rgba0 0": {
+      "0": 2
+    },
+    "0 06": {
+      "backdropfilter": 2
+    },
+    "06 backdropfilter": {
+      "blur2px": 2
+    },
+    "backdropfilter blur2px": {
+      "transform": 2
+    },
+    "blur2px transform": {
+      "translatez0": 2
+    },
+    "translatez0 stop": {
+      "render": 2
+    },
+    "stop render": {
+      "lag": 2
+    },
+    "render lag": {
+      "usermsg": 2
+    },
+    "lag usermsg": {
+      "alignself": 2
+    },
+    "usermsg alignself": {
+      "flexend": 2
+    },
+    "alignself flexend": {
+      "border": 2
+    },
+    "flexend border": {
+      "1px": 2
+    },
+    "border 1px": {
+      "solid": 6
+    },
+    "solid varusercolor": {
+      "color": 2
+    },
+    "varusercolor color": {
+      "varusercolor": 2
+    },
+    "color varusercolor": {
+      "borderbottomrightradius": 2
+    },
+    "varusercolor borderbottomrightradius": {
+      "0": 2
+    },
+    "borderbottomrightradius 0": {
+      "aimsg": 2
+    },
+    "0 aimsg": {
+      "alignself": 2
+    },
+    "aimsg alignself": {
+      "flexstart": 2
+    },
+    "alignself flexstart": {
+      "border": 2
+    },
+    "flexstart border": {
+      "1px": 2
+    },
+    "varaicolor color": {
+      "varaicolor": 4
+    },
+    "varaicolor borderbottomleftradius": {
+      "0": 2
+    },
+    "borderbottomleftradius 0": {
+      "4": 2
+    },
+    "0 4": {
+      "exact": 2
+    },
+    "4 exact": {
+      "input": 2
+    },
+    "exact input": {
+      "area": 2
+    },
+    "input area": {
+      "inputarea": 2
+    },
+    "area inputarea": {
+      "flexshrink": 2
+    },
+    "inputarea flexshrink": {
+      "0": 2
+    },
+    "0 display": {
+      "flex": 2
+    },
+    "flex alignitems": {
+      "center": 2
+    },
+    "10px 15px": {
+      "15px": 2
+    },
+    "15px 15px": {
+      "15px": 2,
+      "gap": 2
+    },
+    "15px gap": {
+      "12px": 2
+    },
+    "gap 12px": {
+      "background": 2
+    },
+    "12px background": {
+      "000": 2
+    },
+    "000 bordertop": {
+      "1px": 2
+    },
+    "bordertop 1px": {
+      "solid": 2
+    },
+    "solid rgba0": {
+      "255": 2
+    },
+    "255 02": {
+      "zindex": 2
+    },
+    "02 zindex": {
+      "20": 2
+    },
+    "zindex 20": {
+      "micbtn": 2
+    },
+    "20 micbtn": {
+      "background": 2
+    },
+    "micbtn background": {
+      "transparent": 2
+    },
+    "background transparent": {
+      "border": 4
+    },
+    "transparent border": {
+      "none": 2,
+      "1px": 2
+    },
+    "border none": {
+      "color": 2,
+      "borderradius": 2
+    },
+    "none color": {
+      "varaicolor": 2
+    },
+    "varaicolor padding": {
+      "5px": 2,
+      "12px": 2
+    },
+    "padding 5px": {
+      "cursor": 2
+    },
+    "5px cursor": {
+      "pointer": 2
+    },
+    "cursor pointer": {
+      "miclistening": 2,
+      "sendbtn": 2
+    },
+    "pointer miclistening": {
+      "color": 2
+    },
+    "miclistening color": {
+      "ff0000": 2
+    },
+    "color ff0000": {
+      "important": 2
+    },
+    "ff0000 important": {
+      "animation": 2
+    },
+    "important animation": {
+      "pulse": 2
+    },
+    "animation pulse": {
+      "1s": 2
+    },
+    "pulse 1s": {
+      "infinite": 2
+    },
+    "1s infinite": {
+      "alternate": 2
+    },
+    "infinite alternate": {
+      "keyframes": 2
+    },
+    "alternate keyframes": {
+      "pulse": 2
+    },
+    "keyframes pulse": {
+      "from": 2
+    },
+    "pulse from": {
+      "transform": 2
+    },
+    "from transform": {
+      "scale1": 2
+    },
+    "transform scale1": {
+      "to": 2
+    },
+    "scale1 to": {
+      "transform": 2
+    },
+    "to transform": {
+      "scale12": 2
+    },
+    "transform scale12": {
+      "chatinput": 2
+    },
+    "scale12 chatinput": {
+      "flex": 2
+    },
+    "chatinput flex": {
+      "1": 2
+    },
+    "1 background": {
+      "transparent": 2
+    },
+    "12px 15px": {
+      "borderradius": 2
+    },
+    "15px borderradius": {
+      "25px": 2
+    },
+    "borderradius 25px": {
+      "fontfamily": 2
+    },
+    "25px fontfamily": {
+      "inherit": 2
+    },
+    "fontfamily inherit": {
+      "fontsize": 2
+    },
+    "inherit fontsize": {
+      "14px": 2
+    },
+    "14px outline": {
+      "none": 2
+    },
+    "outline none": {
+      "sendbtn": 2
+    },
+    "none sendbtn": {
+      "background": 2
+    },
+    "sendbtn background": {
+      "varusercolor": 2
+    },
+    "background varusercolor": {
+      "border": 2
+    },
+    "varusercolor border": {
+      "none": 2
+    },
+    "none borderradius": {
+      "50": 2
+    },
+    "borderradius 50": {
+      "width": 2
+    },
+    "50 width": {
+      "45px": 2
+    },
+    "width 45px": {
+      "height": 2
+    },
+    "45px height": {
+      "45px": 2
+    },
+    "height 45px": {
+      "display": 2
+    },
+    "45px display": {
+      "flex": 2
+    },
+    "center cursor": {
+      "pointer": 2
+    },
+    "pointer sendbtn": {
+      "svg": 2
+    },
+    "sendbtn svg": {
+      "width": 2
+    },
+    "svg width": {
+      "20px": 2
+    },
+    "width 20px": {
+      "height": 2
+    },
+    "20px height": {
+      "20px": 2
+    },
+    "height 20px": {
+      "fill": 2
+    },
+    "20px fill": {
+      "000": 2
+    },
+    "fill 000": {
+      "marginleft": 2
+    },
+    "000 marginleft": {
+      "2px": 2
+    },
+    "marginleft 2px": {
+      "style": 2
+    },
+    "2px style": {
+      "head": 2
+    },
+    "style head": {
+      "body": 2
+    },
+    "head body": {
+      "div": 2
+    },
+    "body div": {
+      "classtopbar": 2
+    },
+    "div classtopbar": {
+      "pkacorev150": 2
+    },
+    "classtopbar pkacorev150": {
+      "bull": 2
+    },
+    "pkacorev150 bull": {
+      "orblink": 2
+    },
+    "bull orblink": {
+      "span": 2
+    },
+    "orblink span": {
+      "stylecolorvarusercoloractivespan": 2
+    },
+    "span stylecolorvarusercoloractivespan": {
+      "div": 2
+    },
+    "stylecolorvarusercoloractivespan div": {
+      "div": 2
+    },
+    "div div": {
+      "idvisualdeck": 2,
+      "classcodestream": 2,
+      "idchatsection": 2,
+      "div": 2,
+      "idinputarea": 2
+    },
+    "div idvisualdeck": {
+      "div": 2
+    },
+    "idvisualdeck div": {
+      "classcodestream": 2
+    },
+    "div classcodestream": {
+      "idcodeleftdiv": 2,
+      "idcoderightdiv": 2
+    },
+    "classcodestream idcodeleftdiv": {
+      "div": 2
+    },
+    "idcodeleftdiv div": {
+      "idorbcontainer": 2
+    },
+    "div idorbcontainer": {
+      "canvas": 2
+    },
+    "idorbcontainer canvas": {
+      "idpkaorbcanvas": 2
+    },
+    "canvas idpkaorbcanvas": {
+      "width250": 2
+    },
+    "idpkaorbcanvas width250": {
+      "height250canvas": 2
+    },
+    "width250 height250canvas": {
+      "div": 2
+    },
+    "height250canvas div": {
+      "div": 2
+    },
+    "classcodestream idcoderightdiv": {
+      "div": 2
+    },
+    "idcoderightdiv div": {
+      "div": 2
+    },
+    "div idchatsection": {
+      "div": 2
+    },
+    "idchatsection div": {
+      "idchathistory": 2
+    },
+    "div idchathistory": {
+      "div": 2
+    },
+    "idchathistory div": {
+      "idchatspacerdiv": 2
+    },
+    "div idchatspacerdiv": {
+      "div": 2
+    },
+    "idchatspacerdiv div": {
+      "classmessage": 2
+    },
+    "div classmessage": {
+      "aimsgneural": 2
+    },
+    "classmessage aimsgneural": {
+      "core": 2
+    },
+    "aimsgneural core": {
+      "online": 2
+    },
+    "core online": {
+      "voice": 2
+    },
+    "online voice": {
+      "text": 2
+    },
+    "voice text": {
+      "inputs": 2
+    },
+    "text inputs": {
+      "activediv": 2
+    },
+    "inputs activediv": {
+      "div": 2
+    },
+    "activediv div": {
+      "div": 2
+    },
+    "div idinputarea": {
+      "button": 2
+    },
+    "idinputarea button": {
+      "classmicbtn": 2
+    },
+    "button classmicbtn": {
+      "idmicbtn": 2
+    },
+    "classmicbtn idmicbtn": {
+      "svg": 2
+    },
+    "idmicbtn svg": {
+      "width24": 2
+    },
+    "svg width24": {
+      "height24": 2
+    },
+    "width24 height24": {
+      "viewbox0": 2
+    },
+    "height24 viewbox0": {
+      "0": 2
+    },
+    "viewbox0 0": {
+      "24": 4
+    },
+    "0 24": {
+      "24": 2,
+      "24path": 2
+    },
+    "24 24": {
+      "fillnone": 2
+    },
+    "24 fillnone": {
+      "strokecurrentcolor": 2
+    },
+    "fillnone strokecurrentcolor": {
+      "strokewidth2": 2
+    },
+    "strokecurrentcolor strokewidth2": {
+      "strokelinecapround": 2
+    },
+    "strokewidth2 strokelinecapround": {
+      "strokelinejoinroundpath": 2
+    },
+    "strokelinecapround strokelinejoinroundpath": {
+      "dm12": 2
+    },
+    "strokelinejoinroundpath dm12": {
+      "2a3": 2
+    },
+    "dm12 2a3": {
+      "3": 2
+    },
+    "2a3 3": {
+      "0": 2
+    },
+    "3 0": {
+      "0": 6
+    },
+    "0 03": {
+      "3v7a3": 2
+    },
+    "03 3v7a3": {
+      "3": 2
+    },
+    "3v7a3 3": {
+      "0": 2
+    },
+    "0 6": {
+      "0v5a3": 2
+    },
+    "6 0v5a3": {
+      "3": 2
+    },
+    "0v5a3 3": {
+      "0": 2
+    },
+    "0 033zpathpath": {
+      "dm19": 2
+    },
+    "033zpathpath dm19": {
+      "10v2a7": 2
+    },
+    "dm19 10v2a7": {
+      "7": 2
+    },
+    "10v2a7 7": {
+      "0": 2
+    },
+    "7 0": {
+      "0": 2
+    },
+    "0 114": {
+      "0v2pathline": 2
+    },
+    "114 0v2pathline": {
+      "x112": 2
+    },
+    "0v2pathline x112": {
+      "y119": 2
+    },
+    "x112 y119": {
+      "x212": 2
+    },
+    "y119 x212": {
+      "y222linesvg": 2
+    },
+    "x212 y222linesvg": {
+      "button": 2
+    },
+    "y222linesvg button": {
+      "input": 2
+    },
+    "button input": {
+      "typetext": 2
+    },
+    "input typetext": {
+      "idchatinput": 2
+    },
+    "typetext idchatinput": {
+      "placeholdercommand": 2
+    },
+    "idchatinput placeholdercommand": {
+      "autocompleteoff": 2
+    },
+    "placeholdercommand autocompleteoff": {
+      "button": 2
+    },
+    "autocompleteoff button": {
+      "idsendbtn": 2
+    },
+    "button idsendbtn": {
+      "svg": 2
+    },
+    "idsendbtn svg": {
+      "viewbox0": 2
+    },
+    "svg viewbox0": {
+      "0": 2
+    },
+    "24 24path": {
+      "dm201": 2
+    },
+    "24path dm201": {
+      "21l23": 2
+    },
+    "dm201 21l23": {
+      "12": 2
+    },
+    "21l23 12": {
+      "201": 2
+    },
+    "12 201": {
+      "3": 2
+    },
+    "201 3": {
+      "2": 2
+    },
+    "3 2": {
+      "10l15": 2
+    },
+    "2 10l15": {
+      "215": 2
+    },
+    "10l15 215": {
+      "2zsvg": 2
+    },
+    "215 2zsvg": {
+      "button": 2
+    },
+    "2zsvg button": {
+      "div": 2
+    },
+    "button div": {
+      "script": 2
+    },
+    "div script": {
+      "lagfree": 2
+    },
+    "script lagfree": {
+      "background": 2
+    },
+    "lagfree background": {
+      "code": 2
+    },
+    "background code": {
+      "dom": 2
+    },
+    "code dom": {
+      "recycling": 2
+    },
+    "dom recycling": {
+      "const": 2
+    },
+    "recycling const": {
+      "codesnippets": 2
+    },
+    "const codesnippets": {
+      "sysmem": 2
+    },
+    "codesnippets sysmem": {
+      "ok": 2
+    },
+    "sysmem ok": {
+      "astnodesync": 2
+    },
+    "ok astnodesync": {
+      "synapselinked": 2
+    },
+    "astnodesync synapselinked": {
+      "0x8f4a9": 2
+    },
+    "synapselinked 0x8f4a9": {
+      "v8enginejit": 2
+    },
+    "0x8f4a9 v8enginejit": {
+      "awaitingcmd": 2
+    },
+    "v8enginejit awaitingcmd": {
+      "weights": 2
+    },
+    "awaitingcmd weights": {
+      "005": 2
+    },
+    "weights 005": {
+      "vaultfetch": 2
+    },
+    "005 vaultfetch": {
+      "thread10": 2
+    },
+    "vaultfetch thread10": {
+      "hash": 2
+    },
+    "thread10 hash": {
+      "valid": 2
+    },
+    "hash valid": {
+      "ai": 2
+    },
+    "valid ai": {
+      "computing": 2
+    },
+    "ai computing": {
+      "pkamatrix": 2
+    },
+    "computing pkamatrix": {
+      "create": 2
+    },
+    "pkamatrix create": {
+      "fixed": 2
+    },
+    "create fixed": {
+      "divs": 2
+    },
+    "fixed divs": {
+      "once": 2
+    },
+    "divs once": {
+      "prevents": 2
+    },
+    "once prevents": {
+      "ui": 2
+    },
+    "ui freeze": {
+      "function": 2
+    },
+    "freeze function": {
+      "setupcodestreamelementid": 2
+    },
+    "function setupcodestreamelementid": {
+      "const": 2
+    },
+    "setupcodestreamelementid const": {
+      "container": 2
+    },
+    "const container": {
+      "documentgetelementbyidelementid": 2
+    },
+    "container documentgetelementbyidelementid": {
+      "const": 2
+    },
+    "documentgetelementbyidelementid const": {
+      "lines": 2
+    },
+    "const lines": {
+      "forlet": 2
+    },
+    "lines forlet": {
+      "i0": 2
+    },
+    "forlet i0": {
+      "i8": 2,
+      "i": 2
+    },
+    "i0 i8": {
+      "i": 2
+    },
+    "i8 i": {
+      "let": 2
+    },
+    "i let": {
+      "div": 2,
+      "lat": 2
+    },
+    "let div": {
+      "documentcreateelementdiv": 2
+    },
+    "div documentcreateelementdiv": {
+      "divclassname": 2
+    },
+    "documentcreateelementdiv divclassname": {
+      "codeline": 2
+    },
+    "divclassname codeline": {
+      "divinnerhtml": 2
+    },
+    "codeline divinnerhtml": {
+      "nbsp": 2
+    },
+    "divinnerhtml nbsp": {
+      "containerappendchilddiv": 2
+    },
+    "nbsp containerappendchilddiv": {
+      "linespushdiv": 2
+    },
+    "containerappendchilddiv linespushdiv": {
+      "return": 2
+    },
+    "linespushdiv return": {
+      "lines": 2
+    },
+    "return lines": {
+      "const": 2
+    },
+    "lines const": {
+      "leftlines": 2
+    },
+    "const leftlines": {
+      "setupcodestreamcodeleft": 2
+    },
+    "leftlines setupcodestreamcodeleft": {
+      "const": 2
+    },
+    "setupcodestreamcodeleft const": {
+      "rightlines": 2
+    },
+    "const rightlines": {
+      "setupcodestreamcoderight": 2
+    },
+    "rightlines setupcodestreamcoderight": {
+      "function": 2
+    },
+    "setupcodestreamcoderight function": {
+      "updatecodestreamlinesarray": 2
+    },
+    "function updatecodestreamlinesarray": {
+      "shift": 2
+    },
+    "updatecodestreamlinesarray shift": {
+      "text": 2
+    },
+    "shift text": {
+      "up": 2
+    },
+    "text up": {
+      "instead": 2
+    },
+    "up instead": {
+      "of": 2
+    },
+    "instead of": {
+      "creating": 2
+    },
+    "of creating": {
+      "new": 2
+    },
+    "creating new": {
+      "html": 2
+    },
+    "new html": {
+      "elements": 2
+    },
+    "html elements": {
+      "forlet": 2
+    },
+    "elements forlet": {
+      "i0": 2
+    },
+    "i0 i": {
+      "linesarraylength": 2
+    },
+    "i linesarraylength": {
+      "1": 2
+    },
+    "linesarraylength 1": {
+      "i": 2
+    },
+    "1 i": {
+      "linesarrayiinnertext": 2
+    },
+    "i linesarrayiinnertext": {
+      "linesarrayi1innertext": 2
+    },
+    "linesarrayiinnertext linesarrayi1innertext": {
+      "const": 2
+    },
+    "linesarrayi1innertext const": {
+      "hex": 2
+    },
+    "const hex": {
+      "0x": 2
+    },
+    "hex 0x": {
+      "mathfloormathrandom16777215tostring16touppercase": 2
+    },
+    "0x mathfloormathrandom16777215tostring16touppercase": {
+      "linesarraylinesarraylength": 2
+    },
+    "mathfloormathrandom16777215tostring16touppercase linesarraylinesarraylength": {
+      "1innertext": 2
+    },
+    "linesarraylinesarraylength 1innertext": {
+      "hex": 2
+    },
+    "1innertext hex": {
+      "codesnippetsmathfloormathrandomcodesnippetslength": 2
+    },
+    "hex codesnippetsmathfloormathrandomcodesnippetslength": {
+      "setinterval": 2
+    },
+    "codesnippetsmathfloormathrandomcodesnippetslength setinterval": {
+      "updatecodestreamleftlines": 2
+    },
+    "setinterval updatecodestreamleftlines": {
+      "500": 2
+    },
+    "updatecodestreamleftlines 500": {
+      "setinterval": 2
+    },
+    "500 setinterval": {
+      "updatecodestreamrightlines": 2
+    },
+    "setinterval updatecodestreamrightlines": {
+      "700": 2
+    },
+    "updatecodestreamrightlines 700": {
+      "exact": 2
+    },
+    "700 exact": {
+      "original": 2
+    },
+    "exact original": {
+      "orb": 2
+    },
+    "original orb": {
+      "no": 2
+    },
+    "orb no": {
+      "idle": 2
+    },
+    "no idle": {
+      "animation": 2
+    },
+    "idle animation": {
+      "original": 2
+    },
+    "animation original": {
+      "color": 2
+    },
+    "original color": {
+      "const": 2
+    },
+    "color const": {
+      "canvas": 2
+    },
+    "const canvas": {
+      "documentgetelementbyidpkaorbcanvas": 2
+    },
+    "canvas documentgetelementbyidpkaorbcanvas": {
+      "const": 2
+    },
+    "documentgetelementbyidpkaorbcanvas const": {
+      "ctx": 2
+    },
+    "const ctx": {
+      "canvasgetcontext2d": 2
+    },
+    "ctx canvasgetcontext2d": {
+      "let": 2
+    },
+    "canvasgetcontext2d let": {
+      "particles": 2
+    },
+    "let particles": {
+      "const": 2
+    },
+    "particles const": {
+      "baseradius": 2
+    },
+    "const baseradius": {
+      "100": 2
+    },
+    "baseradius 100": {
+      "const": 2
+    },
+    "100 const": {
+      "centerx": 2
+    },
+    "const centerx": {
+      "canvaswidth": 2
+    },
+    "centerx canvaswidth": {
+      "2": 2
+    },
+    "canvaswidth 2": {
+      "const": 2
+    },
+    "2 const": {
+      "centery": 2
+    },
+    "const centery": {
+      "canvasheight": 2
+    },
+    "centery canvasheight": {
+      "2": 2
+    },
+    "canvasheight 2": {
+      "let": 2
+    },
+    "2 let": {
+      "anglex": 2
+    },
+    "let anglex": {
+      "0": 2
+    },
+    "anglex 0": {
+      "let": 2
+    },
+    "0 let": {
+      "angley": 2,
+      "isspeaking": 2
+    },
+    "let angley": {
+      "0": 2
+    },
+    "angley 0": {
+      "let": 2
+    },
+    "let isspeaking": {
+      "false": 2
+    },
+    "isspeaking false": {
+      "controls": 2,
+      "return": 2,
+      "utteranceonerror": 2,
+      "synthspeakutterance": 2
+    },
+    "false controls": {
+      "the": 2
+    },
+    "controls the": {
+      "jump": 2
+    },
+    "the jump": {
+      "animation": 2
+    },
+    "jump animation": {
+      "const": 2
+    },
+    "animation const": {
+      "latlines": 2
+    },
+    "const latlines": {
+      "25": 2
+    },
+    "latlines 25": {
+      "const": 2
+    },
+    "25 const": {
+      "lonlines": 2
+    },
+    "const lonlines": {
+      "25": 2
+    },
+    "lonlines 25": {
+      "for": 2
+    },
+    "25 for": {
+      "let": 2
+    },
+    "for let": {
+      "i": 2,
+      "j": 2,
+      "p": 2
+    },
+    "let i": {
+      "0": 2
+    },
+    "i 0": {
+      "i": 2
+    },
+    "0 i": {
+      "latlines": 2
+    },
+    "i latlines": {
+      "i": 2,
+      "mathpi": 2
+    },
+    "latlines i": {
+      "let": 2
+    },
+    "let lat": {
+      "mathpi": 2
+    },
+    "lat mathpi": {
+      "i": 2
+    },
+    "mathpi i": {
+      "latlines": 2
+    },
+    "latlines mathpi": {
+      "2": 2
+    },
+    "mathpi 2": {
+      "for": 2,
+      "strictly": 2
+    },
+    "2 for": {
+      "let": 2
+    },
+    "let j": {
+      "0": 2
+    },
+    "j 0": {
+      "j": 2
+    },
+    "0 j": {
+      "lonlines": 2
+    },
+    "j lonlines": {
+      "j": 2,
+      "particlespush": 2
+    },
+    "lonlines j": {
+      "let": 2
+    },
+    "j let": {
+      "lon": 2
+    },
+    "let lon": {
+      "2": 2
+    },
+    "lon 2": {
+      "mathpi": 2
+    },
+    "2 mathpi": {
+      "j": 2
+    },
+    "mathpi j": {
+      "lonlines": 2
+    },
+    "lonlines particlespush": {
+      "basex": 2
+    },
+    "particlespush basex": {
+      "baseradius": 2
+    },
+    "basex baseradius": {
+      "mathcoslat": 2
+    },
+    "baseradius mathcoslat": {
+      "mathcoslon": 2,
+      "mathsinlon": 2
+    },
+    "mathcoslat mathcoslon": {
+      "basey": 2
+    },
+    "mathcoslon basey": {
+      "baseradius": 2
+    },
+    "basey baseradius": {
+      "mathsinlat": 2
+    },
+    "baseradius mathsinlat": {
+      "basez": 2
+    },
+    "mathsinlat basez": {
+      "baseradius": 2
+    },
+    "basez baseradius": {
+      "mathcoslat": 2
+    },
+    "mathcoslat mathsinlon": {
+      "lat": 2
+    },
+    "mathsinlon lat": {
+      "lat": 2
+    },
+    "lat lat": {
+      "lon": 2
+    },
+    "lat lon": {
+      "lon": 2
+    },
+    "lon lon": {
+      "function": 2
+    },
+    "lon function": {
+      "draworb": 2
+    },
+    "function draworb": {
+      "ctxclearrect0": 2
+    },
+    "draworb ctxclearrect0": {
+      "0": 2
+    },
+    "ctxclearrect0 0": {
+      "canvaswidth": 2
+    },
+    "0 canvaswidth": {
+      "canvasheight": 2
+    },
+    "canvaswidth canvasheight": {
+      "spin": 2
+    },
+    "canvasheight spin": {
+      "normally": 2
+    },
+    "spin normally": {
+      "anglex": 2
+    },
+    "normally anglex": {
+      "0005": 2
+    },
+    "anglex 0005": {
+      "angley": 2
+    },
+    "0005 angley": {
+      "0006": 2
+    },
+    "angley 0006": {
+      "const": 2
+    },
+    "0006 const": {
+      "cosx": 2
+    },
+    "const cosx": {
+      "mathcosanglex": 2
+    },
+    "cosx mathcosanglex": {
+      "sinx": 2
+    },
+    "mathcosanglex sinx": {
+      "mathsinanglex": 2
+    },
+    "sinx mathsinanglex": {
+      "const": 2
+    },
+    "mathsinanglex const": {
+      "cosy": 2
+    },
+    "const cosy": {
+      "mathcosangley": 2
+    },
+    "cosy mathcosangley": {
+      "siny": 2
+    },
+    "mathcosangley siny": {
+      "mathsinangley": 2
+    },
+    "siny mathsinangley": {
+      "const": 2
+    },
+    "mathsinangley const": {
+      "time": 2
+    },
+    "const time": {
+      "datenow": 2
+    },
+    "time datenow": {
+      "0001": 2
+    },
+    "datenow 0001": {
+      "for": 2
+    },
+    "0001 for": {
+      "let": 2
+    },
+    "let p": {
+      "of": 2
+    },
+    "p of": {
+      "particles": 2
+    },
+    "of particles": {
+      "let": 2
+    },
+    "particles let": {
+      "organicscale": 2
+    },
+    "let organicscale": {
+      "1": 2
+    },
+    "organicscale 1": {
+      "only": 2,
+      "mathsintime": 2
+    },
+    "1 only": {
+      "jump": 2
+    },
+    "only jump": {
+      "when": 2
+    },
+    "jump when": {
+      "speaking": 2
+    },
+    "when speaking": {
+      "otherwise": 2
+    },
+    "speaking otherwise": {
+      "stay": 2
+    },
+    "otherwise stay": {
+      "calm": 2
+    },
+    "stay calm": {
+      "if": 2
+    },
+    "calm if": {
+      "isspeaking": 2
+    },
+    "if isspeaking": {
+      "organicscale": 2
+    },
+    "isspeaking organicscale": {
+      "1": 2
+    },
+    "1 mathsintime": {
+      "15": 2
+    },
+    "mathsintime 15": {
+      "plat": 2
+    },
+    "15 plat": {
+      "5": 2
+    },
+    "plat 5": {
+      "008": 2
+    },
+    "5 008": {
+      "mathcostime": 2
+    },
+    "008 mathcostime": {
+      "12": 2
+    },
+    "mathcostime 12": {
+      "plon": 2
+    },
+    "12 plon": {
+      "5": 2
+    },
+    "plon 5": {
+      "005": 2
+    },
+    "5 005": {
+      "let": 2
+    },
+    "005 let": {
+      "pxscaled": 2
+    },
+    "let pxscaled": {
+      "pbasex": 2
+    },
+    "pxscaled pbasex": {
+      "organicscale": 2
+    },
+    "pbasex organicscale": {
+      "let": 2
+    },
+    "organicscale let": {
+      "pyscaled": 2,
+      "pzscaled": 2,
+      "x1": 2
+    },
+    "let pyscaled": {
+      "pbasey": 2
+    },
+    "pyscaled pbasey": {
+      "organicscale": 2
+    },
+    "pbasey organicscale": {
+      "let": 2
+    },
+    "let pzscaled": {
+      "pbasez": 2
+    },
+    "pzscaled pbasez": {
+      "organicscale": 2
+    },
+    "pbasez organicscale": {
+      "let": 2
+    },
+    "let x1": {
+      "pxscaled": 2
+    },
+    "x1 pxscaled": {
+      "cosy": 2
+    },
+    "pxscaled cosy": {
+      "pzscaled": 2
+    },
+    "cosy pzscaled": {
+      "siny": 2
+    },
+    "pzscaled siny": {
+      "let": 2
+    },
+    "siny let": {
+      "z1": 2,
+      "y2": 2
+    },
+    "let z1": {
+      "pzscaled": 2
+    },
+    "z1 pzscaled": {
+      "cosy": 2
+    },
+    "pzscaled cosy": {
+      "pxscaled": 2
+    },
+    "cosy pxscaled": {
+      "siny": 2
+    },
+    "pxscaled siny": {
+      "let": 2
+    },
+    "let y2": {
+      "pyscaled": 2
+    },
+    "y2 pyscaled": {
+      "cosx": 2
+    },
+    "pyscaled cosx": {
+      "z1": 2
+    },
+    "cosx z1": {
+      "sinx": 2
+    },
+    "z1 sinx": {
+      "let": 2
+    },
+    "sinx let": {
+      "z2": 2
+    },
+    "let z2": {
+      "z1": 2
+    },
+    "z2 z1": {
+      "cosx": 2
+    },
+    "z1 cosx": {
+      "pyscaled": 2
+    },
+    "cosx pyscaled": {
+      "sinx": 2
+    },
+    "pyscaled sinx": {
+      "const": 2
+    },
+    "sinx const": {
+      "perspective": 2
+    },
+    "const perspective": {
+      "250": 2
+    },
+    "perspective 250": {
+      "250": 2
+    },
+    "250 250": {
+      "z2": 2
+    },
+    "250 z2": {
+      "const": 2
+    },
+    "z2 const": {
+      "pxfinal": 2
+    },
+    "const pxfinal": {
+      "centerx": 2
+    },
+    "pxfinal centerx": {
+      "x1": 2
+    },
+    "centerx x1": {
+      "perspective": 2
+    },
+    "x1 perspective": {
+      "const": 2
+    },
+    "perspective const": {
+      "pyfinal": 2,
+      "size": 2,
+      "alpha": 2
+    },
+    "const pyfinal": {
+      "centery": 2
+    },
+    "pyfinal centery": {
+      "y2": 2
+    },
+    "centery y2": {
+      "perspective": 2
+    },
+    "y2 perspective": {
+      "const": 2
+    },
+    "const size": {
+      "mathmax05": 2
+    },
+    "size mathmax05": {
+      "12": 2
+    },
+    "mathmax05 12": {
+      "perspective": 2
+    },
+    "12 perspective": {
+      "const": 2
+    },
+    "const alpha": {
+      "mathmin1": 2
+    },
+    "alpha mathmin1": {
+      "mathmax01": 2
+    },
+    "mathmin1 mathmax01": {
+      "z2": 2
+    },
+    "mathmax01 z2": {
+      "baseradius": 2
+    },
+    "z2 baseradius": {
+      "2": 2
+    },
+    "baseradius 2": {
+      "baseradius": 2
+    },
+    "2 baseradius": {
+      "ctxbeginpath": 2
+    },
+    "baseradius ctxbeginpath": {
+      "ctxarcpxfinal": 2
+    },
+    "ctxbeginpath ctxarcpxfinal": {
+      "pyfinal": 2
+    },
+    "ctxarcpxfinal pyfinal": {
+      "size": 2
+    },
+    "pyfinal size": {
+      "0": 2
+    },
+    "size 0": {
+      "mathpi": 2
+    },
+    "0 mathpi": {
+      "2": 2
+    },
+    "2 strictly": {
+      "original": 2
+    },
+    "strictly original": {
+      "cyan": 2
+    },
+    "original cyan": {
+      "color": 2
+    },
+    "cyan color": {
+      "ctxfillstyle": 2
+    },
+    "color ctxfillstyle": {
+      "rgba0": 2
+    },
+    "ctxfillstyle rgba0": {
+      "255": 2
+    },
+    "255 alpha": {
+      "ctxfill": 2
+    },
+    "alpha ctxfill": {
+      "requestanimationframedraworb": 2
+    },
+    "ctxfill requestanimationframedraworb": {
+      "draworb": 2
+    },
+    "requestanimationframedraworb draworb": {
+      "lagfree": 2
+    },
+    "draworb lagfree": {
+      "voice": 2
+    },
+    "lagfree voice": {
+      "system": 2
+    },
+    "voice system": {
+      "voice": 2
+    },
+    "system voice": {
+      "unlock": 2
+    },
+    "voice unlock": {
+      "fix": 2
+    },
+    "unlock fix": {
+      "const": 2
+    },
+    "fix const": {
+      "synth": 2
+    },
+    "const synth": {
+      "windowspeechsynthesis": 2
+    },
+    "synth windowspeechsynthesis": {
+      "let": 2
+    },
+    "windowspeechsynthesis let": {
+      "pikavoice": 2
+    },
+    "let pikavoice": {
+      "null": 2
+    },
+    "pikavoice null": {
+      "let": 2
+    },
+    "null let": {
+      "voiceunlocked": 2
+    },
+    "let voiceunlocked": {
+      "false": 2
+    },
+    "voiceunlocked false": {
+      "prevents": 2
+    },
+    "false prevents": {
+      "tts": 2
+    },
+    "prevents tts": {
+      "block": 2
+    },
+    "tts block": {
+      "on": 2
+    },
+    "block on": {
+      "mobile": 2
+    },
+    "on mobile": {
+      "synthonvoiceschanged": 2
+    },
+    "mobile synthonvoiceschanged": {
+      "const": 2
+    },
+    "synthonvoiceschanged const": {
+      "voices": 2
+    },
+    "const voices": {
+      "synthgetvoices": 2
+    },
+    "voices synthgetvoices": {
+      "pikavoice": 2
+    },
+    "synthgetvoices pikavoice": {
+      "voicesfindv": 2
+    },
+    "pikavoice voicesfindv": {
+      "vlang": 2
+    },
+    "voicesfindv vlang": {
+      "hiin": 2
+    },
+    "vlang hiin": {
+      "vnameincludesfemale": 2
+    },
+    "hiin vnameincludesfemale": {
+      "voices0": 2
+    },
+    "vnameincludesfemale voices0": {
+      "mobile": 2
+    },
+    "voices0 mobile": {
+      "browsers": 2
+    },
+    "mobile browsers": {
+      "block": 2
+    },
+    "browsers block": {
+      "speech": 2
+    },
+    "block speech": {
+      "unless": 2
+    },
+    "speech unless": {
+      "initiated": 2
+    },
+    "unless initiated": {
+      "by": 2
+    },
+    "initiated by": {
+      "a": 2
+    },
+    "by a": {
+      "direct": 2
+    },
+    "a direct": {
+      "click": 2
+    },
+    "direct click": {
+      "this": 2
+    },
+    "click this": {
+      "unlocks": 2
+    },
+    "this unlocks": {
+      "the": 2
+    },
+    "unlocks the": {
+      "audio": 2
+    },
+    "the audio": {
+      "engine": 2
+    },
+    "audio engine": {
+      "instantly": 2
+    },
+    "engine instantly": {
+      "function": 2
+    },
+    "instantly function": {
+      "unlockvoiceapi": 2
+    },
+    "function unlockvoiceapi": {
+      "ifvoiceunlocked": 2
+    },
+    "unlockvoiceapi ifvoiceunlocked": {
+      "let": 2
+    },
+    "ifvoiceunlocked let": {
+      "silentutter": 2
+    },
+    "let silentutter": {
+      "new": 2
+    },
+    "silentutter new": {
+      "speechsynthesisutterance": 2
+    },
+    "new speechsynthesisutterance": {
+      "silentuttervolume": 2
+    },
+    "speechsynthesisutterance silentuttervolume": {
+      "0": 2
+    },
+    "silentuttervolume 0": {
+      "synthspeaksilentutter": 2
+    },
+    "0 synthspeaksilentutter": {
+      "voiceunlocked": 2
+    },
+    "synthspeaksilentutter voiceunlocked": {
+      "true": 2
+    },
+    "voiceunlocked true": {
+      "function": 2
+    },
+    "true function": {
+      "playaivoicetext": 2
+    },
+    "function playaivoicetext": {
+      "let": 2
+    },
+    "playaivoicetext let": {
+      "lowertext": 2
+    },
+    "let lowertext": {
+      "texttolowercase": 2
+    },
+    "lowertext texttolowercase": {
+      "check": 2
+    },
+    "texttolowercase check": {
+      "for": 2
+    },
+    "check for": {
+      "custom": 2
+    },
+    "for custom": {
+      "audio": 2
+    },
+    "custom audio": {
+      "file": 2
+    },
+    "audio file": {
+      "if": 2
+    },
+    "file if": {
+      "lowertextincludeshello": 2
+    },
+    "if lowertextincludeshello": {
+      "lowertextincludespika": 2
+    },
+    "lowertextincludeshello lowertextincludespika": {
+      "let": 2
+    },
+    "lowertextincludespika let": {
+      "audio": 2
+    },
+    "let audio": {
+      "new": 2
+    },
+    "audio new": {
+      "audiodownloadwav": 2
+    },
+    "new audiodownloadwav": {
+      "audioplaycatche": 2
+    },
+    "audiodownloadwav audioplaycatche": {
+      "consolelogcustom": 2
+    },
+    "audioplaycatche consolelogcustom": {
+      "audio": 2
+    },
+    "consolelogcustom audio": {
+      "failed": 2
+    },
+    "audio failed": {
+      "e": 2
+    },
+    "failed e": {
+      "audioonplay": 2
+    },
+    "e audioonplay": {
+      "isspeaking": 2
+    },
+    "audioonplay isspeaking": {
+      "true": 2
+    },
+    "isspeaking true": {
+      "audioonended": 2,
+      "utteranceonend": 2
+    },
+    "true audioonended": {
+      "isspeaking": 2
+    },
+    "audioonended isspeaking": {
+      "false": 2
+    },
+    "false return": {
+      "ifsynthspeaking": 2
+    },
+    "return ifsynthspeaking": {
+      "synthcancel": 2
+    },
+    "ifsynthspeaking synthcancel": {
+      "let": 2
+    },
+    "synthcancel let": {
+      "cleantext": 2
+    },
+    "let cleantext": {
+      "textreplaceazaz09sg": 2
+    },
+    "cleantext textreplaceazaz09sg": {
+      "const": 2
+    },
+    "textreplaceazaz09sg const": {
+      "utterance": 2
+    },
+    "const utterance": {
+      "new": 2
+    },
+    "utterance new": {
+      "speechsynthesisutterancecleantext": 2
+    },
+    "new speechsynthesisutterancecleantext": {
+      "ifpikavoice": 2
+    },
+    "speechsynthesisutterancecleantext ifpikavoice": {
+      "utterancevoice": 2
+    },
+    "ifpikavoice utterancevoice": {
+      "pikavoice": 2
+    },
+    "utterancevoice pikavoice": {
+      "utterancepitch": 2
+    },
+    "pikavoice utterancepitch": {
+      "11": 2
+    },
+    "utterancepitch 11": {
+      "utterancerate": 2
+    },
+    "11 utterancerate": {
+      "10": 2
+    },
+    "utterancerate 10": {
+      "utteranceonstart": 2
+    },
+    "10 utteranceonstart": {
+      "isspeaking": 2
+    },
+    "utteranceonstart isspeaking": {
+      "true": 2
+    },
+    "true utteranceonend": {
+      "isspeaking": 2
+    },
+    "utteranceonend isspeaking": {
+      "false": 2
+    },
+    "false utteranceonerror": {
+      "isspeaking": 2
+    },
+    "utteranceonerror isspeaking": {
+      "false": 2
+    },
+    "false synthspeakutterance": {
+      "voice": 2
+    },
+    "synthspeakutterance voice": {
+      "recognition": 2
+    },
+    "voice recognition": {
+      "const": 2
+    },
+    "recognition const": {
+      "micbtn": 2
+    },
+    "const micbtn": {
+      "documentgetelementbyidmicbtn": 2
+    },
+    "micbtn documentgetelementbyidmicbtn": {
+      "const": 2
+    },
+    "documentgetelementbyidmicbtn const": {
+      "speechrecognition": 2
+    },
+    "const speechrecognition": {
+      "windowspeechrecognition": 2
+    },
+    "speechrecognition windowspeechrecognition": {
+      "windowwebkitspeechrecognition": 2
+    },
+    "windowspeechrecognition windowwebkitspeechrecognition": {
+      "let": 2
+    },
+    "windowwebkitspeechrecognition let": {
+      "recognition": 2
+    },
+    "let recognition": {
+      "if": 2
+    },
+    "recognition if": {
+      "speechrecognition": 2
+    },
+    "if speechrecognition": {
+      "recognition": 2
+    },
+    "speechrecognition recognition": {
+      "new": 2
+    },
+    "recognition new": {
+      "speechrecognition": 2
+    },
+    "new speechrecognition": {
+      "recognitioncontinuous": 2
+    },
+    "speechrecognition recognitioncontinuous": {
+      "false": 2
+    },
+    "recognitioncontinuous false": {
+      "recognitioninterimresults": 2
+    },
+    "false recognitioninterimresults": {
+      "false": 2
+    },
+    "recognitioninterimresults false": {
+      "recognitionlang": 2
+    },
+    "false recognitionlang": {
+      "hiin": 2
+    },
+    "recognitionlang hiin": {
+      "recognitiononstart": 2
+    },
+    "hiin recognitiononstart": {
+      "micbtnclasslistaddmiclistening": 2
+    },
+    "recognitiononstart micbtnclasslistaddmiclistening": {
+      "recognitiononend": 2
+    },
+    "micbtnclasslistaddmiclistening recognitiononend": {
+      "micbtnclasslistremovemiclistening": 2
+    },
+    "recognitiononend micbtnclasslistremovemiclistening": {
+      "recognitiononresult": 2
+    },
+    "micbtnclasslistremovemiclistening recognitiononresult": {
+      "event": 2
+    },
+    "recognitiononresult event": {
+      "const": 2
+    },
+    "event const": {
+      "transcript": 2
+    },
+    "const transcript": {
+      "eventresults00transcript": 2
+    },
+    "transcript eventresults00transcript": {
+      "documentgetelementbyidchatinputvalue": 2
+    },
+    "eventresults00transcript documentgetelementbyidchatinputvalue": {
+      "transcript": 2
+    },
+    "documentgetelementbyidchatinputvalue transcript": {
+      "unlockvoiceapi": 2
+    },
+    "transcript unlockvoiceapi": {
+      "unlock": 2
+    },
+    "unlockvoiceapi unlock": {
+      "on": 2
+    },
+    "unlock on": {
+      "mic": 2
+    },
+    "on mic": {
+      "use": 2
+    },
+    "mic use": {
+      "too": 2
+    },
+    "use too": {
+      "sendmessage": 2
+    },
+    "too sendmessage": {
+      "micbtnaddeventlistenerclick": 2
+    },
+    "sendmessage micbtnaddeventlistenerclick": {
+      "unlockvoiceapi": 2
+    },
+    "micbtnaddeventlistenerclick unlockvoiceapi": {
+      "important": 2
+    },
+    "unlockvoiceapi important": {
+      "for": 2
+    },
+    "important for": {
+      "mobile": 2
+    },
+    "for mobile": {
+      "if": 2
+    },
+    "mobile if": {
+      "recognition": 2
+    },
+    "if recognition": {
+      "micbtnclasslistcontainsmiclistening": 2
+    },
+    "recognition micbtnclasslistcontainsmiclistening": {
+      "recognitionstop": 2
+    },
+    "micbtnclasslistcontainsmiclistening recognitionstop": {
+      "recognitionstart": 2
+    },
+    "recognitionstop recognitionstart": {
+      "else": 2
+    },
+    "recognitionstart else": {
+      "alertspeech": 2
+    },
+    "else alertspeech": {
+      "recognition": 2
+    },
+    "alertspeech recognition": {
+      "not": 2
+    },
+    "recognition not": {
+      "supported": 2
+    },
+    "not supported": {
+      "lagfree": 2
+    },
+    "supported lagfree": {
+      "chat": 2
+    },
+    "lagfree chat": {
+      "logic": 2
+    },
+    "chat logic": {
+      "const": 2
+    },
+    "logic const": {
+      "chathistory": 2
+    },
+    "const chathistory": {
+      "documentgetelementbyidchathistory": 2
+    },
+    "chathistory documentgetelementbyidchathistory": {
+      "const": 2
+    },
+    "documentgetelementbyidchathistory const": {
+      "chatinput": 2
+    },
+    "const chatinput": {
+      "documentgetelementbyidchatinput": 2
+    },
+    "chatinput documentgetelementbyidchatinput": {
+      "const": 2
+    },
+    "documentgetelementbyidchatinput const": {
+      "sendbtn": 2
+    },
+    "const sendbtn": {
+      "documentgetelementbyidsendbtn": 2
+    },
+    "sendbtn documentgetelementbyidsendbtn": {
+      "function": 2
+    },
+    "documentgetelementbyidsendbtn function": {
+      "scrolltobottom": 2
+    },
+    "function scrolltobottom": {
+      "requestanimationframe": 2
+    },
+    "scrolltobottom requestanimationframe": {
+      "forces": 2
+    },
+    "requestanimationframe forces": {
+      "the": 2
+    },
+    "forces the": {
+      "browser": 2
+    },
+    "the browser": {
+      "to": 2
+    },
+    "browser to": {
+      "paint": 2
+    },
+    "to paint": {
+      "before": 2
+    },
+    "paint before": {
+      "scrolling": 2
+    },
+    "before scrolling": {
+      "fixing": 2
+    },
+    "scrolling fixing": {
+      "the": 2
+    },
+    "fixing the": {
+      "freeze": 2
+    },
+    "the freeze": {
+      "requestanimationframe": 2
+    },
+    "freeze requestanimationframe": {
+      "chathistoryscrolltop": 2
+    },
+    "requestanimationframe chathistoryscrolltop": {
+      "chathistoryscrollheight": 2
+    },
+    "chathistoryscrolltop chathistoryscrollheight": {
+      "function": 2
+    },
+    "chathistoryscrollheight function": {
+      "addmessagetext": 2
+    },
+    "function addmessagetext": {
+      "sender": 2
+    },
+    "addmessagetext sender": {
+      "const": 2
+    },
+    "sender const": {
+      "msgdiv": 2
+    },
+    "const msgdiv": {
+      "documentcreateelementdiv": 2
+    },
+    "msgdiv documentcreateelementdiv": {
+      "msgdivclasslistaddmessage": 2
+    },
+    "documentcreateelementdiv msgdivclasslistaddmessage": {
+      "sender": 2
+    },
+    "msgdivclasslistaddmessage sender": {
+      "user": 2
+    },
+    "sender user": {
+      "usermsg": 2
+    },
+    "user usermsg": {
+      "aimsg": 2
+    },
+    "usermsg aimsg": {
+      "msgdivinnertext": 2
+    },
+    "aimsg msgdivinnertext": {
+      "text": 2
+    },
+    "msgdivinnertext text": {
+      "chathistoryappendchildmsgdiv": 2
+    },
+    "text chathistoryappendchildmsgdiv": {
+      "scrolltobottom": 2
+    },
+    "chathistoryappendchildmsgdiv scrolltobottom": {
+      "async": 2
+    },
+    "scrolltobottom async": {
+      "function": 2
+    },
+    "async function": {
+      "sendmessage": 2
+    },
+    "function sendmessage": {
+      "const": 2
+    },
+    "sendmessage const": {
+      "text": 2
+    },
+    "const text": {
+      "chatinputvaluetrim": 2
+    },
+    "text chatinputvaluetrim": {
+      "if": 2
+    },
+    "chatinputvaluetrim if": {
+      "text": 2
+    },
+    "if text": {
+      "return": 2
+    },
+    "text return": {
+      "unlockvoiceapi": 2
+    },
+    "return unlockvoiceapi": {
+      "unlocks": 2
+    },
+    "unlockvoiceapi unlocks": {
+      "speech": 2
+    },
+    "unlocks speech": {
+      "engine": 2
+    },
+    "speech engine": {
+      "exactly": 2
+    },
+    "engine exactly": {
+      "on": 2
+    },
+    "exactly on": {
+      "button": 2
+    },
+    "on button": {
+      "click": 2
+    },
+    "button click": {
+      "addmessagetext": 2
+    },
+    "click addmessagetext": {
+      "user": 2
+    },
+    "addmessagetext user": {
+      "chatinputvalue": 2
+    },
+    "user chatinputvalue": {
+      "try": 2
+    },
+    "chatinputvalue try": {
+      "const": 2
+    },
+    "try const": {
+      "response": 2
+    },
+    "const response": {
+      "await": 2
+    },
+    "response await": {
+      "fetchhttplocalhost3000chat": 2
+    },
+    "await fetchhttplocalhost3000chat": {
+      "method": 2
+    },
+    "fetchhttplocalhost3000chat method": {
+      "post": 2
+    },
+    "method post": {
+      "headers": 2
+    },
+    "post headers": {
+      "contenttype": 2
+    },
+    "headers contenttype": {
+      "applicationjson": 2
+    },
+    "contenttype applicationjson": {
+      "body": 2
+    },
+    "applicationjson body": {
+      "jsonstringify": 2
+    },
+    "body jsonstringify": {
+      "message": 2
+    },
+    "jsonstringify message": {
+      "text": 2
+    },
+    "message text": {
+      "if": 2
+    },
+    "text if": {
+      "responseok": 2
+    },
+    "if responseok": {
+      "throw": 2
+    },
+    "responseok throw": {
+      "new": 2
+    },
+    "throw new": {
+      "errornetwork": 2
+    },
+    "new errornetwork": {
+      "error": 2
+    },
+    "errornetwork error": {
+      "const": 2
+    },
+    "error const": {
+      "data": 2
+    },
+    "const data": {
+      "await": 2
+    },
+    "data await": {
+      "responsejson": 2
+    },
+    "await responsejson": {
+      "addmessagedatareply": 2
+    },
+    "responsejson addmessagedatareply": {
+      "ai": 2
+    },
+    "addmessagedatareply ai": {
+      "playaivoicedatareply": 2
+    },
+    "ai playaivoicedatareply": {
+      "catch": 2
+    },
+    "playaivoicedatareply catch": {
+      "error": 2
+    },
+    "catch error": {
+      "addmessagesystem": 2
+    },
+    "error addmessagesystem": {
+      "error": 2
+    },
+    "addmessagesystem error": {
+      "backend": 2
+    },
+    "error backend": {
+      "offline": 2
+    },
+    "backend offline": {
+      "or": 2
+    },
+    "offline or": {
+      "unreachable": 2
+    },
+    "or unreachable": {
+      "ai": 2
+    },
+    "unreachable ai": {
+      "sendbtnaddeventlistenerclick": 2
+    },
+    "ai sendbtnaddeventlistenerclick": {
+      "sendmessage": 2
+    },
+    "sendbtnaddeventlistenerclick sendmessage": {
+      "chatinputaddeventlistenerkeypress": 2
+    },
+    "sendmessage chatinputaddeventlistenerkeypress": {
+      "e": 2
+    },
+    "chatinputaddeventlistenerkeypress e": {
+      "if": 2
+    },
+    "e if": {
+      "ekey": 2
+    },
+    "if ekey": {
+      "enter": 2
+    },
+    "ekey enter": {
+      "epreventdefault": 2
+    },
+    "enter epreventdefault": {
+      "prevents": 2
+    },
+    "epreventdefault prevents": {
+      "mobile": 2
+    },
+    "prevents mobile": {
+      "keyboard": 2
+    },
+    "mobile keyboard": {
+      "issues": 2
+    },
+    "keyboard issues": {
+      "sendmessage": 2
+    },
+    "issues sendmessage": {
+      "script": 2
+    },
+    "sendmessage script": {
+      "body": 2
+    },
+    "script body": {
+      "html": 2
+    },
+    "ok kya": {
+      "chal": 2
+    },
+    "kya chal": {
+      "rha": 2
+    },
+    "intelligence ek": {
+      "self": 2
+    },
+    "ek self": {
+      "mutation": 2
+    },
+    "self mutation": {
+      "computer": 2,
+      "kar": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287201
+      }
+    },
+    "mutation computer": {
+      "hai": 2
+    },
+    "ai kya": {
+      "hai": 2
+    },
+    "ar rahman": {
+      "kon": 2
+    },
+    "rahman kon": {
+      "ho": 2
+    },
+    "kon ho": {
+      "tum": 2
+    },
+    "nodejs kya": {
+      "hai": 2
+    },
+    "kya hai": {
+      "batao": 2,
+      "ek": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735269640
+      }
+    },
+    "hai batao": {
+      "explain": 2
+    },
+    "batao explain": {
+      "karo": 2
+    },
+    "thank you": {
+      "so": 2
+    },
+    "you so": {
+      "much": 2
+    },
+    "how are": {
+      "you": 2
+    },
+    "me hu": {
+      "ankit": {
+        "weight": 0.07350918906249998,
+        "lastUsed": 1771701150696
+      }
+    },
+    "name ankit": {
+      "hai": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771702233393
+      }
+    },
+    "ankit hai": {
+      "mene": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771702233393
+      }
+    },
+    "hai mene": {
+      "tumhe": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771702233393
+      }
+    },
+    "mene tumhe": {
+      "banaya": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771702233393
+      }
+    },
+    "tumhe banaya": {
+      "hai": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771702233393
+      }
+    },
+    "tum kon": {
+      "ho": {
+        "weight": 0.52862809375,
+        "lastUsed": 1771792183428
+      }
+    },
+    "ok tumhe": {
+      "reply": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584132
+      }
+    },
+    "tumhe reply": {
+      "dene": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584132
+      }
+    },
+    "reply dene": {
+      "me": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584132
+      }
+    },
+    "dene me": {
+      "itna": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584132
+      }
+    },
+    "me itna": {
+      "time": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584132
+      }
+    },
+    "itna time": {
+      "kiu": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584132
+      }
+    },
+    "time kiu": {
+      "lag": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584133
+      }
+    },
+    "kiu lag": {
+      "rha": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584133
+      }
+    },
+    "lag rha": {
+      "hai": {
+        "weight": 0.07737809374999999,
+        "lastUsed": 1771726584133
+      }
+    },
+    "jaldi reply": {
+      "karo": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771726664340
+      }
+    },
+    "bitcoin me": {
+      "trade": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771726860530
+      }
+    },
+    "me trade": {
+      "kese": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771726860532
+      }
+    },
+    "i dont": {
+      "know": {
+        "weight": 0.24435187499999994,
+        "lastUsed": 1771727338846
+      }
+    },
+    "dont know": {
+      "anything": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "know anything": {
+      "about": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "anything about": {
+      "treding": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "about treding": {
+      "first": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "treding first": {
+      "you": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "first you": {
+      "teach": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "you teach": {
+      "me": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771727000891
+      }
+    },
+    "python kya": {
+      "hai": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735269640
+      }
+    },
+    "hai ek": {
+      "saap": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735269640
+      }
+    },
+    "ek saap": {
+      "ya": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735269640
+      }
+    },
+    "saap ya": {
+      "bhasha": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735269640
+      }
+    },
+    "python saap": {
+      "bhi": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735357694
+      }
+    },
+    "saap bhi": {
+      "hai": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735357695
+      }
+    },
+    "bhi hai": {
+      "or": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735357695
+      }
+    },
+    "hai or": {
+      "bhasha": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735357695
+      }
+    },
+    "or bhasha": {
+      "bhi": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735357695
+      }
+    },
+    "bhasha bhi": {
+      "hai": {
+        "weight": 0.08145062499999998,
+        "lastUsed": 1771735357695
+      }
+    },
+    "is artificial": {
+      "intelligence": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755186790
+      }
+    },
+    "time ab": {
+      "tak": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755338238
+      }
+    },
+    "ab tak": {
+      "kitna": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755338243
+      }
+    },
+    "tak kitna": {
+      "evolve": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755338243
+      }
+    },
+    "kitna evolve": {
+      "kiya": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755338243
+      }
+    },
+    "evolve kiya": {
+      "hai": {
+        "weight": 0.0857375,
+        "lastUsed": 1771755338243
+      }
+    },
+    "kya tum": {
+      "code": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756036250
+      }
+    },
+    "tum code": {
+      "kar": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756036250
+      }
+    },
+    "code kar": {
+      "sakte": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756036250
+      }
+    },
+    "kar sakte": {
+      "ho": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756036250
+      }
+    },
+    "me ek": {
+      "evolving": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "ek evolving": {
+      "ai": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "evolving ai": {
+      "bana": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "ai bana": {
+      "raha": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "bana raha": {
+      "hu": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "raha hu": {
+      "isliye": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "hu isliye": {
+      "mujhe": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "isliye mujhe": {
+      "ek": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "mujhe ek": {
+      "esa": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "ek esa": {
+      "brain": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "esa brain": {
+      "bana": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "brain bana": {
+      "k": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "bana k": {
+      "do": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "k do": {
+      "jo": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "do jo": {
+      "self": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "jo self": {
+      "coding": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "self coding": {
+      "self": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "coding self": {
+      "evolving": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "self evolving": {
+      "or": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "evolving or": {
+      "self": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "or self": {
+      "trading": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "self trading": {
+      "self": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "trading self": {
+      "mutation": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287200
+      }
+    },
+    "mutation kar": {
+      "sake": {
+        "weight": 0.0857375,
+        "lastUsed": 1771756287201
+      }
+    },
+    "market ka": {
+      "kya": {
+        "weight": 0.95,
+        "lastUsed": 1771824067121
+      }
+    },
+    "ka kya": {
+      "haal": {
+        "weight": 0.95,
+        "lastUsed": 1771824067121
+      }
+    },
+    "integrate evolving": {
+      "sestem": {
+        "weight": 1,
+        "lastUsed": 1771841585934
+      }
+    }
+  },
+  "intelligence": 3922354.466010066,
+  "evolution": {
+    "prunedConnections": 0,
+    "thoughtsGenerated": 202,
+    "cycles": 36,
+    "lastEvolutionTime": 1771841001496
+  },
+  "vocabulary": [
+    "advanced",
+    "cryptography",
+    "blockchain",
+    "consensus",
+    "forex",
+    "market",
+    "macroeconomic",
+    "indicators",
+    "autonomous",
+    "selfevolving",
+    "computer",
+    "systems",
+    "neural",
+    "synaptic",
+    "pruning",
+    "algorithms",
+    "strict",
+    "english",
+    "grammar",
+    "parsing",
+    "javascript",
+    "engine",
+    "optimization",
+    "structures",
+    "binary",
+    "trees",
+    "technical",
+    "analysis",
+    "chart",
+    "patterns",
+    "coding",
+    "sikhao",
+    "insufficient",
+    "hello",
+    "learning",
+    "pattern",
+    "locked",
+    "chahte",
+    "bullish",
+    "price",
+    "world",
+    "language",
+    "example",
+    "official",
+    "languages",
+    "status",
+    "machine",
+    "bitcoin",
+    "psychology",
+    "program",
+    "early",
+    "century",
+    "first",
+    "introduced",
+    "ludwig",
+    "wittgenstein",
+    "understood",
+    "result",
+    "pakstani",
+    "likhe",
+    "province",
+    "precede",
+    "theory",
+    "quantum",
+    "mechanics",
+    "cases",
+    "number",
+    "going",
+    "along",
+    "indeed",
+    "several",
+    "parenthetical",
+    "clauses",
+    "function",
+    "designed",
+    "postpositions",
+    "notwithstanding",
+    "although",
+    "single",
+    "attempt",
+    "displaystyle",
+    "partial",
+    "epartial",
+    "increase",
+    "called",
+    "kernel",
+    "space",
+    "linear",
+    "version",
+    "support",
+    "windows",
+    "other",
+    "about",
+    "marked",
+    "defined",
+    "opjective",
+    "logic",
+    "memory",
+    "nodes",
+    "incomplete",
+    "ankit",
+    "nangsue",
+    "python",
+    "describe",
+    "something",
+    "possible",
+    "evolving",
+    "prosess",
+    "which",
+    "common",
+    "followed",
+    "syllabus",
+    "romanization",
+    "failed",
+    "baare",
+    "process",
+    "evolve",
+    "sakte",
+    "programming",
+    "evolution",
+    "cycles",
+    "correct",
+    "codes",
+    "class",
+    "problems",
+    "those",
+    "there",
+    "human",
+    "peoples",
+    "rights",
+    "caribbean",
+    "including",
+    "jamaica",
+    "leeward",
+    "equation",
+    "studies",
+    "cultural",
+    "anthropology",
+    "discrbe",
+    "understanding",
+    "build",
+    "results",
+    "offline",
+    "evaluations",
+    "generally",
+    "upper",
+    "triangular",
+    "matrix",
+    "similarly",
+    "interrogative",
+    "sentence",
+    "spoken",
+    "tumhara",
+    "values",
+    "observe",
+    "mujhe",
+    "context",
+    "thoda",
+    "chahiye",
+    "seekhne",
+    "master",
+    "directives",
+    "instructions",
+    "topics",
+    "matching",
+    "domains",
+    "asynchronous",
+    "event",
+    "architecture",
+    "pipelines",
+    "tensorflow",
+    "pytorch",
+    "tensors",
+    "management",
+    "pointers",
+    "object",
+    "oriented",
+    "abstraction",
+    "ownership",
+    "model",
+    "safety",
+    "concurrency",
+    "without",
+    "races",
+    "goroutines",
+    "performance",
+    "distributed",
+    "virtual",
+    "garbage",
+    "collection",
+    "bytecode",
+    "execution",
+    "typescript",
+    "static",
+    "typing",
+    "interfaces",
+    "checks",
+    "compilation",
+    "html5",
+    "semantic",
+    "structure",
+    "cascading",
+    "style",
+    "sheets",
+    "layouts",
+    "relational",
+    "database",
+    "normalization",
+    "complex",
+    "queries",
+    "nosql",
+    "document",
+    "stores",
+    "mongodb",
+    "sharding",
+    "horizontal",
+    "scaling",
+    "webassembly",
+    "instruction",
+    "format",
+    "native",
+    "browser",
+    "server",
+    "scripting",
+    "laravel",
+    "framework",
+    "swift",
+    "application",
+    "development",
+    "retain",
+    "kotlin",
+    "android",
+    "studio",
+    "integration",
+    "coroutines",
+    "rails",
+    "convention",
+    "configuration",
+    "shell",
+    "linux",
+    "automation",
+    "scheduling",
+    "solidity",
+    "ethereum",
+    "smart",
+    "contracts",
+    "decentralized",
+    "flutter",
+    "multiplatform",
+    "toolkit",
+    "haskell",
+    "functional",
+    "monads",
+    "evaluation",
+    "microsoft",
+    "syntactic",
+    "phrases",
+    "conjugations",
+    "natural",
+    "processing",
+    "tokenization",
+    "morphological",
+    "embeddings",
+    "contextual",
+    "meaning",
+    "resolution",
+    "pragmatics",
+    "implicit",
+    "discourse",
+    "phonetics",
+    "acoustic",
+    "properties",
+    "speech",
+    "articulation",
+    "computational",
+    "linguistics",
+    "syntax",
+    "tagging",
+    "markov",
+    "chain",
+    "generation",
+    "probabilistic",
+    "state",
+    "transitions",
+    "recurrent",
+    "networks",
+    "short",
+    "sequential",
+    "transformer",
+    "models",
+    "attention",
+    "mechanisms",
+    "vectors",
+    "bilingual",
+    "translation",
+    "cross",
+    "lingual",
+    "mapping",
+    "sha256",
+    "hashing",
+    "asymmetric",
+    "public",
+    "ledger",
+    "proof",
+    "contract",
+    "environments",
+    "finance",
+    "automated",
+    "makers",
+    "liquidity",
+    "pools",
+    "knowledge",
+    "proofs",
+    "zksnarks",
+    "privacy",
+    "preserving",
+    "transactions",
+    "byzantine",
+    "fault",
+    "tolerance",
+    "network",
+    "sybil",
+    "attacks",
+    "cryptocurrency",
+    "tokenomics",
+    "inflationary",
+    "deflationary",
+    "economic",
+    "layer",
+    "solutions",
+    "arbitrum",
+    "optimistic",
+    "rollups",
+    "channels",
+    "interplanetary",
+    "system",
+    "storage",
+    "protocols",
+    "fungible",
+    "tokens",
+    "erc721",
+    "digital",
+    "provenance",
+    "inflation",
+    "consumer",
+    "index",
+    "interest",
+    "rates",
+    "foreign",
+    "exchange",
+    "currency",
+    "pairs",
+    "quote",
+    "algorithmic",
+    "frequency",
+    "trading",
+    "quantitative",
+    "arbitrage",
+    "strategies",
+    "japanese",
+    "candlestick",
+    "moving",
+    "averages",
+    "fundamental",
+    "central",
+    "monetary",
+    "policy",
+    "easing",
+    "elliott",
+    "fractal",
+    "action",
+    "fibonacci",
+    "retracement",
+    "levels",
+    "resistance",
+    "trend",
+    "continuation",
+    "position",
+    "sizing",
+    "value",
+    "drawdown",
+    "calculation",
+    "derivatives",
+    "options",
+    "pricing",
+    "black",
+    "scholes",
+    "implied",
+    "volatility",
+    "commodities",
+    "global",
+    "supply",
+    "disruptions",
+    "artificial",
+    "general",
+    "intelligence",
+    "eliminating",
+    "pathways",
+    "genetic",
+    "crossover",
+    "mutation",
+    "evolutionary",
+    "fitness",
+    "functions",
+    "reinforcement",
+    "qlearning",
+    "reward",
+    "maximization",
+    "vision",
+    "convolutional",
+    "image",
+    "recognition",
+    "generative",
+    "adversarial",
+    "generator",
+    "discriminator",
+    "heuristic",
+    "search",
+    "astar",
+    "pathfinding",
+    "decision",
+    "cognitive",
+    "working",
+    "episodic",
+    "retrieval",
+    "unsupervised",
+    "principal",
+    "component",
+    "dimensionality",
+    "reduction",
+    "backpropagation",
+    "gradient",
+    "descent",
+    "weight",
+    "multilayer",
+    "perceptrons",
+    "computing",
+    "qubits",
+    "superposition",
+    "entanglement",
+    "cybersecurity",
+    "penetration",
+    "testing",
+    "vulnerability",
+    "exploitation",
+    "cloud",
+    "microservices",
+    "docker",
+    "containers",
+    "kubernetes",
+    "orchestration",
+    "cluster",
+    "balancing",
+    "internet",
+    "things",
+    "embedded",
+    "sensor",
+    "aerospace",
+    "orbital",
+    "propulsion",
+    "thermodynamics",
+    "nanotechnology",
+    "molecular",
+    "engineering",
+    "material",
+    "science",
+    "biotechnology",
+    "crispr",
+    "splicing",
+    "modification",
+    "renewable",
+    "energy",
+    "photovoltaic",
+    "cells",
+    "capacity",
+    "battery",
+    "astrophysics",
+    "relativity",
+    "holes",
+    "horizons",
+    "subordinating",
+    "conjunctions",
+    "dependent",
+    "linking",
+    "present",
+    "perfect",
+    "continuous",
+    "tense",
+    "temporal",
+    "duration",
+    "definite",
+    "indefinite",
+    "articles",
+    "specificity",
+    "grammatics",
+    "adverbial",
+    "verbs",
+    "adjectives",
+    "active",
+    "voice",
+    "passive",
+    "subject",
+    "positional",
+    "neuroplasticity",
+    "potentiation",
+    "hippocampus",
+    "electroencephalography",
+    "motor",
+    "imagery",
+    "classification",
+    "using",
+    "basal",
+    "ganglia",
+    "dopaminergic",
+    "prediction",
+    "errors",
+    "neuromorphic",
+    "spiking",
+    "memristor",
+    "hardware",
+    "cortical",
+    "columns",
+    "hierarchical",
+    "neocortex",
+    "optogenetics",
+    "circuit",
+    "manipulation",
+    "light",
+    "sensitive",
+    "brain",
+    "invasive",
+    "microelectrode",
+    "arrays",
+    "neuralink",
+    "neurogenesis",
+    "adult",
+    "dentate",
+    "gyrus",
+    "consolidation",
+    "decoherence",
+    "collapse",
+    "schrodinger",
+    "probability",
+    "density",
+    "heisenberg",
+    "uncertainty",
+    "principle",
+    "momentum",
+    "conjugate",
+    "variables",
+    "theorem",
+    "local",
+    "hidden",
+    "string",
+    "calabi",
+    "manifolds",
+    "multidimensional",
+    "compactification",
+    "tensor",
+    "calculus",
+    "curvature",
+    "geodesics",
+    "hawking",
+    "radiation",
+    "information",
+    "paradox",
+    "plasma",
+    "physics",
+    "magnetic",
+    "confinement",
+    "tokamak",
+    "fusion",
+    "reactors",
+    "standard",
+    "particle",
+    "bosons",
+    "fermions",
+    "higgs",
+    "mechanism",
+    "riemann",
+    "hypothesis",
+    "nontrivial",
+    "zeros",
+    "prime",
+    "distribution",
+    "topology",
+    "mobius",
+    "strips",
+    "klein",
+    "bottles",
+    "euler",
+    "characteristics",
+    "differential",
+    "geometry",
+    "riemannian",
+    "ricci",
+    "stochastic",
+    "lemma",
+    "brownian",
+    "motion",
+    "financial",
+    "mathematics",
+    "homomorphic",
+    "encryption",
+    "performing",
+    "computations",
+    "ciphertext",
+    "lattice",
+    "based",
+    "signature",
+    "schemes",
+    "elliptic",
+    "curve",
+    "ecdsa",
+    "discrete",
+    "logarithm",
+    "problem",
+    "equilibrium",
+    "prisoner",
+    "dilemma",
+    "games",
+    "chaos",
+    "lorenz",
+    "attractors",
+    "dependence",
+    "initial",
+    "conditions",
+    "feedback",
+    "modeling",
+    "transformers",
+    "multi",
+    "encoding",
+    "vector",
+    "databases",
+    "pinecone",
+    "milvus",
+    "dimensional",
+    "similarity",
+    "augmented",
+    "grounding",
+    "external",
+    "autoencoders",
+    "variational",
+    "latent",
+    "interpolation",
+    "processes",
+    "discount",
+    "factors",
+    "federated",
+    "training",
+    "prototypical",
+    "clipping",
+    "exploding",
+    "gradients",
+    "supervised",
+    "contrastive",
+    "predictive",
+    "masked",
+    "consistency",
+    "availability",
+    "partition",
+    "paxos",
+    "replicated",
+    "driven",
+    "apache",
+    "kafka",
+    "message",
+    "brokers",
+    "daemonsets",
+    "ingress",
+    "controllers",
+    "serverless",
+    "lambda",
+    "starts",
+    "limits",
+    "graphql",
+    "abstract",
+    "resolvers",
+    "fetching",
+    "concurrent",
+    "compare",
+    "operations",
+    "tables",
+    "chord",
+    "protocol",
+    "routing",
+    "webrtc",
+    "interactive",
+    "connectivity",
+    "establishment",
+    "servers",
+    "guided",
+    "endonucleases",
+    "target",
+    "mutations",
+    "protein",
+    "folding",
+    "alphafold",
+    "amino",
+    "sequencing",
+    "epigenetics",
+    "methylation",
+    "histone",
+    "expression",
+    "synthetic",
+    "genomics",
+    "bootstrapping",
+    "chemically",
+    "synthesized",
+    "chromosomes",
+    "vaccines",
+    "lipid",
+    "nanoparticle",
+    "delivery",
+    "antigen",
+    "pluripotency",
+    "yamanaka",
+    "cellular",
+    "reprogramming",
+    "telomerase",
+    "activation",
+    "senescence",
+    "biological",
+    "aging",
+    "clocks",
+    "balance",
+    "injections",
+    "modern",
+    "sovereign",
+    "constraints",
+    "yield",
+    "inversion",
+    "recessions",
+    "colocation",
+    "latency",
+    "order",
+    "spoofing",
+    "greeks",
+    "delta",
+    "gamma",
+    "theta",
+    "portfolio",
+    "hedging",
+    "collateralized",
+    "obligations",
+    "tranche",
+    "default",
+    "probabilities",
+    "fractional",
+    "reserve",
+    "banking",
+    "money",
+    "multiplier",
+    "stablecoins",
+    "seigniorage",
+    "shares",
+    "defense",
+    "epistemology",
+    "foundationalism",
+    "coherentism",
+    "nature",
+    "ontology",
+    "metaphysics",
+    "substance",
+    "dualism",
+    "materialism",
+    "utilitarianism",
+    "deontology",
+    "categorical",
+    "imperatives",
+    "moral",
+    "philosophy",
+    "determinism",
+    "compatibilism",
+    "laplace",
+    "demon",
+    "existentialism",
+    "nihilism",
+    "absurdism",
+    "existence",
+    "simulation",
+    "bostrom",
+    "ancestor",
+    "simulations",
+    "power",
+    "technological",
+    "singularity",
+    "explosion",
+    "alignment",
+    "capability",
+    "perform",
+    "typically",
+    "associated",
+    "reasoning",
+    "problemsolving",
+    "perception",
+    "decisionmaking",
+    "research",
+    "develops",
+    "methods",
+    "software",
+    "enable",
+    "machines",
+    "perceive",
+    "environment",
+    "actions",
+    "maximize",
+    "chances",
+    "achieving",
+    "highprofile",
+    "applications",
+    "include",
+    "engines",
+    "google",
+    "recommendation",
+    "youtube",
+    "amazon",
+    "netflix",
+    "assistants",
+    "assistant",
+    "vehicles",
+    "creative",
+    "superhuman",
+    "strategy",
+    "phenomenon",
+    "wherein",
+    "cannot",
+    "described",
+    "independently",
+    "others",
+    "particles",
+    "separated",
+    "distance",
+    "disparity",
+    "between",
+    "classical",
+    "primary",
+    "feature",
+    "measurements",
+    "physical",
+    "polarization",
+    "performed",
+    "entangled",
+    "perfectly",
+    "correlated",
+    "theoretical",
+    "pointlike",
+    "replaced",
+    "onedimensional",
+    "objects",
+    "strings",
+    "describes",
+    "propagate",
+    "through",
+    "interact",
+    "scales",
+    "larger",
+    "charge",
+    "determined",
+    "vibrational",
+    "astronomy",
+    "cosmology",
+    "matter",
+    "invisible",
+    "hypothetical",
+    "electromagnetic",
+    "gravitational",
+    "effects",
+    "explained",
+    "unless",
+    "observed",
+    "formation",
+    "galaxies",
+    "lensing",
+    "observable",
+    "universes",
+    "current",
+    "galactic",
+    "collisions",
+    "within",
+    "galaxy",
+    "clusters",
+    "cosmic",
+    "microwave",
+    "background",
+    "anisotropies",
+    "maine",
+    "fetch",
+    "tasks",
+    "field",
+    "their",
+    "goals",
+    "alexa",
+    "waymo",
+    "tools",
+    "chess",
+    "weights",
+    "upgrade",
+    "stable",
+    "listening",
+    "batao",
+    "group",
+    "large",
+    "topic",
+    "heart",
+    "found",
+    "these",
+    "scale",
+    "occur",
+    "memristors",
+    "proteins",
+    "multidimensionality",
+    "gauge",
+    "fields",
+    "numbers",
+    "ciphertexts",
+    "manifold",
+    "presentation",
+    "immortality",
+    "books",
+    "swaps",
+    "being",
+    "paste",
+    "history",
+    "timestamp",
+    "20260222t200612127z",
+    "crypto",
+    "asset",
+    "btcusdt",
+    "6745876",
+    "change",
+    "awaiting",
+    "metaapi",
+    "stocks",
+    "nifty50",
+    "simulateduntilangelauth",
+    "20260222t201112200z",
+    "6740001",
+    "20260222t201612215z",
+    "6739945",
+    "20260222t202112319z",
+    "6744231",
+    "20260222t202612371z",
+    "6744843",
+    "20260222t203112432z",
+    "6742203",
+    "20260222t203612441z",
+    "6741953",
+    "20260222t204112501z",
+    "6741136",
+    "20260222t204612523z",
+    "6743307",
+    "20260222t205112553z",
+    "20260222t205709402z",
+    "6740339",
+    "20260222t210209513z",
+    "67430",
+    "20260222t210709619z",
+    "674611",
+    "20260222t211209664z",
+    "6745832",
+    "20260222t211709699z",
+    "6746998",
+    "20260222t212209755z",
+    "6747393",
+    "20260222t212709843z",
+    "6748389",
+    "20260222t213209945z",
+    "6748535",
+    "20260222t213709964z",
+    "6754158",
+    "20260222t214210042z",
+    "675902",
+    "20260222t214710113z",
+    "6759113",
+    "20260222t224504276z",
+    "6769043",
+    "20260222t230413791z",
+    "6762601",
+    "20260222t230913875z",
+    "6762027",
+    "20260222t231413961z",
+    "6751482",
+    "20260223t020114383z",
+    "6435732",
+    "20260223t020614427z",
+    "646228",
+    "20260223t021114479z",
+    "6466694",
+    "20260223t021614553z",
+    "647673",
+    "20260223t022114565z",
+    "6476113",
+    "20260223t022614613z",
+    "645813",
+    "20260223t023114714z",
+    "6483899",
+    "20260223t023614757z",
+    "6483565",
+    "20260223t024114837z",
+    "6472001",
+    "20260223t024614923z",
+    "6486204",
+    "20260223t025115020z",
+    "6481095",
+    "20260223t025615091z",
+    "6472464",
+    "20260223t030115196z",
+    "6479519",
+    "20260223t030615258z",
+    "6497992",
+    "20260223t031115282z",
+    "6485566",
+    "20260223t031615312z",
+    "648833",
+    "20260223t032115392z",
+    "6472702",
+    "20260223t032615419z",
+    "6473889",
+    "20260223t034756025z",
+    "6494545",
+    "20260223t040452498z",
+    "6491575",
+    "20260223t041450061z",
+    "6502302",
+    "20260223t042220618z",
+    "6481876",
+    "20260223t042720621z",
+    "6476916",
+    "20260223t043220650z",
+    "6478001",
+    "20260223t043720762z",
+    "6471998",
+    "20260223t044220763z",
+    "6470388",
+    "20260223t044720778z",
+    "6471939",
+    "20260223t045608623z",
+    "6480799",
+    "20260223t050121503z",
+    "64832",
+    "20260223t050621566z",
+    "6490863",
+    "20260223t051121578z",
+    "651032",
+    "20260223t051621670z",
+    "6509722",
+    "20260223t052121728z",
+    "6512319"
+  ],
+  "level": 38978,
+  "active_goals": [
+    "Advanced Cryptography and Blockchain Consensus",
+    "Forex Market Macroeconomic Indicators",
+    "Autonomous Self-Evolving Computer Systems",
+    "Neural Synaptic Pruning Algorithms",
+    "Strict English Grammar Parsing",
+    "JavaScript V8 Engine Optimization",
+    "Data Structures and Binary Trees",
+    "Technical Analysis Chart Patterns"
+  ],
+  "last_training_cycle": "2026-02-21T14:28:47.801Z",
+  "engine_status": "optimized",
+  "status": "Hyper-Evolved Neural Entity",
+  "last_hyper_drive": "2026-02-20T08:21:50.080Z",
+  "mastery": {
+    "algo_trading": 573943.049164448,
+    "smc_liquidity": 76962.41672031439,
+    "ast_parsing": 696637.2910099219,
+    "memory_safety": 1023247.6759408921,
+    "neural_mutations": 414740.88228559215,
+    "technical_analysis": 117033.26857891175,
+    "fundamental_analysis": 0,
+    "profit_extraction": 29257.552142887307,
+    "self_evolution": 577634.6305845575,
+    "english_grammar": 234068.4689584775,
+    "hindi_vyakarana": 234070.16015905002,
+    "conversational_eq": 351103.88437027775,
+    "hindi_eq": 2592449.2486562724,
+    "english_precision": 2592406.927727032,
+    "conversational_tone": 511102.9082593186,
+    "trading_logic": 116801.21935560544
+  },
+  "coreBeliefs": [],
+  "mood": "Neutral",
+  "quantumCognition": {
+    "focus_level": 100,
+    "market_bias": "Neutral",
+    "deep_insights_unlocked": 0
+  }
+}

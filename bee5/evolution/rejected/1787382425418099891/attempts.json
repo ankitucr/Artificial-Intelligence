@@ -1,0 +1,49 @@
+[
+  {
+    "round": "llm-1",
+    "stage": "evaluated",
+    "score": 2,
+    "total": 4,
+    "ok": true,
+    "failures": [
+      {
+        "test": 2,
+        "input": "hello\nworld\tbee5",
+        "expected": "hello world bee5",
+        "actual": "hello world"
+      },
+      {
+        "test": 4,
+        "input": "hello ,   world ! ",
+        "expected": "hello, world!",
+        "actual": "hello ,"
+      }
+    ]
+  },
+  {
+    "round": "llm-2",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: Mutation is identical."
+  },
+  {
+    "round": "llm-3",
+    "stage": "evaluated",
+    "score": 2,
+    "total": 4,
+    "ok": true,
+    "failures": [
+      {
+        "test": 2,
+        "input": "hello\nworld\tbee5",
+        "expected": "hello world bee5",
+        "actual": "hello world"
+      },
+      {
+        "test": 4,
+        "input": "hello ,   world ! ",
+        "expected": "hello, world!",
+        "actual": "hello ,"
+      }
+    ]
+  }
+]

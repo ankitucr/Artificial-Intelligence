@@ -1,0 +1,97 @@
+{
+  "timestamp": "20260820_191846",
+  "groups": [
+    {
+      "keep": "skill_module_101.py",
+      "group": [
+        "skill_module_101.py",
+        "skill_module_115.py"
+      ]
+    },
+    {
+      "keep": "skill_module_116.py",
+      "group": [
+        "skill_module_116.py",
+        "skill_module_117.py"
+      ]
+    },
+    {
+      "keep": "skill_module_126.py",
+      "group": [
+        "skill_module_126.py",
+        "skill_module_130.py",
+        "skill_module_135.py"
+      ]
+    },
+    {
+      "keep": "skill_module_127.py",
+      "group": [
+        "skill_module_127.py",
+        "skill_module_131.py"
+      ]
+    },
+    {
+      "keep": "skill_module_129.py",
+      "group": [
+        "skill_module_129.py",
+        "skill_module_134.py",
+        "skill_module_136.py",
+        "skill_module_140.py",
+        "skill_module_145.py",
+        "skill_module_147.py",
+        "skill_module_149.py",
+        "skill_module_150.py"
+      ]
+    },
+    {
+      "keep": "skill_module_133.py",
+      "group": [
+        "skill_module_133.py",
+        "skill_module_137.py",
+        "skill_module_138.py"
+      ]
+    },
+    {
+      "keep": "skill_module_139.py",
+      "group": [
+        "skill_module_139.py",
+        "skill_module_141.py",
+        "skill_module_142.py",
+        "skill_module_143.py",
+        "skill_module_148.py"
+      ]
+    },
+    {
+      "keep": "skill_module_93.py",
+      "group": [
+        "skill_module_93.py",
+        "skill_module_94.py"
+      ]
+    }
+  ],
+  "archived": [
+    "skill_module_115.py",
+    "skill_module_117.py",
+    "skill_module_130.py",
+    "skill_module_135.py",
+    "skill_module_131.py",
+    "skill_module_134.py",
+    "skill_module_136.py",
+    "skill_module_140.py",
+    "skill_module_145.py",
+    "skill_module_147.py",
+    "skill_module_149.py",
+    "skill_module_150.py",
+    "skill_module_137.py",
+    "skill_module_138.py",
+    "skill_module_141.py",
+    "skill_module_142.py",
+    "skill_module_143.py",
+    "skill_module_148.py",
+    "skill_module_94.py"
+  ],
+  "kept_count": 8,
+  "archived_count": 19,
+  "backup": "permanent_skills_backup_dedupe_20260820_191846",
+  "archive": "skill_archive_exact_duplicates_20260820_191846"
+}

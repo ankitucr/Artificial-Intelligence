@@ -1,0 +1,845 @@
+#!/usr/bin/env python3
+
+import ast
+import difflib
+import hashlib
+import json
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+from bee5_runtime import LLAMA, MODEL
+
+
+ROOT = Path(__file__).resolve().parent
+
+EVOLUTION_ROOT = ROOT / "evolution"
+WORKSPACE = EVOLUTION_ROOT / "workspace"
+ARCHIVE = EVOLUTION_ROOT / "archive"
+REJECTED = EVOLUTION_ROOT / "rejected"
+LOGS = EVOLUTION_ROOT / "logs"
+
+LINEAGE = EVOLUTION_ROOT / "lineage.jsonl"
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+
+    with path.open("rb") as f:
+        while True:
+            chunk = f.read(1024 * 1024)
+
+            if not chunk:
+                break
+
+            h.update(chunk)
+
+    return h.hexdigest()
+
+
+def write_jsonl(path: Path, data):
+    path.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    with path.open(
+        "a",
+        encoding="utf-8"
+    ) as f:
+        f.write(
+            json.dumps(
+                data,
+                ensure_ascii=False
+            )
+            + "\n"
+        )
+
+
+def run_command(command, timeout=60):
+    return subprocess.run(
+        command,
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        timeout=timeout
+    )
+
+
+def syntax_check(path: Path):
+    source = path.read_text(
+        encoding="utf-8"
+    )
+
+    ast.parse(source)
+
+    return {
+        "ok": True
+    }
+
+
+def evaluate(target: Path, evaluator: Path):
+    result = run_command(
+        [
+            sys.executable,
+            str(evaluator),
+            str(target)
+        ],
+        timeout=60
+    )
+
+    raw = (
+        result.stdout
+        + "\n"
+        + result.stderr
+    ).strip()
+
+    try:
+        data = json.loads(
+            result.stdout.strip()
+        )
+    except Exception:
+        data = {
+            "ok": False,
+            "error": raw
+        }
+
+    data["returncode"] = result.returncode
+
+    if result.returncode != 0:
+        data["ok"] = False
+
+    return data
+
+
+def extract_code(raw: str):
+    if not isinstance(raw, str):
+        raise RuntimeError(
+            "Mutation model returned non-text output."
+        )
+
+    text = raw.strip()
+
+    # Prefer fenced Python content if present.
+    if "```" in text:
+        parts = text.split("```")
+
+        for part in parts:
+            candidate = part.strip()
+
+            if candidate.startswith("python"):
+                candidate = candidate[6:].lstrip()
+
+            if "def " in candidate:
+                return candidate
+
+    # Otherwise locate the first Python source-looking line.
+    markers = (
+        "#!/usr/bin/env python3",
+        "def normalize_text(",
+    )
+
+    positions = [
+        text.find(marker)
+        for marker in markers
+        if text.find(marker) >= 0
+    ]
+
+    if positions:
+        return text[min(positions):].strip()
+
+    raise RuntimeError(
+        "Could not extract Python source from mutation output."
+    )
+
+
+
+MUTATION_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "operation": {
+            "type": "string",
+            "enum": ["replace_text"]
+        },
+        "target": {
+            "type": "string"
+        },
+        "replacement": {
+            "type": "string"
+        },
+        "reason": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "operation",
+        "target",
+        "replacement",
+        "reason"
+    ],
+    "additionalProperties": False
+}
+
+
+def _extract_json_object(text: str):
+    decoder = json.JSONDecoder()
+
+    for index, char in enumerate(text):
+        if char != "{":
+            continue
+
+        try:
+            obj, _ = decoder.raw_decode(
+                text[index:]
+            )
+        except Exception:
+            continue
+
+        if isinstance(obj, dict):
+            return obj
+
+    raise RuntimeError(
+        "No valid mutation JSON object found."
+    )
+
+
+def generate_mutation(
+    parent: Path,
+    task: str,
+    parent_eval: dict
+):
+    """
+    Ask the local model for a structured source edit.
+
+    The model does NOT generate the whole Python file.
+    It proposes an exact text replacement.
+    BEE5 applies the replacement and then evaluates it.
+    """
+
+    source = parent.read_text(
+        encoding="utf-8"
+    )
+
+    failures = parent_eval.get(
+        "failures",
+        []
+    )
+
+    # Show the actual target function to the model.
+    tree = ast.parse(source)
+
+    function_node = None
+
+    for node in tree.body:
+        if (
+            isinstance(node, ast.FunctionDef)
+            and node.name == "normalize_text"
+        ):
+            function_node = node
+            break
+
+    if function_node is None:
+        raise RuntimeError(
+            "Parent does not contain normalize_text()."
+        )
+
+    lines = source.splitlines(
+        keepends=True
+    )
+
+    function_source = "".join(
+        lines[
+            function_node.lineno - 1:
+            function_node.end_lineno
+        ]
+    )
+
+    last_error = ""
+
+    for attempt in range(1, 4):
+
+        prompt = f"""
+You are BEE5's controlled mutation planner.
+
+Task:
+{task}
+
+Current target function:
+----- BEGIN FUNCTION -----
+{function_source}
+----- END FUNCTION -----
+
+Actual evaluator failures:
+{json.dumps(failures, ensure_ascii=False)}
+
+Previous mutation error:
+{last_error or "None"}
+
+Produce ONE real source edit.
+
+Rules:
+- operation must be "replace_text".
+- target MUST be an exact substring of the current function.
+- replacement MUST be different from target.
+- The resulting candidate source MUST differ from the parent source.
+- The edit must directly address the actual failing case.
+- The parent currently scores 3/4, so the three passing behaviors are mandatory.
+- Preserve ALL currently passing behavior exactly.
+- Do not return the parent unchanged.
+- NEVER truncate, delete, discard, or limit input tokens merely to solve a failing test.
+- NEVER introduce arbitrary slicing such as [:2], [:3], [:-1], or similar unless the failing case explicitly requires it.
+- NEVER reduce the amount of information returned by normalize_text().
+- Do not change the function contract.
+- Prefer the smallest semantic change that fixes the observed failure.
+- The mutation must solve the actual punctuation-spacing defect, not merely change the output shape.
+- Do not return the complete function.
+- Do not return markdown.
+- Do not invent test results.
+
+Return ONLY this JSON structure:
+{{
+  "operation": "replace_text",
+  "target": "exact existing source text",
+  "replacement": "replacement source text",
+  "reason": "brief reason"
+}}
+""".strip()
+
+        command = [
+            str(LLAMA),
+            "-m",
+            str(MODEL),
+            "-p",
+            prompt,
+            "-n",
+            "256",
+            "-j",
+            json.dumps(
+                MUTATION_SCHEMA,
+                separators=(",", ":")
+            ),
+            "--reasoning-budget",
+            "0",
+            "--reasoning-format",
+            "none",
+            "--temp",
+            "0.25",
+            "--top-k",
+            "20",
+            "-st",
+            "--no-display-prompt",
+            "--simple-io",
+            "--single-turn",
+        ]
+
+        result = run_command(
+            command,
+            timeout=300
+        )
+
+        stdout = result.stdout.strip()
+        stderr = result.stderr.strip()
+
+        raw_path = (
+            LOGS /
+            f"structured_mutation_attempt_{attempt}.txt"
+        )
+
+        raw_path.parent.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        raw_path.write_text(
+            "===== STDOUT =====\n"
+            + stdout
+            + "\n===== STDERR =====\n"
+            + stderr,
+            encoding="utf-8"
+        )
+
+        if result.returncode != 0:
+            last_error = (
+                stderr
+                or stdout
+                or "Mutation command failed."
+            )
+            continue
+
+        try:
+            proposal = _extract_json_object(
+                stdout
+            )
+        except Exception as exc:
+            last_error = str(exc)
+            continue
+
+        if proposal.get("operation") != "replace_text":
+            last_error = (
+                "Unsupported mutation operation: "
+                + str(
+                    proposal.get("operation")
+                )
+            )
+            continue
+
+        target = proposal.get(
+            "target",
+            ""
+        )
+
+        replacement = proposal.get(
+            "replacement",
+            ""
+        )
+
+        if (
+            not isinstance(target, str)
+            or not target
+        ):
+            last_error = (
+                "Mutation target is empty."
+            )
+            continue
+
+        if not isinstance(
+            replacement,
+            str
+        ):
+            last_error = (
+                "Mutation replacement is not text."
+            )
+            continue
+
+        if target == replacement:
+            last_error = (
+                "Mutation is identical to parent."
+            )
+            continue
+
+        occurrences = function_source.count(
+            target
+        )
+
+        if occurrences != 1:
+            last_error = (
+                "Mutation target must occur exactly "
+                f"once; found {occurrences}."
+            )
+            continue
+
+        mutated_function = function_source.replace(
+            target,
+            replacement,
+            1
+        )
+
+        if mutated_function == function_source:
+            last_error = (
+                "Mutation produced no source change."
+            )
+            continue
+
+        candidate_lines = (
+            lines[:function_node.lineno - 1]
+            + mutated_function.splitlines(
+                keepends=True
+            )
+            + lines[function_node.end_lineno:]
+        )
+
+        candidate_source = "".join(
+            candidate_lines
+        )
+
+        try:
+            ast.parse(
+                candidate_source
+            )
+        except SyntaxError as exc:
+            last_error = (
+                "Candidate syntax error: "
+                f"{exc}"
+            )
+            continue
+
+        print(
+            f"✅ Structured mutation generated "
+            f"on attempt {attempt}"
+        )
+
+        print(
+            "Mutation reason:",
+            proposal.get(
+                "reason",
+                ""
+            )
+        )
+
+        return candidate_source
+
+    raise RuntimeError(
+        "Structured mutation generation failed "
+        "after 3 attempts. "
+        f"Last error: {last_error}"
+    )
+
+
+def make_diff(parent: Path, candidate: Path):
+    old = parent.read_text(
+        encoding="utf-8"
+    ).splitlines(
+        keepends=True
+    )
+
+    new = candidate.read_text(
+        encoding="utf-8"
+    ).splitlines(
+        keepends=True
+    )
+
+    return "".join(
+        difflib.unified_diff(
+            old,
+            new,
+            fromfile=str(parent),
+            tofile=str(candidate)
+        )
+    )
+
+
+def main():
+    if len(sys.argv) < 3:
+        print(
+            'Usage: python evolution_engine.py '
+            '"target.py" "evaluator.py" "improvement task"'
+        )
+        return 1
+
+    target = Path(
+        sys.argv[1]
+    ).resolve()
+
+    evaluator = Path(
+        sys.argv[2]
+    ).resolve()
+
+    task = " ".join(
+        sys.argv[3:]
+    )
+
+    if not target.exists():
+        print(
+            f"Target not found: {target}"
+        )
+        return 2
+
+    if not evaluator.exists():
+        print(
+            f"Evaluator not found: {evaluator}"
+        )
+        return 2
+
+    run_id = str(
+        time.time_ns()
+    )
+
+    run_dir = WORKSPACE / run_id
+
+    run_dir.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    parent = run_dir / "parent.py"
+    candidate = run_dir / "candidate.py"
+
+    shutil.copy2(
+        target,
+        parent
+    )
+
+    parent_hash = sha256_file(parent)
+
+    print("========================================")
+    print("      BEE5 TRUE EVOLUTION CYCLE")
+    print("========================================")
+    print()
+    print(f"Run ID      : {run_id}")
+    print(f"Parent hash : {parent_hash}")
+    print()
+
+    # -------------------------------------------------
+    # Parent evaluation
+    # -------------------------------------------------
+
+    print("===== PARENT EVALUATION =====")
+
+    parent_eval = evaluate(
+        parent,
+        evaluator
+    )
+
+    print(
+        json.dumps(
+            parent_eval,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    # -------------------------------------------------
+    # Real mutation
+    # -------------------------------------------------
+
+    print()
+    print("===== GENERATING REAL MUTATION =====")
+
+    try:
+        mutated_source = generate_mutation(
+            parent,
+            task,
+            parent_eval
+        )
+
+        candidate.write_text(
+            mutated_source,
+            encoding="utf-8"
+        )
+
+    except Exception as exc:
+        print(
+            f"❌ Mutation generation failed: {exc}"
+        )
+        return 3
+
+    candidate_hash = sha256_file(
+        candidate
+    )
+
+    print(
+        f"Candidate hash: {candidate_hash}"
+    )
+
+    # -------------------------------------------------
+    # Verify actual source change
+    # -------------------------------------------------
+
+    diff = make_diff(
+        parent,
+        candidate
+    )
+
+    if not diff.strip():
+        print(
+            "❌ REJECTED: candidate is byte-for-byte identical."
+        )
+        return 4
+
+    diff_path = run_dir / "mutation.diff"
+
+    diff_path.write_text(
+        diff,
+        encoding="utf-8"
+    )
+
+    print()
+    print("===== ACTUAL MUTATION =====")
+    print(diff)
+
+    # -------------------------------------------------
+    # Syntax validation
+    # -------------------------------------------------
+
+    print()
+    print("===== SYNTAX VALIDATION =====")
+
+    try:
+        syntax = syntax_check(
+            candidate
+        )
+    except Exception as exc:
+        syntax = {
+            "ok": False,
+            "error": repr(exc)
+        }
+
+    print(
+        json.dumps(
+            syntax,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    if not syntax.get("ok"):
+        destination = REJECTED / run_id
+        destination.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        shutil.copy2(
+            candidate,
+            destination / "candidate.py"
+        )
+
+        diff_path.replace(
+            destination / "mutation.diff"
+        )
+
+        print(
+            "❌ REJECTED: syntax failure."
+        )
+        return 5
+
+    # -------------------------------------------------
+    # Candidate evaluation
+    # -------------------------------------------------
+
+    print()
+    print("===== CANDIDATE EVALUATION =====")
+
+    candidate_eval = evaluate(
+        candidate,
+        evaluator
+    )
+
+    print(
+        json.dumps(
+            candidate_eval,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    parent_score = parent_eval.get(
+        "score",
+        -1
+    )
+
+    candidate_score = candidate_eval.get(
+        "score",
+        -1
+    )
+
+    accepted = (
+        candidate_eval.get("ok")
+        and candidate_score > parent_score
+    )
+
+    metadata = {
+        "run_id": run_id,
+        "parent_hash": parent_hash,
+        "candidate_hash": candidate_hash,
+        "task": task,
+        "parent_evaluation": parent_eval,
+        "candidate_evaluation": candidate_eval,
+        "accepted": accepted,
+        "diff": diff,
+        "timestamp": time.time(),
+    }
+
+    # -------------------------------------------------
+    # Promote ONLY on actual improvement.
+    # -------------------------------------------------
+
+    if accepted:
+
+        destination = ARCHIVE / candidate_hash
+
+        destination.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        shutil.copy2(
+            candidate,
+            destination / "candidate.py"
+        )
+
+        shutil.copy2(
+            parent,
+            destination / "parent.py"
+        )
+
+        (destination / "mutation.diff").write_text(
+            diff,
+            encoding="utf-8"
+        )
+
+        (destination / "metadata.json").write_text(
+            json.dumps(
+                metadata,
+                ensure_ascii=False,
+                indent=2
+            ),
+            encoding="utf-8"
+        )
+
+        write_jsonl(
+            LINEAGE,
+            metadata
+        )
+
+        print()
+        print("========================================")
+        print("✅ MUTATION ACCEPTED")
+        print("========================================")
+        print()
+        print(
+            f"Score: {parent_score} -> {candidate_score}"
+        )
+        print(
+            f"Archive: {destination}"
+        )
+
+        return 0
+
+    destination = REJECTED / run_id
+
+    destination.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    shutil.copy2(
+        candidate,
+        destination / "candidate.py"
+    )
+
+    diff_path.replace(
+        destination / "mutation.diff"
+    )
+
+    (destination / "metadata.json").write_text(
+        json.dumps(
+            metadata,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+    print()
+    print("========================================")
+    print("❌ MUTATION REJECTED")
+    print("========================================")
+    print()
+    print(
+        f"Score: {parent_score} -> {candidate_score}"
+    )
+    print(
+        "Reason: candidate did not demonstrate a strict "
+        "measured improvement."
+    )
+
+    return 6
+
+
+if __name__ == "__main__":
+    raise SystemExit(
+        main()
+    )

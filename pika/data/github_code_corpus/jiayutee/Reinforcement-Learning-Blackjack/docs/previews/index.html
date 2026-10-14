@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blackjack learning lab</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#091e1a;color:#edf6ef}*{box-sizing:border-box}body{margin:0}main{max-width:1000px;margin:auto;padding:40px 20px}h1{font-size:clamp(2rem,7vw,3.8rem);line-height:1.1}p,li{line-height:1.65;color:#c5d8ce}a{color:#c8eca8;text-underline-offset:4px}a:focus-visible{outline:3px solid #ffdf8e;outline-offset:5px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}section{background:#133229;border:1px solid #49695a;padding:24px;border-radius:16px}h2{margin-top:0;font-size:1.3rem}.tag{letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;color:#c8eca8}code{overflow-wrap:anywhere}footer{margin-top:32px}
+</style>
+<main>
+<p class="tag">Blackjack · Learning lab</p>
+<h1>Understand the decision.</h1>
+<p>Start with one hand, learn how values change, then inspect a bot's choices. These are learning previews for simplified hit/stand blackjack. The public game is still in development.</p>
+<div class="cards">
+<section><h2>1. Follow the lessons</h2><p>Read in order. Each lesson explains the theory, code, experiment, and exercise. These links open readable pages on GitHub and require internet access.</p>
+<ol>
+<li><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/lessons/01-agent-environment.md">Agent and environment</a></li>
+<li><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/lessons/02-monte-carlo-prediction.md">Monte Carlo prediction</a></li>
+<li><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/lessons/03-monte-carlo-control.md">Monte Carlo control</a></li>
+<li><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/lessons/04-temporal-difference-prediction.md">TD prediction</a></li>
+<li><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/lessons/05-sarsa.md">SARSA</a></li>
+<li><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/lessons/06-q-learning.md">Q-learning</a></li>
+</ol></section>
+<section><h2>2. Explore locally</h2><p>These interactive pages work offline from your project folder.</p>
+<p><a href="monte-carlo-values.html">Explore state values</a><br>Compare hard and soft hands and inspect visit counts.</p>
+<p><a href="td-update.html">Calculate one TD update</a><br>Change a value and see why terminal transitions ignore the next estimate.</p>
+<p>To reopen this page on macOS:<br><code>open docs/previews/index.html</code></p></section>
+<section><h2>3. Inspect the evidence</h2><p>A learned choice is an estimate, not a guarantee. These GitHub tables show action values and experience counts.</p>
+<p><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/previews/monte-carlo-policy.md">Monte Carlo policy table</a></p>
+<p><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/previews/sarsa-policy.md">SARSA policy table</a></p>
+<p><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/previews/q-learning-policy.md">Q-learning policy table</a></p>
+<p><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/daily/2026-09-30.md">30 September: Q-learning results</a></p>
+<p><a href="https://github.com/jiayutee/Reinforcement-Learning-Blackjack/blob/main/docs/daily/2026-09-29.md">29 September: five-seed replication</a><br>Learn why repeating one seed is different from repeating training with new seeds.</p></section>
+</div>
+<footer><p>Learning rules: draws with replacement; dealer stands on soft 17; no natural bonus, splits, or doubles. Values are expected reward estimates, not win probabilities. None of these previews is a deployed playable game.</p></footer>
+</main>
+</html>

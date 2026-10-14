@@ -1,0 +1,2930 @@
+{
+  "skills": [
+    {
+      "name": "skill_1_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_min"
+      ],
+      "learnedAt": "2026-08-19T11:20:55.129Z"
+    },
+    {
+      "name": "skill_2_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_len"
+      ],
+      "learnedAt": "2026-08-19T11:20:55.297Z"
+    },
+    {
+      "name": "skill_3_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_odd"
+      ],
+      "learnedAt": "2026-08-19T11:20:55.453Z"
+    },
+    {
+      "name": "skill_4_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_positive",
+        "not"
+      ],
+      "learnedAt": "2026-08-19T11:20:55.610Z"
+    },
+    {
+      "name": "skill_5_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_contains"
+      ],
+      "learnedAt": "2026-08-19T11:20:55.770Z"
+    },
+    {
+      "name": "skill_6_str_to_num",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "str_len"
+      ],
+      "learnedAt": "2026-08-19T11:20:55.929Z"
+    },
+    {
+      "name": "skill_7_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "str_reverse",
+        "str_is_empty"
+      ],
+      "learnedAt": "2026-08-19T11:20:56.387Z"
+    },
+    {
+      "name": "skill_8_str_to_num",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "str_word_count"
+      ],
+      "learnedAt": "2026-08-19T11:20:56.540Z"
+    },
+    {
+      "name": "skill_9_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_min"
+      ],
+      "learnedAt": "2026-08-19T11:20:56.697Z"
+    },
+    {
+      "name": "skill_10_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "neg",
+        "abs",
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:20:57.408Z"
+    },
+    {
+      "name": "skill_11_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_even",
+        "abs"
+      ],
+      "learnedAt": "2026-08-19T11:20:58.187Z"
+    },
+    {
+      "name": "skill_12_arr_to_str",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_join"
+      ],
+      "learnedAt": "2026-08-19T11:20:58.651Z"
+    },
+    {
+      "name": "skill_13_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_2_arr_to_num",
+        "neg"
+      ],
+      "learnedAt": "2026-08-19T11:20:58.808Z"
+    },
+    {
+      "name": "skill_14_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "str_is_empty"
+      ],
+      "learnedAt": "2026-08-19T11:20:59.278Z"
+    },
+    {
+      "name": "skill_15_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_12_arr_to_str",
+        "neg"
+      ],
+      "learnedAt": "2026-08-19T11:21:00.721Z"
+    },
+    {
+      "name": "skill_16_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_2_arr_to_num",
+        "arr_is_empty"
+      ],
+      "learnedAt": "2026-08-19T11:21:02.083Z"
+    },
+    {
+      "name": "skill_17_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_12_arr_to_str",
+        "arr_max"
+      ],
+      "learnedAt": "2026-08-19T11:21:03.699Z"
+    },
+    {
+      "name": "skill_18_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_is_empty",
+        "arr_reverse"
+      ],
+      "learnedAt": "2026-08-19T11:21:04.817Z"
+    },
+    {
+      "name": "skill_19_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:21:05.728Z"
+    },
+    {
+      "name": "skill_20_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_8_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:21:08.709Z"
+    },
+    {
+      "name": "skill_21_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_is_empty"
+      ],
+      "learnedAt": "2026-08-19T11:21:10.102Z"
+    },
+    {
+      "name": "skill_22_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_max",
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:21:10.777Z"
+    },
+    {
+      "name": "skill_23_str_to_num",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "str_word_count",
+        "inc"
+      ],
+      "learnedAt": "2026-08-19T11:21:13.256Z"
+    },
+    {
+      "name": "skill_24_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_sum",
+        "skill_22_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:21:13.910Z"
+    },
+    {
+      "name": "skill_25_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_sort",
+        "skill_12_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:21:17.327Z"
+    },
+    {
+      "name": "skill_26_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:21:20.998Z"
+    },
+    {
+      "name": "skill_27_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_sum",
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:21:21.983Z"
+    },
+    {
+      "name": "skill_28_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_17_arr_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:21:23.788Z"
+    },
+    {
+      "name": "skill_29_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_23_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:21:24.781Z"
+    },
+    {
+      "name": "skill_30_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_6_str_to_num",
+        "is_even",
+        "str_upper"
+      ],
+      "learnedAt": "2026-08-19T11:21:25.357Z"
+    },
+    {
+      "name": "skill_31_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_9_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:21:25.511Z"
+    },
+    {
+      "name": "skill_32_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_6_str_to_num",
+        "skill_6_str_to_num",
+        "skill_3_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:21:27.873Z"
+    },
+    {
+      "name": "skill_33_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_12_arr_to_str",
+        "str_reverse"
+      ],
+      "learnedAt": "2026-08-19T11:21:28.194Z"
+    },
+    {
+      "name": "skill_34_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_31_arr_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:21:56.129Z"
+    },
+    {
+      "name": "skill_35_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_23_str_to_num",
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:21:56.323Z"
+    },
+    {
+      "name": "skill_36_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_2_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:21:56.486Z"
+    },
+    {
+      "name": "skill_37_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "neg",
+        "skill_19_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:21:58.899Z"
+    },
+    {
+      "name": "skill_38_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_sum",
+        "skill_3_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:21:59.999Z"
+    },
+    {
+      "name": "skill_39_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_reverse",
+        "arr_join"
+      ],
+      "learnedAt": "2026-08-19T11:22:03.761Z"
+    },
+    {
+      "name": "skill_40_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_max"
+      ],
+      "learnedAt": "2026-08-19T11:22:07.010Z"
+    },
+    {
+      "name": "skill_41_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_8_str_to_num",
+        "dec",
+        "skill_19_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:22:08.564Z"
+    },
+    {
+      "name": "skill_42_arr_to_str",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_sort",
+        "arr_join"
+      ],
+      "learnedAt": "2026-08-19T11:22:12.272Z"
+    },
+    {
+      "name": "skill_43_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_27_arr_to_bool",
+        "skill_27_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:22:12.921Z"
+    },
+    {
+      "name": "skill_44_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_37_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:22:38.901Z"
+    },
+    {
+      "name": "skill_45_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_11_num_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:22:42.450Z"
+    },
+    {
+      "name": "skill_46_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_2_arr_to_num",
+        "skill_40_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:23:33.968Z"
+    },
+    {
+      "name": "skill_47_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "str_contains"
+      ],
+      "learnedAt": "2026-08-19T11:23:34.140Z"
+    },
+    {
+      "name": "skill_48_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:23:47.359Z"
+    },
+    {
+      "name": "skill_49_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_2_arr_to_num",
+        "dec"
+      ],
+      "learnedAt": "2026-08-19T11:23:57.626Z"
+    },
+    {
+      "name": "skill_50_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_max",
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:24:02.653Z"
+    },
+    {
+      "name": "skill_51_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "str_len",
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:24:58.486Z"
+    },
+    {
+      "name": "skill_52_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_19_num_to_bool",
+        "not"
+      ],
+      "learnedAt": "2026-08-19T11:25:10.403Z"
+    },
+    {
+      "name": "skill_53_str_to_num",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_23_str_to_num",
+        "neg"
+      ],
+      "learnedAt": "2026-08-19T11:25:11.136Z"
+    },
+    {
+      "name": "skill_54_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_22_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:25:11.896Z"
+    },
+    {
+      "name": "skill_55_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_44_num_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:25:20.515Z"
+    },
+    {
+      "name": "skill_56_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_3_num_to_bool",
+        "skill_38_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:25:25.359Z"
+    },
+    {
+      "name": "skill_57_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_37_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:26:41.636Z"
+    },
+    {
+      "name": "skill_58_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_42_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:26:48.370Z"
+    },
+    {
+      "name": "skill_59_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_27_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:26:48.528Z"
+    },
+    {
+      "name": "skill_60_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_sum",
+        "skill_37_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:26:48.725Z"
+    },
+    {
+      "name": "skill_61_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_32_str_str_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:26:55.064Z"
+    },
+    {
+      "name": "skill_62_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_6_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:27:01.388Z"
+    },
+    {
+      "name": "skill_63_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_41_str_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:27:02.346Z"
+    },
+    {
+      "name": "skill_64_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_2_arr_to_num",
+        "abs"
+      ],
+      "learnedAt": "2026-08-19T11:27:08.574Z"
+    },
+    {
+      "name": "skill_65_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_6_str_to_num",
+        "is_odd"
+      ],
+      "learnedAt": "2026-08-19T11:27:55.952Z"
+    },
+    {
+      "name": "skill_66_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_53_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:28:08.557Z"
+    },
+    {
+      "name": "skill_67_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_sum"
+      ],
+      "learnedAt": "2026-08-19T11:28:24.265Z"
+    },
+    {
+      "name": "skill_68_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:28:26.943Z"
+    },
+    {
+      "name": "skill_69_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_35_str_to_bool",
+        "str_reverse"
+      ],
+      "learnedAt": "2026-08-19T11:28:28.281Z"
+    },
+    {
+      "name": "skill_70_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_odd"
+      ],
+      "learnedAt": "2026-08-19T11:28:28.450Z"
+    },
+    {
+      "name": "skill_71_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_23_str_to_num",
+        "skill_19_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:28:30.168Z"
+    },
+    {
+      "name": "skill_72_arr_to_str",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_reverse",
+        "skill_12_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:28:38.399Z"
+    },
+    {
+      "name": "skill_73_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_3_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:28:39.804Z"
+    },
+    {
+      "name": "skill_74_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_43_arr_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:28:41.245Z"
+    },
+    {
+      "name": "skill_75_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_push",
+        "skill_72_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:28:43.541Z"
+    },
+    {
+      "name": "skill_76_arr_to_str",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_12_arr_to_str",
+        "str_reverse"
+      ],
+      "learnedAt": "2026-08-19T11:28:44.227Z"
+    },
+    {
+      "name": "skill_77_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_60_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:28:45.806Z"
+    },
+    {
+      "name": "skill_78_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_72_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:28:52.988Z"
+    },
+    {
+      "name": "skill_79_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "gt"
+      ],
+      "learnedAt": "2026-08-19T11:28:59.059Z"
+    },
+    {
+      "name": "skill_80_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:29:07.406Z"
+    },
+    {
+      "name": "skill_81_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "abs",
+        "skill_19_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:29:13.774Z"
+    },
+    {
+      "name": "skill_82_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_49_arr_to_num",
+        "abs"
+      ],
+      "learnedAt": "2026-08-19T11:29:22.044Z"
+    },
+    {
+      "name": "skill_83_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_82_arr_to_num",
+        "skill_76_arr_to_str",
+        "neg"
+      ],
+      "learnedAt": "2026-08-19T11:29:22.214Z"
+    },
+    {
+      "name": "skill_84_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_49_arr_to_num",
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:29:41.311Z"
+    },
+    {
+      "name": "skill_85_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_reverse",
+        "dec",
+        "skill_25_arr_num_to_str",
+        "str_reverse"
+      ],
+      "learnedAt": "2026-08-19T11:29:42.860Z"
+    },
+    {
+      "name": "skill_86_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_even"
+      ],
+      "learnedAt": "2026-08-19T11:29:46.727Z"
+    },
+    {
+      "name": "skill_87_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_69_str_str_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:29:48.292Z"
+    },
+    {
+      "name": "skill_88_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_sum"
+      ],
+      "learnedAt": "2026-08-19T11:29:55.596Z"
+    },
+    {
+      "name": "skill_89_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_30_str_str_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:29:57.650Z"
+    },
+    {
+      "name": "skill_90_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_76_arr_to_str",
+        "skill_51_str_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:29:58.292Z"
+    },
+    {
+      "name": "skill_91_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "dec",
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:30:01.783Z"
+    },
+    {
+      "name": "skill_92_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_52_num_to_bool",
+        "skill_40_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:30:01.951Z"
+    },
+    {
+      "name": "skill_93_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_max"
+      ],
+      "learnedAt": "2026-08-19T11:30:02.555Z"
+    },
+    {
+      "name": "skill_94_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_sort",
+        "skill_72_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:30:06.033Z"
+    },
+    {
+      "name": "skill_95_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_58_arr_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:30:06.648Z"
+    },
+    {
+      "name": "skill_96_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_42_arr_to_str",
+        "skill_23_str_to_num",
+        "skill_19_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:30:07.375Z"
+    },
+    {
+      "name": "skill_97_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_push",
+        "skill_12_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:30:12.145Z"
+    },
+    {
+      "name": "skill_98_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "eq_num"
+      ],
+      "learnedAt": "2026-08-19T11:30:25.786Z"
+    },
+    {
+      "name": "skill_99_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_29_str_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:30:25.951Z"
+    },
+    {
+      "name": "skill_100_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_min",
+        "inc"
+      ],
+      "learnedAt": "2026-08-19T11:30:35.800Z"
+    },
+    {
+      "name": "skill_101_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_82_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:30:38.021Z"
+    },
+    {
+      "name": "skill_102_arr_to_str",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_sort",
+        "skill_72_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:30:41.758Z"
+    },
+    {
+      "name": "skill_103_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_83_arr_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:30:49.051Z"
+    },
+    {
+      "name": "skill_104_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_min",
+        "skill_88_arr_num_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:30:58.516Z"
+    },
+    {
+      "name": "skill_105_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_join",
+        "skill_8_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:01.549Z"
+    },
+    {
+      "name": "skill_106_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "dec",
+        "skill_49_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:04.095Z"
+    },
+    {
+      "name": "skill_107_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "str_reverse",
+        "skill_62_str_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:11.722Z"
+    },
+    {
+      "name": "skill_108_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "inc",
+        "skill_19_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:31:12.187Z"
+    },
+    {
+      "name": "skill_109_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_concat",
+        "skill_82_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:24.737Z"
+    },
+    {
+      "name": "skill_110_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "abs",
+        "skill_52_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:31:32.191Z"
+    },
+    {
+      "name": "skill_111_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_72_arr_to_str",
+        "skill_110_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:31:41.598Z"
+    },
+    {
+      "name": "skill_112_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_49_arr_to_num",
+        "skill_82_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:41.788Z"
+    },
+    {
+      "name": "skill_113_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_67_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:50.551Z"
+    },
+    {
+      "name": "skill_114_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_105_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:31:53.460Z"
+    },
+    {
+      "name": "skill_115_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_9_arr_to_num",
+        "dec"
+      ],
+      "learnedAt": "2026-08-19T11:31:57.675Z"
+    },
+    {
+      "name": "skill_116_arr_to_num",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_12_arr_to_str",
+        "str_len"
+      ],
+      "learnedAt": "2026-08-19T11:32:09.631Z"
+    },
+    {
+      "name": "skill_117_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_96_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:32:12.156Z"
+    },
+    {
+      "name": "skill_118_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_sort",
+        "skill_97_arr_num_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:32:27.102Z"
+    },
+    {
+      "name": "skill_119_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "inc",
+        "skill_110_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:34:09.555Z"
+    },
+    {
+      "name": "skill_120_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "dec",
+        "skill_52_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:34:22.276Z"
+    },
+    {
+      "name": "skill_121_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_120_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:34:27.068Z"
+    },
+    {
+      "name": "skill_122_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "is_odd"
+      ],
+      "learnedAt": "2026-08-19T11:34:31.925Z"
+    },
+    {
+      "name": "skill_123_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_115_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:34:40.867Z"
+    },
+    {
+      "name": "skill_124_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_120_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:34:45.352Z"
+    },
+    {
+      "name": "skill_125_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_min",
+        "skill_56_arr_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:34:45.540Z"
+    },
+    {
+      "name": "skill_126_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_116_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:34:53.143Z"
+    },
+    {
+      "name": "skill_127_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_8_str_to_num",
+        "skill_120_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:35:09.656Z"
+    },
+    {
+      "name": "skill_128_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_31_arr_arr_to_num",
+        "skill_52_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:35:13.678Z"
+    },
+    {
+      "name": "skill_129_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_115_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:35:21.478Z"
+    },
+    {
+      "name": "skill_130_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_84_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:35:26.318Z"
+    },
+    {
+      "name": "skill_131_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_108_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:35:31.281Z"
+    },
+    {
+      "name": "skill_132_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "arr_max"
+      ],
+      "learnedAt": "2026-08-19T11:35:50.894Z"
+    },
+    {
+      "name": "skill_133_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_112_arr_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:36:01.955Z"
+    },
+    {
+      "name": "skill_134_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_7_str_to_bool",
+        "skill_8_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:36:12.235Z"
+    },
+    {
+      "name": "skill_135_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_96_arr_to_bool",
+        "skill_102_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:36:14.872Z"
+    },
+    {
+      "name": "skill_136_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_38_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:36:16.252Z"
+    },
+    {
+      "name": "skill_137_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_82_arr_to_num",
+        "skill_120_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:36:25.326Z"
+    },
+    {
+      "name": "skill_138_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_3_num_to_bool",
+        "skill_81_num_bool_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:36:44.391Z"
+    },
+    {
+      "name": "skill_139_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_50_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:37:06.513Z"
+    },
+    {
+      "name": "skill_140_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_22_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:37:33.840Z"
+    },
+    {
+      "name": "skill_141_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_91_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:37:40.367Z"
+    },
+    {
+      "name": "skill_142_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_116_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:37:59.364Z"
+    },
+    {
+      "name": "skill_143_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_66_str_str_to_num",
+        "inc"
+      ],
+      "learnedAt": "2026-08-19T11:38:28.861Z"
+    },
+    {
+      "name": "skill_144_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_17_arr_arr_to_str",
+        "skill_8_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:38:52.112Z"
+    },
+    {
+      "name": "skill_145_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_91_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:38:55.587Z"
+    },
+    {
+      "name": "skill_146_arr_to_str",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_reverse",
+        "skill_76_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:39:00.086Z"
+    },
+    {
+      "name": "skill_147_arr_arr_to_num",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_49_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:39:02.853Z"
+    },
+    {
+      "name": "skill_148_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_78_arr_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:39:21.184Z"
+    },
+    {
+      "name": "skill_149_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_38_arr_to_bool",
+        "skill_146_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:39:25.860Z"
+    },
+    {
+      "name": "skill_150_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_119_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:39:34.583Z"
+    },
+    {
+      "name": "skill_151_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_135_arr_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:39:36.070Z"
+    },
+    {
+      "name": "skill_152_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_66_str_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:39:44.097Z"
+    },
+    {
+      "name": "skill_153_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_143_str_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:40:01.523Z"
+    },
+    {
+      "name": "skill_154_arr_num_to_num",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_105_arr_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:40:01.742Z"
+    },
+    {
+      "name": "skill_155_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "inc",
+        "skill_141_num_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:40:03.882Z"
+    },
+    {
+      "name": "skill_156_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_146_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:40:05.750Z"
+    },
+    {
+      "name": "skill_157_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_137_arr_to_bool",
+        "skill_84_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:41:04.698Z"
+    },
+    {
+      "name": "skill_158_arr_to_bool",
+      "inputTypes": [
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "arr_min",
+        "skill_108_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:44:14.805Z"
+    },
+    {
+      "name": "skill_159_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "str_word_count",
+        "dec",
+        "skill_35_str_to_bool",
+        "not"
+      ],
+      "learnedAt": "2026-08-19T11:44:32.416Z"
+    },
+    {
+      "name": "skill_160_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "inc",
+        "skill_118_arr_num_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:44:34.975Z"
+    },
+    {
+      "name": "skill_161_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_128_arr_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:46:10.479Z"
+    },
+    {
+      "name": "skill_162_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_159_str_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:46:15.003Z"
+    },
+    {
+      "name": "skill_163_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_118_arr_num_to_str",
+        "str_reverse"
+      ],
+      "learnedAt": "2026-08-19T11:46:39.434Z"
+    },
+    {
+      "name": "skill_164_num_bool_to_bool",
+      "inputTypes": [
+        "num",
+        "bool"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_110_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:46:57.182Z"
+    },
+    {
+      "name": "skill_165_arr_arr_to_str",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "str",
+      "program": [
+        "skill_115_arr_to_num",
+        "arr_sort",
+        "skill_146_arr_to_str",
+        "is_positive"
+      ],
+      "learnedAt": "2026-08-19T11:47:16.660Z"
+    },
+    {
+      "name": "skill_166_arr_num_to_bool",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_158_arr_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:47:24.590Z"
+    },
+    {
+      "name": "skill_167_str_to_bool",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_6_str_to_num",
+        "skill_91_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:47:48.951Z"
+    },
+    {
+      "name": "skill_168_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "arr_sort",
+        "skill_146_arr_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:47:56.143Z"
+    },
+    {
+      "name": "skill_169_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_110_num_to_bool",
+        "not"
+      ],
+      "learnedAt": "2026-08-19T11:48:10.949Z"
+    },
+    {
+      "name": "skill_170_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "inc",
+        "skill_119_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:48:21.715Z"
+    },
+    {
+      "name": "skill_171_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_167_str_to_bool",
+        "skill_6_str_to_num"
+      ],
+      "learnedAt": "2026-08-19T11:48:30.317Z"
+    },
+    {
+      "name": "skill_172_num_to_bool",
+      "inputTypes": [
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "abs",
+        "abs",
+        "skill_108_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:48:37.810Z"
+    },
+    {
+      "name": "skill_173_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "neg",
+        "skill_163_arr_num_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:50:15.247Z"
+    },
+    {
+      "name": "skill_174_str_str_to_num",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "str_upper",
+        "skill_107_str_str_to_num",
+        "dec"
+      ],
+      "learnedAt": "2026-08-19T11:50:30.035Z"
+    },
+    {
+      "name": "skill_175_num_num_to_bool",
+      "inputTypes": [
+        "num",
+        "num"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_70_num_num_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:50:34.721Z"
+    },
+    {
+      "name": "skill_176_arr_arr_to_bool",
+      "inputTypes": [
+        "arr",
+        "arr"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_158_arr_to_bool",
+        "arr_max"
+      ],
+      "learnedAt": "2026-08-19T11:50:43.043Z"
+    },
+    {
+      "name": "skill_177_arr_num_to_str",
+      "inputTypes": [
+        "arr",
+        "num"
+      ],
+      "outputType": "str",
+      "program": [
+        "inc",
+        "skill_160_arr_num_to_str"
+      ],
+      "learnedAt": "2026-08-19T11:50:56.481Z"
+    },
+    {
+      "name": "skill_178_str_str_to_bool",
+      "inputTypes": [
+        "str",
+        "str"
+      ],
+      "outputType": "bool",
+      "program": [
+        "skill_171_str_str_to_bool"
+      ],
+      "learnedAt": "2026-08-19T11:51:03.936Z"
+    },
+    {
+      "name": "skill_179_str_to_num",
+      "inputTypes": [
+        "str"
+      ],
+      "outputType": "num",
+      "program": [
+        "skill_6_str_to_num",
+        "dec"
+      ],
+      "learnedAt": "2026-08-19T11:52:12.027Z"
+    }
+  ],
+  "growthLog": [
+    {
+      "t": 1787138455132,
+      "total": 1
+    },
+    {
+      "t": 1787138455297,
+      "total": 2
+    },
+    {
+      "t": 1787138455453,
+      "total": 3
+    },
+    {
+      "t": 1787138455610,
+      "total": 4
+    },
+    {
+      "t": 1787138455770,
+      "total": 5
+    },
+    {
+      "t": 1787138455930,
+      "total": 6
+    },
+    {
+      "t": 1787138456387,
+      "total": 7
+    },
+    {
+      "t": 1787138456540,
+      "total": 8
+    },
+    {
+      "t": 1787138456697,
+      "total": 9
+    },
+    {
+      "t": 1787138457408,
+      "total": 10
+    },
+    {
+      "t": 1787138458187,
+      "total": 11
+    },
+    {
+      "t": 1787138458651,
+      "total": 12
+    },
+    {
+      "t": 1787138458808,
+      "total": 13
+    },
+    {
+      "t": 1787138459278,
+      "total": 14
+    },
+    {
+      "t": 1787138460721,
+      "total": 15
+    },
+    {
+      "t": 1787138462083,
+      "total": 16
+    },
+    {
+      "t": 1787138463699,
+      "total": 17
+    },
+    {
+      "t": 1787138464817,
+      "total": 18
+    },
+    {
+      "t": 1787138465728,
+      "total": 19
+    },
+    {
+      "t": 1787138468709,
+      "total": 20
+    },
+    {
+      "t": 1787138470102,
+      "total": 21
+    },
+    {
+      "t": 1787138470777,
+      "total": 22
+    },
+    {
+      "t": 1787138473256,
+      "total": 23
+    },
+    {
+      "t": 1787138473910,
+      "total": 24
+    },
+    {
+      "t": 1787138477327,
+      "total": 25
+    },
+    {
+      "t": 1787138480998,
+      "total": 26
+    },
+    {
+      "t": 1787138481983,
+      "total": 27
+    },
+    {
+      "t": 1787138483788,
+      "total": 28
+    },
+    {
+      "t": 1787138484781,
+      "total": 29
+    },
+    {
+      "t": 1787138485357,
+      "total": 30
+    },
+    {
+      "t": 1787138485511,
+      "total": 31
+    },
+    {
+      "t": 1787138487873,
+      "total": 32
+    },
+    {
+      "t": 1787138488194,
+      "total": 33
+    },
+    {
+      "t": 1787138516129,
+      "total": 34
+    },
+    {
+      "t": 1787138516323,
+      "total": 35
+    },
+    {
+      "t": 1787138516486,
+      "total": 36
+    },
+    {
+      "t": 1787138518899,
+      "total": 37
+    },
+    {
+      "t": 1787138519999,
+      "total": 38
+    },
+    {
+      "t": 1787138523761,
+      "total": 39
+    },
+    {
+      "t": 1787138527010,
+      "total": 40
+    },
+    {
+      "t": 1787138528564,
+      "total": 41
+    },
+    {
+      "t": 1787138532272,
+      "total": 42
+    },
+    {
+      "t": 1787138532921,
+      "total": 43
+    },
+    {
+      "t": 1787138558901,
+      "total": 44
+    },
+    {
+      "t": 1787138562450,
+      "total": 45
+    },
+    {
+      "t": 1787138613968,
+      "total": 46
+    },
+    {
+      "t": 1787138614140,
+      "total": 47
+    },
+    {
+      "t": 1787138627359,
+      "total": 48
+    },
+    {
+      "t": 1787138637626,
+      "total": 49
+    },
+    {
+      "t": 1787138642653,
+      "total": 50
+    },
+    {
+      "t": 1787138698486,
+      "total": 51
+    },
+    {
+      "t": 1787138710403,
+      "total": 52
+    },
+    {
+      "t": 1787138711136,
+      "total": 53
+    },
+    {
+      "t": 1787138711896,
+      "total": 54
+    },
+    {
+      "t": 1787138720515,
+      "total": 55
+    },
+    {
+      "t": 1787138725359,
+      "total": 56
+    },
+    {
+      "t": 1787138801636,
+      "total": 57
+    },
+    {
+      "t": 1787138808371,
+      "total": 58
+    },
+    {
+      "t": 1787138808528,
+      "total": 59
+    },
+    {
+      "t": 1787138808725,
+      "total": 60
+    },
+    {
+      "t": 1787138815064,
+      "total": 61
+    },
+    {
+      "t": 1787138821388,
+      "total": 62
+    },
+    {
+      "t": 1787138822346,
+      "total": 63
+    },
+    {
+      "t": 1787138828574,
+      "total": 64
+    },
+    {
+      "t": 1787138875952,
+      "total": 65
+    },
+    {
+      "t": 1787138888557,
+      "total": 66
+    },
+    {
+      "t": 1787138904265,
+      "total": 67
+    },
+    {
+      "t": 1787138906943,
+      "total": 68
+    },
+    {
+      "t": 1787138908281,
+      "total": 69
+    },
+    {
+      "t": 1787138908450,
+      "total": 70
+    },
+    {
+      "t": 1787138910168,
+      "total": 71
+    },
+    {
+      "t": 1787138918399,
+      "total": 72
+    },
+    {
+      "t": 1787138919804,
+      "total": 73
+    },
+    {
+      "t": 1787138921245,
+      "total": 74
+    },
+    {
+      "t": 1787138923541,
+      "total": 75
+    },
+    {
+      "t": 1787138924227,
+      "total": 76
+    },
+    {
+      "t": 1787138925806,
+      "total": 77
+    },
+    {
+      "t": 1787138932988,
+      "total": 78
+    },
+    {
+      "t": 1787138939059,
+      "total": 79
+    },
+    {
+      "t": 1787138947406,
+      "total": 80
+    },
+    {
+      "t": 1787138953774,
+      "total": 81
+    },
+    {
+      "t": 1787138962044,
+      "total": 82
+    },
+    {
+      "t": 1787138962214,
+      "total": 83
+    },
+    {
+      "t": 1787138981311,
+      "total": 84
+    },
+    {
+      "t": 1787138982860,
+      "total": 85
+    },
+    {
+      "t": 1787138986727,
+      "total": 86
+    },
+    {
+      "t": 1787138988292,
+      "total": 87
+    },
+    {
+      "t": 1787138995596,
+      "total": 88
+    },
+    {
+      "t": 1787138997650,
+      "total": 89
+    },
+    {
+      "t": 1787138998292,
+      "total": 90
+    },
+    {
+      "t": 1787139001783,
+      "total": 91
+    },
+    {
+      "t": 1787139001951,
+      "total": 92
+    },
+    {
+      "t": 1787139002555,
+      "total": 93
+    },
+    {
+      "t": 1787139006033,
+      "total": 94
+    },
+    {
+      "t": 1787139006648,
+      "total": 95
+    },
+    {
+      "t": 1787139007375,
+      "total": 96
+    },
+    {
+      "t": 1787139012145,
+      "total": 97
+    },
+    {
+      "t": 1787139025786,
+      "total": 98
+    },
+    {
+      "t": 1787139025951,
+      "total": 99
+    },
+    {
+      "t": 1787139035800,
+      "total": 100
+    },
+    {
+      "t": 1787139038021,
+      "total": 101
+    },
+    {
+      "t": 1787139041758,
+      "total": 102
+    },
+    {
+      "t": 1787139049051,
+      "total": 103
+    },
+    {
+      "t": 1787139058517,
+      "total": 104
+    },
+    {
+      "t": 1787139061549,
+      "total": 105
+    },
+    {
+      "t": 1787139064095,
+      "total": 106
+    },
+    {
+      "t": 1787139071722,
+      "total": 107
+    },
+    {
+      "t": 1787139072187,
+      "total": 108
+    },
+    {
+      "t": 1787139084737,
+      "total": 109
+    },
+    {
+      "t": 1787139092191,
+      "total": 110
+    },
+    {
+      "t": 1787139101598,
+      "total": 111
+    },
+    {
+      "t": 1787139101788,
+      "total": 112
+    },
+    {
+      "t": 1787139110551,
+      "total": 113
+    },
+    {
+      "t": 1787139113460,
+      "total": 114
+    },
+    {
+      "t": 1787139117675,
+      "total": 115
+    },
+    {
+      "t": 1787139129631,
+      "total": 116
+    },
+    {
+      "t": 1787139132156,
+      "total": 117
+    },
+    {
+      "t": 1787139147102,
+      "total": 118
+    },
+    {
+      "t": 1787139249555,
+      "total": 119
+    },
+    {
+      "t": 1787139262276,
+      "total": 120
+    },
+    {
+      "t": 1787139267068,
+      "total": 121
+    },
+    {
+      "t": 1787139271925,
+      "total": 122
+    },
+    {
+      "t": 1787139280867,
+      "total": 123
+    },
+    {
+      "t": 1787139285352,
+      "total": 124
+    },
+    {
+      "t": 1787139285540,
+      "total": 125
+    },
+    {
+      "t": 1787139293143,
+      "total": 126
+    },
+    {
+      "t": 1787139309656,
+      "total": 127
+    },
+    {
+      "t": 1787139313678,
+      "total": 128
+    },
+    {
+      "t": 1787139321478,
+      "total": 129
+    },
+    {
+      "t": 1787139326318,
+      "total": 130
+    },
+    {
+      "t": 1787139331281,
+      "total": 131
+    },
+    {
+      "t": 1787139350894,
+      "total": 132
+    },
+    {
+      "t": 1787139361955,
+      "total": 133
+    },
+    {
+      "t": 1787139372235,
+      "total": 134
+    },
+    {
+      "t": 1787139374872,
+      "total": 135
+    },
+    {
+      "t": 1787139376252,
+      "total": 136
+    },
+    {
+      "t": 1787139385326,
+      "total": 137
+    },
+    {
+      "t": 1787139404391,
+      "total": 138
+    },
+    {
+      "t": 1787139426513,
+      "total": 139
+    },
+    {
+      "t": 1787139453840,
+      "total": 140
+    },
+    {
+      "t": 1787139460367,
+      "total": 141
+    },
+    {
+      "t": 1787139479364,
+      "total": 142
+    },
+    {
+      "t": 1787139508861,
+      "total": 143
+    },
+    {
+      "t": 1787139532112,
+      "total": 144
+    },
+    {
+      "t": 1787139535587,
+      "total": 145
+    },
+    {
+      "t": 1787139540086,
+      "total": 146
+    },
+    {
+      "t": 1787139542853,
+      "total": 147
+    },
+    {
+      "t": 1787139561184,
+      "total": 148
+    },
+    {
+      "t": 1787139565860,
+      "total": 149
+    },
+    {
+      "t": 1787139574583,
+      "total": 150
+    },
+    {
+      "t": 1787139576070,
+      "total": 151
+    },
+    {
+      "t": 1787139584097,
+      "total": 152
+    },
+    {
+      "t": 1787139601523,
+      "total": 153
+    },
+    {
+      "t": 1787139601742,
+      "total": 154
+    },
+    {
+      "t": 1787139603882,
+      "total": 155
+    },
+    {
+      "t": 1787139605750,
+      "total": 156
+    },
+    {
+      "t": 1787139664698,
+      "total": 157
+    },
+    {
+      "t": 1787139854805,
+      "total": 158
+    },
+    {
+      "t": 1787139872416,
+      "total": 159
+    },
+    {
+      "t": 1787139874975,
+      "total": 160
+    },
+    {
+      "t": 1787139970479,
+      "total": 161
+    },
+    {
+      "t": 1787139975003,
+      "total": 162
+    },
+    {
+      "t": 1787139999434,
+      "total": 163
+    },
+    {
+      "t": 1787140017182,
+      "total": 164
+    },
+    {
+      "t": 1787140036660,
+      "total": 165
+    },
+    {
+      "t": 1787140044590,
+      "total": 166
+    },
+    {
+      "t": 1787140068951,
+      "total": 167
+    },
+    {
+      "t": 1787140076143,
+      "total": 168
+    },
+    {
+      "t": 1787140090949,
+      "total": 169
+    },
+    {
+      "t": 1787140101715,
+      "total": 170
+    },
+    {
+      "t": 1787140110317,
+      "total": 171
+    },
+    {
+      "t": 1787140117810,
+      "total": 172
+    },
+    {
+      "t": 1787140215247,
+      "total": 173
+    },
+    {
+      "t": 1787140230035,
+      "total": 174
+    },
+    {
+      "t": 1787140234721,
+      "total": 175
+    },
+    {
+      "t": 1787140243043,
+      "total": 176
+    },
+    {
+      "t": 1787140256481,
+      "total": 177
+    },
+    {
+      "t": 1787140263936,
+      "total": 178
+    },
+    {
+      "t": 1787140332027,
+      "total": 179
+    }
+  ],
+  "ticks": 2000
+}

@@ -1,0 +1,46 @@
+{
+  "status": "CANDIDATE",
+  "score": 81.73,
+  "novelty": 0.4779,
+  "similarity": 0.5221,
+  "closest_skill": "skill_module_153",
+  "tests": {
+    "passed": 5,
+    "total": 5,
+    "results": [
+      {
+        "test": 1,
+        "passed": true,
+        "expected": 60,
+        "actual": 60
+      },
+      {
+        "test": 2,
+        "passed": true,
+        "expected": 35,
+        "actual": 35
+      },
+      {
+        "test": 3,
+        "passed": true,
+        "expected": 1,
+        "actual": 1
+      },
+      {
+        "test": 4,
+        "passed": true,
+        "expected": 0,
+        "actual": 0
+      },
+      {
+        "test": 5,
+        "passed": true,
+        "expected": 60,
+        "actual": 60
+      }
+    ]
+  },
+  "determinism": true,
+  "generation_attempt": 3,
+  "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_181724"
+}

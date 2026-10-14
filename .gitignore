@@ -1,0 +1,36 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# Logs
+*.log
+logs/
+skill_execution_logs/
+
+# Python environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Node.js
+node_modules/
+
+# Large model weights
+*.gguf
+*.safetensors
+*.onnx
+*.pth
+*.pt
+*.bin
+
+# Temporary files
+.cache/
+tmp/
+temp/
+.DS_Store

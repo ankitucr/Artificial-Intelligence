@@ -1,0 +1,1 @@
+{"event": "plan_created", "query": "Clean this text, analyze it, and create a report", "planner": "deterministic_fallback", "valid": true, "steps": 3, "validation": {"status": "valid", "errors": []}}

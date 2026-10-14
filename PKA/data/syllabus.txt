@@ -1,0 +1,9 @@
+# ==========================================
+# SYLLABUS - EVOLUTION DIRECTIVES
+# ==========================================
+# AI Instructions: Parse these topics and seek data matching these domains.
+
+Strict English Grammar Parsing
+JavaScript V8 Engine Optimization
+Data Structures and Binary Trees
+Technical Analysis Chart Patterns

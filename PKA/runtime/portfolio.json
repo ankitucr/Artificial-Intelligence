@@ -1,0 +1,29 @@
+{
+  "balance": 99000,
+  "marginUsed": 0,
+  "totalPnL": 0,
+  "winRate": 0,
+  "tradesWon": 0,
+  "tradesLost": 0,
+  "positions": [
+    {
+      "id": "AUTO-1771961836562",
+      "action": "SELL",
+      "asset": "BTCUSDT",
+      "margin": 1000,
+      "time": "2/25/2026, 1:07:16 AM"
+    },
+    {
+      "id": 1771965961252,
+      "asset": "BNBUSDT",
+      "action": "SELL",
+      "time": "2026-02-24T20:46:01.252Z"
+    },
+    {
+      "id": 1771967281680,
+      "asset": "BCHUSDT",
+      "action": "SELL",
+      "time": "2026-02-24T21:08:01.680Z"
+    }
+  ]
+}

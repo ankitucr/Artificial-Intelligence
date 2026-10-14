@@ -1,0 +1,882 @@
+[
+  {
+    "state_id": 1,
+    "time": "2026-08-30T19:48:22.876",
+    "neuron": "N0002",
+    "distance": 0.037688,
+    "state_change": 0.0,
+    "action": "observe",
+    "reward": 0.913494,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 2,
+    "time": "2026-08-30T19:48:25.293",
+    "neuron": "N0002",
+    "distance": 0.036421,
+    "state_change": 0.006905,
+    "action": "observe",
+    "reward": 0.914151,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 3,
+    "time": "2026-08-30T19:48:27.715",
+    "neuron": "N0002",
+    "distance": 0.046329,
+    "state_change": 0.028935,
+    "action": "observe",
+    "reward": 0.886538,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 4,
+    "time": "2026-08-30T19:48:30.144",
+    "neuron": "N0002",
+    "distance": 0.040346,
+    "state_change": 0.018034,
+    "action": "observe",
+    "reward": 0.902404,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 5,
+    "time": "2026-08-30T19:48:32.609",
+    "neuron": "N0002",
+    "distance": 0.037018,
+    "state_change": 0.004808,
+    "action": "observe",
+    "reward": 0.913494,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 6,
+    "time": "2026-08-30T19:48:35.036",
+    "neuron": "N0002",
+    "distance": 0.04684,
+    "state_change": 0.024252,
+    "action": "observe",
+    "reward": 0.886879,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 7,
+    "time": "2026-08-30T19:48:37.449",
+    "neuron": "N0002",
+    "distance": 0.038553,
+    "state_change": 0.013947,
+    "action": "observe",
+    "reward": 0.907457,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 8,
+    "time": "2026-08-30T19:48:39.941",
+    "neuron": "N0002",
+    "distance": 0.032864,
+    "state_change": 0.008947,
+    "action": "observe",
+    "reward": 0.921257,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 9,
+    "time": "2026-08-30T19:48:43.029",
+    "neuron": "N0002",
+    "distance": 0.027669,
+    "state_change": 0.011226,
+    "action": "observe",
+    "reward": 0.932023,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 10,
+    "time": "2026-08-30T19:48:45.760",
+    "neuron": "N0002",
+    "distance": 0.02567,
+    "state_change": 0.007068,
+    "action": "observe",
+    "reward": 0.93773,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 11,
+    "time": "2026-08-30T19:48:48.280",
+    "neuron": "N0002",
+    "distance": 0.025357,
+    "state_change": 0.005524,
+    "action": "observe",
+    "reward": 0.938895,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 12,
+    "time": "2026-08-30T19:48:50.731",
+    "neuron": "N0002",
+    "distance": 0.025296,
+    "state_change": 0.004727,
+    "action": "observe",
+    "reward": 0.93927,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 13,
+    "time": "2026-08-30T19:48:53.204",
+    "neuron": "N0002",
+    "distance": 0.025288,
+    "state_change": 0.003772,
+    "action": "observe",
+    "reward": 0.939574,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 14,
+    "time": "2026-08-30T19:48:55.835",
+    "neuron": "N0002",
+    "distance": 0.025338,
+    "state_change": 0.003746,
+    "action": "observe",
+    "reward": 0.939471,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 15,
+    "time": "2026-08-30T19:48:58.425",
+    "neuron": "N0002",
+    "distance": 0.032865,
+    "state_change": 0.028792,
+    "action": "observe",
+    "reward": 0.915301,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 16,
+    "time": "2026-08-30T19:49:01.084",
+    "neuron": "N0002",
+    "distance": 0.02843,
+    "state_change": 0.016899,
+    "action": "observe",
+    "reward": 0.92863,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 17,
+    "time": "2026-08-30T19:49:03.640",
+    "neuron": "N0002",
+    "distance": 0.029066,
+    "state_change": 0.013428,
+    "action": "observe",
+    "reward": 0.928262,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 18,
+    "time": "2026-08-30T19:49:06.217",
+    "neuron": "N0002",
+    "distance": 0.026124,
+    "state_change": 0.008146,
+    "action": "observe",
+    "reward": 0.93639,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 19,
+    "time": "2026-08-30T19:49:08.772",
+    "neuron": "N0002",
+    "distance": 0.02447,
+    "state_change": 0.003489,
+    "action": "observe",
+    "reward": 0.941498,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 20,
+    "time": "2026-08-30T19:49:11.305",
+    "neuron": "N0002",
+    "distance": 0.022829,
+    "state_change": 0.002942,
+    "action": "observe",
+    "reward": 0.945363,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 21,
+    "time": "2026-08-30T19:49:13.852",
+    "neuron": "N0002",
+    "distance": 0.019371,
+    "state_change": 0.005106,
+    "action": "observe",
+    "reward": 0.952582,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 22,
+    "time": "2026-08-30T19:49:16.519",
+    "neuron": "N0002",
+    "distance": 0.020044,
+    "state_change": 0.004168,
+    "action": "observe",
+    "reward": 0.951325,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 23,
+    "time": "2026-08-30T19:49:19.275",
+    "neuron": "N0002",
+    "distance": 0.027402,
+    "state_change": 0.0293,
+    "action": "observe",
+    "reward": 0.927193,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 24,
+    "time": "2026-08-30T19:49:21.807",
+    "neuron": "N0002",
+    "distance": 0.019298,
+    "state_change": 0.016866,
+    "action": "observe",
+    "reward": 0.949222,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 25,
+    "time": "2026-08-30T19:49:24.306",
+    "neuron": "N0002",
+    "distance": 0.018689,
+    "state_change": 0.00548,
+    "action": "observe",
+    "reward": 0.954032,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 26,
+    "time": "2026-08-30T19:49:26.845",
+    "neuron": "N0002",
+    "distance": 0.018844,
+    "state_change": 0.004356,
+    "action": "observe",
+    "reward": 0.954015,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 27,
+    "time": "2026-08-30T19:49:29.251",
+    "neuron": "N0002",
+    "distance": 0.019466,
+    "state_change": 0.003526,
+    "action": "observe",
+    "reward": 0.95284,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 28,
+    "time": "2026-08-30T19:49:31.659",
+    "neuron": "N0002",
+    "distance": 0.020282,
+    "state_change": 0.003139,
+    "action": "repeat_stable_behavior",
+    "reward": 0.951089,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 29,
+    "time": "2026-08-30T19:49:34.083",
+    "neuron": "N0002",
+    "distance": 0.021183,
+    "state_change": 0.002698,
+    "action": "repeat_stable_behavior",
+    "reward": 0.94917,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 30,
+    "time": "2026-08-30T19:49:36.539",
+    "neuron": "N0002",
+    "distance": 0.027379,
+    "state_change": 0.029893,
+    "action": "repeat_stable_behavior",
+    "reward": 0.927067,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 31,
+    "time": "2026-08-30T19:49:39.028",
+    "neuron": "N0002",
+    "distance": 0.036045,
+    "state_change": 0.018312,
+    "action": "repeat_stable_behavior",
+    "reward": 0.91154,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 32,
+    "time": "2026-08-30T19:49:41.506",
+    "neuron": "N0002",
+    "distance": 0.024514,
+    "state_change": 0.012591,
+    "action": "repeat_stable_behavior",
+    "reward": 0.938668,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 33,
+    "time": "2026-08-30T19:49:43.981",
+    "neuron": "N0002",
+    "distance": 0.018038,
+    "state_change": 0.007885,
+    "action": "repeat_stable_behavior",
+    "reward": 0.954806,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 34,
+    "time": "2026-08-30T19:49:46.446",
+    "neuron": "N0002",
+    "distance": 0.017434,
+    "state_change": 0.00872,
+    "action": "repeat_stable_behavior",
+    "reward": 0.955948,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 35,
+    "time": "2026-08-30T19:49:48.993",
+    "neuron": "N0002",
+    "distance": 0.014115,
+    "state_change": 0.006397,
+    "action": "repeat_stable_behavior",
+    "reward": 0.964339,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 36,
+    "time": "2026-08-30T19:49:51.653",
+    "neuron": "N0002",
+    "distance": 0.012305,
+    "state_change": 0.004539,
+    "action": "repeat_stable_behavior",
+    "reward": 0.96913,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 37,
+    "time": "2026-08-30T19:49:54.307",
+    "neuron": "N0002",
+    "distance": 0.022356,
+    "state_change": 0.026913,
+    "action": "repeat_stable_behavior",
+    "reward": 0.939242,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 38,
+    "time": "2026-08-30T19:49:56.801",
+    "neuron": "N0002",
+    "distance": 0.011194,
+    "state_change": 0.015129,
+    "action": "repeat_stable_behavior",
+    "reward": 0.968567,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 39,
+    "time": "2026-08-30T19:49:59.326",
+    "neuron": "N0002",
+    "distance": 0.008271,
+    "state_change": 0.006063,
+    "action": "repeat_stable_behavior",
+    "reward": 0.978209,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 40,
+    "time": "2026-08-30T19:50:01.827",
+    "neuron": "N0002",
+    "distance": 0.009099,
+    "state_change": 0.004738,
+    "action": "repeat_stable_behavior",
+    "reward": 0.976638,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 41,
+    "time": "2026-08-30T19:50:04.517",
+    "neuron": "N0002",
+    "distance": 0.021969,
+    "state_change": 0.025074,
+    "action": "repeat_stable_behavior",
+    "reward": 0.940671,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 42,
+    "time": "2026-08-30T19:50:07.135",
+    "neuron": "N0002",
+    "distance": 0.010597,
+    "state_change": 0.014425,
+    "action": "repeat_stable_behavior",
+    "reward": 0.970185,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 43,
+    "time": "2026-08-30T19:50:09.722",
+    "neuron": "N0002",
+    "distance": 0.007074,
+    "state_change": 0.006457,
+    "action": "repeat_stable_behavior",
+    "reward": 0.980945,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 44,
+    "time": "2026-08-30T19:50:12.309",
+    "neuron": "N0002",
+    "distance": 0.008481,
+    "state_change": 0.005072,
+    "action": "repeat_stable_behavior",
+    "reward": 0.978005,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 45,
+    "time": "2026-08-30T19:50:14.829",
+    "neuron": "N0002",
+    "distance": 0.021351,
+    "state_change": 0.024435,
+    "action": "repeat_stable_behavior",
+    "reward": 0.942265,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 46,
+    "time": "2026-08-30T19:50:17.335",
+    "neuron": "N0002",
+    "distance": 0.010321,
+    "state_change": 0.014008,
+    "action": "repeat_stable_behavior",
+    "reward": 0.970962,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 47,
+    "time": "2026-08-30T19:50:19.839",
+    "neuron": "N0002",
+    "distance": 0.00952,
+    "state_change": 0.008013,
+    "action": "repeat_stable_behavior",
+    "reward": 0.974656,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 48,
+    "time": "2026-08-30T19:50:22.331",
+    "neuron": "N0002",
+    "distance": 0.010531,
+    "state_change": 0.00583,
+    "action": "repeat_stable_behavior",
+    "reward": 0.97292,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 49,
+    "time": "2026-08-30T19:50:24.890",
+    "neuron": "N0002",
+    "distance": 0.022155,
+    "state_change": 0.024931,
+    "action": "repeat_stable_behavior",
+    "reward": 0.940292,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 50,
+    "time": "2026-08-30T19:50:27.464",
+    "neuron": "N0002",
+    "distance": 0.012454,
+    "state_change": 0.016188,
+    "action": "repeat_stable_behavior",
+    "reward": 0.965287,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 51,
+    "time": "2026-08-30T19:50:29.986",
+    "neuron": "N0002",
+    "distance": 0.009319,
+    "state_change": 0.009287,
+    "action": "repeat_stable_behavior",
+    "reward": 0.974751,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 52,
+    "time": "2026-08-30T19:50:32.574",
+    "neuron": "N0002",
+    "distance": 0.010268,
+    "state_change": 0.005923,
+    "action": "repeat_stable_behavior",
+    "reward": 0.973514,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 53,
+    "time": "2026-08-30T19:50:35.145",
+    "neuron": "N0002",
+    "distance": 0.019279,
+    "state_change": 0.01248,
+    "action": "repeat_stable_behavior",
+    "reward": 0.95058,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 54,
+    "time": "2026-08-30T19:50:37.657",
+    "neuron": "N0002",
+    "distance": 0.020057,
+    "state_change": 0.007195,
+    "action": "repeat_stable_behavior",
+    "reward": 0.950388,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 55,
+    "time": "2026-08-30T19:50:40.127",
+    "neuron": "N0002",
+    "distance": 0.023387,
+    "state_change": 0.006264,
+    "action": "repeat_stable_behavior",
+    "reward": 0.943104,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 56,
+    "time": "2026-08-30T19:50:42.635",
+    "neuron": "N0002",
+    "distance": 0.024241,
+    "state_change": 0.004461,
+    "action": "repeat_stable_behavior",
+    "reward": 0.941721,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 57,
+    "time": "2026-08-30T19:50:45.161",
+    "neuron": "N0002",
+    "distance": 0.025307,
+    "state_change": 0.002677,
+    "action": "repeat_stable_behavior",
+    "reward": 0.939862,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 58,
+    "time": "2026-08-30T19:50:47.666",
+    "neuron": "N0002",
+    "distance": 0.026473,
+    "state_change": 0.002812,
+    "action": "repeat_stable_behavior",
+    "reward": 0.937212,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 59,
+    "time": "2026-08-30T19:50:50.166",
+    "neuron": "N0002",
+    "distance": 0.033509,
+    "state_change": 0.011384,
+    "action": "repeat_stable_behavior",
+    "reward": 0.91912,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 60,
+    "time": "2026-08-30T19:50:52.667",
+    "neuron": "N0002",
+    "distance": 0.032215,
+    "state_change": 0.008417,
+    "action": "repeat_stable_behavior",
+    "reward": 0.922836,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 61,
+    "time": "2026-08-30T19:50:55.215",
+    "neuron": "N0002",
+    "distance": 0.031381,
+    "state_change": 0.002498,
+    "action": "repeat_stable_behavior",
+    "reward": 0.926439,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 62,
+    "time": "2026-08-30T19:50:57.823",
+    "neuron": "N0002",
+    "distance": 0.026352,
+    "state_change": 0.006198,
+    "action": "repeat_stable_behavior",
+    "reward": 0.936466,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 63,
+    "time": "2026-08-30T19:51:00.404",
+    "neuron": "N0002",
+    "distance": 0.027961,
+    "state_change": 0.034407,
+    "action": "repeat_stable_behavior",
+    "reward": 0.924419,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 64,
+    "time": "2026-08-30T19:51:02.872",
+    "neuron": "N0002",
+    "distance": 0.039343,
+    "state_change": 0.025261,
+    "action": "repeat_stable_behavior",
+    "reward": 0.902373,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 65,
+    "time": "2026-08-30T19:51:05.392",
+    "neuron": "N0002",
+    "distance": 0.040328,
+    "state_change": 0.025964,
+    "action": "repeat_stable_behavior",
+    "reward": 0.900064,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 66,
+    "time": "2026-08-30T19:51:07.999",
+    "neuron": "N0002",
+    "distance": 0.037153,
+    "state_change": 0.018642,
+    "action": "repeat_stable_behavior",
+    "reward": 0.909053,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 67,
+    "time": "2026-08-30T19:51:10.564",
+    "neuron": "N0002",
+    "distance": 0.047731,
+    "state_change": 0.017041,
+    "action": "repeat_stable_behavior",
+    "reward": 0.887193,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 68,
+    "time": "2026-08-30T19:51:13.172",
+    "neuron": "N0002",
+    "distance": 0.056494,
+    "state_change": 0.013207,
+    "action": "repeat_stable_behavior",
+    "reward": 0.870453,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 69,
+    "time": "2026-08-30T19:51:15.807",
+    "neuron": "N0002",
+    "distance": 0.063091,
+    "state_change": 0.010766,
+    "action": "repeat_stable_behavior",
+    "reward": 0.858074,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 70,
+    "time": "2026-08-30T19:51:18.321",
+    "neuron": "N0002",
+    "distance": 0.067734,
+    "state_change": 0.008692,
+    "action": "repeat_stable_behavior",
+    "reward": 0.849647,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 71,
+    "time": "2026-08-30T19:51:20.805",
+    "neuron": "N0002",
+    "distance": 0.070062,
+    "state_change": 0.006955,
+    "action": "repeat_stable_behavior",
+    "reward": 0.845687,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 72,
+    "time": "2026-08-30T19:51:23.382",
+    "neuron": "N0002",
+    "distance": 0.056495,
+    "state_change": 0.022303,
+    "action": "repeat_stable_behavior",
+    "reward": 0.867722,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 73,
+    "time": "2026-08-30T19:51:26.021",
+    "neuron": "N0002",
+    "distance": 0.04305,
+    "state_change": 0.021469,
+    "action": "repeat_stable_behavior",
+    "reward": 0.895648,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 74,
+    "time": "2026-08-30T19:51:28.575",
+    "neuron": "N0002",
+    "distance": 0.029145,
+    "state_change": 0.018914,
+    "action": "repeat_stable_behavior",
+    "reward": 0.926442,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 75,
+    "time": "2026-08-30T19:51:31.071",
+    "neuron": "N0002",
+    "distance": 0.021597,
+    "state_change": 0.010768,
+    "action": "repeat_stable_behavior",
+    "reward": 0.945808,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 76,
+    "time": "2026-08-30T19:51:33.628",
+    "neuron": "N0002",
+    "distance": 0.019907,
+    "state_change": 0.009155,
+    "action": "repeat_stable_behavior",
+    "reward": 0.950143,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 77,
+    "time": "2026-08-30T19:51:36.156",
+    "neuron": "N0002",
+    "distance": 0.019104,
+    "state_change": 0.006729,
+    "action": "repeat_stable_behavior",
+    "reward": 0.952707,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 78,
+    "time": "2026-08-30T19:51:38.715",
+    "neuron": "N0002",
+    "distance": 0.020053,
+    "state_change": 0.004803,
+    "action": "repeat_stable_behavior",
+    "reward": 0.951113,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 79,
+    "time": "2026-08-30T19:51:41.244",
+    "neuron": "N0002",
+    "distance": 0.021099,
+    "state_change": 0.004036,
+    "action": "repeat_stable_behavior",
+    "reward": 0.948959,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 80,
+    "time": "2026-08-30T19:51:43.735",
+    "neuron": "N0002",
+    "distance": 0.02224,
+    "state_change": 0.003321,
+    "action": "repeat_stable_behavior",
+    "reward": 0.946583,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 81,
+    "time": "2026-08-30T19:51:46.183",
+    "neuron": "N0002",
+    "distance": 0.029997,
+    "state_change": 0.031423,
+    "action": "repeat_stable_behavior",
+    "reward": 0.920807,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 82,
+    "time": "2026-08-30T19:51:48.631",
+    "neuron": "N0002",
+    "distance": 0.02205,
+    "state_change": 0.018992,
+    "action": "repeat_stable_behavior",
+    "reward": 0.942311,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 83,
+    "time": "2026-08-30T19:51:51.124",
+    "neuron": "N0002",
+    "distance": 0.021433,
+    "state_change": 0.004455,
+    "action": "repeat_stable_behavior",
+    "reward": 0.948075,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 84,
+    "time": "2026-08-30T19:51:53.594",
+    "neuron": "N0002",
+    "distance": 0.035124,
+    "state_change": 0.025533,
+    "action": "repeat_stable_behavior",
+    "reward": 0.911365,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 85,
+    "time": "2026-08-30T19:51:56.057",
+    "neuron": "N0002",
+    "distance": 0.045472,
+    "state_change": 0.016377,
+    "action": "repeat_stable_behavior",
+    "reward": 0.892094,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 86,
+    "time": "2026-08-30T19:51:58.765",
+    "neuron": "N0002",
+    "distance": 0.036802,
+    "state_change": 0.012962,
+    "action": "repeat_stable_behavior",
+    "reward": 0.911512,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 87,
+    "time": "2026-08-30T19:52:01.485",
+    "neuron": "N0002",
+    "distance": 0.033002,
+    "state_change": 0.015467,
+    "action": "repeat_stable_behavior",
+    "reward": 0.919001,
+    "sensor_features": 26
+  },
+  {
+    "state_id": 88,
+    "time": "2026-08-30T19:52:04.828",
+    "neuron": "N0002",
+    "distance": 0.029267,
+    "state_change": 0.009938,
+    "action": "repeat_stable_behavior",
+    "reward": 0.928864,
+    "sensor_features": 26
+  }
+]

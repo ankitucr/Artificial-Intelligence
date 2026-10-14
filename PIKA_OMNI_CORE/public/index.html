@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Pika — Your AI Companion</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<style>
+
+/* ══════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════ */
+:root {
+  --bg:         #09090f;
+  --bg1:        #0e0e18;
+  --bg2:        #13131f;
+  --surface:    #18182a;
+  --border:     rgba(255,255,255,0.07);
+  --border2:    rgba(255,255,255,0.12);
+
+  --cyan:       #4ef0ff;
+  --cyan-soft:  rgba(78,240,255,0.15);
+  --cyan-glow:  rgba(78,240,255,0.25);
+  --violet:     #a78bfa;
+  --violet-soft:rgba(167,139,250,0.15);
+  --rose:       #fb7185;
+  --rose-soft:  rgba(251,113,133,0.15);
+  --amber:      #fbbf24;
+  --green:      #34d399;
+
+  --text:       #e2e8f0;
+  --text-2:     #94a3b8;
+  --text-3:     #475569;
+
+  --r-xs: 8px; --r-sm: 12px; --r-md: 16px;
+  --r-lg: 20px; --r-xl: 24px; --r-full: 999px;
+
+  --avatar-h: 320px;    /* avatar height on mobile */
+  --chat-pad: 16px;
+}
+
+/* ══════════════════════════════════
+   BASE
+══════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* ══════════════════════════════════
+   BACKGROUND AMBIENCE
+══════════════════════════════════ */
+.ambient {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+}
+.amb-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); opacity: 0.4;
+}
+.amb-blob-1 {
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(78,240,255,0.12), transparent 70%);
+  top: -20%; left: -20%;
+  animation: blobDrift1 18s ease-in-out infinite;
+}
+.amb-blob-2 {
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, rgba(167,139,250,0.10), transparent 70%);
+  bottom: -15%; right: -15%;
+  animation: blobDrift2 22s ease-in-out infinite;
+}
+@keyframes blobDrift1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(5%,8%);} }
+@keyframes blobDrift2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-5%,-6%);} }
+
+/* Subtle grid */
+.amb-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ══════════════════════════════════
+   APP SHELL — MOBILE FIRST COLUMN
+══════════════════════════════════ */
+.app {
+  position: relative; z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════
+   TOPBAR
+══════════════════════════════════ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--chat-pad) 10px;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 10px; }
+
+.app-icon {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--cyan-soft), var(--violet-soft));
+  border: 1px solid var(--border2);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+
+.app-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 17px;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+.app-tag {
+  font-size: 10px; color: var(--text-3);
+  letter-spacing: 1px; font-weight: 400;
+  text-transform: uppercase;
+}
+
+.conn-dot {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: 10px; color: var(--text-3);
+}
+.conn-dot-led {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text-3);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.conn-dot-led.ok  { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.conn-dot-led.err { background: var(--rose); }
+
+/* ══════════════════════════════════
+   AVATAR SECTION
+══════════════════════════════════ */
+.avatar-section {
+  flex-shrink: 0;
+  position: relative;
+  height: var(--avatar-h);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Holographic platform glow */
+.holo-platform {
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 220px; height: 8px;
+  background: radial-gradient(ellipse, var(--cyan) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.25;
+  filter: blur(4px);
+  animation: platformPulse 3s ease-in-out infinite;
+}
+@keyframes platformPulse { 0%,100%{opacity:0.18;} 50%{opacity:0.35;} }
+
+/* Scan rings */
+.scan-ring {
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(78,240,255,0.15);
+  animation: ringExpand 4s ease-out infinite;
+}
+.scan-ring:nth-child(1) { width: 160px; height: 30px; animation-delay: 0s; }
+.scan-ring:nth-child(2) { width: 240px; height: 46px; animation-delay: 1.3s; }
+.scan-ring:nth-child(3) { width: 320px; height: 60px; animation-delay: 2.6s; }
+@keyframes ringExpand {
+  0%   { opacity: 0.5; transform: translateX(-50%) scaleY(1); }
+  100% { opacity: 0;   transform: translateX(-50%) scaleY(0.8); }
+}
+
+/* Vertical scan beam */
+.scan-beam {
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(78,240,255,0.3), transparent);
+  animation: beamSweep 6s ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes beamSweep {
+  0%,100% { left: 30%; opacity: 0; }
+  30%     { opacity: 0.8; }
+  70%     { opacity: 0.8; }
+  50%     { left: 70%; opacity: 0.6; }
+}
+
+/* ── THE PIKA SVG AVATAR ── */
+.avatar-wrap {
+  position: relative;
+  width: 220px;
+  height: 300px;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+#pikaSvg {
+  width: 100%; height: 100%;
+  transition: filter 0.4s ease;
+  filter: drop-shadow(0 8px 32px rgba(78,240,255,0.20))
+          drop-shadow(0 0 60px rgba(78,240,255,0.08));
+}
+
+/* State filters */
+#pikaSvg.thinking { filter: drop-shadow(0 8px 32px rgba(251,191,36,0.30)) drop-shadow(0 0 60px rgba(251,191,36,0.12)); }
+#pikaSvg.speaking { filter: drop-shadow(0 8px 32px rgba(78,240,255,0.40)) drop-shadow(0 0 80px rgba(78,240,255,0.20)); }
+#pikaSvg.listening { filter: drop-shadow(0 8px 32px rgba(251,113,133,0.35)) drop-shadow(0 0 60px rgba(251,113,133,0.15)); }
+#pikaSvg.happy { filter: drop-shadow(0 8px 32px rgba(52,211,153,0.30)) drop-shadow(0 0 60px rgba(52,211,153,0.12)); }
+
+/* Bottom fade */
+.avatar-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  z-index: 3; pointer-events: none;
+}
+
+/* State label under avatar */
+.avatar-label {
+  position: absolute;
+  bottom: 10px; left: 50%; transform: translateX(-50%);
+  z-index: 10;
+  display: flex; align-items: center; gap: 6px;
+}
+.avatar-led {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: ledBlink 2s ease-in-out infinite;
+}
+.avatar-led.thinking { background: var(--amber); box-shadow: 0 0 8px var(--amber); animation: ledBlink 0.5s linear infinite; }
+.avatar-led.speaking { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); animation: ledBlink 0.25s linear infinite; }
+.avatar-led.listening { background: var(--rose); box-shadow: 0 0 10px var(--rose); animation: ledBlink 0.4s linear infinite; }
+@keyframes ledBlink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+.avatar-state-txt {
+  font-size: 10px; color: var(--text-3);
+  letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+}
+
+/* ── LIP SYNC ── */
+.lip-bars {
+  position: absolute;
+  bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 2px; align-items: flex-end;
+  height: 14px; z-index: 10;
+  opacity: 0; transition: opacity 0.3s;
+}
+.lip-bars.on { opacity: 1; }
+.lip-bar {
+  width: 2.5px; border-radius: 2px;
+  background: var(--cyan); box-shadow: 0 0 4px var(--cyan);
+}
+.lip-bar:nth-child(1){height:4px; animation:lb .35s ease infinite 0.00s;}
+.lip-bar:nth-child(2){height:10px;animation:lb .35s ease infinite 0.07s;}
+.lip-bar:nth-child(3){height:7px; animation:lb .35s ease infinite 0.04s;}
+.lip-bar:nth-child(4){height:12px;animation:lb .35s ease infinite 0.11s;}
+.lip-bar:nth-child(5){height:6px; animation:lb .35s ease infinite 0.06s;}
+.lip-bar:nth-child(6){height:9px; animation:lb .35s ease infinite 0.09s;}
+.lip-bar:nth-child(7){height:4px; animation:lb .35s ease infinite 0.02s;}
+@keyframes lb { 0%,100%{transform:scaleY(0.4); opacity:0.5;} 50%{transform:scaleY(1.4); opacity:1;} }
+
+/* ══════════════════════════════════
+   STATUS BAR (between avatar & chat)
+══════════════════════════════════ */
+.status-bar {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px var(--chat-pad);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(14,14,24,0.6);
+  backdrop-filter: blur(10px);
+  gap: 8px;
+}
+
+.stat-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--text-3); letter-spacing: 0.5px;
+}
+.stat-item span { color: var(--text-2); font-weight: 500; }
+.stat-divider { width: 1px; height: 12px; background: var(--border2); }
+
+.btn-evolve {
+  padding: 5px 12px;
+  background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(78,240,255,0.10));
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: var(--r-full);
+  color: var(--violet);
+  font-size: 10px; font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.5px; cursor: pointer;
+  transition: all 0.2s; white-space: nowrap;
+}
+.btn-evolve:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(167,139,250,0.25), rgba(78,240,255,0.15));
+  box-shadow: 0 0 16px rgba(167,139,250,0.2);
+}
+.btn-evolve:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ══════════════════════════════════
+   MESSAGES
+══════════════════════════════════ */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px var(--chat-pad) 8px;
+  display: flex; flex-direction: column; gap: 12px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.messages::-webkit-scrollbar { display: none; }
+
+/* Welcome */
+.welcome {
+  display: flex; flex-direction: column; gap: 4px;
+  animation: msgIn 0.5s ease;
+}
+.welcome-tag {
+  font-size: 10px; color: var(--text-3);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 500; padding-left: 2px;
+}
+.welcome-bubble {
+  background: linear-gradient(135deg, rgba(78,240,255,0.06), rgba(167,139,250,0.04));
+  border: 1px solid rgba(78,240,255,0.15);
+  border-radius: var(--r-md);
+  border-top-left-radius: 4px;
+  padding: 14px 16px;
+  font-size: 14px; line-height: 1.7; color: var(--text-2);
+  max-width: 88%;
+}
+.welcome-bubble strong { color: var(--cyan); font-weight: 500; }
+
+/* Chip row */
+.chips {
+  display: flex; gap: 7px;
+  overflow-x: auto; padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0;
+  padding: 6px 13px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-full);
+  color: var(--text-3); font-size: 12px;
+  cursor: pointer; transition: all 0.15s;
+  white-space: nowrap; -webkit-tap-highlight-color: transparent;
+}
+.chip:active, .chip:hover {
+  border-color: rgba(78,240,255,0.3);
+  color: var(--cyan); background: rgba(78,240,255,0.06);
+}
+
+/* Messages */
+.msg { display: flex; flex-direction: column; gap: 3px; animation: msgIn 0.25s ease; }
+.msg.user { align-items: flex-end; }
+@keyframes msgIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+
+.msg-meta {
+  font-size: 10px; color: var(--text-3);
+  padding: 0 4px; letter-spacing: 0.5px;
+}
+
+.msg-bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  font-size: 14px; line-height: 1.7;
+  white-space: pre-wrap; word-break: break-word;
+}
+.msg.pika .msg-bubble {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md); border-top-left-radius: 4px;
+  color: var(--text);
+}
+.msg.user .msg-bubble {
+  background: linear-gradient(135deg, rgba(78,240,255,0.12), rgba(167,139,250,0.08));
+  border: 1px solid rgba(78,240,255,0.2);
+  border-radius: var(--r-md); border-top-right-radius: 4px;
+  color: var(--text);
+}
+.msg.error .msg-bubble { border-color: rgba(251,113,133,0.3); color: var(--rose); }
+
+.msg-bubble pre {
+  background: rgba(0,0,0,0.4); border: 1px solid var(--border2);
+  border-radius: var(--r-sm); padding: 10px 12px;
+  margin: 8px 0; overflow-x: auto; font-size: 12px;
+  color: var(--green); line-height: 1.6;
+  font-family: 'Courier New', monospace;
+}
+.msg-bubble code {
+  background: rgba(78,240,255,0.1); border-radius: 4px;
+  padding: 1px 5px; font-size: 12px; color: var(--cyan);
+  font-family: 'Courier New', monospace;
+}
+
+/* Thinking */
+.thinking-bubble {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: var(--r-md); border-top-left-radius: 4px;
+  padding: 12px 16px; display: inline-flex; gap: 5px; align-items: center;
+}
+.td { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); animation: tdot .7s ease-in-out infinite; }
+.td:nth-child(2){animation-delay:.14s;}
+.td:nth-child(3){animation-delay:.28s;}
+@keyframes tdot { 0%,80%,100%{transform:translateY(0);opacity:0.4;} 40%{transform:translateY(-6px);opacity:1;} }
+
+/* ══════════════════════════════════
+   INPUT AREA
+══════════════════════════════════ */
+.input-area {
+  flex-shrink: 0;
+  padding: 10px var(--chat-pad) max(16px, env(safe-area-inset-bottom));
+  background: rgba(9,9,15,0.9);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+}
+
+.input-row {
+  display: flex; gap: 8px; align-items: flex-end;
+}
+
+.input-box {
+  flex: 1; position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-xl);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+.input-box:focus-within {
+  border-color: rgba(78,240,255,0.35);
+  box-shadow: 0 0 0 3px rgba(78,240,255,0.06);
+}
+
+textarea {
+  width: 100%; background: transparent;
+  border: none; outline: none; resize: none;
+  color: var(--text); font-family: 'Inter', sans-serif;
+  font-size: 14px; line-height: 1.5;
+  padding: 11px 16px;
+  max-height: 100px; overflow-y: auto;
+  -webkit-appearance: none;
+}
+textarea::placeholder { color: var(--text-3); }
+
+/* Icon buttons */
+.icon-btn {
+  flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s;
+  font-size: 18px; -webkit-tap-highlight-color: transparent;
+  background: var(--surface);
+}
+
+.btn-send {
+  background: linear-gradient(135deg, rgba(78,240,255,0.15), rgba(78,240,255,0.08));
+  border-color: rgba(78,240,255,0.25); color: var(--cyan);
+}
+.btn-send:active, .btn-send:hover {
+  background: var(--cyan); color: #000;
+  border-color: var(--cyan); box-shadow: 0 0 20px rgba(78,240,255,0.3);
+}
+.btn-send:disabled { opacity: 0.3; cursor: not-allowed; background: var(--surface); color: var(--text-3); }
+
+.btn-voice {
+  background: rgba(251,113,133,0.06); border-color: rgba(251,113,133,0.2); color: var(--rose);
+  position: relative; overflow: visible;
+}
+.btn-voice:active, .btn-voice:hover { background: rgba(251,113,133,0.15); }
+.btn-voice.recording {
+  background: var(--rose); color: #fff; border-color: var(--rose);
+  box-shadow: 0 0 0 0 rgba(251,113,133,0.4);
+  animation: voicePulse 1s ease-out infinite;
+}
+@keyframes voicePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(251,113,133,0.5); }
+  70%  { box-shadow: 0 0 0 12px rgba(251,113,133,0); }
+  100% { box-shadow: 0 0 0 0 rgba(251,113,133,0); }
+}
+
+/* Voice transcript preview */
+.voice-hint {
+  text-align: center; font-size: 11px; color: var(--rose);
+  height: 16px; margin-top: 6px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 0 8px;
+  transition: opacity 0.3s;
+}
+
+/* ══════════════════════════════════
+   DESKTOP LAYOUT (≥640px side by side)
+══════════════════════════════════ */
+@media (min-width: 640px) {
+  body { overflow: hidden; }
+
+  .app {
+    flex-direction: row;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Avatar takes left column */
+  .avatar-col {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    border-right: 1px solid var(--border);
+    padding-bottom: 32px;
+  }
+
+  /* Chat takes rest */
+  .chat-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  :root { --avatar-h: 100%; }
+
+  .avatar-section {
+    height: 100%;
+    width: 100%;
+  }
+
+  .topbar {
+    padding: 20px 24px 14px;
+  }
+
+  .status-bar {
+    padding: 10px 24px;
+  }
+
+  .messages {
+    padding: 16px 24px 10px;
+  }
+
+  .input-area {
+    padding: 12px 24px max(20px, env(safe-area-inset-bottom));
+  }
+
+  .avatar-wrap {
+    width: 280px;
+    height: 380px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="ambient">
+  <div class="amb-blob amb-blob-1"></div>
+  <div class="amb-blob amb-blob-2"></div>
+  <div class="amb-grid"></div>
+</div>
+
+<!-- Mobile: single column. Desktop: side by side via JS -->
+<div class="app" id="app">
+
+  <!-- ══ AVATAR SECTION (becomes left col on desktop) ══ -->
+  <div class="avatar-col" id="avatarCol" style="display:contents">
+
+    <div class="avatar-section" id="avatarSection">
+      <!-- Scan rings -->
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-beam"></div>
+
+      <!-- Avatar SVG -->
+      <div class="avatar-wrap">
+        <svg id="pikaSvg" viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <!-- Skin gradient -->
+            <radialGradient id="g-skin" cx="50%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#fde8d0"/>
+              <stop offset="60%" stop-color="#f5c5a0"/>
+              <stop offset="100%" stop-color="#e8a882"/>
+            </radialGradient>
+            <!-- Hair -->
+            <linearGradient id="g-hair" x1="0" y1="0" x2="0.5" y2="1">
+              <stop offset="0%" stop-color="#1a0d2e"/>
+              <stop offset="100%" stop-color="#0a0618"/>
+            </linearGradient>
+            <!-- Suit dark -->
+            <linearGradient id="g-suit" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#101828"/>
+              <stop offset="100%" stop-color="#060e18"/>
+            </linearGradient>
+            <!-- Suit accent -->
+            <linearGradient id="g-accent" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4ef0ff" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#4ef0ff" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#4ef0ff" stop-opacity="0"/>
+            </linearGradient>
+            <!-- Holo body glow -->
+            <filter id="f-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="f-soft" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="1.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Iris gradient -->
+            <radialGradient id="g-iris-l" cx="40%" cy="35%" r="60%">
+              <stop offset="0%" stop-color="#7fffff"/>
+              <stop offset="40%" stop-color="#00b8cc"/>
+              <stop offset="100%" stop-color="#005566"/>
+            </radialGradient>
+            <radialGradient id="g-iris-r" cx="40%" cy="35%" r="60%">
+              <stop offset="0%" stop-color="#7fffff"/>
+              <stop offset="40%" stop-color="#00b8cc"/>
+              <stop offset="100%" stop-color="#005566"/>
+            </radialGradient>
+            <!-- Lip gradient -->
+            <linearGradient id="g-lip" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f09090"/>
+              <stop offset="100%" stop-color="#e06070"/>
+            </linearGradient>
+            <clipPath id="clip-face"><ellipse cx="110" cy="100" rx="50" ry="58"/></clipPath>
+          </defs>
+
+          <!-- ═══ BODY / SUIT ═══ -->
+          <!-- Main torso -->
+          <path d="M60 190 Q52 185 48 220 Q44 260 54 290 Q65 305 110 308 Q155 305 166 290 Q176 260 172 220 Q168 185 160 190 Z"
+                fill="url(#g-suit)" stroke="rgba(78,240,255,0.3)" stroke-width="0.8"/>
+
+          <!-- Suit chest panel -->
+          <path d="M72 194 Q64 189 62 215 L74 230 L110 234 L146 230 L158 215 Q156 189 148 194 Z"
+                fill="#0a1520" stroke="rgba(78,240,255,0.4)" stroke-width="0.6"/>
+
+          <!-- Center glow strip -->
+          <line x1="110" y1="198" x2="110" y2="255"
+                stroke="url(#g-accent)" stroke-width="1.5" filter="url(#f-glow)"/>
+
+          <!-- Tech dots on chest -->
+          <circle cx="90" cy="212" r="3.5" fill="rgba(78,240,255,0.15)" stroke="rgba(78,240,255,0.6)" stroke-width="0.7" filter="url(#f-soft)"/>
+          <circle cx="130" cy="212" r="3.5" fill="rgba(78,240,255,0.15)" stroke="rgba(78,240,255,0.6)" stroke-width="0.7" filter="url(#f-soft)"/>
+          <circle cx="110" cy="222" r="5" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.5)" stroke-width="0.7" filter="url(#f-soft)"/>
+
+          <!-- Collar -->
+          <path d="M85 190 L97 202 L110 198 L123 202 L135 190 Q123 182 110 184 Q97 182 85 190 Z"
+                fill="#0c1e30" stroke="rgba(78,240,255,0.35)" stroke-width="0.6"/>
+
+          <!-- Shoulder armour L -->
+          <path d="M48 192 Q38 180 42 205 L58 208 L68 192 Z"
+                fill="#0c1e30" stroke="rgba(78,240,255,0.35)" stroke-width="0.7"/>
+          <line x1="44" y1="194" x2="47" y2="206" stroke="rgba(78,240,255,0.5)" stroke-width="0.8" filter="url(#f-soft)"/>
+
+          <!-- Shoulder armour R -->
+          <path d="M172 192 Q182 180 178 205 L162 208 L152 192 Z"
+                fill="#0c1e30" stroke="rgba(78,240,255,0.35)" stroke-width="0.7"/>
+          <line x1="176" y1="194" x2="173" y2="206" stroke="rgba(78,240,255,0.5)" stroke-width="0.8" filter="url(#f-soft)"/>
+
+          <!-- Left arm -->
+          <path d="M56 196 Q40 200 32 220 Q27 240 34 260 Q40 272 50 268 Q58 264 62 246 Q66 224 64 205 Z"
+                fill="url(#g-suit)" stroke="rgba(78,240,255,0.2)" stroke-width="0.6"/>
+          <line x1="39" y1="214" x2="40" y2="252" stroke="rgba(78,240,255,0.35)" stroke-width="0.6" filter="url(#f-soft)"/>
+
+          <!-- Right arm -->
+          <path d="M164 196 Q180 200 188 220 Q193 240 186 260 Q180 272 170 268 Q162 264 158 246 Q154 224 156 205 Z"
+                fill="url(#g-suit)" stroke="rgba(78,240,255,0.2)" stroke-width="0.6"/>
+          <line x1="181" y1="214" x2="180" y2="252" stroke="rgba(78,240,255,0.35)" stroke-width="0.6" filter="url(#f-soft)"/>
+
+          <!-- Left hand (resting on hip subtle) -->
+          <ellipse cx="36" cy="264" rx="8" ry="6" fill="#f5c5a0" opacity="0.7"/>
+
+          <!-- Belt -->
+          <line x1="56" y1="260" x2="164" y2="260" stroke="rgba(78,240,255,0.35)" stroke-width="0.8"/>
+          <rect x="103" y="257" width="14" height="6" rx="1.5"
+                fill="#0a1520" stroke="rgba(78,240,255,0.6)" stroke-width="0.7"/>
+          <circle cx="110" cy="260" r="2" fill="rgba(78,240,255,0.7)" filter="url(#f-soft)"/>
+
+          <!-- Lower body panels -->
+          <path d="M58 264 L63 300 L90 302 L90 264 Z" fill="#0a1520" stroke="rgba(78,240,255,0.2)" stroke-width="0.5"/>
+          <path d="M162 264 L157 300 L130 302 L130 264 Z" fill="#0a1520" stroke="rgba(78,240,255,0.2)" stroke-width="0.5"/>
+          <path d="M90 264 L130 264 L130 302 L90 302 Z" fill="#080f1a" stroke="rgba(78,240,255,0.15)" stroke-width="0.5"/>
+          <line x1="73" y1="266" x2="74" y2="300" stroke="rgba(78,240,255,0.3)" stroke-width="0.6" filter="url(#f-soft)"/>
+          <line x1="147" y1="266" x2="146" y2="300" stroke="rgba(78,240,255,0.3)" stroke-width="0.6" filter="url(#f-soft)"/>
+
+          <!-- ═══ NECK ═══ -->
+          <path d="M98 167 Q96 177 94 188 Q101 192 110 193 Q119 192 126 188 Q124 177 122 167 Z"
+                fill="url(#g-skin)"/>
+          <!-- Neck tech line subtle -->
+          <line x1="104" y1="172" x2="116" y2="172" stroke="rgba(78,240,255,0.15)" stroke-width="0.5"/>
+
+          <!-- ═══ HEAD ═══ -->
+          <!-- Head base -->
+          <ellipse cx="110" cy="100" rx="50" ry="58" fill="url(#g-skin)"/>
+          <!-- Jaw / chin -->
+          <path d="M80 128 Q84 155 110 162 Q136 155 140 128" fill="url(#g-skin)"/>
+
+          <!-- ═══ EAR LEFT ═══ -->
+          <path d="M60 95 Q54 100 55 110 Q56 120 63 122 Q68 122 70 115 Q66 107 67 98 Z" fill="url(#g-skin)"/>
+          <!-- Ear canal -->
+          <path d="M62 102 Q60 108 62 114" stroke="#e8a882" stroke-width="1" fill="none" opacity="0.5"/>
+          <!-- Cyber ear stud -->
+          <circle cx="63" cy="107" r="2.5" fill="rgba(78,240,255,0.6)" stroke="rgba(78,240,255,0.8)" stroke-width="0.5" filter="url(#f-soft)"/>
+
+          <!-- ═══ EAR RIGHT ═══ -->
+          <path d="M160 95 Q166 100 165 110 Q164 120 157 122 Q152 122 150 115 Q154 107 153 98 Z" fill="url(#g-skin)"/>
+          <path d="M158 102 Q160 108 158 114" stroke="#e8a882" stroke-width="1" fill="none" opacity="0.5"/>
+          <circle cx="157" cy="107" r="2.5" fill="rgba(78,240,255,0.6)" stroke="rgba(78,240,255,0.8)" stroke-width="0.5" filter="url(#f-soft)"/>
+
+          <!-- ═══ HAIR ═══ -->
+          <!-- Main hair back -->
+          <path d="M62 92 Q60 58 70 38 Q82 18 110 14 Q138 18 150 38 Q160 58 158 92 Q145 80 110 78 Q75 80 62 92 Z"
+                fill="url(#g-hair)"/>
+          <!-- Side hair left -->
+          <path d="M62 92 Q52 115 50 148 Q52 158 57 154 Q60 132 72 110 Z"
+                fill="#0f0720" opacity="0.92"/>
+          <path d="M66 94 Q57 120 56 152 Q58 157 61 154 Q63 134 74 112 Z"
+                fill="#0f0720" opacity="0.75"/>
+          <!-- Side hair right -->
+          <path d="M158 92 Q168 115 170 148 Q168 158 163 154 Q160 132 148 110 Z"
+                fill="#0f0720" opacity="0.92"/>
+          <path d="M154 94 Q163 120 164 152 Q162 157 159 154 Q157 134 146 112 Z"
+                fill="#0f0720" opacity="0.75"/>
+          <!-- Top hair detail -->
+          <path d="M80 40 Q90 22 110 16 Q130 22 140 40 Q130 34 110 32 Q90 34 80 40 Z"
+                fill="#140a28" opacity="0.7"/>
+          <!-- Hair highlight -->
+          <path d="M102 16 Q99 38 97 64 Q100 72 102 70 Q104 44 106 18 Z"
+                fill="#2a1450" opacity="0.5"/>
+
+          <!-- Subtle hair shine -->
+          <path d="M98 20 Q95 48 94 70" stroke="rgba(167,139,250,0.2)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+          <!-- ═══ EYEBROWS ═══ -->
+          <!-- Left brow -->
+          <path id="brow-l" d="M82 72 Q93 67 102 70" stroke="#2a1840" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Right brow -->
+          <path id="brow-r" d="M118 70 Q127 67 138 72" stroke="#2a1840" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+          <!-- ═══ EYES ═══ -->
+          <!-- Left eye socket shadow -->
+          <ellipse cx="92" cy="88" rx="14" ry="10" fill="rgba(0,0,0,0.04)"/>
+          <!-- Left white -->
+          <ellipse id="eye-white-l" cx="92" cy="88" rx="12" ry="8.5" fill="#f8f5f0"/>
+          <!-- Left iris -->
+          <ellipse id="iris-l" cx="92" cy="88" rx="8" ry="8" fill="url(#g-iris-l)"/>
+          <!-- Left pupil -->
+          <ellipse id="pupil-l" cx="92" cy="88" rx="4" ry="4.5" fill="#001a22"/>
+          <!-- Left pupil glint -->
+          <ellipse cx="94" cy="85" rx="2" ry="1.8" fill="white" fill-opacity="0.9"/>
+          <ellipse cx="90" cy="90" rx="0.8" ry="0.8" fill="white" fill-opacity="0.5"/>
+          <!-- Left iris tech ring -->
+          <ellipse cx="92" cy="88" rx="8" ry="8" fill="none" stroke="rgba(78,240,255,0.5)" stroke-width="0.7" filter="url(#f-soft)"/>
+          <!-- Left upper lid -->
+          <path id="lid-l" d="M80 84 Q92 78 104 84" stroke="#1a0a28" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <!-- Lashes left -->
+          <g stroke="#1a0a28" stroke-width="1.3" stroke-linecap="round">
+            <line x1="80" y1="84" x2="78" y2="81"/>
+            <line x1="84" y1="81" x2="83" y2="78"/>
+            <line x1="88" y1="79" x2="88" y2="76"/>
+            <line x1="92" y1="79" x2="93" y2="76"/>
+            <line x1="96" y1="80" x2="98" y2="77"/>
+            <line x1="101" y1="83" x2="103" y2="81"/>
+          </g>
+          <!-- Lower lid left -->
+          <path d="M80 92 Q92 97 104 92" stroke="#e8a882" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+          <!-- Right eye socket -->
+          <ellipse cx="128" cy="88" rx="14" ry="10" fill="rgba(0,0,0,0.04)"/>
+          <!-- Right white -->
+          <ellipse id="eye-white-r" cx="128" cy="88" rx="12" ry="8.5" fill="#f8f5f0"/>
+          <!-- Right iris -->
+          <ellipse id="iris-r" cx="128" cy="88" rx="8" ry="8" fill="url(#g-iris-r)"/>
+          <!-- Right pupil -->
+          <ellipse id="pupil-r" cx="128" cy="88" rx="4" ry="4.5" fill="#001a22"/>
+          <!-- Right pupil glint -->
+          <ellipse cx="130" cy="85" rx="2" ry="1.8" fill="white" fill-opacity="0.9"/>
+          <ellipse cx="126" cy="90" rx="0.8" ry="0.8" fill="white" fill-opacity="0.5"/>
+          <!-- Right iris tech ring -->
+          <ellipse cx="128" cy="88" rx="8" ry="8" fill="none" stroke="rgba(78,240,255,0.5)" stroke-width="0.7" filter="url(#f-soft)"/>
+          <!-- Right upper lid -->
+          <path id="lid-r" d="M116 84 Q128 78 140 84" stroke="#1a0a28" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <!-- Lashes right -->
+          <g stroke="#1a0a28" stroke-width="1.3" stroke-linecap="round">
+            <line x1="116" y1="84" x2="114" y2="81"/>
+            <line x1="120" y1="81" x2="119" y2="78"/>
+            <line x1="124" y1="79" x2="124" y2="76"/>
+            <line x1="128" y1="79" x2="129" y2="76"/>
+            <line x1="132" y1="80" x2="134" y2="77"/>
+            <line x1="137" y1="83" x2="139" y2="81"/>
+          </g>
+          <!-- Lower lid right -->
+          <path d="M116 92 Q128 97 140 92" stroke="#e8a882" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+          <!-- ═══ NOSE ═══ -->
+          <path d="M107 108 Q105 120 102 124 Q106 127 110 126 Q114 127 118 124 Q115 120 113 108"
+                stroke="#d4a080" stroke-width="1.2" fill="none" opacity="0.5" stroke-linecap="round"/>
+          <!-- Nostrils -->
+          <ellipse cx="104" cy="125" rx="3" ry="1.8" fill="#d4a080" opacity="0.25"/>
+          <ellipse cx="116" cy="125" rx="3" ry="1.8" fill="#d4a080" opacity="0.25"/>
+
+          <!-- ═══ LIPS ═══ -->
+          <!-- Upper lip -->
+          <path id="lip-top" d="M96 145 Q102 140 110 142 Q118 140 124 145 Q118 148 110 147 Q102 148 96 145 Z"
+                fill="url(#g-lip)" fill-opacity="0.9"/>
+          <!-- Lower lip -->
+          <path id="lip-bot" d="M96 145 Q102 152 110 153 Q118 152 124 145 Q118 148 110 147 Q102 148 96 145 Z"
+                fill="#e07080" fill-opacity="0.8"/>
+          <!-- Lip shine -->
+          <ellipse cx="107" cy="146" rx="5" ry="2" fill="white" fill-opacity="0.2"/>
+          <!-- Mouth line (neutral) -->
+          <path id="mouth-line" d="M97 145 Q110 146 123 145" stroke="#c06070" stroke-width="0.5" fill="none" opacity="0.4"/>
+
+          <!-- ═══ CHEEKS & FACE DETAILS ═══ -->
+          <!-- Blush left -->
+          <ellipse cx="77" cy="108" rx="13" ry="8" fill="#ff8090" fill-opacity="0.10"/>
+          <!-- Blush right -->
+          <ellipse cx="143" cy="108" rx="13" ry="8" fill="#ff8090" fill-opacity="0.10"/>
+
+          <!-- Subtle freckle dots -->
+          <circle cx="86" cy="116" r="0.8" fill="#d4a080" opacity="0.3"/>
+          <circle cx="134" cy="118" r="0.8" fill="#d4a080" opacity="0.3"/>
+
+          <!-- ═══ CYBER DETAILS ON FACE ═══ -->
+          <!-- Left temple data line -->
+          <path d="M64 92 Q68 96 72 94" stroke="rgba(78,240,255,0.35)" stroke-width="0.8" fill="none" filter="url(#f-soft)"/>
+          <circle cx="64" cy="92" r="1.5" fill="rgba(78,240,255,0.5)" filter="url(#f-soft)"/>
+          <!-- Right temple data line -->
+          <path d="M156 92 Q152 96 148 94" stroke="rgba(78,240,255,0.35)" stroke-width="0.8" fill="none" filter="url(#f-soft)"/>
+          <circle cx="156" cy="92" r="1.5" fill="rgba(78,240,255,0.5)" filter="url(#f-soft)"/>
+
+          <!-- Subtle iris glow pulse -->
+          <ellipse cx="92" cy="88" rx="9" ry="9" fill="none" stroke="rgba(78,240,255,0.4)" filter="url(#f-soft)">
+            <animate attributeName="opacity" values="0;0.6;0" dur="3.5s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-width" values="0;1.5;0" dur="3.5s" repeatCount="indefinite"/>
+          </ellipse>
+          <ellipse cx="128" cy="88" rx="9" ry="9" fill="none" stroke="rgba(78,240,255,0.4)" filter="url(#f-soft)">
+            <animate attributeName="opacity" values="0;0.6;0" dur="3.5s" repeatCount="indefinite" begin="0.1s"/>
+            <animate attributeName="stroke-width" values="0;1.5;0" dur="3.5s" repeatCount="indefinite" begin="0.1s"/>
+          </ellipse>
+
+          <!-- Blink animation layer (transparent eyelids) -->
+          <ellipse id="blink-l" cx="92" cy="88" rx="12" ry="0" fill="url(#g-skin)" opacity="0"/>
+          <ellipse id="blink-r" cx="128" cy="88" rx="12" ry="0" fill="url(#g-skin)" opacity="0"/>
+
+        </svg>
+      </div>
+
+      <div class="avatar-fade"></div>
+
+      <!-- Lip bars -->
+      <div class="lip-bars" id="lipBars">
+        <div class="lip-bar"></div><div class="lip-bar"></div><div class="lip-bar"></div>
+        <div class="lip-bar"></div><div class="lip-bar"></div><div class="lip-bar"></div>
+        <div class="lip-bar"></div>
+      </div>
+
+      <div class="holo-platform"></div>
+      <div class="avatar-label">
+        <div class="avatar-led" id="avLed"></div>
+        <span class="avatar-state-txt" id="avTxt">Ready</span>
+      </div>
+    </div>
+
+  </div><!-- /avatar-col -->
+
+  <!-- ══ CHAT COLUMN ══ -->
+  <div class="chat-col" id="chatCol" style="display:contents">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="app-icon">🧠</div>
+        <div>
+          <div class="app-name">Pika</div>
+          <div class="app-tag">Neural Companion</div>
+        </div>
+      </div>
+      <div class="conn-dot">
+        <div class="conn-dot-led" id="connLed"></div>
+        <span id="connTxt">—</span>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <div class="stat-item">RAM <span id="ramEl">—</span>%</div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">EVO <span id="evoEl">—</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">UP <span id="upEl">—</span></div>
+      <button class="btn-evolve" id="btnEvo">⚡ Evolve</button>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages" id="messages">
+      <div class="welcome">
+        <div class="welcome-tag">Pika · Online</div>
+        <div class="welcome-bubble">
+          Hey Ankit! 👋 Main hoon <strong>Pika</strong> — teri personal AGI.<br>
+          Kuch bhi poocho, ya voice se bolo — main yahan hoon.
+        </div>
+      </div>
+      <div class="chips" id="chips">
+        <button class="chip" data-q="Status batao — battery aur RAM?">📊 Status</button>
+        <button class="chip" data-q="Screen pe kya hai?">👁️ Screen</button>
+        <button class="chip" data-q="WiFi on karo">📶 WiFi</button>
+        <button class="chip" data-q="Torch on karo">🔦 Torch</button>
+        <button class="chip" data-q="Evolution history batao">🧬 Evolution</button>
+        <button class="chip" data-q="Kya naya seekha aaj?">💭 Update</button>
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="input-area">
+      <div class="input-row">
+        <div class="input-box">
+          <textarea id="inp" placeholder="Kuch bhi poocho..." rows="1" maxlength="3000"></textarea>
+        </div>
+        <button class="icon-btn btn-voice" id="btnVoice" title="Voice input">🎙️</button>
+        <button class="icon-btn btn-send" id="btnSend">↑</button>
+      </div>
+      <div class="voice-hint" id="vHint"></div>
+    </div>
+
+  </div><!-- /chat-col -->
+
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════
+// PIKA UI ENGINE
+// ═══════════════════════════════════════════
+
+// ── LAYOUT: apply proper structure on desktop ──
+function applyLayout() {
+  const app      = document.getElementById('app');
+  const avCol    = document.getElementById('avatarCol');
+  const chatCol  = document.getElementById('chatCol');
+  const avSec    = document.getElementById('avatarSection');
+
+  if (window.innerWidth >= 640) {
+    app.style.flexDirection = 'row';
+    avCol.style.display     = 'flex';
+    avCol.style.width       = '320px';
+    avCol.style.flexShrink  = '0';
+    avCol.style.flexDirection = 'column';
+    avCol.style.borderRight = '1px solid rgba(255,255,255,0.07)';
+    avCol.style.overflow    = 'hidden';
+    avSec.style.flex        = '1';
+    avSec.style.height      = 'auto';
+    chatCol.style.display   = 'flex';
+    chatCol.style.flex      = '1';
+    chatCol.style.flexDirection = 'column';
+    chatCol.style.overflow  = 'hidden';
+    chatCol.style.minWidth  = '0';
+  } else {
+    app.style.flexDirection = 'column';
+    avCol.style.display     = 'contents';
+    chatCol.style.display   = 'contents';
+    avSec.style.height      = '280px';
+    avSec.style.flex        = '';
+  }
+}
+applyLayout();
+window.addEventListener('resize', applyLayout);
+
+// ── ELEMENTS ──────────────────────────────
+const $ = id => document.getElementById(id);
+const msgs    = $('messages');
+const inp     = $('inp');
+const btnSend = $('btnSend');
+const btnVoice= $('btnVoice');
+const btnEvo  = $('btnEvo');
+const avLed   = $('avLed');
+const avTxt   = $('avTxt');
+const lipBars = $('lipBars');
+const pikaSvg = $('pikaSvg');
+const connLed = $('connLed');
+const connTxt = $('connTxt');
+const ramEl   = $('ramEl');
+const evoEl   = $('evoEl');
+const upEl    = $('upEl');
+const vHint   = $('vHint');
+
+let busy = false, thinkEl = null, speaking = false, recording = false;
+let socket, recog;
+
+// ── BLINK ENGINE ──────────────────────────
+// Natural eye blink every 3–6 seconds
+let blinkInterval;
+function doBlink() {
+  const l = $('blink-l'), r = $('blink-r');
+  if(!l||!r) return;
+  // Close
+  l.setAttribute('ry','8.5'); l.setAttribute('opacity','1');
+  r.setAttribute('ry','8.5'); r.setAttribute('opacity','1');
+  setTimeout(()=>{
+    l.setAttribute('ry','0'); l.setAttribute('opacity','0');
+    r.setAttribute('ry','0'); r.setAttribute('opacity','0');
+  }, 120);
+}
+function startBlink() {
+  clearInterval(blinkInterval);
+  const next = () => { doBlink(); blinkInterval = setTimeout(next, 3000 + Math.random()*4000); };
+  blinkInterval = setTimeout(next, 2000);
+}
+startBlink();
+
+// ── EXPRESSION ENGINE ─────────────────────
+// Changes eyebrows, pupils, lips to show emotion
+const expressions = {
+  neutral: {
+    browL: 'M82 72 Q93 67 102 70',
+    browR: 'M118 70 Q127 67 138 72',
+    lipTop:'M96 145 Q102 140 110 142 Q118 140 124 145 Q118 148 110 147 Q102 148 96 145 Z',
+    lipBot:'M96 145 Q102 152 110 153 Q118 152 124 145 Q118 148 110 147 Q102 148 96 145 Z',
+    pupilL:{cx:92,cy:88},pupilR:{cx:128,cy:88},
+  },
+  happy: {
+    browL: 'M82 70 Q93 64 102 68',
+    browR: 'M118 68 Q127 64 138 70',
+    lipTop:'M96 145 Q102 137 110 139 Q118 137 124 145 Q118 147 110 146 Q102 147 96 145 Z',
+    lipBot:'M96 145 Q103 155 110 156 Q117 155 124 145 Q118 147 110 146 Q102 147 96 145 Z',
+    pupilL:{cx:92,cy:87},pupilR:{cx:128,cy:87},
+  },
+  thinking: {
+    browL: 'M82 70 Q93 72 102 69',
+    browR: 'M118 69 Q127 72 138 70',
+    lipTop:'M96 147 Q102 143 110 144 Q118 143 124 147 Q118 149 110 148 Q102 149 96 147 Z',
+    lipBot:'M96 147 Q102 152 110 153 Q118 152 124 147 Q118 149 110 148 Q102 149 96 147 Z',
+    pupilL:{cx:90,cy:87},pupilR:{cx:130,cy:87},
+  },
+  surprised: {
+    browL: 'M82 68 Q93 62 102 66',
+    browR: 'M118 66 Q127 62 138 68',
+    lipTop:'M98 145 Q104 139 110 141 Q116 139 122 145 Q116 148 110 147 Q104 148 98 145 Z',
+    lipBot:'M98 145 Q104 154 110 156 Q116 154 122 145 Q116 148 110 147 Q104 148 98 145 Z',
+    pupilL:{cx:92,cy:89},pupilR:{cx:128,cy:89},
+  },
+  speaking: {
+    browL: 'M82 71 Q93 66 102 70',
+    browR: 'M118 70 Q127 66 138 71',
+    lipTop:'M96 144 Q102 139 110 141 Q118 139 124 144 Q118 147 110 146 Q102 147 96 144 Z',
+    lipBot:'M96 144 Q102 153 110 155 Q118 153 124 144 Q118 147 110 146 Q102 147 96 144 Z',
+    pupilL:{cx:92,cy:88},pupilR:{cx:128,cy:88},
+  },
+};
+
+function applyExpression(name) {
+  const ex = expressions[name] || expressions.neutral;
+  const set = (id,attr,val) => { const el=document.getElementById ? document.getElementById(id) : null; if(el) el.setAttribute(attr,val); };
+  set('brow-l','d',ex.browL);
+  set('brow-r','d',ex.browR);
+  set('lip-top','d',ex.lipTop);
+  set('lip-bot','d',ex.lipBot);
+  set('pupil-l','cx',ex.pupilL.cx); set('pupil-l','cy',ex.pupilL.cy);
+  set('pupil-r','cx',ex.pupilR.cx); set('pupil-r','cy',ex.pupilR.cy);
+}
+
+// ── AVATAR STATE ──────────────────────────
+function setAvatarState(state) {
+  // LED + text
+  avLed.className = 'avatar-led ' + state;
+  const labels = { '':'Ready', thinking:'Thinking...', speaking:'Speaking', listening:'Listening', happy:'Happy' };
+  avTxt.textContent = labels[state] || 'Ready';
+
+  // SVG filter
+  pikaSvg.className = state;
+
+  // Expression
+  applyExpression(state || 'neutral');
+
+  // Lip bars
+  if(state==='speaking') lipBars.classList.add('on');
+  else lipBars.classList.remove('on');
+}
+
+// ── TTS ───────────────────────────────────
+const synth = window.speechSynthesis;
+let pikaVoice = null;
+function loadVoice() {
+  const vs = synth.getVoices();
+  pikaVoice = vs.find(v => /samantha|zira|google uk english female|female/i.test(v.name))
+    || vs.find(v => v.lang === 'en-US') || vs[0] || null;
+}
+synth.onvoiceschanged = loadVoice;
+setTimeout(loadVoice, 500);
+
+function speak(text) {
+  if (!synth) return;
+  synth.cancel();
+  const clean = text.replace(/```[\s\S]*?```/g,' ').replace(/[*_#`\[\]]/g,'').substring(0,320).trim();
+  if(!clean) return;
+  const u = new SpeechSynthesisUtterance(clean);
+  if(pikaVoice) u.voice = pikaVoice;
+  u.rate = 0.92; u.pitch = 1.1; u.volume = 1;
+  u.onstart = () => { speaking=true; setAvatarState('speaking'); };
+  u.onend = u.onerror = () => { speaking=false; setAvatarState(''); };
+  synth.speak(u);
+}
+
+// ── VOICE INPUT ───────────────────────────
+function setupVoice() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR) { btnVoice.style.opacity='0.3'; return; }
+  recog = new SR();
+  recog.continuous=false; recog.interimResults=true; recog.lang='hi-IN';
+
+  recog.onstart = () => {
+    recording=true; btnVoice.classList.add('recording');
+    setAvatarState('listening');
+    vHint.textContent='🎙️ Sun rahi hoon...'; vHint.style.opacity='1';
+  };
+  recog.onresult = e => {
+    let f='',interim='';
+    for(let i=e.resultIndex;i<e.results.length;i++) {
+      if(e.results[i].isFinal) f+=e.results[i][0].transcript;
+      else interim+=e.results[i][0].transcript;
+    }
+    const shown = f||interim;
+    vHint.textContent = shown ? `"${shown}"` : '🎙️ Sun rahi hoon...';
+    if(f) inp.value=f;
+  };
+  recog.onend = () => {
+    recording=false; btnVoice.classList.remove('recording');
+    vHint.style.opacity='0'; setAvatarState('');
+    setTimeout(()=>{ vHint.textContent=''; },300);
+    if(inp.value.trim()) send();
+  };
+  recog.onerror = e => {
+    recording=false; btnVoice.classList.remove('recording');
+    vHint.style.opacity='0'; setAvatarState('');
+    if(e.error!=='no-speech') vHint.textContent='Voice error: '+e.error;
+  };
+}
+setupVoice();
+btnVoice.onclick = () => {
+  if(!recog) return;
+  if(recording){ recog.stop(); return; }
+  if(speaking) synth.cancel();
+  try { recog.start(); } catch(e){}
+};
+
+// ── SOCKET ────────────────────────────────
+function initSocket() {
+  try {
+    socket = io('http://localhost:3000', { transports:['websocket','polling'] });
+    socket.on('connect', () => {
+      connLed.className='conn-dot-led ok'; connTxt.textContent='Live';
+      socket.emit('request_status');
+    });
+    socket.on('disconnect', () => { connLed.className='conn-dot-led err'; connTxt.textContent='Off'; });
+    socket.on('connect_error', () => { connLed.className='conn-dot-led err'; connTxt.textContent='No server'; });
+    socket.on('pika_thinking', ({status}) => { if(status) setBusy(true); else setBusy(false); });
+    socket.on('pika_reply', ({reply,error,timestamp}) => {
+      removeBusy();
+      addMsg('pika', reply, timestamp, error);
+      if(!error) { setAvatarState('happy'); setTimeout(()=>speak(reply),200); }
+    });
+    socket.on('pika_status', s => updateStats(s));
+    socket.on('pika_state', ({sleeping,shutdown}) => {
+      if(shutdown){connLed.className='conn-dot-led err'; connTxt.textContent='Shutdown';}
+    });
+  } catch(e) { connTxt.textContent='Error'; }
+}
+initSocket();
+
+// ── STATS ─────────────────────────────────
+function updateStats(s) {
+  if(s.memory?.percent !== undefined) ramEl.textContent = s.memory.percent;
+  if(s.evolution?.rate) evoEl.textContent = s.evolution.rate;
+  if(s.uptime !== undefined) {
+    const m = Math.floor(s.uptime/60), h = Math.floor(m/60);
+    upEl.textContent = h>0 ? `${h}h ${m%60}m` : `${m}m`;
+  }
+}
+setInterval(()=>{ if(socket?.connected) socket.emit('request_status'); },30000);
+
+// ── STATE HELPERS ─────────────────────────
+function setBusy(on) {
+  busy = on; btnSend.disabled = on; btnEvo.disabled = on;
+  if(on){ setAvatarState('thinking'); thinkEl = addThinking(); }
+  else  { setAvatarState(''); }
+}
+function removeBusy() {
+  busy=false; btnSend.disabled=false; btnEvo.disabled=false;
+  if(thinkEl){ thinkEl.remove(); thinkEl=null; }
+}
+
+// ── RENDER ────────────────────────────────
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const fmt = t => t
+  .replace(/```([\s\S]*?)```/g,(_,c)=>`<pre>${esc(c.trim())}</pre>`)
+  .replace(/`([^`]+)`/g,(_,c)=>`<code>${esc(c)}</code>`)
+  .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+const timeStr = ts => ts
+  ? new Date(ts).toLocaleTimeString('en-IN',{hour12:true,hour:'numeric',minute:'2-digit'})
+  : new Date().toLocaleTimeString('en-IN',{hour12:true,hour:'numeric',minute:'2-digit'});
+
+function removeWelcome() {
+  const w=msgs.querySelector('.welcome'); if(w) w.remove();
+}
+
+function addMsg(role,text,ts,error=false) {
+  removeWelcome();
+  const el=document.createElement('div');
+  el.className=`msg ${role}${error?' error':''}`;
+  el.innerHTML=`<div class="msg-meta">${role==='user'?'You':'Pika'} · ${timeStr(ts)}</div>
+    <div class="msg-bubble">${fmt(text)}</div>`;
+  msgs.appendChild(el);
+  msgs.scrollTop=msgs.scrollHeight;
+  return el;
+}
+function addThinking() {
+  removeWelcome();
+  const el=document.createElement('div');
+  el.className='msg pika';
+  el.innerHTML=`<div class="msg-meta">Pika · ${timeStr()}</div>
+    <div class="thinking-bubble"><div class="td"></div><div class="td"></div><div class="td"></div></div>`;
+  msgs.appendChild(el);
+  msgs.scrollTop=msgs.scrollHeight;
+  return el;
+}
+
+// ── SEND ──────────────────────────────────
+function send() {
+  const text=inp.value.trim(); if(!text||busy) return;
+  addMsg('user',text);
+  inp.value=''; inp.style.height='auto';
+
+  if(socket?.connected) {
+    socket.emit('user_message',{message:text});
+    setBusy(true);
+  } else {
+    setBusy(true);
+    fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})})
+      .then(r=>r.json())
+      .then(d=>{ removeBusy(); addMsg('pika',d.reply||d.error,null,!!d.error); if(d.reply){setAvatarState('happy');setTimeout(()=>speak(d.reply),200);} })
+      .catch(e=>{ removeBusy(); addMsg('pika','Server se connect nahi ho paya: '+e.message,null,true); });
+  }
+}
+
+// ── EVOLVE ────────────────────────────────
+btnEvo.onclick = () => {
+  if(busy) return;
+  addMsg('user','⚡ Evolution pulse trigger kar rahi hoon...');
+  if(socket?.connected){ socket.emit('autonomous_pulse'); setBusy(true); }
+  else {
+    setBusy(true);
+    fetch('/api/evolve',{method:'POST'})
+      .then(r=>r.json()).then(d=>{removeBusy();addMsg('pika',d.reply||d.error,null,!!d.error);})
+      .catch(e=>{removeBusy();addMsg('pika','Error: '+e.message,null,true);});
+  }
+};
+
+// ── CHIPS ─────────────────────────────────
+document.getElementById('chips').onclick = e => {
+  const c=e.target.closest('.chip'); if(!c||busy) return;
+  inp.value=c.dataset.q; send();
+};
+
+// ── INPUT EVENTS ──────────────────────────
+btnSend.onclick = send;
+inp.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey&&!e.ctrlKey){e.preventDefault();send();} });
+inp.addEventListener('input', () => {
+  inp.style.height='auto';
+  inp.style.height=Math.min(inp.scrollHeight,100)+'px';
+});
+
+// ── INITIAL BOOT ──────────────────────────
+setTimeout(() => { setAvatarState('happy'); setTimeout(()=>{ setAvatarState(''); },2000); }, 800);
+
+// Focus input on desktop
+if(window.innerWidth>=640) inp.focus();
+
+</script>
+</body>
+</html>

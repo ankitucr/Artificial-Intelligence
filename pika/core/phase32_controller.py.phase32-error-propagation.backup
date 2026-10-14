@@ -1,0 +1,585 @@
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Any
+
+from .transaction_engine import TransactionEngine
+from .verification_engine import VerificationEngine
+from .error_analyzer import ErrorAnalyzer
+from .recovery_engine import RecoveryEngine
+
+
+class Phase32Controller:
+    """
+    Phase 32 controlled execution pipeline.
+
+    Worker proposes changes.
+    PIKA owns:
+        - transaction
+        - execution
+        - verification
+        - error analysis
+        - recovery decision
+        - commit / rollback
+
+    The worker never decides whether a change is committed.
+    """
+
+    def __init__(self, tool_runtime):
+        self.tool_runtime = tool_runtime
+
+        workspace_root = (
+            Path(__file__).resolve().parents[1]
+            / "workspace"
+        )
+
+        self.transaction = TransactionEngine(
+            workspace_root=workspace_root
+        )
+
+        self.verification = VerificationEngine(
+            tool_runtime
+        )
+
+        self.error_analyzer = ErrorAnalyzer()
+        self.recovery = RecoveryEngine()
+
+    # ---------------------------------------------------------
+    # ERROR DIAGNOSIS
+    # ---------------------------------------------------------
+
+    def _diagnose(
+        self,
+        error_result: dict[str, Any],
+    ) -> dict[str, Any]:
+
+        return self.error_analyzer.analyze(
+            error_result
+        )
+
+    # ---------------------------------------------------------
+    # RECOVERY FEEDBACK
+    # ---------------------------------------------------------
+
+    @staticmethod
+    def _feedback(
+        diagnosis: dict[str, Any],
+        rollback_result: dict[str, Any] | None,
+    ) -> str:
+
+        error_type = diagnosis.get(
+            "error_type",
+            "unknown",
+        )
+
+        action = diagnosis.get(
+            "recommended_action",
+            "deep_diagnosis",
+        )
+
+        root_cause = diagnosis.get(
+            "root_cause",
+            "Unknown failure.",
+        )
+
+        package = diagnosis.get(
+            "package"
+        )
+
+        package_text = ""
+
+        if package:
+            package_text = (
+                f"\nDetected package: {package}"
+            )
+
+        rollback_text = ""
+
+        if rollback_result is not None:
+            rollback_text = (
+                "\nTransaction rollback: "
+                + str(rollback_result)
+            )
+
+        return (
+            "PHASE 32 RECOVERY DIAGNOSIS\n"
+            f"Error type: {error_type}\n"
+            f"Root cause: {root_cause}\n"
+            f"Recommended recovery: {action}"
+            f"{package_text}"
+            f"{rollback_text}\n\n"
+            "The failed workspace changes were rolled back. "
+            "Do not assume the previous attempt succeeded. "
+            "Use this diagnosis to produce a corrected attempt."
+        )
+
+    # ---------------------------------------------------------
+    # EXECUTION
+    # ---------------------------------------------------------
+
+    def execute(
+        self,
+        worker_output: str,
+        attempt: int = 1,
+    ) -> dict[str, Any]:
+
+        # -----------------------------------------------------
+        # PARSE BEFORE TRANSACTION
+        # -----------------------------------------------------
+
+        parsed = self._parse_actions(worker_output)
+
+        if not parsed.get("success"):
+            diagnosis = self._diagnose(
+                {
+                    "success": False,
+                    "error": parsed.get(
+                        "error",
+                        "Invalid worker output.",
+                    ),
+                }
+            )
+
+            recovery = self.recovery.decide(
+                diagnosis,
+                attempt=attempt,
+            )
+
+            return {
+                "success": False,
+                "stage": "parse",
+                "error": parsed.get("error"),
+                "diagnosis": diagnosis,
+                "recovery": recovery,
+                "recovery_feedback": self._feedback(
+                    diagnosis,
+                    None,
+                ),
+            }
+
+        files = parsed.get(
+            "files",
+            []
+        )
+
+        commands = parsed.get(
+            "commands",
+            []
+        )
+
+        paths = []
+
+        for item in files:
+            if isinstance(item, dict):
+                path = item.get("path")
+
+                if isinstance(path, str):
+                    paths.append(path)
+
+        # -----------------------------------------------------
+        # BEGIN TRANSACTION BEFORE ANY FILE MODIFICATION
+        # -----------------------------------------------------
+
+        transaction_id = (
+            f"TX-PHASE32-ATTEMPT-{attempt}-"
+            f"{self.transaction.generate_id()}"
+        )
+
+        begin = self.transaction.begin(
+            paths=paths,
+            transaction_id=transaction_id,
+        )
+
+        if not begin.get("success"):
+            diagnosis = self._diagnose(
+                {
+                    "success": False,
+                    "error": begin.get(
+                        "error",
+                        "Transaction could not start.",
+                    ),
+                }
+            )
+
+            recovery = self.recovery.decide(
+                diagnosis,
+                attempt=attempt,
+            )
+
+            return {
+                "success": False,
+                "stage": "transaction_begin",
+                "error": begin.get("error"),
+                "transaction": begin,
+                "diagnosis": diagnosis,
+                "recovery": recovery,
+                "recovery_feedback": self._feedback(
+                    diagnosis,
+                    None,
+                ),
+            }
+
+        print(
+            "[PHASE 32] TRANSACTION BEGIN "
+            f"id={transaction_id}"
+        )
+
+        # -----------------------------------------------------
+        # EXECUTE WORKER ACTIONS
+        # -----------------------------------------------------
+
+        # Import here to avoid changing the existing
+        # WorkspaceExecutor dependency graph.
+        from .workspace_executor import WorkspaceExecutor
+
+        executor = WorkspaceExecutor(
+            self.tool_runtime
+        )
+
+        execution = executor.execute_worker_output(
+            worker_output
+        )
+
+        # -----------------------------------------------------
+        # EXECUTION FAILURE
+        # -----------------------------------------------------
+
+        if not execution.get("success"):
+
+            diagnosis_input = {
+                "success": False,
+                "error": execution.get(
+                    "error",
+                    "Workspace execution failed.",
+                ),
+            }
+
+            execution_details = execution.get(
+                "execution"
+            )
+
+            if isinstance(
+                execution_details,
+                dict,
+            ):
+                failure = execution_details.get(
+                    "error"
+                )
+
+                if failure:
+                    diagnosis_input["error"] = (
+                        str(
+                            diagnosis_input["error"]
+                        )
+                        + "\n"
+                        + str(failure)
+                    )
+
+                nested_results = execution_details.get(
+                    "results",
+                    [],
+                )
+
+                if nested_results:
+                    last = nested_results[-1]
+
+                    if isinstance(last, dict):
+                        nested_result = last.get(
+                            "result"
+                        )
+
+                        if isinstance(
+                            nested_result,
+                            dict,
+                        ):
+                            diagnosis_input.update(
+                                nested_result
+                            )
+
+            diagnosis = self._diagnose(
+                diagnosis_input
+            )
+
+            recovery = self.recovery.decide(
+                diagnosis,
+                attempt=attempt,
+            )
+
+            rollback = self.transaction.rollback(
+                transaction_id
+            )
+
+            feedback = self._feedback(
+                diagnosis,
+                rollback,
+            )
+
+            print(
+                "[PHASE 32] EXECUTION FAILED"
+            )
+
+            print(
+                "[PHASE 32] ERROR TYPE="
+                f"{diagnosis.get('error_type')}"
+            )
+
+            print(
+                "[PHASE 32] RECOVERY="
+                f"{recovery.get('action')}"
+            )
+
+            print(
+                "[PHASE 32] ROLLBACK="
+                f"{rollback.get('success')}"
+            )
+
+            return {
+                "success": False,
+                "stage": execution.get(
+                    "stage",
+                    "execution",
+                ),
+                "error": execution.get(
+                    "error"
+                ),
+                "execution": execution,
+                "transaction": {
+                    "id": transaction_id,
+                    "begin": begin,
+                    "rollback": rollback,
+                },
+                "diagnosis": diagnosis,
+                "recovery": recovery,
+                "recovery_feedback": feedback,
+            }
+
+        # -----------------------------------------------------
+        # INDEPENDENT VERIFICATION
+        # -----------------------------------------------------
+
+        python_files = [
+            path
+            for path in paths
+            if path.endswith(".py")
+        ]
+
+        verification = self.verification.verify(
+            files=python_files,
+            commands=[],
+        )
+
+        if not verification.get("success"):
+
+            diagnosis = self._diagnose(
+                {
+                    "success": False,
+                    "error": (
+                        "Independent verification failed.\n"
+                        + str(verification)
+                    ),
+                }
+            )
+
+            recovery = self.recovery.decide(
+                diagnosis,
+                attempt=attempt,
+            )
+
+            rollback = self.transaction.rollback(
+                transaction_id
+            )
+
+            feedback = self._feedback(
+                diagnosis,
+                rollback,
+            )
+
+            print(
+                "[PHASE 32] INDEPENDENT "
+                "VERIFICATION FAILED"
+            )
+
+            print(
+                "[PHASE 32] ROLLBACK="
+                f"{rollback.get('success')}"
+            )
+
+            return {
+                "success": False,
+                "stage": "verification",
+                "error": (
+                    "Independent verification failed."
+                ),
+                "execution": execution,
+                "verification": verification,
+                "transaction": {
+                    "id": transaction_id,
+                    "begin": begin,
+                    "rollback": rollback,
+                },
+                "diagnosis": diagnosis,
+                "recovery": recovery,
+                "recovery_feedback": feedback,
+            }
+
+        # -----------------------------------------------------
+        # COMMIT
+        # -----------------------------------------------------
+
+        commit = self.transaction.commit(
+            transaction_id
+        )
+
+        if not commit.get("success"):
+
+            diagnosis = self._diagnose(
+                {
+                    "success": False,
+                    "error": commit.get(
+                        "error",
+                        "Transaction commit failed.",
+                    ),
+                }
+            )
+
+            recovery = self.recovery.decide(
+                diagnosis,
+                attempt=attempt,
+            )
+
+            rollback = self.transaction.rollback(
+                transaction_id
+            )
+
+            return {
+                "success": False,
+                "stage": "commit",
+                "error": commit.get("error"),
+                "execution": execution,
+                "verification": verification,
+                "transaction": {
+                    "id": transaction_id,
+                    "begin": begin,
+                    "commit": commit,
+                    "rollback": rollback,
+                },
+                "diagnosis": diagnosis,
+                "recovery": recovery,
+                "recovery_feedback": self._feedback(
+                    diagnosis,
+                    rollback,
+                ),
+            }
+
+        print(
+            "[PHASE 32] VERIFICATION PASS"
+        )
+
+        print(
+            "[PHASE 32] COMMIT SUCCESS"
+        )
+
+        return {
+            "success": True,
+            "stage": "committed",
+            "execution": execution,
+            "verification": verification,
+            "transaction": {
+                "id": transaction_id,
+                "begin": begin,
+                "commit": commit,
+            },
+        }
+
+    # ---------------------------------------------------------
+    # PARSER
+    # ---------------------------------------------------------
+
+    @staticmethod
+    def _parse_actions(
+        output: str,
+    ) -> dict[str, Any]:
+
+        import json
+        import re
+
+        if not output:
+            return {
+                "success": False,
+                "error": (
+                    "Worker returned empty output."
+                ),
+            }
+
+        text = output.strip()
+
+        fenced = re.search(
+            r"```(?:json)?\s*(.*?)\s*```",
+            text,
+            re.DOTALL | re.IGNORECASE,
+        )
+
+        if fenced:
+            text = fenced.group(1).strip()
+
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+            start = text.find("{")
+            end = text.rfind("}")
+
+            if (
+                start == -1
+                or end == -1
+                or end <= start
+            ):
+                return {
+                    "success": False,
+                    "error": (
+                        "Worker output did not contain "
+                        "valid JSON workspace actions."
+                    ),
+                }
+
+            try:
+                data = json.loads(
+                    text[start:end + 1]
+                )
+            except json.JSONDecodeError as exc:
+                return {
+                    "success": False,
+                    "error": (
+                        "Worker JSON could not be parsed: "
+                        f"{exc}"
+                    ),
+                }
+
+        if not isinstance(data, dict):
+            return {
+                "success": False,
+                "error": (
+                    "Workspace action plan must "
+                    "be a JSON object."
+                ),
+            }
+
+        files = data.get("files", [])
+        commands = data.get("commands", [])
+
+        if not isinstance(files, list):
+            return {
+                "success": False,
+                "error": "'files' must be a list.",
+            }
+
+        if not isinstance(commands, list):
+            return {
+                "success": False,
+                "error": "'commands' must be a list.",
+            }
+
+        return {
+            "success": True,
+            "files": files,
+            "commands": commands,
+        }

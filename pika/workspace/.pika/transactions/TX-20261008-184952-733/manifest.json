@@ -1,0 +1,16 @@
+{
+  "created_at": 1791465592.7344885,
+  "files": [
+    {
+      "existed": true,
+      "is_file": true,
+      "path": "phase33_heal_target.py",
+      "sha256": "340ffcb9d275d63d6d2cc1a021f20d8814be4db2bb40289afe5349301e8472d1",
+      "size": 44
+    }
+  ],
+  "rolled_back_at": 1791465593.0305512,
+  "status": "rolled_back",
+  "transaction_id": "TX-20261008-184952-733",
+  "workspace_root": "/data/data/com.termux/files/home/pika/workspace"
+}

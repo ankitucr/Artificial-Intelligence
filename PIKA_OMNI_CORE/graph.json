@@ -1,0 +1,16 @@
+{
+  "node1": {
+    "data": {},
+    "edges": [
+      "node2"
+    ]
+  },
+  "node2": {
+    "data": {},
+    "edges": []
+  },
+  "d7224435-29ba-429f-8a28-67eaff56ac14": {
+    "data": {},
+    "edges": []
+  }
+}

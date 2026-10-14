@@ -1,0 +1,393 @@
+{
+  "version": 1,
+  "updated_at": "2026-10-13T23:16:44.463385+00:00",
+  "repositories": {
+    "public-apis/public-apis": {
+      "full_name": "public-apis/public-apis",
+      "description": "A collective list of free APIs",
+      "html_url": "https://github.com/public-apis/public-apis",
+      "default_branch": "master",
+      "language": "Python",
+      "stars": 487637,
+      "license": "MIT",
+      "license_url": "https://api.github.com/licenses/mit",
+      "repository_updated_at": "2026-10-12T02:54:43Z",
+      "downloaded_at": "2026-10-12T02:57:53.696544+00:00",
+      "downloaded": true,
+      "files": [
+        {
+          "path": "scripts/github_pull_request.sh",
+          "sha256": "940e98ec2149ac1c9fc542c4d0f0c2e699bcba874b0a37bb54a76b8604aa5fd6",
+          "bytes": 1352
+        },
+        {
+          "path": "scripts/tests/__init__.py",
+          "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed",
+          "bytes": 24
+        },
+        {
+          "path": "scripts/tests/test_validate_format.py",
+          "sha256": "33132b291e289d21a72b7f6239793bf0a589f39c468323051af860a125ae576b",
+          "bytes": 18154
+        },
+        {
+          "path": "scripts/tests/test_validate_links.py",
+          "sha256": "665593bdb7fb9ed62d0596193cff69b53bea38a73a404eb28d2e6b26c41c922e",
+          "bytes": 5725
+        },
+        {
+          "path": "scripts/validate/__init__.py",
+          "sha256": "55e89e1474b70225f606458675dc1334f6b0cc815e9d90b8a4bcd1e68e9627f9",
+          "bytes": 80
+        },
+        {
+          "path": "scripts/validate/format.py",
+          "sha256": "5350ec136fbbcdca859b472d6f21e2a684c3f8b9ad5768343d282f175c012c5c",
+          "bytes": 8464
+        },
+        {
+          "path": "scripts/validate/links.py",
+          "sha256": "8ee27355dfcf8955c99ef0a01bf9ea75d9239495ef8a9601933e65604bfc2bed",
+          "bytes": 8060
+        }
+      ],
+      "errors": [],
+      "tree_truncated": false
+    },
+    "EbookFoundation/free-programming-books": {
+      "full_name": "EbookFoundation/free-programming-books",
+      "description": ":books: Freely available programming books",
+      "html_url": "https://github.com/EbookFoundation/free-programming-books",
+      "default_branch": "main",
+      "language": "Python",
+      "stars": 398782,
+      "license": "CC-BY-4.0",
+      "license_url": "https://api.github.com/licenses/cc-by-4.0",
+      "repository_updated_at": "2026-10-12T02:49:37Z",
+      "downloaded_at": "2026-10-12T02:57:56.366802+00:00",
+      "downloaded": true,
+      "files": [
+        {
+          "path": "_includes/head-custom.html",
+          "sha256": "de000963254713cb5f3761ec98f021a8be8470a1e34d4b10321271d7805c2952",
+          "bytes": 292
+        },
+        {
+          "path": "scripts/rtl_ltr_linter.py",
+          "sha256": "f4afb12514fd017df50609e425243374834af804599d5dd37e9850ac326205be",
+          "bytes": 27037
+        }
+      ],
+      "errors": [],
+      "tree_truncated": false
+    },
+    "affaan-m/ECC": {
+      "full_name": "affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "html_url": "https://github.com/affaan-m/ECC",
+      "default_branch": "main",
+      "language": "JavaScript",
+      "stars": 277302,
+      "license": "MIT",
+      "license_url": "https://api.github.com/licenses/mit",
+      "repository_updated_at": "2026-10-12T02:57:54Z",
+      "downloaded_at": "2026-10-12T02:58:21.843329+00:00",
+      "downloaded": true,
+      "files": [
+        {
+          "path": "commitlint.config.js",
+          "sha256": "a5d1f83d6bc44fe17098a92ee56cb4c4f90efcccf9d08be9c1bcbfa856358def",
+          "bytes": 371
+        },
+        {
+          "path": "ecc_dashboard.py",
+          "sha256": "4ad4c54fb7be1d0b543317a2874006784a390346ef8939b986d4ceb3fcd5ad17",
+          "bytes": 41621
+        },
+        {
+          "path": "eslint.config.js",
+          "sha256": "9fee73fe4b90a568e28831c86cc5ecefe47b589aad11e83ead6480f8bd942bc2",
+          "bytes": 1293
+        },
+        {
+          "path": "install.sh",
+          "sha256": "d34996035ca0fb0fa8bedb3926cf06aa7bd25b559f9a456d2d7b8a95ea3589cb",
+          "bytes": 1737
+        },
+        {
+          "path": ".codebuddy/install.js",
+          "sha256": "b9137a2d406c30cbbb415391924820a8fe00a2a8e172bc98966c267a83136bd3",
+          "bytes": 8615
+        },
+        {
+          "path": ".codebuddy/install.sh",
+          "sha256": "2b8d425308b37ded3be54b7225217ad3e4545765b79391cd3a1856493cc913b3",
+          "bytes": 6925
+        },
+        {
+          "path": ".codebuddy/uninstall.js",
+          "sha256": "ff62995e4eacdabad5e21b0f64a509a61eda5794e099ee5a60c65f7496b15bde",
+          "bytes": 8110
+        },
+        {
+          "path": ".codebuddy/uninstall.sh",
+          "sha256": "3efdeddc6dfb5503a12ecb6c2e2c6b249f07339a43af414d9063e8582e2e73e1",
+          "bytes": 5662
+        },
+        {
+          "path": ".kiro/install.sh",
+          "sha256": "ab75e67a1a72fcdd6df5e130e01bfa9124c1bcc37e3190d2fe56e6524632c323",
+          "bytes": 4299
+        },
+        {
+          "path": ".opencode/index.ts",
+          "sha256": "c55095466a79e7047f5ce24969f6207d0d6ffbd0b7bc238f4f12addda86ddcd7",
+          "bytes": 1167
+        },
+        {
+          "path": ".trae/install.sh",
+          "sha256": "5a0993dc524e58559efe3ca7de4c9167aee82e273603e7a0445a9581f334a235",
+          "bytes": 7065
+        },
+        {
+          "path": ".trae/uninstall.sh",
+          "sha256": "0c04ef960af7aa4f6abd9736900554cd51f811720734c6f50b72272d97e389cb",
+          "bytes": 5641
+        }
+      ],
+      "errors": [],
+      "tree_truncated": false
+    },
+    "react/react": {
+      "full_name": "react/react",
+      "description": "The library for web and native user interfaces.",
+      "html_url": "https://github.com/react/react",
+      "default_branch": "main",
+      "language": "JavaScript",
+      "stars": 250878,
+      "license": "MIT",
+      "license_url": "https://api.github.com/licenses/mit",
+      "repository_updated_at": "2026-10-12T02:34:24Z",
+      "downloaded_at": "2026-10-12T02:58:45.497374+00:00",
+      "downloaded": true,
+      "files": [
+        {
+          "path": ".eslintrc.js",
+          "sha256": "c9b07e427bed823faa4b2b275e3aa6d2e7ad012c16d5c3647710cf22877e8a20",
+          "bytes": 20853
+        },
+        {
+          "path": ".prettierrc.js",
+          "sha256": "4cc54c7bdaee23a4f618f668387926081e5b13f90146e65c2f02a2f6a19f85e6",
+          "bytes": 1044
+        },
+        {
+          "path": "ReactVersions.js",
+          "sha256": "a5cb1a55d9e8f24e9324f6fcc8bdb4c7e1f3376cdf3a7eee6ae4733084bbcb18",
+          "bytes": 1994
+        },
+        {
+          "path": "babel.config-react-compiler.js",
+          "sha256": "75460349b6f7ff25a481f56c974dd9f1ce11fd4bb0bd2d3de3b6f5edb682c49b",
+          "bytes": 702
+        },
+        {
+          "path": "babel.config-ts.js",
+          "sha256": "bab836d5887af6593331910f9dafddb638f958efe221cef9fde0d1aa2fb322a6",
+          "bytes": 519
+        },
+        {
+          "path": "babel.config.js",
+          "sha256": "e19d924559fee9685b6412f3af0dd2346c5a85ce5e1f006e647a79ccd514e3aa",
+          "bytes": 959
+        },
+        {
+          "path": "compiler/.eslintrc.js",
+          "sha256": "8de70c8a894ecc56ab9e32dc4abafde86cee18ca221292b0b798a947e0c49884",
+          "bytes": 3568
+        },
+        {
+          "path": "scripts/worktree.sh",
+          "sha256": "a3e7a1e12b020fd260f618b0d66eaa2a9f68a55e7763e3a5cd09bd901db68a20",
+          "bytes": 4499
+        },
+        {
+          "path": "compiler/fixtures/align-method-call-scope-range-sync.js",
+          "sha256": "9cd0f68b03e14f86e8db0c2a6b86b30f75e78aba374d494254845c9dea6c0b90",
+          "bytes": 629
+        },
+        {
+          "path": "compiler/fixtures/fbt-scope-range-sync-with-jsx.js",
+          "sha256": "00397e40e24a8ea24b70774ca7a8df22362d1a3e606a65968413580e4b3d3d9c",
+          "bytes": 525
+        },
+        {
+          "path": "compiler/scripts/anonymize.js",
+          "sha256": "12534bf8713da32d985c808cf8dcf3b408518fcd48e85346ae59b1db1e479ad1",
+          "bytes": 5949
+        },
+        {
+          "path": "compiler/scripts/build-eslint-docs.js",
+          "sha256": "d0edc9acee5b3a84da1ceba7da2ac46a01d66286c8701e04299c33bf7ad8c9a2",
+          "bytes": 1001
+        }
+      ],
+      "errors": [],
+      "tree_truncated": false
+    },
+    "freeCodeCamp/freeCodeCamp": {
+      "full_name": "freeCodeCamp/freeCodeCamp",
+      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "html_url": "https://github.com/freeCodeCamp/freeCodeCamp",
+      "default_branch": "main",
+      "language": "TypeScript",
+      "stars": 456899,
+      "license": "BSD-3-Clause",
+      "license_url": "https://api.github.com/licenses/bsd-3-clause",
+      "repository_updated_at": "2026-10-12T02:38:36Z",
+      "downloaded_at": "2026-10-12T02:59:37.169803+00:00",
+      "downloaded": true,
+      "files": [
+        {
+          "path": ".devcontainer/codespace-env.sh",
+          "sha256": "c92d764fe8dfe818a6e37f35ee99edd5b98fd42ee488f252ba7412879da5ff33",
+          "bytes": 665
+        },
+        {
+          "path": ".devcontainer/on-create.sh",
+          "sha256": "cb37dfb94d1e493bfe95f41804dd4f879d71162b3a4f4c964bf767f2ad4afbc3",
+          "bytes": 135
+        },
+        {
+          "path": ".devcontainer/post-create.sh",
+          "sha256": "f89feeb1f7aa2b0c3c9d01cb0a719f42f112ab2f310db754882b3df9164a8d71",
+          "bytes": 586
+        },
+        {
+          "path": ".devcontainer/post-start.sh",
+          "sha256": "043436da392fccad1fb3919c9b959a5304a60909be37c40155e9fa0965be7c1c",
+          "bytes": 1218
+        },
+        {
+          "path": ".devcontainer/welcome.sh",
+          "sha256": "ca481bee20cc52fb4365438e7c7710f877810450e6f95879302f4837835a6991",
+          "bytes": 380
+        },
+        {
+          "path": "api/eslint.config.js",
+          "sha256": "359e3c6025309601bd38fe5ecb87feb67c88a18ba4d8a5c71d104eab134ac208",
+          "bytes": 841
+        },
+        {
+          "path": "api/prisma.config.ts",
+          "sha256": "70cce4181131b68187d5b4070ec90e540194e051206b610844eab2e10e965546",
+          "bytes": 107
+        },
+        {
+          "path": "api/vitest.utils.test.ts",
+          "sha256": "0bf0c93b9cc8a809e8ef0863f0ed4c09261a3a737ea2e64167f8d76866dbf9e6",
+          "bytes": 3418
+        },
+        {
+          "path": "api/vitest.utils.ts",
+          "sha256": "66baddc496fd5b0fa0e034712db4e7ac76250e8d2d6e1bb73f29f34a34561614",
+          "bytes": 9629
+        },
+        {
+          "path": "client/.babelrc.js",
+          "sha256": "823f1adc8071b0efa051cf064f991a75d24e38ab368962e60a57e962fa3421ff",
+          "bytes": 1337
+        },
+        {
+          "path": "client/gatsby-browser.tsx",
+          "sha256": "51e23342066719b4db7c4ab432702a101b8fb8fcc440828c0d33833276471f42",
+          "bytes": 1740
+        },
+        {
+          "path": "client/gatsby-config.ts",
+          "sha256": "74d9227ba646595a82e1f8659a37e38dda5de53aceee88f9aecf4295c6bad9bf",
+          "bytes": 1754
+        }
+      ],
+      "errors": [],
+      "tree_truncated": false
+    },
+    "openclaw/openclaw": {
+      "full_name": "openclaw/openclaw",
+      "description": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 ",
+      "html_url": "https://github.com/openclaw/openclaw",
+      "default_branch": "main",
+      "language": "TypeScript",
+      "stars": 391703,
+      "license": "MIT",
+      "license_url": "https://api.github.com/licenses/mit",
+      "repository_updated_at": "2026-10-12T02:56:10Z",
+      "downloaded_at": "2026-10-12T03:01:30.184722+00:00",
+      "downloaded": true,
+      "files": [
+        {
+          "path": "tsdown.ai.config.ts",
+          "sha256": "4a094318782e3c564b33b556bf5b38e7a16081ed1ab9e78824aef7a6cf5df8a5",
+          "bytes": 1988
+        },
+        {
+          "path": "tsdown.config.ts",
+          "sha256": "5034bc701560e14d32771dfb064088e02e4a672f590695ed9ec23fd72350894f",
+          "bytes": 39365
+        },
+        {
+          "path": "vitest.config.ts",
+          "sha256": "0262842032ac88f1043207894f41646ad1b50a17db9a1666dc73bc3271ef25d1",
+          "bytes": 124
+        },
+        {
+          "path": "config/knip.all-exports.config.ts",
+          "sha256": "2224d721f369023adbb74e197672cb1f3e92d67f2cf01ea5b511246bf314033e",
+          "bytes": 11699
+        },
+        {
+          "path": "config/knip.config.ts",
+          "sha256": "d299c2d0c153382b9215e92d481aeaaa3e88e90d66d88bcd7460ed8d4cd348c7",
+          "bytes": 58520
+        },
+        {
+          "path": "config/knip.scripts-exports.config.ts",
+          "sha256": "c47580f20a7778948e93f682596849fe8aa3270543691b1c152ae8cc5b98e9b0",
+          "bytes": 5112
+        },
+        {
+          "path": "extensions/music-generation-providers.live.test.ts",
+          "sha256": "797fdd3922cb3498a439ead5c4ebcafa63f685e26c41cdc3038f0ce8c7b2dc19",
+          "bytes": 12265
+        },
+        {
+          "path": "extensions/plugin-entry.cli-laziness.test.ts",
+          "sha256": "060afc777667d0f8276e1c25528df782df7919e2900809a7aa5644fb06fb187e",
+          "bytes": 926
+        },
+        {
+          "path": "extensions/video-generation-providers.live.test.ts",
+          "sha256": "999658f0078a65158cc00c96834655f53943add685b87958e86e5d3330fe82ba",
+          "bytes": 22239
+        },
+        {
+          "path": "scripts/acp-reset-timeout-proof.ts",
+          "sha256": "ab3455da6231a32d1e659d2ba196ceb3f6a68cea595403e36452dc8d8825444a",
+          "bytes": 40363
+        },
+        {
+          "path": "scripts/agent-plugin-gateway-e2e.ts",
+          "sha256": "788975b3955f3c279b031518107ca4f2f0841e9093e7008c10464bd218f7ff9a",
+          "bytes": 17497
+        },
+        {
+          "path": "scripts/analyze-plugin-sdk-usage.ts",
+          "sha256": "a7b787dbcbf6003a69265787ae632214b8ba36dab78b25437bb42efbfdafe895",
+          "bytes": 396
+        }
+      ],
+      "errors": [],
+      "tree_truncated": false
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "created_at": 1791467374.6262138,
+  "files": [
+    {
+      "existed": true,
+      "is_file": true,
+      "path": "phase33_rollback_target.py",
+      "sha256": "a6caf353de2ec82d34e66288fb94193b10217d96cb2b846e3f201cc77bef6c64",
+      "size": 31
+    }
+  ],
+  "rolled_back_at": 1791467374.627778,
+  "status": "rolled_back",
+  "transaction_id": "TX-20261008-191934-625",
+  "workspace_root": "/data/data/com.termux/files/home/pika/workspace"
+}

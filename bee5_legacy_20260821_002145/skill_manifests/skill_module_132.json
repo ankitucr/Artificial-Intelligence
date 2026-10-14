@@ -1,0 +1,177 @@
+{
+  "skill": "skill_module_132",
+  "signature": {
+    "hash": "e5075a01616ba160bbf44a3d2f76a995a59311352d47a9d559b88b6f9950759c",
+    "tokens": [
+      "and",
+      "approximate",
+      "between",
+      "change",
+      "character",
+      "checking",
+      "comparison",
+      "computes",
+      "cur_row",
+      "def",
+      "delete_cost",
+      "deletions",
+      "distance",
+      "distances",
+      "edit",
+      "enables",
+      "enumerate",
+      "for",
+      "fuzzy",
+      "initialize",
+      "insert_cost",
+      "insertions",
+      "int",
+      "into",
+      "len",
+      "len1",
+      "len2",
+      "levenshtein",
+      "levenshtein_distance",
+      "list",
+      "matching",
+      "min",
+      "minimum",
+      "number",
+      "prev_row",
+      "previous",
+      "range",
+      "replace_cost",
+      "required",
+      "return",
+      "row",
+      "scoring",
+      "similarity",
+      "single",
+      "spell",
+      "start",
+      "str",
+      "string",
+      "strings",
+      "substitutions",
+      "such",
+      "tasks",
+      "the",
+      "two"
+    ],
+    "functions": [
+      "levenshtein_distance"
+    ],
+    "imports": [],
+    "calls": [
+      "enumerate",
+      "len",
+      "list",
+      "min",
+      "range"
+    ],
+    "operators": [
+      "Add",
+      "Eq",
+      "Mult",
+      "NotEq",
+      "Sub"
+    ],
+    "capability": "Computes the Levenshtein edit distance between two strings"
+  },
+  "metadata": {
+    "name": "levenshtein_distance",
+    "capability": "Computes the Levenshtein edit distance between two strings",
+    "purpose": "Enables fuzzy string comparison for tasks such as spell checking, approximate matching, and similarity scoring",
+    "primary_function": "levenshtein_distance",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    \"\"\"Return the Levenshtein distance between strings s1 and s2.\n\n    The distance is the minimum number of single-character insertions,\n    deletions, or substitutions required to change s1 into s2.\n    \"\"\"\n    if s1 == s2:\n        return 0\n    len1, len2 = len(s1), len(s2)\n    if len1 == 0:\n        return len2\n    if len2 == 0:\n        return len1\n    # Initialize previous row of distances\n    prev_row = list(range(len2 + 1))\n    for i, c1 in enumerate(s1, start=1):\n        cur_row = [i] + [0] * len2\n        for j, c2 in enumerate(s2, start=1):\n            insert_cost = cur_row[j - 1] + 1\n            delete_cost = prev_row[j] + 1\n            replace_cost = prev_row[j - 1] + (c1 != c2)\n            cur_row[j] = min(insert_cost, delete_cost, replace_cost)\n        prev_row = cur_row\n    return prev_row[-1]",
+    "tests": [
+      {
+        "args": [
+          "kitten",
+          "sitting"
+        ],
+        "kwargs": {},
+        "expected": 3
+      },
+      {
+        "args": [
+          "flaw",
+          "lawn"
+        ],
+        "kwargs": {},
+        "expected": 2
+      },
+      {
+        "args": [
+          "",
+          ""
+        ],
+        "kwargs": {},
+        "expected": 0
+      },
+      {
+        "args": [
+          "",
+          "abc"
+        ],
+        "kwargs": {},
+        "expected": 3
+      },
+      {
+        "args": [
+          "identical",
+          "identical"
+        ],
+        "kwargs": {},
+        "expected": 0
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 100.0,
+    "novelty": 1.0,
+    "similarity": 0.0,
+    "closest_skill": null,
+    "tests": {
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 3,
+          "actual": 3
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": 3,
+          "actual": 3
+        },
+        {
+          "test": 5,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 1,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_173812"
+  },
+  "created_at": "2026-08-20 17:38:15"
+}

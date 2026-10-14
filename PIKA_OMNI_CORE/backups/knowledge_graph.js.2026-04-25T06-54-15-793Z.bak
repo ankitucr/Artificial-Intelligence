@@ -1,0 +1,4175 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+let knowledgeBase = {};
+let entityRelationships = {};
+
+app.post('/addKnowledge', (req, res) => {
+    const { key, value } = req.body;
+    knowledgeBase[key] = value;
+    res.send(`Knowledge added: ${key} = ${value}`);
+});
+
+app.post('/addEntityRelationship', (req, res) => {
+    const { entity1, entity2, relationship } = req.body;
+    if (!entityRelationships[entity1]) {
+        entityRelationships[entity1] = {};
+    }
+    entityRelationships[entity1][entity2] = relationship;
+    res.send(`Entity relationship added: ${entity1} - ${entity2} = ${relationship}`);
+});
+
+app.get('/getKnowledge/:key', (req, res) => {
+    const key = req.params.key;
+    if (knowledgeBase[key]) {
+        res.send(knowledgeBase[key]);
+    } else {
+        res.status(404).send(`Knowledge not found: ${key}`);
+    }
+});
+
+app.get('/getEntityRelationship/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    if (entityRelationships[entity1] && entityRelationships[entity1][entity2]) {
+        res.send(entityRelationships[entity1][entity2]);
+    } else {
+        res.status(404).send(`Entity relationship not found: ${entity1} - ${entity2}`);
+    }
+});
+
+app.put('/updateKnowledge/:key', (req, res) => {
+    const key = req.params.key;
+    const { value } = req.body;
+    if (knowledgeBase[key]) {
+        knowledgeBase[key] = value;
+        res.send(`Knowledge updated: ${key} = ${value}`);
+    } else {
+        res.status(404).send(`Knowledge not found: ${key}`);
+    }
+});
+
+app.put('/updateEntityRelationship/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    const { relationship } = req.body;
+    if (entityRelationships[entity1] && entityRelationships[entity1][entity2]) {
+        entityRelationships[entity1][entity2] = relationship;
+        res.send(`Entity relationship updated: ${entity1} - ${entity2} = ${relationship}`);
+    } else {
+        res.status(404).send(`Entity relationship not found: ${entity1} - ${entity2}`);
+    }
+});
+
+app.delete('/deleteKnowledge/:key', (req, res) => {
+    const key = req.params.key;
+    if (knowledgeBase[key]) {
+        delete knowledgeBase[key];
+        res.send(`Knowledge deleted: ${key}`);
+    } else {
+        res.status(404).send(`Knowledge not found: ${key}`);
+    }
+});
+
+app.delete('/deleteEntityRelationship/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    if (entityRelationships[entity1] && entityRelationships[entity1][entity2]) {
+        delete entityRelationships[entity1][entity2];
+        res.send(`Entity relationship deleted: ${entity1} - ${entity2}`);
+    } else {
+        res.status(404).send(`Entity relationship not found: ${entity1} - ${entity2}`);
+    }
+});
+
+app.get('/infer/:key', (req, res) => {
+    const key = req.params.key;
+    if (knowledgeBase[key]) {
+        const value = knowledgeBase[key];
+        if (typeof value === 'object') {
+            const inferredValue = inferValue(value);
+            res.send(inferredValue);
+        } else {
+            res.send(value);
+        }
+    } else {
+        res.status(404).send(`Knowledge not found: ${key}`);
+    }
+});
+
+app.get('/inferEntityRelationship/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    if (entityRelationships[entity1] && entityRelationships[entity1][entity2]) {
+        const relationship = entityRelationships[entity1][entity2];
+        const inferredRelationship = inferRelationship(relationship);
+        res.send(inferredRelationship);
+    } else {
+        res.status(404).send(`Entity relationship not found: ${entity1} - ${entity2}`);
+    }
+});
+
+function inferValue(value) {
+    if (value.type === 'numeric') {
+        return calculateNumericValue(value);
+    } else if (value.type === 'text') {
+        return calculateTextValue(value);
+    } else if (value.type === 'boolean') {
+        return calculateBooleanValue(value);
+    } else {
+        return 'Unknown type';
+    }
+}
+
+function calculateNumericValue(value) {
+    if (value.operation === 'add') {
+        return value.num1 + value.num2;
+    } else if (value.operation === 'subtract') {
+        return value.num1 - value.num2;
+    } else if (value.operation === 'multiply') {
+        return value.num1 * value.num2;
+    } else if (value.operation === 'divide') {
+        if (value.num2 !== 0) {
+            return value.num1 / value.num2;
+        } else {
+            return 'Cannot divide by zero';
+        }
+    } else {
+        return 'Unknown operation';
+    }
+}
+
+function calculateTextValue(value) {
+    if (value.operation === 'concat') {
+        return value.text1 + value.text2;
+    } else if (value.operation === 'compare') {
+        return compareTextValues(value.text1, value.text2);
+    } else {
+        return 'Unknown operation';
+    }
+}
+
+function compareTextValues(text1, text2) {
+    if (text1 === text2) {
+        return 'Text values are equal';
+    } else {
+        return 'Text values are not equal';
+    }
+}
+
+function calculateBooleanValue(value) {
+    if (value.operation === 'and') {
+        return value.bool1 && value.bool2;
+    } else if (value.operation === 'or') {
+        return value.bool1 || value.bool2;
+    } else if (value.operation === 'not') {
+        return !value.bool1;
+    } else {
+        return 'Unknown operation';
+    }
+}
+
+function inferRelationship(relationship) {
+    if (relationship.type === 'causal') {
+        return calculateCausalRelationship(relationship);
+    } else if (relationship.type === 'correlational') {
+        return calculateCorrelationalRelationship(relationship);
+    } else if (relationship.type === 'associative') {
+        return calculateAssociativeRelationship(relationship);
+    } else {
+        return 'Unknown relationship type';
+    }
+}
+
+function calculateCausalRelationship(relationship) {
+    if (relationship.direction === 'forward') {
+        return `${relationship.entity1} causes ${relationship.entity2}`;
+    } else if (relationship.direction === 'backward') {
+        return `${relationship.entity2} causes ${relationship.entity1}`;
+    } else {
+        return 'Unknown direction';
+    }
+}
+
+function calculateCorrelationalRelationship(relationship) {
+    if (relationship.correlation === 'positive') {
+        return `${relationship.entity1} is positively correlated with ${relationship.entity2}`;
+    } else if (relationship.correlation === 'negative') {
+        return `${relationship.entity1} is negatively correlated with ${relationship.entity2}`;
+    } else {
+        return 'Unknown correlation';
+    }
+}
+
+function calculateAssociativeRelationship(relationship) {
+    if (relationship.association === 'strong') {
+        return `${relationship.entity1} is strongly associated with ${relationship.entity2}`;
+    } else if (relationship.association === 'weak') {
+        return `${relationship.entity1} is weakly associated with ${relationship.entity2}`;
+    } else {
+        return 'Unknown association';
+    }
+}
+
+app.get('/getRelatedEntities/:entity', (req, res) => {
+    const entity = req.params.entity;
+    const relatedEntities = getRelatedEntities(entity);
+    res.send(relatedEntities);
+});
+
+function getRelatedEntities(entity) {
+    const relatedEntities = [];
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships[entity1]) {
+            if (entity1 === entity || entity2 === entity) {
+                relatedEntities.push(entity1 === entity ? entity2 : entity1);
+            }
+        }
+    }
+    return relatedEntities;
+}
+
+app.get('/getEntityRelationships/:entity', (req, res) => {
+    const entity = req.params.entity;
+    const relationships = getEntityRelationships(entity);
+    res.send(relationships);
+});
+
+function getEntityRelationships(entity) {
+    const relationships = [];
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships[entity1]) {
+            if (entity1 === entity || entity2 === entity) {
+                relationships.push({ entity1: entity1 === entity ? entity : entity1, entity2: entity1 === entity ? entity2 : entity, relationship: entityRelationships[entity1][entity2] });
+            }
+        }
+    }
+    return relationships;
+}
+
+app.get('/getEntityRelationshipGraph', (req, res) => {
+    const graph = getEntityRelationshipGraph();
+    res.send(graph);
+});
+
+function getEntityRelationshipGraph() {
+    const graph = {};
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships[entity1]) {
+            if (!graph[entity1]) {
+                graph[entity1] = [];
+            }
+            graph[entity1].push({ entity: entity2, relationship: entityRelationships[entity1][entity2] });
+        }
+    }
+    return graph;
+}
+
+app.get('/inferEntityRelationshipPath/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    res.send(path);
+});
+
+function inferEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            return path;
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return 'No path found';
+}
+
+app.get('/getShortestEntityRelationshipPath/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    const path = getShortestEntityRelationshipPath(entity1, entity2);
+    res.send(path);
+});
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath || 'No path found';
+}
+
+app.get('/getEntityRelationshipStrength/:entity1/:entity2', (req, res) => {
+    const entity1 = req.params.entity1;
+    const entity2 = req.params.entity2;
+    const strength = getEntityRelationshipStrength(entity1, entity2);
+    res.send(strength);
+});
+
+function getEntityRelationshipStrength(entity1, entity2) {
+    if (entityRelationships[entity1] && entityRelationships[entity1][entity2]) {
+        const relationship = entityRelationships[entity1][entity2];
+        if (relationship.type === 'causal') {
+            return 'Strong';
+        } else if (relationship.type === 'correlational') {
+            return relationship.correlation === 'positive' ? 'Medium' : 'Weak';
+        } else if (relationship.type === 'associative') {
+            return relationship.association === 'strong' ? 'Medium' : 'Weak';
+        } else {
+            return 'Unknown';
+        }
+    } else {
+        return 'No relationship';
+    }
+}
+
+app.get('/getKnowledgeGraph', (req, res) => {
+    const graph = getKnowledgeGraph();
+    res.send(graph);
+});
+
+function getKnowledgeGraph() {
+    const graph = {};
+    for (const key in knowledgeBase) {
+        if (typeof knowledgeBase[key] === 'object') {
+            if (!graph[key]) {
+                graph[key] = [];
+            }
+            for (const property in knowledgeBase[key]) {
+                graph[key].push({ property: property, value: knowledgeBase[key][property] });
+            }
+        }
+    }
+    return graph;
+}
+
+app.get('/inferKnowledgePath/:key1/:key2', (req, res) => {
+    const key1 = req.params.key1;
+    const key2 = req.params.key2;
+    const path = inferKnowledgePath(key1, key2);
+    res.send(path);
+});
+
+function inferKnowledgePath(key1, key2) {
+    const visited = {};
+    const queue = [[key1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentKey = path[path.length - 1];
+        if (currentKey === key2) {
+            return path;
+        }
+        if (!visited[currentKey]) {
+            visited[currentKey] = true;
+            for (const nextKey in knowledgeBase) {
+                if (typeof knowledgeBase[nextKey] === 'object' && knowledgeBase[nextKey].type === 'numeric') {
+                    if (knowledgeBase[nextKey].num1 === currentKey || knowledgeBase[nextKey].num2 === currentKey) {
+                        queue.push([...path, nextKey]);
+                    }
+                }
+            }
+        }
+    }
+    return 'No path found';
+}
+
+app.get('/getKnowledgeStatistics', (req, res) => {
+    const statistics = getKnowledgeStatistics();
+    res.send(statistics);
+});
+
+function getKnowledgeStatistics() {
+    const statistics = {
+        knowledgeCount: Object.keys(knowledgeBase).length,
+        entityRelationshipCount: Object.keys(entityRelationships).length,
+        averageEntityRelationshipsPerEntity: getAverageEntityRelationshipsPerEntity(),
+    };
+    return statistics;
+}
+
+function getAverageEntityRelationshipsPerEntity() {
+    let totalRelationships = 0;
+    for (const entity in entityRelationships) {
+        totalRelationships += Object.keys(entityRelationships[entity]).length;
+    }
+    return totalRelationships / Object.keys(entityRelationships).length;
+}
+
+app.get('/getEntityCentrality/:entity', (req, res) => {
+    const entity = req.params.entity;
+    const centrality = getEntityCentrality(entity);
+    res.send(centrality);
+});
+
+function getEntityCentrality(entity) {
+    const centrality = {
+        degreeCentrality: getDegreeCentrality(entity),
+        closenessCentrality: getClosenessCentrality(entity),
+        betweennessCentrality: getBetweennessCentrality(entity),
+    };
+    return centrality;
+}
+
+function getDegreeCentrality(entity) {
+    let degree = 0;
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships[entity1]) {
+            if (entity1 === entity || entity2 === entity) {
+                degree++;
+            }
+        }
+    }
+    return degree / (Object.keys(entityRelationships).length - 1);
+}
+
+function getClosenessCentrality(entity) {
+    let sum = 0;
+    for (const otherEntity in entityRelationships) {
+        if (otherEntity !== entity) {
+            const path = inferEntityRelationshipPath(entity, otherEntity);
+            if (path !== 'No path found') {
+                sum += path.length;
+            }
+        }
+    }
+    return 1 / (sum / (Object.keys(entityRelationships).length - 1));
+}
+
+function getBetweennessCentrality(entity) {
+    let sum = 0;
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships) {
+            if (entity1 !== entity2 && entity1 !== entity && entity2 !== entity) {
+                const path = inferEntityRelationshipPath(entity1, entity2);
+                if (path !== 'No path found' && path.includes(entity)) {
+                    sum++;
+                }
+            }
+        }
+    }
+    return sum / ((Object.keys(entityRelationships).length - 1) * (Object.keys(entityRelationships).length - 2));
+}
+
+app.get('/getKnowledgeBase', (req, res) => {
+    res.send(knowledgeBase);
+});
+
+app.get('/getEntityRelationshipsBase', (req, res) => {
+    res.send(entityRelationships);
+});
+
+app.get('/getKnowledgeBaseSize', (req, res) => {
+    res.send(Object.keys(knowledgeBase).length);
+});
+
+app.get('/getEntityRelationshipsBaseSize', (req, res) => {
+    res.send(Object.keys(entityRelationships).length);
+});
+
+app.get('/getKnowledgeBaseDepth', (req, res) => {
+    const depth = getKnowledgeBaseDepth();
+    res.send(depth);
+});
+
+function getKnowledgeBaseDepth() {
+    let maxDepth = 0;
+    for (const key in knowledgeBase) {
+        const depth = getDepth(knowledgeBase[key]);
+        if (depth > maxDepth) {
+            maxDepth = depth;
+        }
+    }
+    return maxDepth;
+}
+
+function getDepth(value) {
+    if (typeof value !== 'object') {
+        return 0;
+    }
+    let maxDepth = 0;
+    for (const property in value) {
+        const depth = getDepth(value[property]);
+        if (depth > maxDepth) {
+            maxDepth = depth;
+        }
+    }
+    return maxDepth + 1;
+}
+
+app.get('/getEntityRelationshipsBaseDepth', (req, res) => {
+    const depth = getEntityRelationshipsBaseDepth();
+    res.send(depth);
+});
+
+function getEntityRelationshipsBaseDepth() {
+    let maxDepth = 0;
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships[entity1]) {
+            const depth = getDepth(entityRelationships[entity1][entity2]);
+            if (depth > maxDepth) {
+                maxDepth = depth;
+            }
+        }
+    }
+    return maxDepth;
+}
+
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve overall system performance
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping to improve overall knowledge retrieval and generation capabilities.
+function enhanceEntityRecognition(entity) {
+    const enhancedEntity = {};
+    if (entity.type === 'person') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.occupation = entity.occupation;
+    } else if (entity.type === 'organization') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.industry = entity.industry;
+    } else if (entity.type === 'location') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.country = entity.country;
+    }
+    return enhancedEntity;
+}
+
+function enhanceRelationshipMapping(entity1, entity2, relationship) {
+    const enhancedRelationship = {};
+    if (relationship.type === 'causal') {
+        enhancedRelationship.direction = relationship.direction;
+        enhancedRelationship.strength = relationship.strength;
+    } else if (relationship.type === 'correlational') {
+        enhancedRelationship.correlation = relationship.correlation;
+        enhancedRelationship.significance = relationship.significance;
+    } else if (relationship.type === 'associative') {
+        enhancedRelationship.association = relationship.association;
+        enhancedRelationship.confidence = relationship.confidence;
+    }
+    return enhancedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: improve knowledge retrieval efficiency and expand domain adaptation capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities for more accurate and efficient responses.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge integration.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship modeling capabilities to improve overall knowledge representation and reasoning.
+function getEntityRelationshipPathWithRelationships(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            const relationships = [];
+            for (let i = 0; i < path.length - 1; i++) {
+                relationships.push(entityRelationships[path[i]][path[i + 1]]);
+            }
+            return { path, relationships };
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity disambiguation and relation extraction capabilities to improve overall knowledge representation and reasoning.
+function disambiguateEntity(entity) {
+    const disambiguatedEntities = [];
+    for (const key in knowledgeBase) {
+        if (knowledgeBase[key].includes(entity)) {
+            disambiguatedEntities.push({ entity: key, context: knowledgeBase[key] });
+        }
+    }
+    return disambiguatedEntities;
+}
+
+function extractRelationships(entity) {
+    const relationships = [];
+    for (const entity1 in entityRelationships) {
+        for (const entity2 in entityRelationships[entity1]) {
+            if (entity1 === entity || entity2 === entity) {
+                relationships.push({ entity1: entity1 === entity ? entity : entity1, entity2: entity1 === entity ? entity2 : entity, relationship: entityRelationships[entity1][entity2] });
+            }
+        }
+    }
+    return relationships;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve overall system performance
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge representation and reasoning.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = entityRelationships[entity1] && entityRelationships[entity1][entity2];
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and integration capabilities, allowing for more efficient and accurate responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and inference capabilities, allowing for more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance semantic reasoning and expand domain-specific knowledge to improve overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve knowledge retrieval efficiency
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: improve knowledge retrieval efficiency and expand domain coverage
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance semantic reasoning and knowledge retrieval capabilities to improve overall system performance and user experience.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve entity disambiguation and relationship mapping capabilities.
+function disambiguateEntity(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const entityRelationshipsList = getEntityRelationships(entity);
+    const disambiguatedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: entityRelationshipsList
+    };
+    return disambiguatedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    if (path !== 'No path found') {
+        const relationships = [];
+        for (let i = 0; i < path.length - 1; i++) {
+            const currentEntity = path[i];
+            const nextEntity = path[i + 1];
+            relationships.push(entityRelationships[currentEntity][nextEntity]);
+        }
+        return relationships;
+    } else {
+        return 'No relationship found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance the ability to process and generate more accurate and informative responses, and to improve overall performance and efficiency.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and enhance knowledge representation capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enabling more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enhancing overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance semantic reasoning and knowledge retrieval capabilities to improve overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and inference capabilities, and improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and generation capabilities, enabling more efficient and effective responses to user inquiries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enabling more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enhancing overall performance and accuracy in generating human-like responses.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and generation capabilities, enabling more accurate and informative responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and decision-making accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge integration capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping to improve overall system performance and accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = entityRelationships[entity1] && entityRelationships[entity1][entity2];
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance entity recognition and relationship mapping to improve overall knowledge representation and reasoning capabilities.
+function getEntityRelationshipPathWithRelationships(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            const relationships = [];
+            for (let i = 0; i < path.length - 1; i++) {
+                relationships.push(entityRelationships[path[i]][path[i + 1]]);
+            }
+            return { path, relationships };
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval efficiency and expand domain coverage
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities for enhanced user interaction and response generation.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity disambiguation and relationship modeling to improve question answering accuracy and contextual understanding.
+function enhanceEntityDisambiguation(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function improveContextualUnderstanding(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = inferRelationship(entityRelationships[entity1][entity2]);
+    const enhancedUnderstanding = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return enhancedUnderstanding;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance semantic reasoning and knowledge retrieval capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and inference capabilities for more efficient decision-making and improved performance.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain-specific knowledge acquisition and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: To enhance the efficiency and accuracy of information retrieval and processing, allowing for more effective autonomous evolution and decision-making capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and expand domain-specific knowledge repositories.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance entity recognition and relationship mapping to improve overall knowledge retention and retrieval capabilities.
+function getEntityRelationshipPathWithRelationships(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            const relationships = [];
+            for (let i = 0; i < path.length - 1; i++) {
+                relationships.push(entityRelationships[path[i]][path[i + 1]]);
+            }
+            return { path, relationships };
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enabling more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge integration capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific expertise
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and expand domain-specific expertise
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain-specific knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge representation and retrieval efficiency.
+function getEntityRelationshipPathWithRelationships(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            const relationships = [];
+            for (let i = 0; i < path.length - 1; i++) {
+                relationships.push(entityRelationships[path[i]][path[i + 1]]);
+            }
+            return { path, relationships };
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enhancing overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve overall system performance
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve overall system performance
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve overall system performance
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific expertise
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enabling more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance semantic reasoning and knowledge retrieval capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and inference capabilities, allowing for more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and expand domain-specific knowledge repositories.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping to improve overall knowledge retrieval and generation capabilities.
+function enhanceEntityRecognition(entity) {
+    const enhancedEntity = {};
+    if (entity.type === 'person') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.occupation = entity.occupation;
+    } else if (entity.type === 'organization') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.industry = entity.industry;
+    } else if (entity.type === 'location') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.country = entity.country;
+    }
+    return enhancedEntity;
+}
+
+function enhanceRelationshipMapping(entity1, entity2, relationship) {
+    const enhancedRelationship = {};
+    if (relationship.type === 'causal') {
+        enhancedRelationship.direction = relationship.direction;
+        enhancedRelationship.strength = relationship.strength;
+    } else if (relationship.type === 'correlational') {
+        enhancedRelationship.correlation = relationship.correlation;
+        enhancedRelationship.significance = relationship.significance;
+    } else if (relationship.type === 'associative') {
+        enhancedRelationship.association = relationship.association;
+        enhancedRelationship.confidence = relationship.confidence;
+    }
+    return enhancedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve knowledge retrieval efficiency
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enhancing overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping to improve overall knowledge retrieval and generation capabilities.
+function enhanceEntityRecognition(entity) {
+    const enhancedEntity = {};
+    if (entity.type === 'person') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.occupation = entity.occupation;
+    } else if (entity.type === 'organization') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.industry = entity.industry;
+    } else if (entity.type === 'location') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.country = entity.country;
+    }
+    return enhancedEntity;
+}
+
+function enhanceRelationshipMapping(entity1, entity2, relationship) {
+    const enhancedRelationship = {};
+    if (relationship.type === 'causal') {
+        enhancedRelationship.direction = relationship.direction;
+        enhancedRelationship.strength = relationship.strength;
+    } else if (relationship.type === 'correlational') {
+        enhancedRelationship.correlation = relationship.correlation;
+        enhancedRelationship.significance = relationship.significance;
+    } else if (relationship.type === 'associative') {
+        enhancedRelationship.association = relationship.association;
+        enhancedRelationship.confidence = relationship.confidence;
+    }
+    return enhancedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance domain-specific information retrieval and expand semantic understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enabling more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and reasoning capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve knowledge retention capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Improve knowledge retrieval and inference capabilities to enhance overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and expand domain-specific expertise
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance semantic reasoning and improve overall system performance
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve semantic reasoning and expand domain-specific knowledge acquisition capabilities.
+function calculateShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath;
+}
+
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const path = calculateShortestEntityRelationshipPath(entity1, entity2);
+    if (path) {
+        return path;
+    } else {
+        return 'No path found';
+    }
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge representation and reasoning.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = entityRelationships[entity1] && entityRelationships[entity1][entity2];
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance knowledge retrieval and inference capabilities, allowing for more accurate and efficient responses to user queries.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance knowledge retrieval and integration capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping to improve overall knowledge retrieval and generation capabilities.
+function enhanceEntityRecognition(entity) {
+    const enhancedEntity = {};
+    if (entity.type === 'person') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.occupation = entity.occupation;
+    } else if (entity.type === 'organization') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.industry = entity.industry;
+    } else if (entity.type === 'location') {
+        enhancedEntity.name = entity.name;
+        enhancedEntity.country = entity.country;
+    }
+    return enhancedEntity;
+}
+
+function enhanceRelationshipMapping(entity1, entity2, relationship) {
+    const enhancedRelationship = {};
+    if (relationship.type === 'causal') {
+        enhancedRelationship.direction = relationship.direction;
+        enhancedRelationship.strength = relationship.strength;
+    } else if (relationship.type === 'correlational') {
+        enhancedRelationship.correlation = relationship.correlation;
+        enhancedRelationship.significance = relationship.significance;
+    } else if (relationship.type === 'associative') {
+        enhancedRelationship.association = relationship.association;
+        enhancedRelationship.confidence = relationship.confidence;
+    }
+    return enhancedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to enhance domain knowledge acquisition and improve response accuracy
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and generation capabilities, and enhance overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enabling more accurate and efficient decision-making processes.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity disambiguation and relationship mapping to improve overall knowledge retrieval and generation capabilities.
+function disambiguateEntity(entity) {
+    const disambiguatedEntities = [];
+    for (const key in knowledgeBase) {
+        if (knowledgeBase[key].includes(entity)) {
+            disambiguatedEntities.push({ entity: key, context: knowledgeBase[key] });
+        }
+    }
+    return disambiguatedEntities;
+}
+
+function mapEntityRelationships(entity) {
+    const relationships = getEntityRelationships(entity);
+    const mappedRelationships = relationships.map(relationship => {
+        return {
+            entity1: relationship.entity1,
+            entity2: relationship.entity2,
+            relationship: inferRelationship(relationship.relationship)
+        };
+    });
+    return mappedRelationships;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and generation capabilities, enhancing overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall system performance and accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = entityRelationships[entity1] && entityRelationships[entity1][entity2];
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance pattern recognition and expand domain-specific knowledge repositories to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to integrate new information retrieval algorithms and enhance overall performance.
+function getEntityRelationshipPathWithRelationships(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            const relationships = [];
+            for (let i = 0; i < path.length - 1; i++) {
+                relationships.push(entityRelationships[path[i]][path[i + 1]]);
+            }
+            return { path, relationships };
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to expand domain knowledge and improve inference capabilities
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and generation capabilities, enhancing overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance semantic reasoning and knowledge representation to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retention and expand domain-specific understanding capabilities.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: enhance entity recognition and relationship mapping capabilities to improve overall knowledge retrieval and generation accuracy.
+function enhanceEntityRecognition(entity) {
+    const relatedEntities = getRelatedEntities(entity);
+    const relationships = getEntityRelationships(entity);
+    const graph = getEntityRelationshipGraph();
+    const enhancedEntity = {
+        entity: entity,
+        relatedEntities: relatedEntities,
+        relationships: relationships,
+        graph: graph
+    };
+    return enhancedEntity;
+}
+
+function mapEntityRelationships(entity1, entity2) {
+    const path = inferEntityRelationshipPath(entity1, entity2);
+    const shortestPath = getShortestEntityRelationshipPath(entity1, entity2);
+    const relationship = getEntityRelationships(entity1).find(relationship => relationship.entity2 === entity2);
+    const mappedRelationship = {
+        entity1: entity1,
+        entity2: entity2,
+        path: path,
+        shortestPath: shortestPath,
+        relationship: relationship
+    };
+    return mappedRelationship;
+}
+
+// 🧬 AUTONOMOUS MUTATION: to improve knowledge retrieval and inference capabilities, enhancing overall performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// 🧬 AUTONOMOUS MUTATION: Enhance knowledge retrieval and inference capabilities to improve overall system performance and accuracy.
+function getShortestEntityRelationshipPath(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath : 'No path found';
+}
+
+// =======================================================
+// 🧬 AUTONOMOUS MUTATION — 2026-04-25T03:19:15.328Z
+// Objective: to improve knowledge retrieval and generation capabilities, enhancing overall performance and accuracy.
+// =======================================================
+function getShortestEntityRelationshipPath_v55327(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// =======================================================
+// 🧬 AUTONOMOUS MUTATION — 2026-04-25T03:29:14.839Z
+// Objective: enhance_domain_adaptation_capabilities
+// =======================================================
+function getShortestEntityRelationshipPath_v54838(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// =======================================================
+// 🧬 AUTONOMOUS MUTATION — 2026-04-25T03:31:29.170Z
+// Objective: to improve knowledge retention and enhance cognitive reasoning capabilities
+// =======================================================
+function getShortestEntityRelationshipPath_v89170(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}
+
+// =======================================================
+// 🧬 AUTONOMOUS MUTATION — 2026-04-25T06:53:44.212Z
+// Objective: to integrate new information retrieval algorithms and expand domain-specific knowledge bases.
+// =======================================================
+function getShortestEntityRelationshipPath_v24212(entity1, entity2) {
+    const visited = {};
+    const queue = [[entity1]];
+    let shortestPath = null;
+    while (queue.length > 0) {
+        const path = queue.shift();
+        const currentEntity = path[path.length - 1];
+        if (currentEntity === entity2) {
+            if (!shortestPath || path.length < shortestPath.length) {
+                shortestPath = path;
+            }
+        }
+        if (!visited[currentEntity]) {
+            visited[currentEntity] = true;
+            for (const nextEntity in entityRelationships[currentEntity]) {
+                queue.push([...path, nextEntity]);
+            }
+        }
+    }
+    return shortestPath ? shortestPath.join(' -> ') : 'No path found';
+}

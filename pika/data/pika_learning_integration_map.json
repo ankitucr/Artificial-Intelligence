@@ -1,0 +1,1274 @@
+{
+  "files": [
+    {
+      "path": "core/brain.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "PIKABrain",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "router",
+                "memory",
+                "planner",
+                "evaluator",
+                "experience",
+                "task_analyzer",
+                "tool_runtime",
+                "decision_engine",
+                "max_retries",
+                "critic"
+              ]
+            },
+            {
+              "name": "_is_workspace_task",
+              "args": [
+                "task_analysis",
+                "plan"
+              ]
+            },
+            {
+              "name": "_remember_success",
+              "args": [
+                "self",
+                "task",
+                "result",
+                "evaluation",
+                "decision"
+              ]
+            },
+            {
+              "name": "think",
+              "args": [
+                "self",
+                "task"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "_phase35_save_repair",
+          "args": [
+            "memory",
+            "task",
+            "candidates",
+            "outcome",
+            "diagnosis",
+            "replay_context"
+          ]
+        },
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "router",
+            "memory",
+            "planner",
+            "evaluator",
+            "experience",
+            "task_analyzer",
+            "tool_runtime",
+            "decision_engine",
+            "max_retries",
+            "critic"
+          ]
+        },
+        {
+          "name": "_is_workspace_task",
+          "args": [
+            "task_analysis",
+            "plan"
+          ]
+        },
+        {
+          "name": "_remember_success",
+          "args": [
+            "self",
+            "task",
+            "result",
+            "evaluation",
+            "decision"
+          ]
+        },
+        {
+          "name": "think",
+          "args": [
+            "self",
+            "task"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        },
+        {
+          "module": "core.decision",
+          "names": [
+            "DecisionEngine"
+          ]
+        },
+        {
+          "module": "core.task_analyzer",
+          "names": [
+            "TaskAnalyzer"
+          ]
+        },
+        {
+          "module": "core.critic",
+          "names": [
+            "Critic"
+          ]
+        },
+        {
+          "module": "core.workspace_executor",
+          "names": [
+            "WorkspaceExecutor"
+          ]
+        },
+        {
+          "module": "core.phase32_controller",
+          "names": [
+            "Phase32Controller"
+          ]
+        },
+        {
+          "module": "core.phase33_controller",
+          "names": [
+            "Phase33Controller"
+          ]
+        },
+        {
+          "module": "core.repair_candidate_generator",
+          "names": [
+            "RepairCandidateGenerator"
+          ]
+        },
+        {
+          "module": "core.phase34_learning_repair",
+          "names": [
+            "Phase34LearningRepair"
+          ]
+        },
+        {
+          "module": "core.semantic_code_memory",
+          "names": [
+            "SemanticCodeMemory"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/phase33_controller.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "Phase33Controller",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "workspace_root",
+                "max_candidates",
+                "learning_memory_path"
+              ]
+            },
+            {
+              "name": "_is_supported",
+              "args": [
+                "diagnosis"
+              ]
+            },
+            {
+              "name": "repair",
+              "args": [
+                "self"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "workspace_root",
+            "max_candidates",
+            "learning_memory_path"
+          ]
+        },
+        {
+          "name": "_is_supported",
+          "args": [
+            "diagnosis"
+          ]
+        },
+        {
+          "name": "repair",
+          "args": [
+            "self"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        },
+        {
+          "module": "core.self_healing",
+          "names": [
+            "SelfHealingEngine"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/self_healing.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "SelfHealingEngine",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "workspace_root",
+                "max_retries",
+                "max_candidates",
+                "learning_memory_path"
+              ]
+            },
+            {
+              "name": "_safe_path",
+              "args": [
+                "self",
+                "relative_path"
+              ]
+            },
+            {
+              "name": "read_source",
+              "args": [
+                "self",
+                "relative_path"
+              ]
+            },
+            {
+              "name": "rank_candidates",
+              "args": [
+                "self",
+                "task",
+                "candidates"
+              ]
+            },
+            {
+              "name": "_begin_transaction",
+              "args": [
+                "self",
+                "relative_path"
+              ]
+            },
+            {
+              "name": "_rollback",
+              "args": [
+                "self",
+                "transaction_id"
+              ]
+            },
+            {
+              "name": "_commit",
+              "args": [
+                "self",
+                "transaction_id"
+              ]
+            },
+            {
+              "name": "_apply_candidate",
+              "args": [
+                "self",
+                "relative_path",
+                "old_text",
+                "candidate"
+              ]
+            },
+            {
+              "name": "_verify_python",
+              "args": [
+                "self",
+                "relative_path"
+              ]
+            },
+            {
+              "name": "_run_test",
+              "args": [
+                "self",
+                "test_path"
+              ]
+            },
+            {
+              "name": "repair_candidates",
+              "args": [
+                "self",
+                "relative_path",
+                "old_text",
+                "candidates",
+                "test_path",
+                "task",
+                "diagnosis"
+              ]
+            },
+            {
+              "name": "repair",
+              "args": [
+                "self",
+                "relative_path",
+                "old_text",
+                "new_text",
+                "test_path"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "workspace_root",
+            "max_retries",
+            "max_candidates",
+            "learning_memory_path"
+          ]
+        },
+        {
+          "name": "_safe_path",
+          "args": [
+            "self",
+            "relative_path"
+          ]
+        },
+        {
+          "name": "read_source",
+          "args": [
+            "self",
+            "relative_path"
+          ]
+        },
+        {
+          "name": "rank_candidates",
+          "args": [
+            "self",
+            "task",
+            "candidates"
+          ]
+        },
+        {
+          "name": "_begin_transaction",
+          "args": [
+            "self",
+            "relative_path"
+          ]
+        },
+        {
+          "name": "_rollback",
+          "args": [
+            "self",
+            "transaction_id"
+          ]
+        },
+        {
+          "name": "_commit",
+          "args": [
+            "self",
+            "transaction_id"
+          ]
+        },
+        {
+          "name": "_apply_candidate",
+          "args": [
+            "self",
+            "relative_path",
+            "old_text",
+            "candidate"
+          ]
+        },
+        {
+          "name": "_verify_python",
+          "args": [
+            "self",
+            "relative_path"
+          ]
+        },
+        {
+          "name": "_run_test",
+          "args": [
+            "self",
+            "test_path"
+          ]
+        },
+        {
+          "name": "repair_candidates",
+          "args": [
+            "self",
+            "relative_path",
+            "old_text",
+            "candidates",
+            "test_path",
+            "task",
+            "diagnosis"
+          ]
+        },
+        {
+          "name": "repair",
+          "args": [
+            "self",
+            "relative_path",
+            "old_text",
+            "new_text",
+            "test_path"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any",
+            "Callable"
+          ]
+        },
+        {
+          "module": "core.controlled_editor",
+          "names": [
+            "ControlledEditor"
+          ]
+        },
+        {
+          "module": "core.critic",
+          "names": [
+            "Critic"
+          ]
+        },
+        {
+          "module": "core.candidate_ranker",
+          "names": [
+            "CandidateRanker"
+          ]
+        },
+        {
+          "module": "core.experience_learner",
+          "names": [
+            "ExperienceLearner"
+          ]
+        },
+        {
+          "module": "core.transaction_engine",
+          "names": [
+            "TransactionEngine"
+          ]
+        },
+        {
+          "module": "core.verification_engine",
+          "names": [
+            "VerificationEngine"
+          ]
+        },
+        {
+          "module": "core.learning_repair_bridge",
+          "names": [
+            "LearningRepairBridge"
+          ]
+        },
+        {
+          "module": "workspace.manager",
+          "names": [
+            "WorkspaceManager"
+          ]
+        },
+        {
+          "module": "workspace.manager",
+          "names": [
+            "WorkspaceManager"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/semantic_code_memory.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "SemanticCodeMemory",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "path"
+              ]
+            },
+            {
+              "name": "_empty",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "_load",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "_save",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "remember",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "record_test_result",
+              "args": [
+                "self",
+                "variant_id"
+              ]
+            },
+            {
+              "name": "_find_variant",
+              "args": [
+                "self",
+                "variant_id"
+              ]
+            },
+            {
+              "name": "retrieve",
+              "args": [
+                "self",
+                "query"
+              ]
+            },
+            {
+              "name": "mark_used",
+              "args": [
+                "self",
+                "variant_id"
+              ]
+            },
+            {
+              "name": "variants_in_group",
+              "args": [
+                "self",
+                "equivalent_group"
+              ]
+            },
+            {
+              "name": "stats",
+              "args": [
+                "self"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "_tokens",
+          "args": [
+            "value"
+          ]
+        },
+        {
+          "name": "_digest",
+          "args": [
+            "code"
+          ]
+        },
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "path"
+          ]
+        },
+        {
+          "name": "_empty",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "_load",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "_save",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "remember",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "record_test_result",
+          "args": [
+            "self",
+            "variant_id"
+          ]
+        },
+        {
+          "name": "_find_variant",
+          "args": [
+            "self",
+            "variant_id"
+          ]
+        },
+        {
+          "name": "retrieve",
+          "args": [
+            "self",
+            "query"
+          ]
+        },
+        {
+          "name": "mark_used",
+          "args": [
+            "self",
+            "variant_id"
+          ]
+        },
+        {
+          "name": "variants_in_group",
+          "args": [
+            "self",
+            "equivalent_group"
+          ]
+        },
+        {
+          "name": "stats",
+          "args": [
+            "self"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/learning_engine.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "LearningEngine",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "storage_path"
+              ]
+            },
+            {
+              "name": "_default",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "_load",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "_save",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "normalize",
+              "args": [
+                "value"
+              ]
+            },
+            {
+              "name": "problem_pattern",
+              "args": [
+                "cls",
+                "task",
+                "error_type",
+                "root_cause",
+                "error_message"
+              ]
+            },
+            {
+              "name": "learn",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "_verified",
+              "args": [
+                "verification"
+              ]
+            },
+            {
+              "name": "_update_pattern",
+              "args": [
+                "self",
+                "record"
+              ]
+            },
+            {
+              "name": "retrieve",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "_tokens",
+              "args": [
+                "value"
+              ]
+            },
+            {
+              "name": "best_solutions",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "best_solution",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "stats",
+              "args": [
+                "self"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "storage_path"
+          ]
+        },
+        {
+          "name": "_default",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "_load",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "_save",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "normalize",
+          "args": [
+            "value"
+          ]
+        },
+        {
+          "name": "problem_pattern",
+          "args": [
+            "cls",
+            "task",
+            "error_type",
+            "root_cause",
+            "error_message"
+          ]
+        },
+        {
+          "name": "learn",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "_verified",
+          "args": [
+            "verification"
+          ]
+        },
+        {
+          "name": "_update_pattern",
+          "args": [
+            "self",
+            "record"
+          ]
+        },
+        {
+          "name": "retrieve",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "_tokens",
+          "args": [
+            "value"
+          ]
+        },
+        {
+          "name": "best_solutions",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "best_solution",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "stats",
+          "args": [
+            "self"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/learning_repair_bridge.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "LearningRepairBridge",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "workspace_root",
+                "memory_path"
+              ]
+            },
+            {
+              "name": "find",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "build_candidate",
+              "args": [
+                "self",
+                "solution"
+              ]
+            },
+            {
+              "name": "record",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "stats",
+              "args": [
+                "self"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "workspace_root",
+            "memory_path"
+          ]
+        },
+        {
+          "name": "find",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "build_candidate",
+          "args": [
+            "self",
+            "solution"
+          ]
+        },
+        {
+          "name": "record",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "stats",
+          "args": [
+            "self"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        },
+        {
+          "module": "core.learning_engine",
+          "names": [
+            "LearningEngine"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/phase34_learning_repair.py",
+      "exists": true,
+      "classes": [
+        {
+          "name": "Phase34LearningRepair",
+          "methods": [
+            {
+              "name": "__init__",
+              "args": [
+                "self",
+                "workspace_root",
+                "memory_path"
+              ]
+            },
+            {
+              "name": "lookup_candidates",
+              "args": [
+                "self"
+              ]
+            },
+            {
+              "name": "lookup",
+              "args": [
+                "self"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "args": [
+            "self",
+            "workspace_root",
+            "memory_path"
+          ]
+        },
+        {
+          "name": "lookup_candidates",
+          "args": [
+            "self"
+          ]
+        },
+        {
+          "name": "lookup",
+          "args": [
+            "self"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        },
+        {
+          "module": "core.learning_repair_bridge",
+          "names": [
+            "LearningRepairBridge"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/pika_self_evaluator.py",
+      "exists": true,
+      "classes": [],
+      "functions": [
+        {
+          "name": "now",
+          "args": []
+        },
+        {
+          "name": "record",
+          "args": [
+            "name",
+            "status",
+            "detail"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "datetime",
+          "names": [
+            "datetime",
+            "timezone"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "core/pika_github_evolution_loop.py",
+      "exists": true,
+      "classes": [],
+      "functions": [
+        {
+          "name": "now",
+          "args": []
+        },
+        {
+          "name": "log",
+          "args": [
+            "msg"
+          ]
+        },
+        {
+          "name": "read_json",
+          "args": [
+            "path",
+            "default"
+          ]
+        },
+        {
+          "name": "request",
+          "args": [
+            "url"
+          ]
+        },
+        {
+          "name": "api",
+          "args": [
+            "url"
+          ]
+        },
+        {
+          "name": "search_repos",
+          "args": [
+            "query"
+          ]
+        },
+        {
+          "name": "eligible",
+          "args": [
+            "path"
+          ]
+        },
+        {
+          "name": "download_repo",
+          "args": [
+            "repo",
+            "registry"
+          ]
+        },
+        {
+          "name": "evaluate_and_index",
+          "args": []
+        },
+        {
+          "name": "cycle",
+          "args": []
+        }
+      ],
+      "imports": [
+        {
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "module": "datetime",
+          "names": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "module": "core.github_skill_acquisition",
+          "names": [
+            "run"
+          ]
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "module": "tests.test_semantic_code_memory",
+      "available": true
+    },
+    {
+      "module": "tests.test_phase34_brain_integration",
+      "available": true
+    },
+    {
+      "module": "tests.test_phase34_brain_fallback",
+      "available": true
+    },
+    {
+      "module": "tests.test_phase35_brain_semantic_integration",
+      "available": true
+    },
+    {
+      "module": "tests.test_phase35_context_persistence",
+      "available": true
+    }
+  ],
+  "integration_gaps": []
+}

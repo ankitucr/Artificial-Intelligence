@@ -1,0 +1,8 @@
+--- /data/data/com.termux/files/home/bee5/evolution/workspace/1787376476720791680/parent.py
++++ /data/data/com.termux/files/home/bee5/evolution/workspace/1787376476720791680/candidate.py
+@@ -13,4 +13,4 @@
+     """
+ 
+     text = str(text)
+-    return " ".join(text.strip().split())
++    return " ".join(text.strip().split()[:2])

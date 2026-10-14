@@ -1,0 +1,75 @@
+from typing import Any
+
+from .registry import Tool, ToolRegistry
+
+
+def calculate_sum(
+    a: float,
+    b: float,
+) -> float:
+    return a + b
+
+
+def calculate_product(
+    a: float,
+    b: float,
+) -> float:
+    return a * b
+
+
+def text_length(
+    text: str,
+) -> int:
+    return len(text)
+
+
+def register_builtin_tools(
+    registry: ToolRegistry,
+) -> None:
+
+    registry.register(
+        Tool(
+            name="calculator_sum",
+            description="Add two numbers.",
+            capabilities=[
+                "calculation",
+                "reasoning",
+            ],
+            handler=calculate_sum,
+            input_schema={
+                "a": "number",
+                "b": "number",
+            },
+        )
+    )
+
+    registry.register(
+        Tool(
+            name="calculator_product",
+            description="Multiply two numbers.",
+            capabilities=[
+                "calculation",
+                "reasoning",
+            ],
+            handler=calculate_product,
+            input_schema={
+                "a": "number",
+                "b": "number",
+            },
+        )
+    )
+
+    registry.register(
+        Tool(
+            name="text_length",
+            description="Return the length of text.",
+            capabilities=[
+                "text",
+                "analysis",
+            ],
+            handler=text_length,
+            input_schema={
+                "text": "string",
+            },
+        )
+    )

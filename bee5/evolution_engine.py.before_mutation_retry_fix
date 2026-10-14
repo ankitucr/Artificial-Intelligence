@@ -1,0 +1,700 @@
+#!/usr/bin/env python3
+
+import ast
+import difflib
+import hashlib
+import json
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+from bee5_runtime import LLAMA, MODEL
+
+
+ROOT = Path(__file__).resolve().parent
+
+EVOLUTION_ROOT = ROOT / "evolution"
+WORKSPACE = EVOLUTION_ROOT / "workspace"
+ARCHIVE = EVOLUTION_ROOT / "archive"
+REJECTED = EVOLUTION_ROOT / "rejected"
+LOGS = EVOLUTION_ROOT / "logs"
+
+LINEAGE = EVOLUTION_ROOT / "lineage.jsonl"
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+
+    with path.open("rb") as f:
+        while True:
+            chunk = f.read(1024 * 1024)
+
+            if not chunk:
+                break
+
+            h.update(chunk)
+
+    return h.hexdigest()
+
+
+def write_jsonl(path: Path, data):
+    path.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    with path.open(
+        "a",
+        encoding="utf-8"
+    ) as f:
+        f.write(
+            json.dumps(
+                data,
+                ensure_ascii=False
+            )
+            + "\n"
+        )
+
+
+def run_command(command, timeout=60):
+    return subprocess.run(
+        command,
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        timeout=timeout
+    )
+
+
+def syntax_check(path: Path):
+    source = path.read_text(
+        encoding="utf-8"
+    )
+
+    ast.parse(source)
+
+    return {
+        "ok": True
+    }
+
+
+def evaluate(target: Path, evaluator: Path):
+    result = run_command(
+        [
+            sys.executable,
+            str(evaluator),
+            str(target)
+        ],
+        timeout=60
+    )
+
+    raw = (
+        result.stdout
+        + "\n"
+        + result.stderr
+    ).strip()
+
+    try:
+        data = json.loads(
+            result.stdout.strip()
+        )
+    except Exception:
+        data = {
+            "ok": False,
+            "error": raw
+        }
+
+    data["returncode"] = result.returncode
+
+    if result.returncode != 0:
+        data["ok"] = False
+
+    return data
+
+
+def extract_code(raw: str):
+    if not isinstance(raw, str):
+        raise RuntimeError(
+            "Mutation model returned non-text output."
+        )
+
+    text = raw.strip()
+
+    # Prefer fenced Python content if present.
+    if "```" in text:
+        parts = text.split("```")
+
+        for part in parts:
+            candidate = part.strip()
+
+            if candidate.startswith("python"):
+                candidate = candidate[6:].lstrip()
+
+            if "def " in candidate:
+                return candidate
+
+    # Otherwise locate the first Python source-looking line.
+    markers = (
+        "#!/usr/bin/env python3",
+        "def normalize_text(",
+    )
+
+    positions = [
+        text.find(marker)
+        for marker in markers
+        if text.find(marker) >= 0
+    ]
+
+    if positions:
+        return text[min(positions):].strip()
+
+    raise RuntimeError(
+        "Could not extract Python source from mutation output."
+    )
+
+
+def generate_mutation(
+    parent: Path,
+    task: str,
+    parent_eval: dict
+):
+    """
+    Generate only the mutated normalize_text() function.
+
+    The complete candidate file is reconstructed locally.
+    This sharply reduces model output size while keeping
+    the mutation itself real.
+    """
+
+    source = parent.read_text(
+        encoding="utf-8"
+    )
+
+    failures = parent_eval.get(
+        "failures",
+        []
+    )
+
+    failure_text = json.dumps(
+        failures,
+        ensure_ascii=False
+    )
+
+    prompt = f"""
+You are BEE5's controlled code mutation engine.
+
+Target function:
+normalize_text(text: str) -> str
+
+Improvement goal:
+{task}
+
+Actual failing tests:
+{failure_text}
+
+Current implementation:
+def normalize_text(text: str) -> str:
+    text = str(text)
+    return " ".join(text.strip().split())
+
+Return ONLY one complete Python function named normalize_text.
+
+Requirements:
+- Python standard library only.
+- Preserve currently passing behavior.
+- Fix the actual failing test.
+- No explanation.
+- No markdown.
+""".strip()
+
+    command = [
+        str(LLAMA),
+        "-m",
+        str(MODEL),
+        "-p",
+        prompt,
+        "-n",
+        "120",
+        "-st",
+        "--no-display-prompt",
+        "--simple-io",
+        "--single-turn",
+    ]
+
+    result = run_command(
+        command,
+        timeout=90
+    )
+
+    raw = (
+        result.stdout
+        + "\n"
+        + result.stderr
+    ).strip()
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            raw or "Mutation model failed."
+        )
+
+    # Remove common markdown fences.
+    cleaned = raw.replace(
+        "```python",
+        ""
+    ).replace(
+        "```",
+        ""
+    ).strip()
+
+    marker = "def normalize_text("
+
+    position = cleaned.find(
+        marker
+    )
+
+    if position < 0:
+        raise RuntimeError(
+            "Mutation model did not return normalize_text()."
+        )
+
+    function_source = cleaned[position:].strip()
+
+    # Parse the generated function first.
+    try:
+        tree = ast.parse(
+            function_source
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            f"Generated mutation is not valid Python: {exc}"
+        )
+
+    functions = [
+        node
+        for node in tree.body
+        if isinstance(
+            node,
+            ast.FunctionDef
+        )
+        and node.name == "normalize_text"
+    ]
+
+    if not functions:
+        raise RuntimeError(
+            "Generated source does not contain normalize_text()."
+        )
+
+    # Reconstruct the parent source with only the target
+    # function replaced.
+    parent_tree = ast.parse(
+        source
+    )
+
+    target_function = None
+
+    for node in parent_tree.body:
+
+        if (
+            isinstance(
+                node,
+                ast.FunctionDef
+            )
+            and node.name == "normalize_text"
+        ):
+            target_function = node
+            break
+
+    if target_function is None:
+        raise RuntimeError(
+            "Parent does not contain normalize_text()."
+        )
+
+    lines = source.splitlines(
+        keepends=True
+    )
+
+    start_line = target_function.lineno - 1
+
+    if target_function.end_lineno is None:
+        raise RuntimeError(
+            "Unable to determine parent function range."
+        )
+
+    end_line = target_function.end_lineno
+
+    replacement_lines = (
+        function_source.rstrip()
+        + "\n"
+    ).splitlines(
+        keepends=True
+    )
+
+    candidate_lines = (
+        lines[:start_line]
+        + replacement_lines
+        + lines[end_line:]
+    )
+
+    return "".join(
+        candidate_lines
+    )
+
+
+def make_diff(parent: Path, candidate: Path):
+    old = parent.read_text(
+        encoding="utf-8"
+    ).splitlines(
+        keepends=True
+    )
+
+    new = candidate.read_text(
+        encoding="utf-8"
+    ).splitlines(
+        keepends=True
+    )
+
+    return "".join(
+        difflib.unified_diff(
+            old,
+            new,
+            fromfile=str(parent),
+            tofile=str(candidate)
+        )
+    )
+
+
+def main():
+    if len(sys.argv) < 3:
+        print(
+            'Usage: python evolution_engine.py '
+            '"target.py" "evaluator.py" "improvement task"'
+        )
+        return 1
+
+    target = Path(
+        sys.argv[1]
+    ).resolve()
+
+    evaluator = Path(
+        sys.argv[2]
+    ).resolve()
+
+    task = " ".join(
+        sys.argv[3:]
+    )
+
+    if not target.exists():
+        print(
+            f"Target not found: {target}"
+        )
+        return 2
+
+    if not evaluator.exists():
+        print(
+            f"Evaluator not found: {evaluator}"
+        )
+        return 2
+
+    run_id = str(
+        time.time_ns()
+    )
+
+    run_dir = WORKSPACE / run_id
+
+    run_dir.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    parent = run_dir / "parent.py"
+    candidate = run_dir / "candidate.py"
+
+    shutil.copy2(
+        target,
+        parent
+    )
+
+    parent_hash = sha256_file(parent)
+
+    print("========================================")
+    print("      BEE5 TRUE EVOLUTION CYCLE")
+    print("========================================")
+    print()
+    print(f"Run ID      : {run_id}")
+    print(f"Parent hash : {parent_hash}")
+    print()
+
+    # -------------------------------------------------
+    # Parent evaluation
+    # -------------------------------------------------
+
+    print("===== PARENT EVALUATION =====")
+
+    parent_eval = evaluate(
+        parent,
+        evaluator
+    )
+
+    print(
+        json.dumps(
+            parent_eval,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    # -------------------------------------------------
+    # Real mutation
+    # -------------------------------------------------
+
+    print()
+    print("===== GENERATING REAL MUTATION =====")
+
+    try:
+        mutated_source = generate_mutation(
+            parent,
+            task,
+            parent_eval
+        )
+
+        candidate.write_text(
+            mutated_source,
+            encoding="utf-8"
+        )
+
+    except Exception as exc:
+        print(
+            f"❌ Mutation generation failed: {exc}"
+        )
+        return 3
+
+    candidate_hash = sha256_file(
+        candidate
+    )
+
+    print(
+        f"Candidate hash: {candidate_hash}"
+    )
+
+    # -------------------------------------------------
+    # Verify actual source change
+    # -------------------------------------------------
+
+    diff = make_diff(
+        parent,
+        candidate
+    )
+
+    if not diff.strip():
+        print(
+            "❌ REJECTED: candidate is byte-for-byte identical."
+        )
+        return 4
+
+    diff_path = run_dir / "mutation.diff"
+
+    diff_path.write_text(
+        diff,
+        encoding="utf-8"
+    )
+
+    print()
+    print("===== ACTUAL MUTATION =====")
+    print(diff)
+
+    # -------------------------------------------------
+    # Syntax validation
+    # -------------------------------------------------
+
+    print()
+    print("===== SYNTAX VALIDATION =====")
+
+    try:
+        syntax = syntax_check(
+            candidate
+        )
+    except Exception as exc:
+        syntax = {
+            "ok": False,
+            "error": repr(exc)
+        }
+
+    print(
+        json.dumps(
+            syntax,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    if not syntax.get("ok"):
+        destination = REJECTED / run_id
+        destination.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        shutil.copy2(
+            candidate,
+            destination / "candidate.py"
+        )
+
+        diff_path.replace(
+            destination / "mutation.diff"
+        )
+
+        print(
+            "❌ REJECTED: syntax failure."
+        )
+        return 5
+
+    # -------------------------------------------------
+    # Candidate evaluation
+    # -------------------------------------------------
+
+    print()
+    print("===== CANDIDATE EVALUATION =====")
+
+    candidate_eval = evaluate(
+        candidate,
+        evaluator
+    )
+
+    print(
+        json.dumps(
+            candidate_eval,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    parent_score = parent_eval.get(
+        "score",
+        -1
+    )
+
+    candidate_score = candidate_eval.get(
+        "score",
+        -1
+    )
+
+    accepted = (
+        candidate_eval.get("ok")
+        and candidate_score > parent_score
+    )
+
+    metadata = {
+        "run_id": run_id,
+        "parent_hash": parent_hash,
+        "candidate_hash": candidate_hash,
+        "task": task,
+        "parent_evaluation": parent_eval,
+        "candidate_evaluation": candidate_eval,
+        "accepted": accepted,
+        "diff": diff,
+        "timestamp": time.time(),
+    }
+
+    # -------------------------------------------------
+    # Promote ONLY on actual improvement.
+    # -------------------------------------------------
+
+    if accepted:
+
+        destination = ARCHIVE / candidate_hash
+
+        destination.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        shutil.copy2(
+            candidate,
+            destination / "candidate.py"
+        )
+
+        shutil.copy2(
+            parent,
+            destination / "parent.py"
+        )
+
+        (destination / "mutation.diff").write_text(
+            diff,
+            encoding="utf-8"
+        )
+
+        (destination / "metadata.json").write_text(
+            json.dumps(
+                metadata,
+                ensure_ascii=False,
+                indent=2
+            ),
+            encoding="utf-8"
+        )
+
+        write_jsonl(
+            LINEAGE,
+            metadata
+        )
+
+        print()
+        print("========================================")
+        print("✅ MUTATION ACCEPTED")
+        print("========================================")
+        print()
+        print(
+            f"Score: {parent_score} -> {candidate_score}"
+        )
+        print(
+            f"Archive: {destination}"
+        )
+
+        return 0
+
+    destination = REJECTED / run_id
+
+    destination.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    shutil.copy2(
+        candidate,
+        destination / "candidate.py"
+    )
+
+    diff_path.replace(
+        destination / "mutation.diff"
+    )
+
+    (destination / "metadata.json").write_text(
+        json.dumps(
+            metadata,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+    print()
+    print("========================================")
+    print("❌ MUTATION REJECTED")
+    print("========================================")
+    print()
+    print(
+        f"Score: {parent_score} -> {candidate_score}"
+    )
+    print(
+        "Reason: candidate did not demonstrate a strict "
+        "measured improvement."
+    )
+
+    return 6
+
+
+if __name__ == "__main__":
+    raise SystemExit(
+        main()
+    )

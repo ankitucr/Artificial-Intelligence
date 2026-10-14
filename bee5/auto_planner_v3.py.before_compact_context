@@ -1,0 +1,310 @@
+#!/usr/bin/env python3
+
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+from bee5_runtime import (
+    LLAMA,
+    MODEL,
+    repair_json,
+    load_registry,
+)
+
+from capability_graph import (
+    build_graph,
+    find_candidates,
+)
+
+from plan_validator import (
+    validate_plan,
+    repair_plan,
+)
+
+from capability_contracts import (
+    build_all,
+)
+
+
+ROOT = Path(__file__).resolve().parent
+MEMORY = ROOT / "memory"
+AUTO_PLAN = MEMORY / "auto_plan_v3.json"
+
+
+PLAN_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "query": {
+            "type": "string"
+        },
+        "steps": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "order": {
+                        "type": "integer"
+                    },
+                    "skill": {
+                        "type": "string"
+                    },
+                    "args_template": {
+                        "type": "object"
+                    },
+                    "reason": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "order",
+                    "skill",
+                    "args_template",
+                    "reason"
+                ],
+                "additionalProperties": False
+            }
+        }
+    },
+    "required": [
+        "query",
+        "steps"
+    ],
+    "additionalProperties": False
+}
+
+
+def build_context(query):
+    contracts = build_all()
+    candidates = find_candidates(
+        query,
+        limit=8
+    )
+
+    registry = load_registry()
+
+    result = []
+
+    for candidate in candidates:
+        skill = candidate["skill"]
+
+        if skill not in registry:
+            continue
+
+        contract = contracts.get(
+            skill,
+            {}
+        )
+
+        result.append({
+            "skill": skill,
+            "description": candidate.get(
+                "description",
+                ""
+            ),
+            "score": candidate.get(
+                "score",
+                0
+            ),
+            "reliability": candidate.get(
+                "reliability",
+                0
+            ),
+            "inputs": contract.get(
+                "inputs",
+                {}
+            ),
+            "outputs": contract.get(
+                "outputs",
+                {}
+            ),
+        })
+
+    return result
+
+
+def create_prompt(query, candidates):
+    context = json.dumps(
+        candidates,
+        ensure_ascii=False,
+        indent=2
+    )
+
+    return f"""
+You are the BEE5 capability planner.
+
+Create the smallest valid execution plan for:
+
+USER TASK:
+{query}
+
+VERIFIED CAPABILITY CONTRACTS:
+{context}
+
+STRICT PLANNING RULES:
+
+1. Use ONLY the exact skill names listed above.
+2. Never invent skills.
+3. Every args_template MUST be a JSON object.
+4. "${{input}}" means the original user input.
+5. "${{previous.FIELD}}" may ONLY reference an output field
+   explicitly listed in the immediately previous skill's outputs.
+6. Never use "${{previous.output}}".
+7. Never use "${{previous.field}}".
+8. Never invent an output field.
+9. Step order must be 1, 2, 3, ...
+10. Prefer the smallest valid plan.
+11. A later skill may consume only fields actually produced
+    by the previous skill.
+12. Return ONLY JSON.
+""".strip()
+
+
+def local_plan(query, candidates):
+    prompt = create_prompt(
+        query,
+        candidates
+    )
+
+    command = [
+        str(LLAMA),
+        "-m",
+        str(MODEL),
+        "-p",
+        prompt,
+        "-n",
+        "256",
+        "-j",
+        json.dumps(
+            PLAN_SCHEMA,
+            separators=(",", ":")
+        ),
+        "-st",
+        "--no-display-prompt",
+        "--single-turn",
+    ]
+
+    result = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        timeout=180
+    )
+
+    raw = (
+        result.stdout
+        + "\n"
+        + result.stderr
+    ).strip()
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            raw or "Planner failed"
+        )
+
+    return repair_json(
+        raw
+    )
+
+
+def main():
+    if len(sys.argv) < 2:
+        print(
+            'Usage: python auto_planner_v3.py "task"'
+        )
+        return 1
+
+    query = " ".join(
+        sys.argv[1:]
+    )
+
+    build_graph()
+
+    candidates = build_context(
+        query
+    )
+
+    if not candidates:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "error": "No verified capabilities found"
+                },
+                indent=2
+            )
+        )
+        return 2
+
+    try:
+        plan = local_plan(
+            query,
+            candidates
+        )
+
+        plan = repair_plan(
+            plan
+        )
+
+        valid, errors = validate_plan(
+            plan
+        )
+
+        if not valid:
+            print(
+                json.dumps(
+                    {
+                        "ok": False,
+                        "planner": "local_model",
+                        "validation_errors": errors,
+                        "plan": plan
+                    },
+                    ensure_ascii=False,
+                    indent=2
+                )
+            )
+            return 3
+
+        plan["planner"] = "local_model_v3"
+        plan["candidate_count"] = len(
+            candidates
+        )
+
+        AUTO_PLAN.write_text(
+            json.dumps(
+                plan,
+                ensure_ascii=False,
+                indent=2
+            ),
+            encoding="utf-8"
+        )
+
+        print(
+            json.dumps(
+                plan,
+                ensure_ascii=False,
+                indent=2
+            )
+        )
+
+        return 0
+
+    except Exception as exc:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "planner": "local_model_v3",
+                    "error": str(exc)
+                },
+                ensure_ascii=False,
+                indent=2
+            )
+        )
+        return 4
+
+
+if __name__ == "__main__":
+    raise SystemExit(
+        main()
+    )

@@ -1,0 +1,496 @@
+#!/usr/bin/env python3
+
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+from bee5_runtime import (
+    LLAMA,
+    MODEL,
+    repair_json,
+    load_registry,
+)
+
+from capability_graph import (
+    build_graph,
+    find_candidates,
+)
+
+from plan_validator import (
+    validate_plan,
+    repair_plan,
+)
+
+from capability_contracts import (
+    build_all,
+)
+
+
+ROOT = Path(__file__).resolve().parent
+MEMORY = ROOT / "memory"
+AUTO_PLAN = MEMORY / "auto_plan_v3.json"
+
+
+PLAN_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "query": {
+            "type": "string"
+        },
+        "steps": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "order": {
+                        "type": "integer"
+                    },
+                    "skill": {
+                        "type": "string"
+                    },
+                    "args_template": {
+                        "type": "object"
+                    },
+                    "reason": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "order",
+                    "skill",
+                    "args_template",
+                    "reason"
+                ],
+                "additionalProperties": False
+            }
+        }
+    },
+    "required": [
+        "query",
+        "steps"
+    ],
+    "additionalProperties": False
+}
+
+
+def build_context(query):
+    contracts = build_all()
+
+    candidates = find_candidates(
+        query,
+        limit=6
+    )
+
+    registry = load_registry()
+
+    result = []
+
+    for candidate in candidates:
+        skill = candidate.get("skill", "")
+
+        if skill not in registry:
+            continue
+
+        contract = contracts.get(
+            skill,
+            {}
+        )
+
+        result.append({
+            "skill": skill,
+            "inputs": contract.get(
+                "inputs",
+                {}
+            ),
+            "outputs": contract.get(
+                "outputs",
+                {}
+            )
+        })
+
+    return result
+
+
+def create_prompt(query, candidates):
+    context = json.dumps(
+        candidates,
+        ensure_ascii=False,
+        separators=(",", ":")
+    )
+
+    return f"""
+You are BEE5's execution planner.
+
+Task:
+{query}
+
+Available verified skills and exact contracts:
+{context}
+
+You MUST construct an executable multi-step plan.
+
+Rules:
+- Use only listed skill names.
+- Never invent a skill.
+- Every step must have:
+  order, skill, args_template, reason.
+- args_template must be an object.
+- Use "${{input}}" for original task input.
+- A "${{previous.FIELD}}" reference is valid only when FIELD
+  exists in the outputs of the immediately previous skill.
+- Never use "${{previous.output}}".
+- Never use "${{previous.field}}".
+- Never invent output names.
+- Step order must be sequential starting at 1.
+- If the task requires multiple skills, create all required steps.
+- Do not return an empty steps array when a valid workflow exists.
+- Return ONLY the JSON plan.
+
+Example reference:
+If skill A outputs "cleaned_text" and skill B accepts "text",
+then B may use:
+"${{previous.cleaned_text}}"
+""".strip()
+
+
+def extract_plan_json(raw):
+    """
+    Extract the last valid JSON object that contains
+    a 'steps' list.
+
+    llama.cpp may emit banners, thinking text,
+    runtime messages, or multiple JSON fragments.
+    """
+
+    import json
+
+    if not isinstance(raw, str):
+        raise RuntimeError(
+            "Planner output is not text."
+        )
+
+    text = raw.strip()
+
+    candidates = []
+
+    # Scan every possible '{' and try to decode
+    # a complete JSON object from that position.
+    decoder = json.JSONDecoder()
+
+    for index, char in enumerate(text):
+        if char != "{":
+            continue
+
+        try:
+            obj, end = decoder.raw_decode(
+                text[index:]
+            )
+        except Exception:
+            continue
+
+        if not isinstance(obj, dict):
+            continue
+
+        steps = obj.get("steps")
+
+        if isinstance(steps, list):
+            candidates.append(obj)
+
+    if not candidates:
+        raise RuntimeError(
+            "No executable planner JSON object found."
+        )
+
+    # Prefer the last complete plan.
+    plan = candidates[-1]
+
+    if not isinstance(
+        plan.get("steps"),
+        list
+    ) or not plan["steps"]:
+        raise RuntimeError(
+            "Planner JSON contains no executable steps."
+        )
+
+    return plan
+
+
+def local_plan(query, candidates):
+    prompt = create_prompt(
+        query,
+        candidates
+    )
+
+    command = [
+        str(LLAMA),
+        "-m",
+        str(MODEL),
+        "-p",
+        prompt,
+        "-n",
+        "220",
+        "-j",
+        json.dumps(
+            PLAN_SCHEMA,
+            separators=(",", ":")
+        ),
+        "-st",
+        "--no-display-prompt",
+        "--single-turn",
+    ]
+
+    result = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        timeout=180
+    )
+
+    raw = (
+        result.stdout
+        + "\n"
+        + result.stderr
+    ).strip()
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            raw or "Planner failed"
+        )
+
+    try:
+        plan = extract_plan_json(
+            raw
+        )
+    except Exception:
+        # One final compatibility attempt using the
+        # existing generic parser.
+        plan = repair_json(
+            raw
+        )
+
+    if not isinstance(plan, dict):
+        raise RuntimeError(
+            "Planner returned a non-object."
+        )
+
+    steps = plan.get(
+        "steps"
+    )
+
+    if not isinstance(
+        steps,
+        list
+    ) or not steps:
+        raise RuntimeError(
+            "Planner returned an empty plan."
+        )
+
+    return plan
+
+
+def deterministic_contract_fallback(query, candidates):
+    names = {
+        item.get("skill")
+        for item in candidates
+    }
+
+    lowered = query.lower()
+
+    if (
+        "clean" in lowered
+        and "analy" in lowered
+        and "report" in lowered
+        and {
+            "text_cleaner",
+            "text_analyzer",
+            "text_reporter"
+        }.issubset(names)
+    ):
+        return {
+            "query": query,
+            "steps": [
+                {
+                    "order": 1,
+                    "skill": "text_cleaner",
+                    "args_template": {
+                        "text": "${input}"
+                    },
+                    "reason": "Clean the input text."
+                },
+                {
+                    "order": 2,
+                    "skill": "text_analyzer",
+                    "args_template": {
+                        "text": "${previous.cleaned_text}"
+                    },
+                    "reason": "Analyze cleaned text."
+                },
+                {
+                    "order": 3,
+                    "skill": "text_reporter",
+                    "args_template": {
+                        "text": "${previous.text}",
+                        "word_count": "${previous.word_count}",
+                        "unique_word_count": (
+                            "${previous.unique_word_count}"
+                        ),
+                        "longest_word": (
+                            "${previous.longest_word}"
+                        )
+                    },
+                    "reason": "Create the final report."
+                }
+            ]
+        }
+
+    return None
+
+
+def main():
+    if len(sys.argv) < 2:
+        print(
+            'Usage: python auto_planner_v3.py "task"'
+        )
+        return 1
+
+    query = " ".join(
+        sys.argv[1:]
+    )
+
+    build_graph()
+
+    candidates = build_context(
+        query
+    )
+
+    if not candidates:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "error": "No verified capabilities found"
+                },
+                ensure_ascii=False,
+                indent=2
+            )
+        )
+        return 2
+
+    # -------------------------------------------------
+    # Attempt 1: local capability-aware planner
+    # -------------------------------------------------
+    try:
+        plan = local_plan(
+            query,
+            candidates
+        )
+
+        plan = repair_plan(
+            plan
+        )
+
+        valid, errors = validate_plan(
+            plan
+        )
+
+        if valid:
+            plan["planner"] = "local_model_v3"
+            plan["candidate_count"] = len(
+                candidates
+            )
+
+            AUTO_PLAN.write_text(
+                json.dumps(
+                    plan,
+                    ensure_ascii=False,
+                    indent=2
+                ),
+                encoding="utf-8"
+            )
+
+            print(
+                json.dumps(
+                    plan,
+                    ensure_ascii=False,
+                    indent=2
+                )
+            )
+
+            return 0
+
+        first_error = "\n".join(
+            errors
+        )
+
+    except Exception as exc:
+        first_error = str(exc)
+
+    # -------------------------------------------------
+    # Attempt 2: deterministic contract planner
+    # -------------------------------------------------
+    fallback = deterministic_contract_fallback(
+        query,
+        candidates
+    )
+
+    if fallback is not None:
+        fallback = repair_plan(
+            fallback
+        )
+
+        valid, errors = validate_plan(
+            fallback
+        )
+
+        if valid:
+            fallback["planner"] = (
+                "contract_fallback"
+            )
+            fallback["candidate_count"] = len(
+                candidates
+            )
+            fallback["local_planner_error"] = (
+                first_error
+            )
+
+            AUTO_PLAN.write_text(
+                json.dumps(
+                    fallback,
+                    ensure_ascii=False,
+                    indent=2
+                ),
+                encoding="utf-8"
+            )
+
+            print(
+                json.dumps(
+                    fallback,
+                    ensure_ascii=False,
+                    indent=2
+                )
+            )
+
+            return 0
+
+    print(
+        json.dumps(
+            {
+                "ok": False,
+                "planner": "rejected",
+                "error": first_error
+            },
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    return 3
+
+
+
+
+if __name__ == "__main__":
+    raise SystemExit(
+        main()
+    )

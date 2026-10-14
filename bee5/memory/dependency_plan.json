@@ -1,0 +1,33 @@
+{
+  "query": "   HELLO     BEE5     WORLD!!!   hello   ",
+  "steps": [
+    {
+      "order": 1,
+      "skill": "text_cleaner",
+      "args_template": {
+        "text": "${input}"
+      },
+      "reason": "Selected by capability retrieval and deterministic dependency resolution."
+    },
+    {
+      "order": 2,
+      "skill": "text_analyzer",
+      "args_template": {
+        "text": "${step1.cleaned_text}"
+      },
+      "reason": "Selected by capability retrieval and deterministic dependency resolution."
+    },
+    {
+      "order": 3,
+      "skill": "text_reporter",
+      "args_template": {
+        "longest_word": "${step2.longest_word}",
+        "text": "${step1.cleaned_text}",
+        "unique_word_count": "${step2.unique_word_count}",
+        "word_count": "${step2.word_count}"
+      },
+      "reason": "Selected by capability retrieval and deterministic dependency resolution."
+    }
+  ],
+  "planner": "dependency_solver"
+}

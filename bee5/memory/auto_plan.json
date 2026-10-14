@@ -1,0 +1,38 @@
+{
+  "query": "Clean this text, analyze it, and create a report",
+  "steps": [
+    {
+      "order": 1,
+      "skill": "text_cleaner",
+      "args_template": {
+        "text": "${input}"
+      },
+      "reason": "Clean the input text first."
+    },
+    {
+      "order": 2,
+      "skill": "text_analyzer",
+      "args_template": {
+        "text": "${previous.cleaned_text}"
+      },
+      "reason": "Analyze the cleaned text."
+    },
+    {
+      "order": 3,
+      "skill": "text_reporter",
+      "args_template": {
+        "text": "${previous.text}",
+        "word_count": "${previous.word_count}",
+        "unique_word_count": "${previous.unique_word_count}",
+        "longest_word": "${previous.longest_word}"
+      },
+      "reason": "Create a report from the analysis."
+    }
+  ],
+  "planner": "deterministic_fallback",
+  "candidate_count": 4,
+  "validation": {
+    "status": "valid",
+    "errors": []
+  }
+}

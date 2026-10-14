@@ -1,0 +1,38 @@
+<div class="card" style="border-color: var(--neon-yellow);">
+    <div class="card-title">🕹️ MANUAL CONTROL PANEL</div>
+    <input type="text" id="manualSym" placeholder="Ex: BINANCE:BTCUSDT" style="background:#000; color:#fff; border:1px solid #333; padding:5px; width:60%;">
+    <button onclick="manualSync()" style="background:var(--neon-green); border:none; padding:6px 12px; cursor:pointer; font-weight:bold;">SYNC NOW</button>
+</div>
+
+<script>
+    async function manualSync() {
+        const symbol = document.getElementById('manualSym').value.toUpperCase();
+        if(!symbol) return alert("Enter Symbol First!");
+        
+        // Loader State
+        document.getElementById('sig').innerText = "CALCULATING...";
+        
+        const response = await fetch('/api/manual-sync', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ symbol: symbol })
+        });
+        
+        const result = await response.json();
+        if(result.status === "success") {
+            // Update UI immediately
+            updateUI(result.data);
+        } else {
+            alert("Symbol Data Not Found in TV");
+        }
+    }
+
+    function updateUI(data) {
+        document.getElementById('sym').innerText = data.symbol;
+        document.getElementById('price').innerText = data.price;
+        document.getElementById('sig').innerText = data.signal;
+        document.getElementById('sig').className = data.signal.includes('BUY') ? 'buy' : 'sell';
+        document.getElementById('acc-fill').style.width = data.accuracy + "%";
+        // Baki fields bhi isi tarah update honge...
+    }
+</script>

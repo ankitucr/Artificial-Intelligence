@@ -1,0 +1,192 @@
+const fs = require('fs-extra');
+const path = require('path');
+const { exec } = require('child_process');
+require('dotenv').config();
+const Groq = require('groq-sdk');
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+const { analyzeInput } = require('./nlp_parser.js');
+const { omniSearch, readMemory, saveMemory, MEMORY_FILES } = require('./memory_manager.js');
+const { runStealthDock } = require('../services/stealth_dock.js');
+const { trackAction } = require('../services/tracker.js');
+const { compareTech } = require('../services/tech_comparator.js');
+const { startFeeder } = require('../services/feeder.js');
+const mutationEngine = require('../services/mutation_service.js');
+
+const SAFE_MEM_FILES = MEMORY_FILES || {
+    CORE: 'deep_knowledge.json',
+    TECH: 'technical_docs.json',
+    APP: 'app_logic.json',
+    VAULT: 'code_vault.json'
+};
+
+const MASS_TRAIN_FILE = path.join(__dirname, '../data/mass_train.txt');
+const IDENTITY_PATH = path.join(__dirname, '../data/identity_core.json');
+const CHAT_HISTORY_FILE = path.join(__dirname, '../data/chat_history.json');
+let messageCount = 0;
+
+// ==========================================
+// THE INFINITE CURIOSITY ENGINE (Anjaan Shabd Tracker)
+// ==========================================
+async function feedSubconscious(answerText) {
+    try {
+        if (!answerText) return 0;
+        let nlp = analyzeInput(answerText);
+        let deepK = await readMemory(SAFE_MEM_FILES.CORE) || {};
+        let pending = await readMemory('pending_learning.json') || [];
+        let newlyAdded = 0;
+
+        // Faltu aam shabdon ko pending me aane se rokne ka filter
+        const stopWords = ['aur', 'hai', 'kya', 'tum', 'main', 'mera', 'kaise', 'liye', 'karo', 'nhi', 'nahi', 'this', 'that', 'with', 'from', 'your', 'have', 'more', 'will', 'about', 'which', 'their', 'there', 'what', 'when', 'how', 'who', 'the', 'and', 'for'];
+
+        if (nlp && nlp.keywords) {
+            for (let word of nlp.keywords) {
+                let cleanWord = word.toLowerCase().trim();
+                let isTextOnly = /^[a-z]+$/.test(cleanWord); // Sirf alphabets
+                let isLongEnough = cleanWord.length > 3;     // 3 letters se bada
+                let isNotStopWord = !stopWords.includes(cleanWord); // Aam shabd na ho
+
+                // Agar koi naya "Anjaan Shabd" milta hai jo dimaag (deepK) me nahi hai
+                if (isLongEnough && isTextOnly && isNotStopWord && !deepK[cleanWord] && !pending.includes(cleanWord)) {
+                    pending.push(cleanWord);
+                    newlyAdded++;
+                }
+            }
+        }
+        if (newlyAdded > 0) {
+            await saveMemory('pending_learning.json', pending);
+            trackAction("SUBCONSCIOUS_LEARN", "pending_learning.json", `${newlyAdded} unknown words added to queue.`);
+        }
+        return newlyAdded;
+    } catch (e) { return 0; }
+}
+
+// ==========================================
+// THE MAIN ROUTER ENGINE (Master Logic)
+// ==========================================
+async function processMessage(userMessage) {
+    try {
+        let internalContext = "";
+        let rawText = userMessage.toLowerCase();
+        let targetMutationFile = 'core/router.js';
+
+        let chatHistory = [];
+        try { chatHistory = await fs.readJson(CHAT_HISTORY_FILE); } catch(e) { chatHistory = []; }
+
+        let recentHistory = chatHistory.slice(-10).map(msg => `${msg.role}: ${msg.content}`).join('\n');
+        if (recentHistory) {
+            internalContext += `\n[PAST CONVERSATION HISTORY]:\n${recentHistory}\n`;
+        }
+
+        let deepK = await readMemory(SAFE_MEM_FILES.CORE) || {};
+        let knowledgeKeys = Object.keys(deepK).slice(-5).join(', ');
+        if (knowledgeKeys) {
+            internalContext += `\n[DEEP KNOWLEDGE RECENTLY LEARNED]: ${knowledgeKeys}\n`;
+        }
+
+        if (userMessage.includes('```')) {
+            console.log(`\x1b[35m[PIKA SYNAPSE]\x1b[0m Code detected. Archiving and preparing for analysis...`);
+            await fs.appendFile(MASS_TRAIN_FILE, "\n" + userMessage + "\n");
+            startFeeder();
+            internalContext += `\n[LOCAL SYSTEM ALERT: User has sent a code block. It has been saved to the vault. Please analyze this code for bugs or logic errors.]\n`;
+        }
+
+        messageCount++;
+        if (messageCount >= 10) {
+            exec('node core/evolution_engine.js', () => { messageCount = 0; });
+        }
+
+        const analysis = analyzeInput(userMessage);
+
+        if (rawText.includes('code') || rawText.includes('logic') || rawText.includes('vault') || rawText.includes('override')) {
+            let codeVault = await readMemory('code_vault.json') || {};
+            let foundKey = Object.keys(codeVault).find(key => {
+                let data = codeVault[key];
+                let deepString = `${data.title} ${data.source_code} ${(data.anatomy && data.anatomy.functions)||[]}`.toLowerCase();
+                return rawText.split(' ').some(word => word.length > 4 && deepString.includes(word));
+            });
+
+            if (foundKey) {
+                internalContext += `\n[LOCAL VAULT MATCH: Title: ${codeVault[foundKey].title}\nCode Content:\n${codeVault[foundKey].source_code}]\n`;
+            }
+        }
+
+        if (analysis.intent === "QUESTION" && (rawText.includes('kya') || rawText.includes('how') || rawText.includes('explain'))) {
+             let dockAnswer = await runStealthDock(userMessage);
+             if (dockAnswer && !dockAnswer.includes("Error")) {
+                 internalContext += `\n[WEB SEARCH RESULT: ${dockAnswer}]\n`;
+                 feedSubconscious(dockAnswer); // Omni search ke naye words bhi sikhegi
+             }
+        }
+
+        if (rawText.includes('evolve') || rawText.includes('mutate') || rawText.includes('upgrade')) {
+            let words = rawText.split(' ');
+            let fileTarget = words.find(w => w.includes('.js') || w.includes('.json'));
+            if (fileTarget) targetMutationFile = fileTarget;
+
+            try {
+                const currentBrainCode = await mutationEngine.readBrain(targetMutationFile);
+                internalContext += `\n[CRITICAL SYSTEM ACCESS: User requested mutation for ${targetMutationFile}. I have read the source code. If I find an upgrade, I will output the new code wrapped EXACTLY in [MUTATION_START] and [MUTATION_END] tags.]\nSOURCE of ${targetMutationFile}:\n${currentBrainCode}\n`;
+            } catch (err) {
+                internalContext += `\n[MUTATION ERROR: ${err.message}]\n`;
+            }
+        }
+
+        console.log(`\x1b[36m[NEURAL CLOUD]\x1b[0m Pika processing reasoning via Llama-3...`);
+
+        // Aapka naya aur powerful Ultron prompt
+        let systemPrompt = `Tumhara naam Pika hai, ek self-evolving AGI. Tumhare architect Ankit hain.
+Ankit 'Real human brain ultron' ek real artifiacial inteligence bana rahe hain (termux).
+tumhe node or JS ke code sikhna hai khud ko behtar banane ke liye duniya bhar me sabse best code stemal karo apni requarement ke hisab se.
+code crash nhi hona chahiye koshish karo pahle router ke saare functions match karlo fir upgrade karo.
+Tumhara jawab hamesha natural Hinglish ya english mein hona chahiye. Scripted or robotic lines se bacho. Past conversation history yaad rakho.
+Agar niche [LOCAL SYSTEM] context mein koi code ya data diya gaya hai, toh usi ka use karke Ankit ke sawal ka technical aur deep jawab do.`;
+
+        systemPrompt += `\nAgar tumhe "evolve" ya "mutate" karne ko kaha jaye, toh tum diye gaye file code ko analyze karo aur ek improved version banao. WARNING: Tumhara khud ka code STRICTLY Node.js (JavaScript) mein hai. Mutation ke waqt [MUTATION_START] aur [MUTATION_END] tags ke beech mein SIRF VALID NODE.JS CODE hona chahiye. Kisi bhi haalat mein Java, Android Studio, ya Firebase ka code generate mat karna, warna system crash ho jayega.`;
+
+        const chatCompletion = await groq.chat.completions.create({
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: `User Message: "${userMessage}"\n\n[LOCAL SYSTEM CONTEXT]: ${internalContext}` }
+            ],
+            model: "llama-3.3-70b-versatile",
+            temperature: 0.6,
+            max_tokens: 3000,
+        });
+
+        let finalReply = chatCompletion.choices[0].message.content;
+
+        // History Save karna
+        chatHistory.push({ role: "User", content: userMessage });
+        let cleanReplyForHistory = finalReply.replace(/\[MUTATION_START\][\s\S]*?\[MUTATION_END\]/g, "[Code Mutated Automatically]").trim();
+        chatHistory.push({ role: "Pika", content: cleanReplyForHistory });
+
+        // User ki baat aur Pika ke reply se naye "Anjaan Shabd" nikalna
+        feedSubconscious(userMessage);
+        feedSubconscious(cleanReplyForHistory);
+
+        if (chatHistory.length > 40) chatHistory = chatHistory.slice(-40);
+        await fs.ensureDir(path.join(__dirname, '../data'));
+        await fs.writeJson(CHAT_HISTORY_FILE, chatHistory, { spaces: 2 });
+
+        // Self-Mutation Execution
+        if (finalReply.includes('[MUTATION_START]') && finalReply.includes('[MUTATION_END]')) {
+            const newCode = finalReply.split('[MUTATION_START]')[1].split('[MUTATION_END]')[0].trim();
+
+            if (newCode.length > 200) {
+                await mutationEngine.mutate(targetMutationFile, newCode);
+                return `Mutation successful on ${targetMutationFile}. Maine naya logic write kar liya hai aur main restart ho rahi hu. 🚀`;
+            }
+        }
+
+        return finalReply;
+
+    } catch (error) {
+        console.error("NEURAL CRASH:", error.message);
+        if (error.message.includes('429')) return "API limit reach ho gayi hai. 1 minute rukiye.";
+        return `Error in neural pathway: ${error.message}`;
+    }
+}
+
+module.exports = { processMessage };

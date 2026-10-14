@@ -1,0 +1,32 @@
+{
+  "experiences": [],
+  "schema_version": 1,
+  "variants": [
+    {
+      "code": "    return price * (1 - percent / 100)",
+      "code_hash": "20949d1a4c79ebfb4b80155349aa6ad70488e3cc8675f8c3b8fdf76d05e1bb29",
+      "created_at": 1791741654.290011,
+      "description": "Phase 33 independently tested repair",
+      "equivalent_group": null,
+      "evidence": [
+        "Phase 33 success",
+        "Phase 33 test_passed=True",
+        "Accepted candidate matched submitted code"
+      ],
+      "id": "20949d1a4c79ebfb",
+      "intent": "Fix percentage discount calculation",
+      "language": "python",
+      "last_seen": 1791741654.2900116,
+      "preconditions": [
+        "discount percentage calculation is incorrect"
+      ],
+      "tags": [
+        "phase33",
+        "repair"
+      ],
+      "test_cases": [],
+      "uses": 0,
+      "verification": "test_verified"
+    }
+  ]
+}

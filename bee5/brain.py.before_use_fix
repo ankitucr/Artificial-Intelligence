@@ -1,0 +1,1158 @@
+#!/usr/bin/env python3
+
+import ast
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+import hashlib
+from pathlib import Path
+
+
+# ============================================================
+# BEE5
+# Local Neural Skill-Based Brain
+# Architecture inspired by the research ideas behind Voyager.
+#
+# External cloud AI APIs are NOT used.
+#
+# Core loop:
+#   SCAN -> UNDERSTAND -> REGISTER -> EXECUTE -> TEST
+#   -> REMEMBER -> RETRIEVE
+#
+# Self-modification is intentionally disabled in this first stage.
+# ============================================================
+
+
+ROOT = Path(__file__).resolve().parent
+
+SKILLS = ROOT / "skills"
+INCOMING = SKILLS / "incoming"
+ACTIVE = SKILLS / "active"
+QUARANTINE = SKILLS / "quarantine"
+
+MEMORY = ROOT / "memory"
+SANDBOX = ROOT / "sandbox"
+CANDIDATES = ROOT / "candidates"
+VERSIONS = ROOT / "versions"
+TESTS = ROOT / "tests"
+
+REGISTRY = MEMORY / "registry.json"
+EPISODES = MEMORY / "episodes.jsonl"
+FAILURES = MEMORY / "failures.jsonl"
+
+CONFIG = ROOT / "config.json"
+
+
+DEFAULT_CONFIG = {
+    "name": "BEE5",
+    "version": "0.1.0",
+    "neural_backend": "local",
+    "llama_cli": "llama-cli",
+    "model": "",
+    "max_skill_runtime": 20,
+    "auto_evolution": False,
+    "human_approval_for_evolution": True
+}
+
+
+FORBIDDEN_IMPORTS = {
+    "ctypes",
+    "telnetlib",
+    "pickle"
+}
+
+FORBIDDEN_CALLS = {
+    "eval",
+    "exec",
+    "__import__"
+}
+
+
+def ensure_structure():
+    for path in [
+        INCOMING,
+        ACTIVE,
+        QUARANTINE,
+        MEMORY,
+        SANDBOX,
+        CANDIDATES,
+        VERSIONS,
+        TESTS,
+    ]:
+        path.mkdir(parents=True, exist_ok=True)
+
+    if not CONFIG.exists():
+        save_json(CONFIG, DEFAULT_CONFIG)
+
+    if not REGISTRY.exists():
+        save_json(REGISTRY, {})
+
+
+def load_json(path, default):
+    try:
+        if not path.exists():
+            return default
+
+        return json.loads(
+            path.read_text(encoding="utf-8")
+        )
+
+    except Exception:
+        return default
+
+
+def save_json(path, data):
+    path.write_text(
+        json.dumps(
+            data,
+            indent=2,
+            ensure_ascii=False
+        ),
+        encoding="utf-8"
+    )
+
+
+def append_jsonl(path, data):
+    with path.open(
+        "a",
+        encoding="utf-8"
+    ) as f:
+        f.write(
+            json.dumps(
+                data,
+                ensure_ascii=False
+            ) + "\n"
+        )
+
+
+def sha256_file(path):
+    h = hashlib.sha256()
+
+    with path.open("rb") as f:
+        for chunk in iter(
+            lambda: f.read(65536),
+            b""
+        ):
+            h.update(chunk)
+
+    return h.hexdigest()
+
+
+def tokenize(text):
+    return set(
+        re.findall(
+            r"[a-zA-Z0-9_]+",
+            text.lower()
+        )
+    )
+
+
+# ============================================================
+# STATIC CODE UNDERSTANDING
+# ============================================================
+
+def analyze_python(path):
+    source = path.read_text(
+        encoding="utf-8"
+    )
+
+    tree = ast.parse(
+        source,
+        filename=str(path)
+    )
+
+    imports = []
+    functions = []
+    classes = []
+    calls = []
+
+    dangerous = []
+
+    for node in ast.walk(tree):
+
+        if isinstance(node, ast.Import):
+
+            for item in node.names:
+                imports.append(
+                    item.name
+                )
+
+                root = item.name.split(".")[0]
+
+                if root in FORBIDDEN_IMPORTS:
+                    dangerous.append(
+                        f"forbidden import: {root}"
+                    )
+
+        elif isinstance(node, ast.ImportFrom):
+
+            if node.module:
+                imports.append(
+                    node.module
+                )
+
+                root = node.module.split(".")[0]
+
+                if root in FORBIDDEN_IMPORTS:
+                    dangerous.append(
+                        f"forbidden import: {root}"
+                    )
+
+        elif isinstance(node, ast.FunctionDef):
+
+            functions.append(
+                node.name
+            )
+
+        elif isinstance(node, ast.AsyncFunctionDef):
+
+            functions.append(
+                node.name
+            )
+
+        elif isinstance(node, ast.ClassDef):
+
+            classes.append(
+                node.name
+            )
+
+        elif isinstance(node, ast.Call):
+
+            if isinstance(
+                node.func,
+                ast.Name
+            ):
+                calls.append(
+                    node.func.id
+                )
+
+                if node.func.id in FORBIDDEN_CALLS:
+                    dangerous.append(
+                        f"forbidden call: {node.func.id}"
+                    )
+
+            elif isinstance(
+                node.func,
+                ast.Attribute
+            ):
+                calls.append(
+                    node.func.attr
+                )
+
+    if re.search(
+        r"\bos\.system\s*\(",
+        source
+    ):
+        dangerous.append(
+            "os.system detected"
+        )
+
+    return {
+        "imports": sorted(set(imports)),
+        "functions": sorted(set(functions)),
+        "classes": sorted(set(classes)),
+        "calls": sorted(set(calls)),
+        "dangerous": sorted(set(dangerous)),
+        "sha256": sha256_file(path),
+        "size": path.stat().st_size
+    }
+
+
+# ============================================================
+# SKILL MANIFEST
+# ============================================================
+
+def read_skill_metadata(path, analysis):
+
+    source = path.read_text(
+        encoding="utf-8"
+    )
+
+    name = path.stem
+
+    description = (
+        f"Python skill named {name}. "
+        f"Functions: "
+        f"{', '.join(analysis['functions']) or 'none'}."
+    )
+
+    version = "0.1.0"
+
+    match = re.search(
+        r"SKILL_DESCRIPTION\s*=\s*[\"'](.+?)[\"']",
+        source
+    )
+
+    if match:
+        description = match.group(1)
+
+    match = re.search(
+        r"SKILL_VERSION\s*=\s*[\"'](.+?)[\"']",
+        source
+    )
+
+    if match:
+        version = match.group(1)
+
+    return {
+        "name": name,
+        "description": description,
+        "version": version,
+        "functions": analysis["functions"],
+        "classes": analysis["classes"],
+        "imports": analysis["imports"],
+        "calls": analysis["calls"],
+        "dangerous": analysis["dangerous"],
+        "sha256": analysis["sha256"],
+        "source": str(path.relative_to(ROOT))
+    }
+
+
+# ============================================================
+# SCANNER
+# ============================================================
+
+def scan_directory(directory):
+
+    found = []
+
+    for path in sorted(
+        directory.glob("*.py")
+    ):
+
+        try:
+
+            analysis = analyze_python(
+                path
+            )
+
+            metadata = read_skill_metadata(
+                path,
+                analysis
+            )
+
+            found.append(
+                metadata
+            )
+
+        except Exception as exc:
+
+            found.append({
+                "name": path.stem,
+                "source": str(
+                    path.relative_to(ROOT)
+                ),
+                "error": str(exc)
+            })
+
+    return found
+
+
+def scan_all():
+
+    registry = {}
+
+    for directory in [
+        INCOMING,
+        ACTIVE
+    ]:
+
+        for skill in scan_directory(
+            directory
+        ):
+
+            registry[
+                skill["name"]
+            ] = skill
+
+    save_json(
+        REGISTRY,
+        registry
+    )
+
+    print(
+        f"🧠 BEE5 scanned "
+        f"{len(registry)} skills."
+    )
+
+    for name, skill in registry.items():
+
+        status = (
+            "⚠️ UNSAFE"
+            if skill.get("dangerous")
+            else "✅"
+        )
+
+        print(
+            f"{status} {name}"
+        )
+
+    return registry
+
+
+# ============================================================
+# SKILL RETRIEVAL
+# ============================================================
+
+def retrieve(query, limit=5):
+
+    registry = load_json(
+        REGISTRY,
+        {}
+    )
+
+    query_tokens = tokenize(
+        query
+    )
+
+    ranked = []
+
+    for name, skill in registry.items():
+
+        text = " ".join([
+            name,
+            skill.get(
+                "description",
+                ""
+            ),
+            " ".join(
+                skill.get(
+                    "functions",
+                    []
+                )
+            ),
+            " ".join(
+                skill.get(
+                    "classes",
+                    []
+                )
+            )
+        ])
+
+        score = len(
+            query_tokens
+            &
+            tokenize(text)
+        )
+
+        if score:
+            ranked.append(
+                (
+                    score,
+                    name
+                )
+            )
+
+    ranked.sort(
+        reverse=True
+    )
+
+    return [
+        name
+        for _, name in ranked[:limit]
+    ]
+
+
+# ============================================================
+# SKILL PATH
+# ============================================================
+
+def find_active_skill(name):
+
+    candidates = [
+        ACTIVE / f"{name}.py",
+        ACTIVE / name / "skill.py"
+    ]
+
+    for path in candidates:
+
+        if path.exists():
+            return path
+
+    return None
+
+
+# ============================================================
+# TEST SKILL
+# ============================================================
+
+def test_skill(name):
+
+    path = find_active_skill(name)
+
+    if not path:
+
+        return False, (
+            f"Active skill not found: {name}"
+        )
+
+    try:
+
+        analyze = analyze_python(
+            path
+        )
+
+        if analyze["dangerous"]:
+
+            return False, (
+                "Security rejection: "
+                + "; ".join(
+                    analyze["dangerous"]
+                )
+            )
+
+    except Exception as exc:
+
+        return False, (
+            f"Static analysis failed: {exc}"
+        )
+
+    runner = f"""
+import importlib.util
+import json
+
+path = {str(path)!r}
+
+spec = importlib.util.spec_from_file_location(
+    "bee5_test_skill",
+    path
+)
+
+if spec is None or spec.loader is None:
+    raise RuntimeError("Cannot load skill.")
+
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+if not hasattr(module, "run"):
+    raise RuntimeError(
+        "Skill must expose run(args)."
+    )
+
+    args = {{}}
+
+result = module.run(args)
+
+if not isinstance(result, dict):
+    raise RuntimeError(
+        "Skill run(args) must return dict."
+    )
+
+print(json.dumps(
+    result,
+    ensure_ascii=False
+))
+"""
+
+    try:
+
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-c",
+                runner
+            ],
+            capture_output=True,
+            text=True,
+            timeout=20
+        )
+
+        if result.returncode == 0:
+
+            output = result.stdout.strip()
+
+            append_jsonl(
+                EPISODES,
+                {
+                    "time": time.time(),
+                    "event": "skill_test_pass",
+                    "skill": name,
+                    "output": output
+                }
+            )
+
+            return True, output
+
+        error = (
+            result.stderr.strip()
+            or result.stdout.strip()
+        )
+
+        append_jsonl(
+            FAILURES,
+            {
+                "time": time.time(),
+                "skill": name,
+                "error": error
+            }
+        )
+
+        return False, error
+
+    except subprocess.TimeoutExpired:
+
+        error = "Skill timeout."
+
+        append_jsonl(
+            FAILURES,
+            {
+                "time": time.time(),
+                "skill": name,
+                "error": error
+            }
+        )
+
+        return False, error
+
+
+# ============================================================
+# PROMOTE INCOMING SKILL
+# ============================================================
+
+def promote(name):
+
+    source = (
+        INCOMING / f"{name}.py"
+    )
+
+    destination = (
+        ACTIVE / f"{name}.py"
+    )
+
+    if not source.exists():
+
+        return False, (
+            f"Incoming skill not found: {name}"
+        )
+
+    try:
+
+        analysis = analyze_python(
+            source
+        )
+
+    except Exception as exc:
+
+        return False, (
+            f"Cannot parse skill: {exc}"
+        )
+
+    if analysis["dangerous"]:
+
+        quarantine = (
+            QUARANTINE
+            / source.name
+        )
+
+        shutil.copy2(
+            source,
+            quarantine
+        )
+
+        return False, (
+            "Skill quarantined: "
+            + "; ".join(
+                analysis["dangerous"]
+            )
+        )
+
+    shutil.copy2(
+        source,
+        destination
+    )
+
+    ok, result = test_skill(
+        name
+    )
+
+    if not ok:
+
+        try:
+            destination.unlink()
+        except Exception:
+            pass
+
+        shutil.copy2(
+            source,
+            QUARANTINE / source.name
+        )
+
+        return False, (
+            "Test failed: "
+            + result
+        )
+
+    backup = (
+        VERSIONS
+        / f"{name}_{int(time.time())}.py"
+    )
+
+    shutil.copy2(
+        destination,
+        backup
+    )
+
+    scan_all()
+
+    append_jsonl(
+        EPISODES,
+        {
+            "time": time.time(),
+            "event": "skill_promoted",
+            "skill": name
+        }
+    )
+
+    return True, result
+
+
+# ============================================================
+# EXECUTE SKILL
+# ============================================================
+
+def execute_skill(
+    name,
+    args=None
+):
+
+    path = find_active_skill(
+        name
+    )
+
+    if not path:
+
+        raise FileNotFoundError(
+            name
+        )
+
+    if args is None:
+        args = {}
+
+    runner = f"""
+import importlib.util
+import json
+
+path = {str(path)!r}
+args = {json.dumps(args)!r}
+
+args = json.loads(args)
+
+spec = importlib.util.spec_from_file_location(
+    "bee5_runtime_skill",
+    path
+)
+
+if spec is None or spec.loader is None:
+    raise RuntimeError("Cannot load skill.")
+
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+if not hasattr(module, "run"):
+    raise RuntimeError(
+        "Skill has no run(args)."
+    )
+
+result = module.run(args)
+
+if not isinstance(result, dict):
+    raise RuntimeError(
+        "Skill must return dict."
+    )
+
+print(json.dumps(
+    result,
+    ensure_ascii=False
+))
+"""
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            runner
+        ],
+        capture_output=True,
+        text=True,
+        timeout=20
+    )
+
+    if result.returncode != 0:
+
+        error = (
+            result.stderr.strip()
+            or result.stdout.strip()
+        )
+
+        append_jsonl(
+            FAILURES,
+            {
+                "time": time.time(),
+                "skill": name,
+                "error": error
+            }
+        )
+
+        raise RuntimeError(
+            error
+        )
+
+    output = result.stdout.strip()
+
+    append_jsonl(
+        EPISODES,
+        {
+            "time": time.time(),
+            "event": "skill_execute",
+            "skill": name,
+            "args": args,
+            "output": output
+        }
+    )
+
+    try:
+        return json.loads(output)
+    except Exception:
+        return {
+            "raw_output": output
+        }
+
+
+# ============================================================
+# LOCAL NEURAL BRAIN
+# ============================================================
+
+def load_config():
+
+    return load_json(
+        CONFIG,
+        DEFAULT_CONFIG
+    )
+
+
+def local_think(prompt):
+
+    config = load_config()
+
+    cli = os.environ.get(
+        "BEE5_LLAMA_CLI",
+        config.get(
+            "llama_cli",
+            "llama-cli"
+        )
+    )
+
+    model = os.environ.get(
+        "BEE5_MODEL",
+        config.get(
+            "model",
+            ""
+        )
+    )
+
+    if not model:
+
+        return (
+            "LOCAL MODEL NOT CONFIGURED.\n"
+            "BEE5 deterministic brain is active.\n"
+            "Set BEE5_MODEL to a local GGUF model."
+        )
+
+    system = """
+You are BEE5, a private local cognitive engine.
+
+Your role is to:
+- understand skills
+- reason about capabilities
+- retrieve relevant skills
+- explain execution results
+- learn from failures
+- propose safe improvements
+
+You do NOT directly execute arbitrary shell commands.
+You do NOT bypass the BEE5 skill registry.
+You do NOT modify the live brain without validation.
+
+Prefer precise structured reasoning.
+""".strip()
+
+    command = [
+        cli,
+        "-m",
+        model,
+        "-sys",
+        system,
+        "-p",
+        prompt,
+        "-n",
+        "512",
+        "--no-display-prompt",
+        "--no-show-timings",
+        "-st"
+    ]
+
+    try:
+
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=120
+        )
+
+        if result.returncode != 0:
+
+            return (
+                "LOCAL MODEL ERROR:\n"
+                + (
+                    result.stderr.strip()
+                    or result.stdout.strip()
+                )
+            )
+
+        return result.stdout.strip()
+
+    except FileNotFoundError:
+
+        return (
+            f"llama-cli not found: {cli}\n"
+            "Install llama.cpp first."
+        )
+
+    except subprocess.TimeoutExpired:
+
+        return "LOCAL MODEL TIMEOUT."
+
+
+# ============================================================
+# STATUS
+# ============================================================
+
+def status():
+
+    registry = load_json(
+        REGISTRY,
+        {}
+    )
+
+    config = load_config()
+
+    print()
+    print("====================================")
+    print("           BEE5 STATUS")
+    print("====================================")
+    print(
+        f"Version       : "
+        f"{config.get('version')}"
+    )
+    print(
+        f"Active skills : "
+        f"{len(registry)}"
+    )
+    print(
+        f"Model         : "
+        f"{config.get('model') or 'NOT SET'}"
+    )
+    print(
+        f"Evolution     : "
+        f"{config.get('auto_evolution')}"
+    )
+    print(
+        f"Approval      : "
+        f"{config.get('human_approval_for_evolution')}"
+    )
+    print("====================================")
+    print()
+
+
+# ============================================================
+# COMMAND LINE
+# ============================================================
+
+def main():
+
+    ensure_structure()
+
+    if len(sys.argv) < 2:
+
+        print(
+            """
+BEE5 commands:
+
+  scan
+      Scan and register skills.
+
+  list
+      Show registered skills.
+
+  search <query>
+      Retrieve relevant skills.
+
+  promote <skill>
+      Test and activate an incoming skill.
+
+  test <skill>
+      Test an active skill.
+
+  use <skill> [json]
+      Execute an active skill.
+
+  think <prompt>
+      Ask the local neural model.
+
+  status
+      Show BEE5 status.
+"""
+        )
+
+        return
+
+    command = sys.argv[1]
+
+    if command == "scan":
+
+        scan_all()
+        return
+
+    if command == "list":
+
+        registry = scan_all()
+
+        for name, data in registry.items():
+
+            print(
+                f"\n{name}"
+            )
+
+            print(
+                f"  {data.get('description')}"
+            )
+
+            print(
+                f"  functions: "
+                f"{data.get('functions', [])}"
+            )
+
+        return
+
+    if command == "search":
+
+        query = " ".join(
+            sys.argv[2:]
+        )
+
+        results = retrieve(
+            query
+        )
+
+        print(
+            json.dumps(
+                results,
+                indent=2
+            )
+        )
+
+        return
+
+    if command == "promote":
+
+        if len(sys.argv) < 3:
+            print(
+                "Usage: promote <skill>"
+            )
+            return
+
+        name = sys.argv[2]
+
+        ok, message = promote(
+            name
+        )
+
+        print(
+            "✅ " if ok else "❌ ",
+            message
+        )
+
+        return
+
+    if command == "test":
+
+        if len(sys.argv) < 3:
+            print(
+                "Usage: test <skill>"
+            )
+            return
+
+        ok, message = test_skill(
+            sys.argv[2]
+        )
+
+        print(
+            "PASS" if ok else "FAIL"
+        )
+
+        print(message)
+
+        return
+
+    if command == "use":
+
+        if len(sys.argv) < 3:
+            print(
+                "Usage: use <skill> [json]"
+            )
+            return
+
+        name = sys.argv[2]
+
+    args = {}
+
+    if len(sys.argv) >= 4:
+
+            args = json.loads(
+                sys.argv[3]
+            )
+
+        result = execute_skill(
+            name,
+            args
+        )
+
+        print(
+            json.dumps(
+                result,
+                indent=2,
+                ensure_ascii=False
+            )
+        )
+
+        return
+
+    if command == "think":
+
+        prompt = " ".join(
+            sys.argv[2:]
+        )
+
+        print(
+            local_think(prompt)
+        )
+
+        return
+
+    if command == "status":
+
+        status()
+        return
+
+    print(
+        f"Unknown command: {command}"
+    )
+
+
+if __name__ == "__main__":
+    main()

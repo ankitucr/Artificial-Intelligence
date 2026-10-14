@@ -1,0 +1,14 @@
+{
+  "created_at": 1791451483.4531577,
+  "files": [
+    {
+      "existed": false,
+      "is_file": false,
+      "path": "phase32_e2e_probe.py"
+    }
+  ],
+  "rolled_back_at": 1791451483.4546123,
+  "status": "rolled_back",
+  "transaction_id": "TX-20261008-145443-452",
+  "workspace_root": "/data/data/com.termux/files/home/pika/workspace"
+}

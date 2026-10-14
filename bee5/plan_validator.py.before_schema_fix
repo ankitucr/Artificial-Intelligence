@@ -1,0 +1,497 @@
+#!/usr/bin/env python3
+
+import ast
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+REGISTRY = ROOT / "memory" / "registry.json"
+ACTIVE_SKILLS = ROOT / "skills" / "active"
+
+REF_RE = re.compile(r"\$\{([^{}]+)\}")
+
+ROOT_FIELDS = {
+    "input",
+    "user_input",
+    "query",
+}
+
+
+def load_registry():
+    if not REGISTRY.exists():
+        return {}
+
+    try:
+        data = json.loads(
+            REGISTRY.read_text(
+                encoding="utf-8"
+            )
+        )
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def infer_return_fields(skill_name):
+    """
+    Infer literal dictionary keys returned by a skill.
+
+    Example:
+
+        return {
+            "ok": True,
+            "cleaned_text": cleaned,
+            "word_count": len(words),
+        }
+
+    => {"ok", "cleaned_text", "word_count"}
+    """
+
+    path = ACTIVE_SKILLS / f"{skill_name}.py"
+
+    if not path.exists():
+        return None
+
+    try:
+        source = path.read_text(
+            encoding="utf-8"
+        )
+
+        tree = ast.parse(source)
+
+    except Exception:
+        return None
+
+    fields = set()
+
+    for node in ast.walk(tree):
+
+        if not isinstance(
+            node,
+            ast.Return
+        ):
+            continue
+
+        value = node.value
+
+        if not isinstance(
+            value,
+            ast.Dict
+        ):
+            continue
+
+        for key in value.keys():
+
+            if isinstance(
+                key,
+                ast.Constant
+            ) and isinstance(
+                key.value,
+                str
+            ):
+                fields.add(
+                    key.value
+                )
+
+    return fields if fields else None
+
+
+def load_skill_output_fields(skill_name):
+    """
+    Prefer explicitly registered output fields.
+    Otherwise infer fields directly from the
+    verified active skill source.
+    """
+
+    registry = load_registry()
+
+    info = registry.get(
+        skill_name
+    )
+
+    if isinstance(info, dict):
+
+        for key in (
+            "outputs",
+            "output_fields",
+            "returns",
+            "result_fields",
+        ):
+            value = info.get(key)
+
+            if isinstance(
+                value,
+                list
+            ):
+                fields = {
+                    str(item)
+                    for item in value
+                    if isinstance(
+                        item,
+                        str
+                    )
+                }
+
+                if fields:
+                    return fields
+
+            if isinstance(
+                value,
+                dict
+            ):
+                fields = set(
+                    value.keys()
+                )
+
+                if fields:
+                    return fields
+
+    return infer_return_fields(
+        skill_name
+    )
+
+
+def get_reference_parts(value):
+    if not isinstance(
+        value,
+        str
+    ):
+        return []
+
+    return REF_RE.findall(
+        value
+    )
+
+
+def validate_reference(
+    reference,
+    previous_outputs,
+    current_skill,
+    step_number,
+):
+    if reference in ROOT_FIELDS:
+        return True, None
+
+    if reference.startswith(
+        "input."
+    ):
+        return False, (
+            f"Invalid input reference "
+            f"'{reference}' at step "
+            f"{step_number}. "
+            f"Use '${{input}}'."
+        )
+
+    if not reference.startswith(
+        "previous."
+    ):
+        return False, (
+            f"Unknown reference "
+            f"'${{{reference}}}' at step "
+            f"{step_number}."
+        )
+
+    field = reference[
+        len("previous.") :
+    ].strip()
+
+    if not field:
+        return False, (
+            f"Empty previous-field reference "
+            f"at step {step_number}."
+        )
+
+    if field not in previous_outputs:
+        return False, (
+            f"Skill '{current_skill}' references "
+            f"'previous.{field}', but the previous "
+            f"step does not produce '{field}'."
+        )
+
+    return True, None
+
+
+def validate_plan(plan):
+    errors = []
+
+    if not isinstance(
+        plan,
+        dict
+    ):
+        return False, [
+            "Plan must be a JSON object."
+        ]
+
+    steps = plan.get(
+        "steps"
+    )
+
+    if not isinstance(
+        steps,
+        list
+    ) or not steps:
+        return False, [
+            "Plan must contain a non-empty steps array."
+        ]
+
+    registry = load_registry()
+
+    previous_outputs = set()
+    seen_orders = set()
+
+    for index, step in enumerate(
+        steps,
+        start=1
+    ):
+
+        if not isinstance(
+            step,
+            dict
+        ):
+            errors.append(
+                f"Step {index} is not an object."
+            )
+            continue
+
+        order = step.get(
+            "order",
+            index
+        )
+
+        skill = step.get(
+            "skill"
+        )
+
+        if order in seen_orders:
+            errors.append(
+                f"Duplicate step order: {order}."
+            )
+
+        seen_orders.add(
+            order
+        )
+
+        if not isinstance(
+            skill,
+            str
+        ) or not skill:
+            errors.append(
+                f"Step {index} has no valid skill."
+            )
+            continue
+
+        if skill not in registry:
+            errors.append(
+                f"Step {index}: unregistered skill "
+                f"'{skill}'."
+            )
+            continue
+
+        args_template = step.get(
+            "args_template",
+            {}
+        )
+
+        if not isinstance(
+            args_template,
+            dict
+        ):
+            errors.append(
+                f"Step {index} '{skill}': "
+                f"args_template must be an object."
+            )
+            continue
+
+        for arg_name, arg_value in args_template.items():
+
+            for reference in get_reference_parts(
+                arg_value
+            ):
+                ok, error = validate_reference(
+                    reference,
+                    previous_outputs,
+                    skill,
+                    index,
+                )
+
+                if not ok:
+                    errors.append(
+                        f"{error} "
+                        f"(argument '{arg_name}')."
+                    )
+
+        declared_outputs = (
+            load_skill_output_fields(
+                skill
+            )
+        )
+
+        if declared_outputs:
+            previous_outputs = set(
+                declared_outputs
+            )
+        else:
+            errors.append(
+                f"Step {index} '{skill}': "
+                f"unable to determine output fields safely."
+            )
+
+    expected = list(
+        range(
+            1,
+            len(steps) + 1
+        )
+    )
+
+    actual = sorted(
+        seen_orders
+    )
+
+    if actual != expected:
+        errors.append(
+            f"Step order must be sequential. "
+            f"Expected {expected}, got {actual}."
+        )
+
+    return not errors, errors
+
+
+def repair_plan(plan):
+    if not isinstance(
+        plan,
+        dict
+    ):
+        return plan
+
+    steps = plan.get(
+        "steps"
+    )
+
+    if not isinstance(
+        steps,
+        list
+    ):
+        return plan
+
+    for step in steps:
+
+        if not isinstance(
+            step,
+            dict
+        ):
+            continue
+
+        args = step.get(
+            "args_template"
+        )
+
+        if not isinstance(
+            args,
+            dict
+        ):
+            continue
+
+        for key, value in list(
+            args.items()
+        ):
+            if not isinstance(
+                value,
+                str
+            ):
+                continue
+
+            value = value.replace(
+                "${user_input}",
+                "${input}"
+            )
+
+            args[key] = value
+
+    return plan
+
+
+def main():
+    if len(sys.argv) != 2:
+        print(
+            "Usage: python plan_validator.py <plan.json>"
+        )
+        return 2
+
+    path = Path(
+        sys.argv[1]
+    )
+
+    if not path.exists():
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "errors": [
+                        f"Plan file not found: {path}"
+                    ]
+                },
+                indent=2
+            )
+        )
+        return 1
+
+    try:
+        plan = json.loads(
+            path.read_text(
+                encoding="utf-8"
+            )
+        )
+
+    except Exception as exc:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "errors": [
+                        f"Invalid JSON: {exc}"
+                    ]
+                },
+                indent=2
+            )
+        )
+        return 1
+
+    plan = repair_plan(
+        plan
+    )
+
+    ok, errors = validate_plan(
+        plan
+    )
+
+    print(
+        json.dumps(
+            {
+                "ok": ok,
+                "errors": errors,
+                "steps": len(
+                    plan.get(
+                        "steps",
+                        []
+                    )
+                )
+                if isinstance(
+                    plan,
+                    dict
+                )
+                else 0,
+            },
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(
+        main()
+    )

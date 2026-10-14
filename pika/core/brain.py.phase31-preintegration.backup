@@ -1,0 +1,511 @@
+from __future__ import annotations
+
+from typing import Any
+
+from core.decision import DecisionEngine
+from core.task_analyzer import TaskAnalyzer
+from core.critic import Critic
+
+
+class PIKABrain:
+
+    def __init__(
+        self,
+        router,
+        memory,
+        planner,
+        evaluator,
+        experience,
+        task_analyzer=None,
+        tool_runtime=None,
+        decision_engine=None,
+        max_retries: int = 2,
+        critic=None,
+    ):
+        self.router = router
+        self.memory = memory
+        self.planner = planner
+        self.evaluator = evaluator
+        self.experience = experience
+
+        self.task_analyzer = task_analyzer or TaskAnalyzer()
+        self.tool_runtime = tool_runtime
+        self.decision_engine = decision_engine or DecisionEngine()
+
+        self.max_retries = max_retries
+        self.critic = critic
+
+    async def think(self, task: str) -> dict[str, Any]:
+
+        memories = self.memory.retrieve(task)
+
+        task_analysis = self.task_analyzer.analyze(task)
+
+        attempts: list[dict[str, Any]] = []
+        decision_trace: list[dict[str, Any]] = []
+
+        feedback = ""
+
+        total_attempts = self.max_retries + 1
+
+        for attempt_number in range(1, total_attempts + 1):
+
+            decision = self.decision_engine.decide(
+                task_analysis=task_analysis,
+                memories=memories,
+                tool_runtime=self.tool_runtime,
+                attempt=attempt_number,
+                previous_feedback=feedback,
+            )
+
+            decision_trace.append(decision)
+
+            print(
+                f"[PIKA DECISION] "
+                f"mode={decision.get('mode')} "
+                f"confidence={decision.get('confidence')}"
+            )
+
+            print(
+                f"[PIKA MEMORY] "
+                f"signature={decision.get('task_signature')} "
+                f"history={decision.get('history', {})}"
+            )
+
+            # =====================================================
+            # TOOL PATH
+            # =====================================================
+
+            if (
+                decision.get("mode") == "tool"
+                and self.tool_runtime is not None
+            ):
+
+                tool_result = self.tool_runtime.execute_for_task(
+                    task=task,
+                    capabilities=task_analysis.get(
+                        "tool_capabilities",
+                        [],
+                    ),
+                )
+
+                result = {
+                    "success": bool(tool_result.get("success")),
+                    "agent": "tool",
+                    "provider": "builtin",
+                    "model": None,
+                    "output": tool_result.get("output"),
+                    "tool_used": tool_result.get("tool_used"),
+                    "tool_discovery": tool_result.get(
+                        "tool_discovery"
+                    ),
+                    "error": tool_result.get("error"),
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "strategy": "tool",
+                }
+
+                evaluation = self.evaluator.evaluate(
+                    result,
+                    task=task,
+                )
+
+                attempt_record = {
+                    "attempt": attempt_number,
+                    "decision": decision,
+                    "result": result,
+                    "evaluation": evaluation,
+                }
+
+                attempts.append(attempt_record)
+
+                # -------------------------------------------------
+                # TOOL SUCCESS
+                # -------------------------------------------------
+
+                if evaluation.get("passed"):
+
+                    experience = self.experience.create_experience(
+                        task=task,
+                        result=result,
+                        evaluation=evaluation,
+                        decision=decision,
+                    )
+
+                    self.memory.remember_episode(
+                        experience
+                    )
+
+                    self.memory.remember_lesson(
+                        experience["lesson"]
+                    )
+
+                    return {
+                        "success": True,
+                        "task": task,
+                        "task_analysis": task_analysis,
+                        "decision_trace": decision_trace,
+                        "attempts": attempts,
+                        "agent": "tool",
+                        "tool_used": result.get("tool_used"),
+                        "output": result.get("output"),
+                        "evaluation": evaluation,
+                        "experience": experience,
+                    }
+
+                # -------------------------------------------------
+                # TOOL FAILURE
+                # -------------------------------------------------
+
+                feedback = evaluation.get(
+                    "feedback",
+                    "The deterministic tool failed validation.",
+                )
+
+                self.memory.remember_failure(
+                    {
+                        "task": task,
+                        "task_signature": decision.get(
+                            "task_signature"
+                        ),
+                        "task_analysis": task_analysis,
+                        "result": result,
+                        "evaluation": evaluation,
+                        "decision": decision,
+                        "strategy": "tool",
+                        "feedback": feedback,
+                    }
+                )
+
+                print(
+                    "[PIKA DECISION] Tool path failed."
+                )
+
+                # -------------------------------------------------
+                # IMPORTANT:
+                # Same attempt escalates to general worker.
+                # -------------------------------------------------
+
+                agent_decision = {
+                    "mode": "agent",
+                    "confidence": 0.97,
+                    "reason": (
+                        "tool path failed; escalating to "
+                        "the general worker."
+                    ),
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "attempt": attempt_number,
+                    "history": decision.get(
+                        "history",
+                        {},
+                    ),
+                    "fallback_from": "tool",
+                }
+
+                decision_trace.append(agent_decision)
+
+                print(
+                    "[PIKA DECISION] "
+                    "Escalating to API worker."
+                )
+
+                decision = agent_decision
+
+            # =====================================================
+            # AGENT PATH
+            # =====================================================
+
+            # =================================================
+            # PHASE 30: ADAPTIVE PLAN
+            # =================================================
+
+            plan = self.planner.plan(
+                task,
+                memories=memories,
+            )
+
+            print(
+                f"[PIKA PLAN] "
+                f"type={plan.get('task_type')} "
+                f"complexity={plan.get('complexity')} "
+                f"subtasks={plan.get('subtask_count')}"
+            )
+
+            # The complete structured plan is passed to the worker.
+            # This allows the model to reason from the same execution
+            # plan that PIKA generated, instead of receiving only the
+            # raw user task.
+            agent_context = {
+                "goal": plan.get("goal"),
+                "task_type": plan.get("task_type"),
+                "complexity": plan.get("complexity"),
+                "subtasks": plan.get("subtasks", []),
+                "dependencies": plan.get("dependencies", []),
+                "execution_order": plan.get(
+                    "execution_order",
+                    [],
+                ),
+                "validation": plan.get(
+                    "validation",
+                    {},
+                ),
+                "strategy": plan.get(
+                    "strategy",
+                    {},
+                ),
+                "memory_hints": plan.get(
+                    "memory_hints",
+                    [],
+                ),
+            }
+
+            agent = self.router.select(
+                required_capabilities=task_analysis.get(
+                    "capabilities",
+                    [],
+                )
+            )
+
+            if agent is None:
+                result = {
+                    "success": False,
+                    "agent": None,
+                    "error": (
+                        "No suitable agent is registered "
+                        "for this task."
+                    ),
+                    "output": "",
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "strategy": "agent",
+                }
+
+                evaluation = self.evaluator.evaluate(
+                    result,
+                    task=task,
+                )
+
+                attempts.append(
+                    {
+                        "attempt": attempt_number,
+                        "decision": decision,
+                        "result": result,
+                        "evaluation": evaluation,
+                    }
+                )
+
+                feedback = evaluation.get(
+                    "feedback",
+                    "No suitable agent is available.",
+                )
+
+                continue
+
+            context = {
+                "plan": plan,
+                "adaptive_plan": agent_context,
+                "memory": memories,
+                "task_analysis": task_analysis,
+                "attempt": attempt_number,
+                "max_attempts": total_attempts,
+                "previous_feedback": feedback,
+                "decision": decision,
+            }
+
+            print(
+                f"[PIKA AGENT] "
+                f"selected={agent.name}"
+            )
+
+            result = await agent.execute(
+                task,
+                context=context,
+            )
+
+            result["task_signature"] = decision.get(
+                "task_signature"
+            )
+
+            result["strategy"] = "agent"
+            result["decision"] = decision
+
+            evaluation = self.evaluator.evaluate(
+                result,
+                task=task,
+            )
+
+            # Optional independent critic.
+            if (
+                evaluation.get("passed")
+                and self.critic is not None
+            ):
+                critic_result = self.critic.review(
+                    task,
+                    result.get("output", ""),
+                )
+
+                result["critic"] = critic_result
+
+                if not critic_result.get("passed"):
+                    evaluation = {
+                        **evaluation,
+                        "passed": False,
+                        "score": min(
+                            evaluation.get("score", 0.0),
+                            critic_result.get(
+                                "score",
+                                0.0,
+                            ),
+                        ),
+                        "issues": (
+                            evaluation.get(
+                                "issues",
+                                [],
+                            )
+                            + critic_result.get(
+                                "issues",
+                                [],
+                            )
+                        ),
+                        "feedback": (
+                            "Independent critic rejected "
+                            "the worker output. "
+                            + str(
+                                critic_result.get(
+                                    "feedback",
+                                    "",
+                                )
+                            )
+                        ),
+                    }
+
+            attempts.append(
+                {
+                    "attempt": attempt_number,
+                    "decision": decision,
+                    "result": result,
+                    "evaluation": evaluation,
+                }
+            )
+
+            # =====================================================
+            # AGENT SUCCESS
+            # =====================================================
+
+            if evaluation.get("passed"):
+
+                experience = self.experience.create_experience(
+                    task=task,
+                    result=result,
+                    evaluation=evaluation,
+                    decision=decision,
+                )
+
+                self.memory.remember_episode(
+                    experience
+                )
+
+                self.memory.remember_lesson(
+                    experience["lesson"]
+                )
+
+                return {
+                    "success": True,
+                    "task": task,
+                    "task_analysis": task_analysis,
+                    "decision_trace": decision_trace,
+                    "attempts": attempts,
+                    "agent": result.get("agent"),
+                    "provider": result.get("provider"),
+                    "model": result.get("model"),
+                    "output": result.get("output"),
+                    "evaluation": evaluation,
+                    "experience": experience,
+                }
+
+            # =====================================================
+            # AGENT FAILURE
+            # =====================================================
+
+            feedback = evaluation.get(
+                "feedback",
+                "Worker output failed evaluation.",
+            )
+
+            self.memory.remember_failure(
+                {
+                    "task": task,
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "task_analysis": task_analysis,
+                    "result": result,
+                    "evaluation": evaluation,
+                    "decision": decision,
+                    "strategy": "agent",
+                    "feedback": feedback,
+                }
+            )
+
+            print(
+                "[PIKA DECISION] "
+                f"Attempt {attempt_number} failed. "
+                "Preparing retry."
+            )
+
+        # =========================================================
+        # ALL ATTEMPTS FAILED
+        # =========================================================
+
+        final_evaluation = (
+            attempts[-1]["evaluation"]
+            if attempts
+            else {
+                "passed": False,
+                "score": 0.0,
+                "feedback": "No attempts were completed.",
+            }
+        )
+
+        final_result = (
+            attempts[-1]["result"]
+            if attempts
+            else {
+                "success": False,
+                "output": "",
+                "error": "No attempts were completed.",
+            }
+        )
+
+        final_decision = (
+            attempts[-1].get("decision", {})
+            if attempts
+            else {}
+        )
+
+        experience = self.experience.create_experience(
+            task=task,
+            result=final_result,
+            evaluation=final_evaluation,
+            decision=final_decision,
+        )
+
+        self.memory.remember_lesson(
+            experience["lesson"]
+        )
+
+        return {
+            "success": False,
+            "task": task,
+            "task_analysis": task_analysis,
+            "decision_trace": decision_trace,
+            "attempts": attempts,
+            "agent": final_result.get("agent"),
+            "output": final_result.get("output"),
+            "evaluation": final_evaluation,
+            "experience": experience,
+        }

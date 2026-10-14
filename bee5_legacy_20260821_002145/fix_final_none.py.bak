@@ -1,0 +1,55 @@
+with open("main_brainV3.py", "r") as f:
+    code = f.read()
+
+# Make call_openrouter and call_planner_with_fallback 100% safe against NoneType
+old_planner = """def call_planner_with_fallback(system_prompt: str, user_prompt: str) -> str:
+    res = None
+    if groq_client:
+        try:
+            resp = groq_client.chat.completions.create(
+                model=GROQ_MODEL,
+                messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+                timeout=30
+            )
+            if resp and resp.choices:
+                res = resp.choices[0].message.content
+        except Exception as e:
+            print(f"⚠️ Groq rate-limited/failed. Switching to OpenRouter...")
+    
+    if not res:
+        res = call_openrouter(system_prompt, user_prompt)
+    
+    return str(res).strip() if res else "Create a robust text parsing utility using standard library.""""
+
+new_planner = """def call_planner_with_fallback(system_prompt: str, user_prompt: str) -> str:
+    res = None
+    if groq_client:
+        try:
+            resp = groq_client.chat.completions.create(
+                model=GROQ_MODEL,
+                messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+                timeout=30
+            )
+            if resp and resp.choices:
+                res = resp.choices[0].message.content
+        except Exception as e:
+            print(f"⚠️ Groq failed ({e}). Switching to OpenRouter...")
+    
+    if not res:
+        try:
+            res = call_openrouter(system_prompt, user_prompt)
+        except Exception as ex:
+            print(f"⚠️ OpenRouter also failed: {ex}")
+            res = "Create a robust utility function using standard library."
+            
+    if not res:
+        res = "Create a robust utility function using standard library."
+    return str(res).strip()"""
+
+if old_planner in code:
+    code = code.replace(old_planner, new_planner)
+    with open("main_brainV3.py", "w") as f:
+        f.write(code)
+    print("✅ Final NoneType safety patch applied successfully!")
+else:
+    print("⚠️ Function signature mismatch, please check manually.")

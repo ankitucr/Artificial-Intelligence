@@ -1,0 +1,270 @@
+import ast
+import re
+from typing import Any
+
+
+class Evaluator:
+    """
+    PIKA Phase 4 evaluator.
+
+    The evaluator does not blindly trust the worker's success flag.
+    It independently checks the returned output where possible.
+    """
+
+    def evaluate(self, result: dict[str, Any], task: str = "") -> dict[str, Any]:
+        worker_success = bool(result.get("success"))
+        output = str(result.get("output") or "").strip()
+
+        issues: list[str] = []
+        checks: dict[str, Any] = {}
+
+        # ---------------------------------------------------------
+        # Worker-level check
+        # ---------------------------------------------------------
+
+        checks["worker_success"] = worker_success
+
+        if not worker_success:
+            error = result.get("error") or "Worker reported failure."
+            issues.append(str(error))
+
+            return {
+                "passed": False,
+                "score": 0.0,
+                "reason": "Worker execution failed.",
+                "issues": issues,
+                "checks": checks,
+                "feedback": (
+                    "The worker failed before producing a usable result. "
+                    f"Worker error: {error}"
+                ),
+                "normalized_output": output,
+            }
+
+        # ---------------------------------------------------------
+        # Empty output
+        # ---------------------------------------------------------
+
+        if not output:
+            issues.append("Worker returned empty output.")
+
+            return {
+                "passed": False,
+                "score": 0.0,
+                "reason": "Empty worker output.",
+                "issues": issues,
+                "checks": checks,
+                "feedback": "Return a complete usable answer.",
+                "normalized_output": "",
+            }
+
+        # ---------------------------------------------------------
+        # Normalize Markdown code fences
+        # ---------------------------------------------------------
+
+        normalized = self._normalize_output(output)
+
+        if normalized != output:
+            checks["code_fence_normalized"] = True
+        else:
+            checks["code_fence_normalized"] = False
+
+        # ---------------------------------------------------------
+        # Detect Python/code task
+        # ---------------------------------------------------------
+
+        is_python_task = self._looks_like_python_task(task)
+
+        checks["python_task"] = is_python_task
+
+        if is_python_task:
+            syntax_ok, syntax_error = self._check_python_syntax(normalized)
+
+            checks["python_syntax"] = syntax_ok
+
+            if not syntax_ok:
+                issues.append(
+                    f"Python syntax validation failed: {syntax_error}"
+                )
+
+        # ---------------------------------------------------------
+        # Requested function validation
+        # ---------------------------------------------------------
+
+        function_name = self._extract_requested_function(task)
+
+        if function_name:
+            function_ok = self._contains_function(
+                normalized,
+                function_name,
+            )
+
+            checks["requested_function"] = function_ok
+            checks["function_name"] = function_name
+
+            if not function_ok:
+                issues.append(
+                    f"Expected Python function '{function_name}' "
+                    "was not found."
+                )
+
+        # ---------------------------------------------------------
+        # Final score
+        # ---------------------------------------------------------
+
+        if issues:
+            score = max(
+                0.0,
+                1.0 - (0.30 * len(issues)),
+            )
+
+            return {
+                "passed": False,
+                "score": round(score, 2),
+                "reason": "Output failed one or more validation checks.",
+                "issues": issues,
+                "checks": checks,
+                "feedback": self._build_feedback(issues),
+                "normalized_output": normalized,
+            }
+
+        return {
+            "passed": True,
+            "score": 1.0,
+            "reason": "Output passed independent validation.",
+            "issues": [],
+            "checks": checks,
+            "feedback": "No validation problems detected.",
+            "normalized_output": normalized,
+        }
+
+    # =============================================================
+    # Helpers
+    # =============================================================
+
+    @staticmethod
+    def _normalize_output(output: str) -> str:
+        """
+        Remove common Markdown code fences.
+
+        This does not alter actual code content.
+        """
+
+        text = output.strip()
+
+        match = re.fullmatch(
+            r"```(?:python|py)?\s*\n?(.*?)\n?```",
+            text,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+
+        if match:
+            return match.group(1).strip()
+
+        return text
+
+    @staticmethod
+    def _looks_like_python_task(task: str) -> bool:
+        task_lower = task.lower()
+
+        python_markers = (
+            "python",
+            "function",
+            "class ",
+            "def ",
+            "import ",
+            "async def",
+            "python code",
+        )
+
+        return any(
+            marker in task_lower
+            for marker in python_markers
+        )
+
+    @staticmethod
+    def _check_python_syntax(
+        code: str,
+    ) -> tuple[bool, str | None]:
+
+        try:
+            ast.parse(code)
+            return True, None
+
+        except SyntaxError as exc:
+            location = f"line {exc.lineno}"
+
+            if exc.offset:
+                location += f", column {exc.offset}"
+
+            return (
+                False,
+                f"{exc.msg} ({location})",
+            )
+
+        except Exception as exc:
+            return False, str(exc)
+
+    @staticmethod
+    def _extract_requested_function(
+        task: str,
+    ) -> str | None:
+
+        patterns = [
+            r"function\s+(?:named\s+)?([A-Za-z_][A-Za-z0-9_]*)",
+            r"function\s+called\s+([A-Za-z_][A-Za-z0-9_]*)",
+            r"def\s+([A-Za-z_][A-Za-z0-9_]*)",
+        ]
+
+        for pattern in patterns:
+            match = re.search(
+                pattern,
+                task,
+                flags=re.IGNORECASE,
+            )
+
+            if match:
+                return match.group(1)
+
+        return None
+
+    @staticmethod
+    def _contains_function(
+        code: str,
+        function_name: str,
+    ) -> bool:
+
+        try:
+            tree = ast.parse(code)
+
+        except Exception:
+            return False
+
+        for node in ast.walk(tree):
+            if isinstance(
+                node,
+                (ast.FunctionDef, ast.AsyncFunctionDef),
+            ):
+                if node.name == function_name:
+                    return True
+
+        return False
+
+    @staticmethod
+    def _build_feedback(
+        issues: list[str],
+    ) -> str:
+
+        lines = [
+            "Fix the following validation problems before retrying:"
+        ]
+
+        for issue in issues:
+            lines.append(f"- {issue}")
+
+        lines.append(
+            "Return the corrected final result without claiming "
+            "that untested code was tested."
+        )
+
+        return "\n".join(lines)

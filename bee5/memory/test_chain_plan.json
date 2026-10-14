@@ -1,0 +1,29 @@
+{
+  "query": "Clean text, analyze it, and create a report",
+  "steps": [
+    {
+      "order": 1,
+      "skill": "text_cleaner",
+      "args_template": {
+        "text": "${input}"
+      }
+    },
+    {
+      "order": 2,
+      "skill": "text_analyzer",
+      "args_template": {
+        "text": "${previous.cleaned_text}"
+      }
+    },
+    {
+      "order": 3,
+      "skill": "text_reporter",
+      "args_template": {
+        "text": "${previous.text}",
+        "word_count": "${previous.word_count}",
+        "unique_word_count": "${previous.unique_word_count}",
+        "longest_word": "${previous.longest_word}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+def Duck.ai():
+    pass

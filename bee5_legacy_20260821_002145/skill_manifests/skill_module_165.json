@@ -1,0 +1,175 @@
+{
+  "skill": "skill_module_165",
+  "signature": {
+    "hash": "392daaf3032ee9d705e1b06120776a5dd5237a34a4abb47652974977de5de408",
+    "tokens": [
+      "and",
+      "append",
+      "applied",
+      "between",
+      "calculates",
+      "can",
+      "capability",
+      "change",
+      "character",
+      "checking",
+      "compression",
+      "current_row",
+      "data",
+      "def",
+      "deletions",
+      "distance",
+      "edits",
+      "enumerate",
+      "fields",
+      "for",
+      "insertions",
+      "into",
+      "len",
+      "levenshtein",
+      "levenshtein_distance",
+      "levenstein_distance",
+      "measuring",
+      "min",
+      "minimum",
+      "number",
+      "one",
+      "other",
+      "previous_row",
+      "range",
+      "recognition",
+      "required",
+      "return",
+      "similarity",
+      "single",
+      "skill",
+      "speech",
+      "spell",
+      "strings",
+      "substitutions",
+      "such",
+      "the",
+      "this",
+      "two",
+      "useful",
+      "various",
+      "which",
+      "word"
+    ],
+    "functions": [
+      "levenshtein_distance"
+    ],
+    "imports": [],
+    "calls": [
+      "append",
+      "enumerate",
+      "len",
+      "levenshtein_distance",
+      "min",
+      "range"
+    ],
+    "operators": [
+      "Add",
+      "Eq",
+      "Lt",
+      "NotEq"
+    ],
+    "capability": "This skill calculates the Levenshtein distance between two strings, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other."
+  },
+  "metadata": {
+    "name": "levenstein_distance",
+    "capability": "This skill calculates the Levenshtein distance between two strings, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.",
+    "purpose": "This capability is useful for measuring the similarity between two strings, which can be applied in various fields such as data compression, spell checking, and speech recognition.",
+    "primary_function": "levenshtein_distance",
+    "code": "def levenshtein_distance(s1, s2):\n    if len(s1) < len(s2):\n        return levenshtein_distance(s2, s1)\n    if len(s2) == 0:\n        return len(s1)\n    previous_row = range(len(s2) + 1)\n    for i, c1 in enumerate(s1):\n        current_row = [i + 1]\n        for j, c2 in enumerate(s2):\n            insertions = previous_row[j + 1] + 1 \n            deletions = current_row[j] + 1 \n            substitutions = previous_row[j] + (c1!= c2)\n            current_row.append(min(insertions, deletions, substitutions))\n        previous_row = current_row\n    return previous_row[-1]",
+    "tests": [
+      {
+        "args": [
+          "kitten",
+          "sitting"
+        ],
+        "kwargs": {},
+        "expected": 3
+      },
+      {
+        "args": [
+          "",
+          ""
+        ],
+        "kwargs": {},
+        "expected": 0
+      },
+      {
+        "args": [
+          "a",
+          ""
+        ],
+        "kwargs": {},
+        "expected": 1
+      },
+      {
+        "args": [
+          "",
+          "b"
+        ],
+        "kwargs": {},
+        "expected": 1
+      },
+      {
+        "args": [
+          "abc",
+          "abc"
+        ],
+        "kwargs": {},
+        "expected": 0
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 89.97,
+    "novelty": 0.7135,
+    "similarity": 0.2865,
+    "closest_skill": "skill_module_162",
+    "tests": {
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 3,
+          "actual": 3
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "test": 5,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 3,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_184337"
+  },
+  "created_at": "2026-08-20 18:44:36"
+}

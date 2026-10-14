@@ -1,0 +1,128 @@
+{
+  "0": {
+    "id": 0,
+    "parent": null,
+    "born": 0,
+    "event": "initial",
+    "seed_cluster": 0
+  },
+  "1": {
+    "id": 1,
+    "parent": null,
+    "born": 0,
+    "event": "initial",
+    "seed_cluster": 1
+  },
+  "2": {
+    "id": 2,
+    "parent": null,
+    "born": 0,
+    "event": "initial",
+    "seed_cluster": 2
+  },
+  "3": {
+    "id": 3,
+    "parent": 0,
+    "born": 318,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 0
+  },
+  "4": {
+    "id": 4,
+    "parent": 1,
+    "born": 331,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 1
+  },
+  "5": {
+    "id": 5,
+    "parent": 3,
+    "born": 360,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 0
+  },
+  "6": {
+    "id": 6,
+    "parent": 2,
+    "born": 385,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 2
+  },
+  "7": {
+    "id": 7,
+    "parent": 4,
+    "born": 395,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 1
+  },
+  "8": {
+    "id": 8,
+    "parent": 4,
+    "born": 404,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 1
+  },
+  "9": {
+    "id": 9,
+    "parent": 0,
+    "born": 424,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 0
+  },
+  "10": {
+    "id": 10,
+    "parent": 6,
+    "born": 431,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 2
+  },
+  "11": {
+    "id": 11,
+    "parent": 3,
+    "born": 435,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 0
+  },
+  "12": {
+    "id": 12,
+    "parent": 6,
+    "born": 439,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 0
+  },
+  "13": {
+    "id": 13,
+    "parent": 2,
+    "born": 450,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 2
+  },
+  "14": {
+    "id": 14,
+    "parent": 9,
+    "born": 473,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 0
+  },
+  "15": {
+    "id": 15,
+    "parent": 1,
+    "born": 479,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 1
+  },
+  "16": {
+    "id": 16,
+    "parent": 8,
+    "born": 484,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 1
+  },
+  "17": {
+    "id": 17,
+    "parent": 7,
+    "born": 501,
+    "event": "novelty_neurogenesis",
+    "target_cluster": 2
+  }
+}

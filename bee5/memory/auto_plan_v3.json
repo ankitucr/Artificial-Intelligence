@@ -1,0 +1,35 @@
+{
+  "query": "Clean this text, analyze it, and create a report",
+  "steps": [
+    {
+      "order": 1,
+      "skill": "text_cleaner",
+      "args_template": {
+        "text": "${input}"
+      },
+      "reason": "Clean the input text."
+    },
+    {
+      "order": 2,
+      "skill": "text_analyzer",
+      "args_template": {
+        "text": "${previous.cleaned_text}"
+      },
+      "reason": "Analyze cleaned text."
+    },
+    {
+      "order": 3,
+      "skill": "text_reporter",
+      "args_template": {
+        "text": "${previous.text}",
+        "word_count": "${previous.word_count}",
+        "unique_word_count": "${previous.unique_word_count}",
+        "longest_word": "${previous.longest_word}"
+      },
+      "reason": "Create the final report."
+    }
+  ],
+  "planner": "contract_fallback",
+  "candidate_count": 4,
+  "local_planner_error": "Skill 'text_reporter' references 'previous.analyzer.longest_word', but the previous step does not produce 'analyzer.longest_word'. (argument 'longest_word').\nSkill 'text_reporter' references 'previous.analyzer.unique_word_count', but the previous step does not produce 'analyzer.unique_word_count'. (argument 'unique_word_count').\nSkill 'text_reporter' references 'previous.analyzer.word_count', but the previous step does not produce 'analyzer.word_count'. (argument 'word_count')."
+}

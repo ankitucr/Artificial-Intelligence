@@ -1,0 +1,310 @@
+{
+  "version": 2,
+  "nodes": {
+    "hello_skill": {
+      "name": "hello_skill",
+      "description": "Basic demonstration skill that receives text and returns a structured response.",
+      "functions": [
+        "run"
+      ],
+      "imports": [],
+      "sample_args": {},
+      "source": "skills/active/hello_skill.py",
+      "version": "1.0.0",
+      "sha256": "870a14c1448eeda55a9d195278fd4c42d32293f5caee5940ace93b3ac624ecda",
+      "dangerous": false,
+      "usage": {
+        "runs": 2,
+        "successes": 2,
+        "failures": 0
+      },
+      "searchable": "hello_skill Basic demonstration skill that receives text and returns a structured response. run  {} SKILL_VERSION = \"1.0.0\"\nSKILL_DESCRIPTION = (\n    \"Basic demonstration skill that receives text \"\n    \"and returns a structured response.\"\n)\n\n\ndef run(args: dict) -> dict:\n    text = str(\n        args.get(\n            \"text\",\n            \"hello from BEE5\"\n        )\n    )\n\n    return {\n        \"ok\": True,\n        \"skill\": \"hello_skill\",\n        \"text\": text,\n        \"length\": len(text)\n    }\n\n\nif __name__ == \"__main__\":\n    print(run({}))\n"
+    },
+    "text_analyzer": {
+      "name": "text_analyzer",
+      "description": "Analyzes cleaned text and returns word count, unique word count, longest word, and the most frequent words.",
+      "functions": [
+        "run"
+      ],
+      "imports": [
+        "collections"
+      ],
+      "sample_args": {
+        "text": "hello bee5 hello world"
+      },
+      "source": "skills/active/text_analyzer.py",
+      "version": "1.0.0",
+      "sha256": "a9e717284a3a555322ed46f28219672fd5155b7c7defac960086264050d6b9e5",
+      "dangerous": false,
+      "usage": {
+        "runs": 7,
+        "successes": 7,
+        "failures": 0
+      },
+      "searchable": "text_analyzer Analyzes cleaned text and returns word count, unique word count, longest word, and the most frequent words. run collections {\"text\": \"hello bee5 hello world\"} #!/usr/bin/env python3\n\nfrom collections import Counter\n\nSKILL_VERSION = \"1.0.0\"\n\nSKILL_DESCRIPTION = (\n    \"Analyzes cleaned text and returns word count, unique word count, \"\n    \"longest word, and the most frequent words.\"\n)\n\nSAMPLE_ARGS = {\n    \"text\": \"hello bee5 hello world\"\n}\n\n\ndef run(args: dict) -> dict:\n    if not isinstance(args, dict):\n        raise TypeError(\"args must be a dictionary\")\n\n    text = str(args.get(\"text\", \"\")).strip()\n\n    words = text.split()\n\n    normalized = [\n        word.strip(\".,!?;:\\\"'()[]{}\").lower()\n        for word in words\n    ]\n\n    normalized = [\n        word\n        for word in normalized\n        if word\n    ]\n\n    counts = Counter(normalized)\n\n    top_words = [\n        {\n            \"word\": word,\n            \"count\": count\n        }\n        for word, count in counts.most_common(5)\n    ]\n\n    longest = max(\n        normalized,\n        key=len,\n        default=\"\"\n    )\n\n    return {\n        \"ok\": True,\n        \"skill\": \"text_analyzer\",\n        \"text\": text,\n        \"word_count\": len(normalized),\n        \"unique_word_count\": len(set(normalized)),\n        \"longest_word\": longest,\n        \"top_words\": top_words,\n    }\n\n\nif __name__ == \"__main__\":\n    print(run(SAMPLE_ARGS))\n"
+    },
+    "text_cleaner": {
+      "name": "text_cleaner",
+      "description": "Cleans and normalizes text by removing extra whitespace and returns the cleaned text with basic counts.",
+      "functions": [
+        "run"
+      ],
+      "imports": [],
+      "sample_args": {
+        "text": "  Hello   BEE5   world  "
+      },
+      "source": "skills/active/text_cleaner.py",
+      "version": "1.0.0",
+      "sha256": "75034a5c6969696b3d92118c97b684e49fdba74645fb74f5c36652c5d30f6e7e",
+      "dangerous": false,
+      "usage": {
+        "runs": 7,
+        "successes": 7,
+        "failures": 0
+      },
+      "searchable": "text_cleaner Cleans and normalizes text by removing extra whitespace and returns the cleaned text with basic counts. run  {\"text\": \"  Hello   BEE5   world  \"} #!/usr/bin/env python3\n\nSKILL_VERSION = \"1.0.0\"\n\nSKILL_DESCRIPTION = (\n    \"Cleans and normalizes text by removing extra whitespace \"\n    \"and returns the cleaned text with basic counts.\"\n)\n\nSAMPLE_ARGS = {\n    \"text\": \"  Hello   BEE5   world  \"\n}\n\n\ndef run(args: dict) -> dict:\n    if not isinstance(args, dict):\n        raise TypeError(\"args must be a dictionary\")\n\n    raw = str(args.get(\"text\", \"\"))\n\n    cleaned = \" \".join(raw.split())\n\n    words = cleaned.split() if cleaned else []\n\n    return {\n        \"ok\": True,\n        \"skill\": \"text_cleaner\",\n        \"cleaned_text\": cleaned,\n        \"word_count\": len(words),\n        \"char_count\": len(cleaned),\n    }\n\n\nif __name__ == \"__main__\":\n    print(run(SAMPLE_ARGS))\n"
+    },
+    "text_reporter": {
+      "name": "text_reporter",
+      "description": "Builds a concise structured report from cleaned text analysis.",
+      "functions": [
+        "run"
+      ],
+      "imports": [],
+      "sample_args": {
+        "text": "Hello BEE5 world",
+        "word_count": 3,
+        "unique_word_count": 3,
+        "longest_word": "Hello"
+      },
+      "source": "skills/active/text_reporter.py",
+      "version": "1.0.0",
+      "sha256": "78716e1f876437305ed0f92c102496dc54ee4a360d4bb21ec701baa5d6d042fc",
+      "dangerous": false,
+      "usage": {
+        "runs": 7,
+        "successes": 7,
+        "failures": 0
+      },
+      "searchable": "text_reporter Builds a concise structured report from cleaned text analysis. run  {\"text\": \"Hello BEE5 world\", \"word_count\": 3, \"unique_word_count\": 3, \"longest_word\": \"Hello\"} #!/usr/bin/env python3\n\nSKILL_VERSION = \"1.0.0\"\n\nSKILL_DESCRIPTION = (\n    \"Builds a concise structured report from cleaned text analysis.\"\n)\n\nSAMPLE_ARGS = {\n    \"text\": \"Hello BEE5 world\",\n    \"word_count\": 3,\n    \"unique_word_count\": 3,\n    \"longest_word\": \"Hello\",\n}\n\n\ndef run(args: dict) -> dict:\n    if not isinstance(args, dict):\n        raise TypeError(\"args must be a dictionary\")\n\n    text = str(args.get(\"text\", \"\"))\n\n    word_count = int(\n        args.get(\"word_count\", 0)\n    )\n\n    unique_word_count = int(\n        args.get(\"unique_word_count\", 0)\n    )\n\n    longest_word = str(\n        args.get(\"longest_word\", \"\")\n    )\n\n    report = (\n        f\"Text contains {word_count} words and \"\n        f\"{unique_word_count} unique words. \"\n        f\"Longest word: {longest_word or 'none'}.\"\n    )\n\n    return {\n        \"ok\": True,\n        \"skill\": \"text_reporter\",\n        \"text\": text,\n        \"word_count\": word_count,\n        \"unique_word_count\": unique_word_count,\n        \"longest_word\": longest_word,\n        \"report\": report,\n    }\n\n\nif __name__ == \"__main__\":\n    print(run(SAMPLE_ARGS))\n"
+    }
+  },
+  "edges": [
+    {
+      "from": "hello_skill",
+      "to": "text_analyzer",
+      "type": "semantic_related",
+      "shared_terms": [
+        "__main__",
+        "__name__",
+        "args",
+        "bee5",
+        "def",
+        "dict",
+        "get",
+        "hello",
+        "if",
+        "len",
+        "ok",
+        "print",
+        "return",
+        "returns",
+        "run",
+        "skill",
+        "skill_description",
+        "skill_version",
+        "str",
+        "text",
+        "true"
+      ]
+    },
+    {
+      "from": "hello_skill",
+      "to": "text_cleaner",
+      "type": "semantic_related",
+      "shared_terms": [
+        "__main__",
+        "__name__",
+        "args",
+        "basic",
+        "bee5",
+        "def",
+        "dict",
+        "get",
+        "hello",
+        "if",
+        "len",
+        "ok",
+        "print",
+        "return",
+        "returns",
+        "run",
+        "skill",
+        "skill_description",
+        "skill_version",
+        "str",
+        "text",
+        "true"
+      ]
+    },
+    {
+      "from": "hello_skill",
+      "to": "text_reporter",
+      "type": "semantic_related",
+      "shared_terms": [
+        "__main__",
+        "__name__",
+        "args",
+        "bee5",
+        "def",
+        "dict",
+        "get",
+        "hello",
+        "if",
+        "ok",
+        "print",
+        "return",
+        "run",
+        "skill",
+        "skill_description",
+        "skill_version",
+        "str",
+        "structured",
+        "text",
+        "true"
+      ]
+    },
+    {
+      "from": "text_analyzer",
+      "to": "text_cleaner",
+      "type": "semantic_related",
+      "shared_terms": [
+        "__main__",
+        "__name__",
+        "args",
+        "bee5",
+        "bin",
+        "cleaned",
+        "counts",
+        "def",
+        "dict",
+        "dictionary",
+        "env",
+        "get",
+        "hello",
+        "if",
+        "isinstance",
+        "len",
+        "must",
+        "not",
+        "ok",
+        "print",
+        "python3",
+        "raise",
+        "return",
+        "returns",
+        "run",
+        "sample_args",
+        "skill",
+        "skill_description",
+        "skill_version",
+        "split",
+        "str",
+        "text",
+        "true",
+        "typeerror",
+        "usr",
+        "word_count",
+        "words",
+        "world"
+      ]
+    },
+    {
+      "from": "text_analyzer",
+      "to": "text_reporter",
+      "type": "semantic_related",
+      "shared_terms": [
+        "__main__",
+        "__name__",
+        "args",
+        "bee5",
+        "bin",
+        "cleaned",
+        "def",
+        "dict",
+        "dictionary",
+        "env",
+        "get",
+        "hello",
+        "if",
+        "isinstance",
+        "longest",
+        "longest_word",
+        "must",
+        "not",
+        "ok",
+        "print",
+        "python3",
+        "raise",
+        "return",
+        "run",
+        "sample_args",
+        "skill",
+        "skill_description",
+        "skill_version",
+        "str",
+        "text",
+        "true",
+        "typeerror",
+        "unique",
+        "unique_word_count",
+        "usr",
+        "word",
+        "word_count",
+        "words",
+        "world"
+      ]
+    },
+    {
+      "from": "text_cleaner",
+      "to": "text_reporter",
+      "type": "semantic_related",
+      "shared_terms": [
+        "__main__",
+        "__name__",
+        "args",
+        "bee5",
+        "bin",
+        "cleaned",
+        "def",
+        "dict",
+        "dictionary",
+        "env",
+        "get",
+        "hello",
+        "if",
+        "isinstance",
+        "must",
+        "not",
+        "ok",
+        "print",
+        "python3",
+        "raise",
+        "return",
+        "run",
+        "sample_args",
+        "skill",
+        "skill_description",
+        "skill_version",
+        "str",
+        "text",
+        "true",
+        "typeerror",
+        "usr",
+        "word_count",
+        "words",
+        "world"
+      ]
+    }
+  ]
+}

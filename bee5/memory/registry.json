@@ -1,0 +1,99 @@
+{
+  "hello_skill": {
+    "name": "hello_skill",
+    "description": "Python skill named hello_skill. Functions: run.",
+    "version": "1.0.0",
+    "functions": [
+      "run"
+    ],
+    "classes": [],
+    "imports": [],
+    "calls": [
+      "get",
+      "len",
+      "print",
+      "run",
+      "str"
+    ],
+    "dangerous": [],
+    "sha256": "870a14c1448eeda55a9d195278fd4c42d32293f5caee5940ace93b3ac624ecda",
+    "source": "skills/active/hello_skill.py"
+  },
+  "text_analyzer": {
+    "name": "text_analyzer",
+    "description": "Python skill named text_analyzer. Functions: run.",
+    "version": "1.0.0",
+    "functions": [
+      "run"
+    ],
+    "classes": [],
+    "imports": [
+      "collections"
+    ],
+    "calls": [
+      "Counter",
+      "TypeError",
+      "get",
+      "isinstance",
+      "len",
+      "lower",
+      "max",
+      "most_common",
+      "print",
+      "run",
+      "set",
+      "split",
+      "str",
+      "strip"
+    ],
+    "dangerous": [],
+    "sha256": "a9e717284a3a555322ed46f28219672fd5155b7c7defac960086264050d6b9e5",
+    "source": "skills/active/text_analyzer.py"
+  },
+  "text_cleaner": {
+    "name": "text_cleaner",
+    "description": "Python skill named text_cleaner. Functions: run.",
+    "version": "1.0.0",
+    "functions": [
+      "run"
+    ],
+    "classes": [],
+    "imports": [],
+    "calls": [
+      "TypeError",
+      "get",
+      "isinstance",
+      "join",
+      "len",
+      "print",
+      "run",
+      "split",
+      "str"
+    ],
+    "dangerous": [],
+    "sha256": "75034a5c6969696b3d92118c97b684e49fdba74645fb74f5c36652c5d30f6e7e",
+    "source": "skills/active/text_cleaner.py"
+  },
+  "text_reporter": {
+    "name": "text_reporter",
+    "description": "Python skill named text_reporter. Functions: run.",
+    "version": "1.0.0",
+    "functions": [
+      "run"
+    ],
+    "classes": [],
+    "imports": [],
+    "calls": [
+      "TypeError",
+      "get",
+      "int",
+      "isinstance",
+      "print",
+      "run",
+      "str"
+    ],
+    "dangerous": [],
+    "sha256": "78716e1f876437305ed0f92c102496dc54ee4a360d4bb21ec701baa5d6d042fc",
+    "source": "skills/active/text_reporter.py"
+  }
+}

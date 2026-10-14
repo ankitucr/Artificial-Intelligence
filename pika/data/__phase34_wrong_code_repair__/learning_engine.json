@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "experiences": [
+    {
+      "timestamp": 1791733137.8956804,
+      "task": "Fix the discount function in pricing.py. It must subtract the given percentage of the price, not subtract the percentage number directly. For example discount(100, 20) must return 80.",
+      "problem_pattern": "fix the discount function in pricing.py. it must subtract the given percentage of the price, not subtract the percentage number directly. for example discount(<n>, <n>) must return <n>. | test_failure | discount subtracts percent as a raw number instead of calculating the percentage of price | discount(<n>, <n>) returned <n> expected but current implementation returns <n> only accidentally for this case; additional cases expose the bug",
+      "error_type": "test_failure",
+      "root_cause": "discount subtracts percent as a raw number instead of calculating the percentage of price",
+      "error_message": "discount(100, 20) returned 80 expected but current implementation returns 80 only accidentally for this case; additional cases expose the bug",
+      "method": "phase33_verified_repair",
+      "solution": "return price * (1 - percent / 100)",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "pricing.py",
+        "old_text": "return price - percent",
+        "test_path": "test_pricing.py"
+      }
+    },
+    {
+      "timestamp": 1791734086.0255203,
+      "task": "Fix discount calculation: subtract the given percentage of the price, not the percentage number directly.",
+      "problem_pattern": "fix discount calculation: subtract the given percentage of the price, not the percentage number directly. | test_failure | discount subtracts percent directly instead of calculating percentage | independent discount tests fail",
+      "error_type": "test_failure",
+      "root_cause": "discount subtracts percent directly instead of calculating percentage",
+      "error_message": "independent discount tests fail",
+      "method": "phase33_verified_repair",
+      "solution": "return price * (1 - percent / 100)",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "discount_retest.py",
+        "old_text": "return price - percent",
+        "test_path": "test_discount_retest.py"
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "problem_pattern": "fix the discount function in pricing.py. it must subtract the given percentage of the price, not subtract the percentage number directly. for example discount(<n>, <n>) must return <n>. | test_failure | discount subtracts percent as a raw number instead of calculating the percentage of price | discount(<n>, <n>) returned <n> expected but current implementation returns <n> only accidentally for this case; additional cases expose the bug",
+      "error_type": "test_failure",
+      "root_causes": [
+        "discount subtracts percent as a raw number instead of calculating the percentage of price"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "return price * (1 - percent / 100)",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791733137.89573,
+          "replay_context": {
+            "target_path": "pricing.py",
+            "old_text": "return price - percent",
+            "test_path": "test_pricing.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791733137.89575
+    },
+    {
+      "problem_pattern": "fix discount calculation: subtract the given percentage of the price, not the percentage number directly. | test_failure | discount subtracts percent directly instead of calculating percentage | independent discount tests fail",
+      "error_type": "test_failure",
+      "root_causes": [
+        "discount subtracts percent directly instead of calculating percentage"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "return price * (1 - percent / 100)",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791734086.02554,
+          "replay_context": {
+            "target_path": "discount_retest.py",
+            "old_text": "return price - percent",
+            "test_path": "test_discount_retest.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791734086.025548
+    }
+  ]
+}

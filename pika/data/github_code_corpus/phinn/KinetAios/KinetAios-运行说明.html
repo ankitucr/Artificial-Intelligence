@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>KinetAios 项目运行说明</title>
+<style>
+  /* ── 打印优化 ── */
+  @page {
+    size: A4;
+    margin: 18mm 16mm 20mm 16mm;
+  }
+  @media print {
+    body { margin: 0; }
+    h2, h3 { page-break-after: avoid; }
+    table, pre, .section { page-break-inside: avoid; }
+    h2 { page-break-before: auto; }
+  }
+
+  /* ── 基础排版 ── */
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #1a1a2e;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* ── 标题 ── */
+  h1 {
+    font-size: 24px;
+    color: #0d1117;
+    text-align: center;
+    border-bottom: 3px solid #5865F2;
+    padding-bottom: 12px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 17px;
+    color: #0d1117;
+    border-left: 4px solid #5865F2;
+    padding-left: 10px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 14px;
+    color: #333;
+    margin-top: 18px;
+    margin-bottom: 6px;
+  }
+
+  /* ── 代码 ── */
+  code {
+    font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+    font-size: 12px;
+    background: #f0f1f5;
+    color: #d63384;
+    padding: 1.5px 5px;
+    border-radius: 3px;
+  }
+  pre {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    color: #1a1a2e;
+    padding: 0;
+  }
+
+  /* ── 表格 ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px 0;
+    font-size: 12.5px;
+  }
+  th {
+    background: #5865F2;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 7px 10px;
+    border: 1px solid #5865F2;
+  }
+  td {
+    padding: 6px 10px;
+    border: 1px solid #d0d7de;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) {
+    background: #f6f8fa;
+  }
+
+  /* ── 其他元素 ── */
+  a { color: #0969da; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #0d1117; }
+  blockquote {
+    border-left: 3px solid #f0c36d;
+    background: #fff8e1;
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 12.5px;
+  }
+  ul, ol {
+    padding-left: 20px;
+    margin: 6px 0 12px 0;
+  }
+  li { margin-bottom: 3px; }
+  hr {
+    border: none;
+    border-top: 1px solid #e1e4e8;
+    margin: 24px 0;
+  }
+
+  /* ── 封面区 ── */
+  .cover {
+    text-align: center;
+    padding: 40px 0 30px 0;
+    page-break-after: always;
+  }
+  .cover-logo {
+    font-size: 36px;
+    font-weight: 800;
+    color: #5865F2;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .cover-tagline {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+  .cover-info {
+    display: inline-block;
+    text-align: left;
+    font-size: 13px;
+    color: #444;
+    line-height: 2;
+  }
+  .cover-info span {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    color: #888;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ 封面 ════════════════ -->
+<div class="cover">
+  <div class="cover-logo">KinetAios</div>
+  <div class="cover-tagline">本地优先的多引擎 AI Agent 桌面应用</div>
+  <div class="cover-info">
+    <div><span>版本</span> 1.6.0</div>
+    <div><span>协议</span> GPL v3</div>
+    <div><span>平台</span> Windows 11 / macOS</div>
+    <div><span>技术栈</span> Electron + TypeScript + SQLite (FTS5)</div>
+    <div><span>GitHub</span> github.com/phinn/KinetAios</div>
+    <div><span>官网</span> phinn.github.io/KinetAios</div>
+  </div>
+</div>
+
+<!-- ════════════════ 正文 ════════════════ -->
+
+<h1>KinetAios 项目运行说明</h1>
+<p class="subtitle">版本 1.6.0 · GPL v3 · Windows 11 / macOS</p>
+
+<h2>目录</h2>
+<ol>
+  <li>环境要求</li>
+  <li>快速安装（推荐）</li>
+  <li>从源码构建</li>
+  <li>首次配置</li>
+  <li>基本使用</li>
+  <li>Direct Engine 工具列表</li>
+  <li>长期记忆系统</li>
+  <li>插件系统</li>
+  <li>Ollama 本地模型配置</li>
+  <li>MCP 集成</li>
+  <li>安全与沙箱</li>
+  <li>常见问题</li>
+</ol>
+
+<!-- ──────────── 1. 环境要求 ──────────── -->
+<h2>1. 环境要求</h2>
+
+<h3>最低要求</h3>
+<table>
+  <thead><tr><th style="width:30%">项目</th><th>要求</th></tr></thead>
+  <tbody>
+    <tr><td>操作系统</td><td>Windows 11 (64-bit) 或 macOS 12+</td></tr>
+    <tr><td>内存</td><td>4 GB（推荐 8 GB）</td></tr>
+    <tr><td>磁盘空间</td><td>300 MB（不含 Ollama 模型）</td></tr>
+    <tr><td>网络</td><td>安装时需联网（npm 依赖 + Electron 下载）</td></tr>
+  </tbody>
+</table>
+
+<h3>从源码构建额外需要</h3>
+<table>
+  <thead><tr><th style="width:30%">项目</th><th>要求</th></tr></thead>
+  <tbody>
+    <tr><td>Node.js</td><td>18.0+（推荐 20 LTS）</td></tr>
+    <tr><td>编译工具链</td><td>Windows: Visual Studio Build Tools / macOS: Xcode Command Line Tools</td></tr>
+    <tr><td>npm</td><td>随 Node.js 安装</td></tr>
+  </tbody>
+</table>
+
+<!-- ──────────── 2. 快速安装 ──────────── -->
+<h2>2. 快速安装（推荐）</h2>
+
+<h3>Windows</h3>
+<ol>
+  <li>前往 <a href="https://github.com/phinn/KinetAios/releases/latest">GitHub Releases</a> 下载 <code>KinetAios-Setup-1.6.0.exe</code></li>
+  <li>双击运行安装程序</li>
+  <li>如果出现 SmartScreen 警告 → 点击「更多信息」→「仍要运行」（应用未签名，这是正常的）</li>
+  <li>安装完成后从开始菜单启动 KinetAios</li>
+</ol>
+
+<h3>macOS</h3>
+<ol>
+  <li>前往 <a href="https://github.com/phinn/KinetAios/releases/latest">Releases</a> 下载 <code>.dmg</code> 文件</li>
+  <li>打开 DMG，将 KinetAios 拖入 Applications 文件夹</li>
+  <li>首次打开时 Gatekeeper 会警告 → 右键 → 「打开」→ 确认</li>
+</ol>
+
+<!-- ──────────── 3. 从源码构建 ──────────── -->
+<h2>3. 从源码构建</h2>
+
+<h3>3.1 克隆仓库</h3>
+<pre><code>git clone https://github.com/phinn/KinetAios.git
+cd KinetAios/KinetAiosWin</code></pre>
+
+<h3>3.2 安装依赖</h3>
+<pre><code>npm install</code></pre>
+
+<blockquote>
+  <strong>国内用户注意</strong>：如果 <code>npm install</code> 卡在下载 Electron 二进制，项目已预配 npmmirror 镜像（<code>.npmrc</code>）。如仍然失败，手动执行：
+<pre style="margin-top:8px;border:none;background:#fffdf5;">export ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/
+node node_modules/electron/install.js</pre>
+</blockquote>
+
+<h3>3.3 构建项目</h3>
+<pre><code>npm run build</code></pre>
+<p>该命令会依次执行：</p>
+<ol>
+  <li><strong>tsc</strong> — 编译主进程 + preload + shared 类型（TypeScript → JavaScript）</li>
+  <li><strong>esbuild</strong> — 打包渲染层（Vanilla TS → 单文件 bundle）</li>
+  <li><strong>复制资源</strong> — <code>brand.json</code>、HTML、CSS 等静态文件到 <code>dist/</code></li>
+</ol>
+
+<h3>3.4 启动应用</h3>
+<pre><code>npm start</code></pre>
+<p>或一步到位（构建 + 启动）：</p>
+<pre><code>npm run dev</code></pre>
+
+<h3>3.5 打包安装程序</h3>
+<pre><code># Windows（必须在 Windows 机器上执行）
+npm run dist
+# → 产出 release/KinetAios Setup 1.6.0.exe
+
+# 或只打包不制作安装程序
+npm run pack
+# → 产出 release/win-unpacked/KinetAios.exe</code></pre>
+
+<blockquote>
+  <strong>macOS 用户注意</strong>：无法从 macOS 构建 Windows 安装包（native 模块 <code>better-sqlite3</code> 跨平台编译不可靠）。请使用 GitHub Actions <code>windows-latest</code> runner 或在 Windows 机器上构建。
+</blockquote>
+
+<h3>3.6 验证构建</h3>
+<pre><code>npm run typecheck</code></pre>
+<p>如果没有任何输出，说明类型检查通过，构建成功。</p>
+
+<!-- ──────────── 4. 首次配置 ──────────── -->
+<h2>4. 首次配置</h2>
+
+<h3>4.1 打开设置</h3>
+<p>启动应用后，点击窗口右上角的 <strong>⚙ 齿轮图标</strong>。</p>
+
+<h3>4.2 配置 LLM 接口</h3>
+<table>
+  <thead><tr><th style="width:18%">字段</th><th style="width:32%">说明</th><th>示例</th></tr></thead>
+  <tbody>
+    <tr><td>API Key</td><td>LLM 提供商 API 密钥</td><td><code>xxxxxxxx.xxxxxxxx</code></td></tr>
+    <tr><td>Base URL</td><td>API 端点地址（留空走默认）</td><td><code>https://open.bigmodel.cn/api/paas/v4/</code></td></tr>
+    <tr><td>模型</td><td>要调用的模型 ID</td><td><code>glm-4-plus</code>、<code>deepseek-chat</code></td></tr>
+  </tbody>
+</table>
+
+<h3>预设提供商</h3>
+<table>
+  <thead><tr><th>提供商</th><th>Base URL</th><th>默认模型</th></tr></thead>
+  <tbody>
+    <tr><td>GLM（智谱）</td><td><code>https://open.bigmodel.cn/api/paas/v4/</code></td><td><code>glm-4-plus</code></td></tr>
+    <tr><td>DeepSeek</td><td><code>https://api.deepseek.com/v1/</code></td><td><code>deepseek-chat</code></td></tr>
+    <tr><td>OpenAI</td><td><code>https://api.openai.com/v1/</code></td><td><code>gpt-4o</code></td></tr>
+    <tr><td>Anthropic</td><td>协议切为 <code>anthropic</code></td><td><code>claude-3-5-sonnet</code></td></tr>
+  </tbody>
+</table>
+
+<h3>4.3 测试连接</h3>
+<p>点击 <strong>「测试连接」</strong> 按钮。如果返回成功提示，说明配置正确，可以开始使用。</p>
+
+<h3>4.4 模型配置档（Profiles）</h3>
+<p>在设置页可以创建多个「模型配置档」，每个会话可独立选择不同的配置档：</p>
+<ul>
+  <li><strong>Profile A</strong>：GLM-4-Plus（日常任务）</li>
+  <li><strong>Profile B</strong>：DeepSeek-Chat（代码任务）</li>
+  <li><strong>Profile C</strong>：Ollama llama3.2（离线任务）</li>
+</ul>
+
+<h3>4.5 API Key 加密存储</h3>
+<p>API Key 使用操作系统原生安全存储机制加密：</p>
+<ul>
+  <li><strong>macOS</strong> — Keychain</li>
+  <li><strong>Windows</strong> — DPAPI（Data Protection API）</li>
+</ul>
+
+<!-- ──────────── 5. 基本使用 ──────────── -->
+<h2>5. 基本使用</h2>
+
+<h3>5.1 创建会话</h3>
+<p>点击侧边栏 <strong>＋</strong> 按钮创建新会话。每个会话拥有独立的引擎、模型、工作目录和对话历史。</p>
+
+<h3>5.2 发送任务</h3>
+<p>在底部输入框输入任务描述，按 <code>Enter</code> 发送。Direct Engine 会：</p>
+<ol>
+  <li>将消息发送给 LLM</li>
+  <li>如果 LLM 返回工具调用（tool_calls），执行对应工具</li>
+  <li>将工具结果拼回上下文，再次请求 LLM</li>
+  <li>循环直到 LLM 返回纯文本回答（无工具调用）</li>
+</ol>
+
+<h3>5.3 工具调用确认</h3>
+<p>当 Agent 请求执行 <code>shell</code> 命令时，会弹出确认窗口。可在设置中调整审批策略：</p>
+<table>
+  <thead><tr><th style="width:25%">策略</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td><code>always</code></td><td>每次都确认（默认，最安全）</td></tr>
+    <tr><td><code>never</code></td><td>永不确认（全自动，需自行承担风险）</td></tr>
+  </tbody>
+</table>
+
+<h3>5.4 切换引擎</h3>
+<p>在会话顶部下拉菜单切换引擎。切换会清除跨引擎上下文（但长期记忆不受影响）。</p>
+
+<h3>5.5 全局热键</h3>
+<p><code>Ctrl/Cmd + Alt + Space</code> 从任何应用唤出快速面板。</p>
+
+<!-- ──────────── 6. 工具列表 ──────────── -->
+<h2>6. Direct Engine 工具列表</h2>
+<p>Direct Engine 内置 12 个工具，Agent 在推理过程中自动选择调用：</p>
+<table>
+  <thead><tr><th style="width:15%">工具</th><th>功能</th><th style="width:28%">安全措施</th></tr></thead>
+  <tbody>
+    <tr><td><code>shell</code></td><td>执行任意 shell 命令</td><td>用户确认 + 审批策略</td></tr>
+    <tr><td><code>read_file</code></td><td>读取 UTF-8 文本文件</td><td>readOnly 沙箱限制在 cwd 内</td></tr>
+    <tr><td><code>write_file</code></td><td>写入文件（覆盖）</td><td><strong>写入前自动快照</strong> + workspaceWrite</td></tr>
+    <tr><td><code>edit_file</code></td><td>精确查找替换</td><td><strong>写入前自动快照</strong> + 严格匹配</td></tr>
+    <tr><td><code>grep</code></td><td>递归正则搜索文件内容</td><td>自动排除 node_modules/.git</td></tr>
+    <tr><td><code>glob</code></td><td>按模式列出文件</td><td>只读</td></tr>
+    <tr><td><code>git_diff</code></td><td>查看 git 改动</td><td>只读</td></tr>
+    <tr><td><code>web_search</code></td><td>多引擎搜索</td><td>Bing + DuckDuckGo 回退</td></tr>
+    <tr><td><code>web_fetch</code></td><td>抓取 URL 并去噪</td><td><strong>SSRF 防护</strong> + Jina Reader</td></tr>
+    <tr><td><code>recall_memory</code></td><td>搜索长期记忆</td><td>FTS5 + embedding 语义召回</td></tr>
+    <tr><td><code>dispatch_agent</code></td><td>派发只读子 Agent</td><td>子 Agent 无 shell/write 权限</td></tr>
+  </tbody>
+</table>
+
+<h3>文件快照回滚</h3>
+<p>每次 <code>write_file</code> 或 <code>edit_file</code> 执行前，原文件内容会被保存到 <code>.kinet-snapshots/</code> 目录。快照上限 200 条，超过自动删最旧的。用户可一键回滚到任意快照版本。</p>
+
+<!-- ──────────── 7. 长期记忆 ──────────── -->
+<h2>7. 长期记忆系统</h2>
+
+<h3>7.1 自动记忆提取</h3>
+<p>每轮对话结束后，后台自动分析内容，提取「关于用户的持久事实」→ 存入 SQLite + FTS5。</p>
+
+<h3>7.2 跨会话注入</h3>
+<p>下一次对话开始时（即使换了模型或引擎），相关记忆自动注入 system prompt。</p>
+
+<h3>7.3 记忆面板</h3>
+<ul>
+  <li>查看所有记忆（按频道/全局分类）</li>
+  <li>行内编辑或删除单条记忆</li>
+  <li>查看每条记忆的来源会话和提取时间</li>
+  <li>记忆导入/导出 JSON</li>
+</ul>
+
+<h3>7.4 记忆图谱</h3>
+<p>力导向图可视化：节点 = 记忆条目，边 = 语义关联，<span style="color:red">红色标记</span> = 冲突记忆。</p>
+
+<!-- ──────────── 8. 插件系统 ──────────── -->
+<h2>8. 插件系统</h2>
+
+<h3>8.1 安装插件</h3>
+<p>将插件文件夹放入 <code>userData/plugins/</code> 目录，重启应用自动加载。</p>
+<table>
+  <thead><tr><th style="width:20%">平台</th><th>路径</th></tr></thead>
+  <tbody>
+    <tr><td>Windows</td><td><code>C:\Users\用户名\AppData\Roaming\KinetAios\plugins\</code></td></tr>
+    <tr><td>macOS</td><td><code>~/Library/Application Support/KinetAios/plugins/</code></td></tr>
+  </tbody>
+</table>
+
+<h3>8.2 内置插件</h3>
+<table>
+  <thead><tr><th style="width:18%">插件</th><th>功能</th><th style="width:10%">工具数</th></tr></thead>
+  <tbody>
+    <tr><td>office-suite</td><td>Excel 读写、PDF 生成、OCR、Word 操作、文档格式互转</td><td>18</td></tr>
+    <tr><td>brainstorm</td><td>Excalidraw 思维导图</td><td>—</td></tr>
+    <tr><td>math-practice</td><td>数学练习</td><td>—</td></tr>
+    <tr><td>cpp-learning</td><td>C++ 学习模块</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h3>8.3 插件能力</h3>
+<ul>
+  <li><strong>工具（Tools）</strong>— Agent 可调用的新函数</li>
+  <li><strong>Slash 命令</strong>— 输入 <code>/</code> 触发的快捷命令</li>
+  <li><strong>全屏面板</strong>— 独立的 UI 界面</li>
+  <li><strong>System Prompt 注入</strong>— 按关键词匹配，按需注入（省 ~60% token）</li>
+</ul>
+
+<!-- ──────────── 9. Ollama ──────────── -->
+<h2>9. Ollama 本地模型配置</h2>
+
+<h3>9.1 安装 Ollama</h3>
+<p>前往 <a href="https://ollama.com">ollama.com</a> 下载并安装。</p>
+
+<h3>9.2 拉取模型</h3>
+<pre><code>ollama pull llama3.2    # 或 qwen2.5, glm4 等</code></pre>
+
+<h3>9.3 在 KinetAios 中配置</h3>
+<p>KinetAios 会自动检测本地 Ollama（<code>localhost:11434</code>）：</p>
+<ol>
+  <li>在设置页创建新的模型配置档</li>
+  <li>Base URL 填入 <code>http://localhost:11434</code></li>
+  <li>模型名填入 Ollama 中的模型名（如 <code>llama3.2</code>）</li>
+  <li>API Key 填任意值（Ollama 不需要认证）</li>
+  <li>KinetAios 自动切换到 Ollama 原生 <code>/api/chat</code> 协议，设置 32K 上下文</li>
+</ol>
+
+<h3>9.4 完全离线</h3>
+<p>配置 Ollama 后，KinetAios 可以在完全断网的环境下运行（Agent 推理 + 工具执行 + 本地记忆）。</p>
+
+<!-- ──────────── 10. MCP ──────────── -->
+<h2>10. MCP 集成</h2>
+
+<h3>10.1 MCP 客户端</h3>
+<p>KinetAios 自动扫描系统 MCP 服务配置（<code>~/.claude.json</code>、<code>~/.codex/config.toml</code>、Claude Desktop 配置）。通过 stdio 连接，断开自动重连。</p>
+
+<h3>10.2 MCP 服务端</h3>
+<p>内置 MCP Server（HTTP + SSE），暴露 <code>run_agent</code> 工具：</p>
+<ol>
+  <li>在设置中启用 MCP Server，获取 Token</li>
+  <li>其他机器用标准 MCP 客户端连接</li>
+  <li>调用 <code>run_agent</code> 远程触发本机 Agent 执行任务</li>
+</ol>
+<p>安全措施：Token 鉴权（恒定时间比较）、5 分钟超时、僵尸连接自动清理。</p>
+
+<!-- ──────────── 11. 安全 ──────────── -->
+<h2>11. 安全与沙箱</h2>
+
+<h3>11.1 沙箱模式</h3>
+<table>
+  <thead><tr><th style="width:22%">模式</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td><code>readOnly</code></td><td>Agent 只能读取工作目录内文件，禁止写操作</td></tr>
+    <tr><td><code>workspaceWrite</code></td><td>Agent 可读写工作目录内文件，不能写目录外</td></tr>
+    <tr><td><code>fullAccess</code></td><td>不限制（默认）</td></tr>
+  </tbody>
+</table>
+
+<h3>11.2 SSRF 防护</h3>
+<p><code>web_fetch</code> 工具内置 SSRF 防护：</p>
+<ul>
+  <li>拦截 IPv4 私有段（10/8、172.16/12、192.168/16）</li>
+  <li>拦截 loopback（127/8）、link-local（169.254/16，含云元数据端点）</li>
+  <li>拦截 CGNAT（100.64/10）</li>
+  <li>拦截 IPv6 loopback / ULA</li>
+  <li>DNS 解析后二次检查实际 IP（防 DNS rebinding）</li>
+</ul>
+
+<h3>11.3 错误脱敏</h3>
+<p>返回给 LLM 的错误信息自动去掉绝对路径、堆栈跟踪，截断到 300 字符。</p>
+
+<h3>11.4 Shell 确认桥</h3>
+<p>Agent 请求执行 shell 命令时，通过 IPC 弹出模态窗口，用户可查看完整命令并批准或拒绝。</p>
+
+<!-- ──────────── 12. FAQ ──────────── -->
+<h2>12. 常见问题</h2>
+
+<p><strong>Q: 启动后看不到界面？</strong></p>
+<p>A: 检查任务栏/托盘。KinetAios 默认最小化到托盘。使用 <code>Ctrl+Alt+Space</code> 唤出快速面板。</p>
+
+<p><strong>Q: npm install 报错（better-sqlite3 编译失败）？</strong></p>
+<p>A: 确认已安装编译工具链：Windows 安装 Visual Studio Build Tools；macOS 执行 <code>xcode-select --install</code>。</p>
+
+<p><strong>Q: API Key 安全吗？</strong></p>
+<p>A: API Key 使用操作系统原生加密存储（macOS Keychain / Windows DPAPI），不以明文写入磁盘。</p>
+
+<p><strong>Q: 多个会话会互相影响吗？</strong></p>
+<p>A: 不会。每个会话有独立的上下文、历史和工具执行环境。唯一共享的是长期记忆。</p>
+
+<p><strong>Q: 如何切换语言？</strong></p>
+<p>A: 设置 → 界面 → 语言。支持 English / 简体中文 / 繁體中文 / 日本語。</p>
+
+<p><strong>Q: 支持 Linux 吗？</strong></p>
+<p>A: 目前官方支持 Windows 11 和 macOS。Linux 理论可行（Electron 跨平台），但未正式测试。</p>
+
+<hr>
+
+<!-- ──────────── 附录 ──────────── -->
+<h2>附录：常用命令速查</h2>
+<table>
+  <thead><tr><th style="width:35%">命令</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td><code>npm install</code></td><td>安装依赖 + 重编 better-sqlite3</td></tr>
+    <tr><td><code>npm run build</code></td><td>构建项目（tsc + esbuild + 复制资源）</td></tr>
+    <tr><td><code>npm run typecheck</code></td><td>类型检查（不产出文件）</td></tr>
+    <tr><td><code>npm start</code></td><td>启动应用（需先 build）</td></tr>
+    <tr><td><code>npm run dev</code></td><td>构建 + 启动</td></tr>
+    <tr><td><code>npm run pack</code></td><td>打包（不制作安装程序）</td></tr>
+    <tr><td><code>npm run dist</code></td><td>制作安装程序（NSIS / DMG）</td></tr>
+  </tbody>
+</table>
+
+<h2>附录：键盘快捷键</h2>
+<table>
+  <thead><tr><th style="width:35%">快捷键</th><th>功能</th></tr></thead>
+  <tbody>
+    <tr><td><code>Ctrl/Cmd + Alt + Space</code></td><td>全局热键，唤出快速面板</td></tr>
+    <tr><td><code>Ctrl/Cmd + K</code></td><td>全局搜索（搜索所有会话）</td></tr>
+    <tr><td><code>Ctrl/Cmd + Shift + I</code></td><td>打开 DevTools</td></tr>
+    <tr><td><code>Enter</code></td><td>发送消息</td></tr>
+    <tr><td><code>Shift + Enter</code></td><td>换行（不发送）</td></tr>
+  </tbody>
+</table>
+
+<hr>
+<p style="text-align:center;color:#888;font-size:12px;">
+KinetAios — GPL v3 — <a href="https://github.com/phinn/KinetAios">github.com/phinn/KinetAios</a>
+</p>
+
+</body>
+</html>

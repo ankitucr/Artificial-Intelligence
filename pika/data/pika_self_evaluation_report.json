@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-10-12T03:24:18.420885+00:00",
+  "duration_seconds": 1.28,
+  "summary": {
+    "checks": 11,
+    "passed": 11,
+    "failed": 0,
+    "warnings": 0
+  },
+  "checks": [
+    {
+      "check": "GitHub index",
+      "status": "PASS",
+      "detail": "valid JSON, 21722 bytes"
+    },
+    {
+      "check": "GitHub evaluation report",
+      "status": "PASS",
+      "detail": "valid JSON, 751 bytes"
+    },
+    {
+      "check": "GitHub registry",
+      "status": "PASS",
+      "detail": "valid JSON, 8574 bytes"
+    },
+    {
+      "check": "Original GitHub registry",
+      "status": "PASS",
+      "detail": "valid JSON, 14217 bytes"
+    },
+    {
+      "check": "Evolution daemon",
+      "status": "PASS",
+      "detail": "process found"
+    },
+    {
+      "check": "Collected Python syntax",
+      "status": "PASS",
+      "detail": "34/34 parsed; 0 syntax failures; no source executed"
+    },
+    {
+      "check": "Semantic memory JSON",
+      "status": "PASS",
+      "detail": "valid JSON at data/semantic_code_memory.json; top-level=dict"
+    },
+    {
+      "check": "Brain semantic-memory reference",
+      "status": "PASS",
+      "detail": "reference detected"
+    },
+    {
+      "check": "tests.test_semantic_code_memory",
+      "status": "PASS",
+      "detail": "return code=0\ntest_empty_input_rejected (__main__.SemanticCodeMemoryTests.test_empty_input_rejected) ... ok\ntest_equivalent_group_is_explicit (__main__.SemanticCodeMemoryTests.test_equivalent_group_is_explicit) ... ok\ntest_failed_variant_is_excluded (__main__.SemanticCodeMemoryTests.test_failed_variant_is_excluded) ... ok\ntest_persistence_across_instances (__main__.SemanticCodeMemoryTests.test_persistence_across_instances) ... ok\ntest_tag_retrieval (__main__.SemanticCodeMemoryTests.test_tag_retrieval) ... ok\ntest_unverified_not_returned_by_default (__main__.SemanticCodeMemoryTests.test_unverified_not_returned_by_default) ... ok\ntest_variants_are_preserved (__main__.SemanticCodeMemoryTests.test_variants_are_preserved) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.010s\n\nOK\n"
+    },
+    {
+      "check": "tests.test_phase35_brain_semantic_integration",
+      "status": "PASS",
+      "detail": "return code=0\n[PIKA DECISION] mode=agent confidence=1.0\n[PIKA MEMORY] signature=phase34-brain-integration history={}\n[PIKA PLAN] type=engineering complexity=low subtasks=1\n[PIKA WORKSPACE] inspect_success=True\n[PIKA WORKSPACE] execution mode enabled\n[PIKA AGENT] selected=isolated-test-worker\n[PIKA WORKSPACE] Phase 32 controlled execution\n[PIKA PHASE 32] execution failed; recovery diagnosed and transaction rolled back.\n[PIKA PHASE 33] bounded self-healing\n[PIKA PHASE 34] MEMORY MISS -> COHERE\n[PIKA PHASE 35] trying context-compatible saved repair.\n[PIKA PHASE 35] MEMORY REPLAY VERIFIED\n\nPHASE 35 BRAIN SEMANTIC INTEGRATION: PASS\nVerified: real PIKABrain.think() retrieved semantic memory.\nVerified: only verified memory candidates were retrieved.\nVerified: context-compatible semantic repair reached Phase 33 first.\nVerified: generator fallback was skipped on the successful memory replay.\nVerified: unverified memory variant remained unverified.\nVerified: isolated temporary database was used.\n"
+    },
+    {
+      "check": "tests.test_phase35_context_persistence",
+      "status": "PASS",
+      "detail": "return code=0\n[PHASE35] Verified repair saved.\nPHASE 35 CONTEXT PERSISTENCE: PASS\nVerified: accepted repair saved with test evidence.\nVerified: replay context survived database reload.\nVerified: temporary database only; production memory untouched.\n"
+    }
+  ],
+  "tests": [
+    {
+      "module": "tests.test_semantic_code_memory",
+      "status": "PASS",
+      "return_code": 0,
+      "output": "test_empty_input_rejected (__main__.SemanticCodeMemoryTests.test_empty_input_rejected) ... ok\ntest_equivalent_group_is_explicit (__main__.SemanticCodeMemoryTests.test_equivalent_group_is_explicit) ... ok\ntest_failed_variant_is_excluded (__main__.SemanticCodeMemoryTests.test_failed_variant_is_excluded) ... ok\ntest_persistence_across_instances (__main__.SemanticCodeMemoryTests.test_persistence_across_instances) ... ok\ntest_tag_retrieval (__main__.SemanticCodeMemoryTests.test_tag_retrieval) ... ok\ntest_unverified_not_returned_by_default (__main__.SemanticCodeMemoryTests.test_unverified_not_returned_by_default) ... ok\ntest_variants_are_preserved (__main__.SemanticCodeMemoryTests.test_variants_are_preserved) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.010s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_phase35_brain_semantic_integration",
+      "status": "PASS",
+      "return_code": 0,
+      "output": "[PIKA DECISION] mode=agent confidence=1.0\n[PIKA MEMORY] signature=phase34-brain-integration history={}\n[PIKA PLAN] type=engineering complexity=low subtasks=1\n[PIKA WORKSPACE] inspect_success=True\n[PIKA WORKSPACE] execution mode enabled\n[PIKA AGENT] selected=isolated-test-worker\n[PIKA WORKSPACE] Phase 32 controlled execution\n[PIKA PHASE 32] execution failed; recovery diagnosed and transaction rolled back.\n[PIKA PHASE 33] bounded self-healing\n[PIKA PHASE 34] MEMORY MISS -> COHERE\n[PIKA PHASE 35] trying context-compatible saved repair.\n[PIKA PHASE 35] MEMORY REPLAY VERIFIED\n\nPHASE 35 BRAIN SEMANTIC INTEGRATION: PASS\nVerified: real PIKABrain.think() retrieved semantic memory.\nVerified: only verified memory candidates were retrieved.\nVerified: context-compatible semantic repair reached Phase 33 first.\nVerified: generator fallback was skipped on the successful memory replay.\nVerified: unverified memory variant remained unverified.\nVerified: isolated temporary database was used.\n"
+    },
+    {
+      "module": "tests.test_phase35_context_persistence",
+      "status": "PASS",
+      "return_code": 0,
+      "output": "[PHASE35] Verified repair saved.\nPHASE 35 CONTEXT PERSISTENCE: PASS\nVerified: accepted repair saved with test evidence.\nVerified: replay context survived database reload.\nVerified: temporary database only; production memory untouched.\n"
+    }
+  ],
+  "limitations": [
+    "A passing syntax check does not prove runtime correctness.",
+    "Collected public source was not executed.",
+    "A detected Brain reference does not prove runtime memory replay.",
+    "This evaluator does not modify Brain or semantic memory."
+  ]
+}

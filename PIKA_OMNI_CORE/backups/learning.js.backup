@@ -1,0 +1,91 @@
+const express = require('express');
+const app = express();
+const { v4: uuidv4 } = require('uuid');
+const { Graph, Node, Edge } = require('graphlib');
+
+class KnowledgeGraph {
+  constructor() {
+    this.graph = new Graph();
+  }
+
+  addNode(nodeId, nodeData) {
+    this.graph.setNode(nodeId, nodeData);
+  }
+
+  addEdge(fromNodeId, toNodeId, edgeData) {
+    this.graph.setEdge(fromNodeId, toNodeId, edgeData);
+  }
+
+  expandGraph(nodeId, depth) {
+    const visited = new Set();
+    const queue = [{ nodeId, depth: 0 }];
+
+    while (queue.length > 0) {
+      const { nodeId: currentId, depth: currentDepth } = queue.shift();
+
+      if (visited.has(currentId) || currentDepth > depth) {
+        continue;
+      }
+
+      visited.add(currentId);
+
+      const currentNode = this.graph.node(currentId);
+      if (currentNode) {
+        console.log(`Node ${currentId} has data: ${JSON.stringify(currentNode)}`);
+
+        const neighbors = this.graph.successors(currentId);
+        if (neighbors) {
+          neighbors.forEach((neighborId) => {
+            queue.push({ nodeId: neighborId, depth: currentDepth + 1 });
+          });
+        }
+      }
+    }
+  }
+
+  adaptiveReasoning(nodeId, query) {
+    const visited = new Set();
+    const queue = [{ nodeId, query, depth: 0 }];
+
+    while (queue.length > 0) {
+      const { nodeId: currentId, query: currentQuery, depth: currentDepth } = queue.shift();
+
+      if (visited.has(currentId) || currentDepth > 5) {
+        continue;
+      }
+
+      visited.add(currentId);
+
+      const currentNode = this.graph.node(currentId);
+      if (currentNode) {
+        if (currentNode.data.includes(currentQuery)) {
+          console.log(`Found match at node ${currentId} with data: ${JSON.stringify(currentNode)}`);
+          return;
+        }
+
+        const neighbors = this.graph.successors(currentId);
+        if (neighbors) {
+          neighbors.forEach((neighborId) => {
+            queue.push({ nodeId: neighborId, query: currentQuery, depth: currentDepth + 1 });
+          });
+        }
+      }
+    }
+  }
+}
+
+const knowledgeGraph = new KnowledgeGraph();
+
+knowledgeGraph.addNode('A', { data: 'Apple' });
+knowledgeGraph.addNode('B', { data: 'Banana' });
+knowledgeGraph.addNode('C', { data: 'Cherry' });
+
+knowledgeGraph.addEdge('A', 'B', { relation: 'is related to' });
+knowledgeGraph.addEdge('B', 'C', { relation: 'is related to' });
+
+knowledgeGraph.expandGraph('A', 2);
+knowledgeGraph.adaptiveReasoning('A', 'Banana');
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});

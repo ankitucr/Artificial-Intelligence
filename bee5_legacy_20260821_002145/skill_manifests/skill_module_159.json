@@ -1,0 +1,159 @@
+{
+  "skill": "skill_module_159",
+  "signature": {
+    "hash": "39e3a817eedcbd41fc5b1e2ea0c472d754ca58327c16c3f8298fc53648474753",
+    "tokens": [
+      "algorithms",
+      "and",
+      "args",
+      "arguments",
+      "base",
+      "binary",
+      "built",
+      "calculations",
+      "can",
+      "combinatorial",
+      "computations",
+      "computes",
+      "cryptographic",
+      "def",
+      "efficiently",
+      "enables",
+      "essential",
+      "exponent",
+      "exponentiation",
+      "fast",
+      "for",
+      "given",
+      "int",
+      "integer",
+      "modular",
+      "modular_exponentiation",
+      "modular_pow",
+      "modulo",
+      "modulus",
+      "must",
+      "negative",
+      "non",
+      "number",
+      "positive",
+      "pow",
+      "power",
+      "raise",
+      "relying",
+      "result",
+      "return",
+      "returns",
+      "squaring",
+      "the",
+      "theory",
+      "three",
+      "using",
+      "valueerror",
+      "while",
+      "with",
+      "without"
+    ],
+    "functions": [
+      "modular_pow"
+    ],
+    "imports": [],
+    "calls": [
+      "ValueError"
+    ],
+    "operators": [
+      "BitAnd",
+      "Lt",
+      "LtE",
+      "Mod",
+      "Mult"
+    ],
+    "capability": "Computes (base ** exponent) modulo a given modulus efficiently using exponentiation by squaring."
+  },
+  "metadata": {
+    "name": "modular_exponentiation",
+    "capability": "Computes (base ** exponent) modulo a given modulus efficiently using exponentiation by squaring.",
+    "purpose": "Enables fast modular power calculations essential for cryptographic algorithms, number theory, and combinatorial computations without relying on built‑in pow with three arguments.",
+    "primary_function": "modular_pow",
+    "code": "def modular_pow(base: int, exponent: int, modulus: int) -> int:\n    \"\"\"Return (base ** exponent) % modulus using binary exponentiation.\n\n    Args:\n        base: The base integer (can be negative).\n        exponent: Non‑negative exponent.\n        modulus: Positive modulus.\n    Returns:\n        The modular exponentiation result.\n    \"\"\"\n    if modulus <= 0:\n        raise ValueError(\"modulus must be a positive integer\")\n    if exponent < 0:\n        raise ValueError(\"exponent must be non‑negative\")\n    result = 1 % modulus\n    base = base % modulus\n    while exponent:\n        if exponent & 1:\n            result = (result * base) % modulus\n        exponent >>= 1\n        base = (base * base) % modulus\n    return result",
+    "tests": [
+      {
+        "args": [
+          2,
+          10,
+          1000
+        ],
+        "kwargs": {},
+        "expected": 24
+      },
+      {
+        "args": [
+          5,
+          0,
+          7
+        ],
+        "kwargs": {},
+        "expected": 1
+      },
+      {
+        "args": [
+          10,
+          5,
+          1
+        ],
+        "kwargs": {},
+        "expected": 0
+      },
+      {
+        "args": [
+          3,
+          200,
+          13
+        ],
+        "kwargs": {},
+        "expected": 9
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 94.86,
+    "novelty": 0.8532,
+    "similarity": 0.1468,
+    "closest_skill": "skill_module_152",
+    "tests": {
+      "passed": 4,
+      "total": 4,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 24,
+          "actual": 24
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": 9,
+          "actual": 9
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 1,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_183118"
+  },
+  "created_at": "2026-08-20 18:33:36"
+}

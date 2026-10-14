@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "experiences": [
+    {
+      "timestamp": 1791623442.6194701,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791623442.8690422,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791727908.2263157,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791727908.476912,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791732227.718497,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791732228.0520136,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791732716.5503983,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    },
+    {
+      "timestamp": 1791732716.9140048,
+      "task": "repair calculator add function failing arithmetic test when addition returns the wrong result",
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_cause": "add function uses subtraction instead of addition",
+      "error_message": "expected 5 but received -1",
+      "method": "phase33_verified_repair",
+      "solution": "return a + b",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "calculator.py",
+        "old_text": "return a - b",
+        "test_path": "test_calculator.py"
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "problem_pattern": "repair calculator add function failing arithmetic test when addition returns the wrong result | test_failure | add function uses subtraction instead of addition | expected <n> but received -<n>",
+      "error_type": "test_failure",
+      "root_causes": [
+        "add function uses subtraction instead of addition"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "return a + b",
+          "success_count": 8,
+          "failure_count": 0,
+          "verified_count": 8,
+          "last_used": 1791732716.91405,
+          "replay_context": {
+            "target_path": "calculator.py",
+            "old_text": "return a - b",
+            "test_path": "test_calculator.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 8,
+      "successes": 8,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791732716.91406
+    }
+  ]
+}

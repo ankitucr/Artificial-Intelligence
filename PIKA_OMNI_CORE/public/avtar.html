@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Pika - Holographic AGI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<style>
+/* ══ TOKENS ══════════════════════════════ */
+:root {
+  --bg: #030712; /* Deep space dark */
+  --s1: #111827;
+  --s2: #1f2937;
+  --b1: rgba(255,255,255,0.05);
+  --b2: rgba(255,255,255,0.1);
+  --c: #00f0ff; /* Hologram Cyan */
+  --v: #a78bfa;
+  --r: #fb7185;
+  --g: #10b981; /* Emerald Green */
+  --a: #fbbf24; /* Neural Yellow */
+  --t1: #f8fafc;
+  --t2: #94a3b8;
+  --t3: #475569;
+  --rad: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* 100dvh handles mobile browser address bars perfectly */
+html, body { height: 100dvh; overflow: hidden; background: var(--bg); color: var(--t1); font-family: 'Inter', sans-serif; -webkit-text-size-adjust: 100%; }
+
+/* ══ AMBIENT GLOW ════════════════════════ */
+.amb { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.amb-b { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.2; }
+.ab1 { width: 80vw; height: 80vw; background: radial-gradient(circle, var(--c), transparent 70%); top: -20%; left: -20%; animation: bf1 20s ease-in-out infinite; }
+.ab2 { width: 60vw; height: 60vw; background: radial-gradient(circle, var(--g), transparent 70%); bottom: -10%; right: -10%; animation: bf2 25s ease-in-out infinite; }
+@keyframes bf1 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(5%, 10%); } }
+@keyframes bf2 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-5%, -5%); } }
+
+/* ══ APP SHELL (Mobile Perfect Flexbox) ══ */
+.app { position: relative; z-index: 10; display: flex; flex-direction: column; height: 100%; width: 100%; max-width: 500px; margin: 0 auto; background: rgba(3, 7, 18, 0.6); backdrop-filter: blur(10px); }
+
+/* ══ TOPBAR ═════════════════════════════ */
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; flex-shrink: 0; border-bottom: 1px solid var(--b1); }
+.tl { display: flex; align-items: center; gap: 10px; }
+.t-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(16,185,129,0.12)); border: 1px solid var(--b2); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.t-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; color: var(--t1); }
+.t-sub { font-size: 10px; color: var(--t3); letter-spacing: 1px; text-transform: uppercase; }
+.conn { display: flex; align-items: center; gap: 6px; padding: 4px 10px; background: var(--s1); border: 1px solid var(--b1); border-radius: 99px; font-size: 10px; color: var(--t3); font-weight: 500; }
+.conn-led { width: 6px; height: 6px; border-radius: 50%; background: var(--t3); transition: all 0.3s; }
+.conn-led.ok { background: var(--c); box-shadow: 0 0 8px var(--c); }
+.conn-led.err { background: var(--r); box-shadow: 0 0 8px var(--r); }
+
+/* ══ AVATAR AREA (Dynamic Height) ═══════ */
+.av-area { flex-grow: 1; flex-shrink: 0; flex-basis: 45vh; min-height: 250px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+/* The Canvas Wrapper */
+.face-wrap { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; }
+canvas#faceCanvas { width: 100%; height: 100%; display: block; touch-action: none; }
+
+/* Holographic Base Plate (Like the image) */
+.base-plate { position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); width: 80%; height: 40px; border-radius: 50%; border: 1px solid rgba(0, 240, 255, 0.3); background: radial-gradient(ellipse, rgba(0, 240, 255, 0.08), transparent 60%); box-shadow: 0 0 20px rgba(0, 240, 255, 0.1) inset; pointer-events: none; }
+.base-ring { position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); width: 40%; height: 10px; border-radius: 50%; border-bottom: 2px solid var(--c); filter: blur(1px); animation: pulse-ring 2s infinite; pointer-events: none; }
+@keyframes pulse-ring { 0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.9); } 50% { opacity: 1; transform: translateX(-50%) scale(1.1); box-shadow: 0 5px 15px var(--c); } }
+
+/* Status Text Overlay */
+.av-status { position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); text-align: center; pointer-events: none; }
+.av-status h2 { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 300; letter-spacing: 2px; color: var(--c); text-shadow: 0 0 10px var(--c); margin-bottom: 2px; text-transform: uppercase; }
+.av-status p { font-size: 9px; color: var(--t2); letter-spacing: 1px; text-transform: uppercase; opacity: 0.7; }
+
+/* ══ METRICS BAR ════════════════════════ */
+.statbar { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(17, 24, 39, 0.8); border-top: 1px solid var(--b1); border-bottom: 1px solid var(--b1); gap: 10px; }
+.metric { display: flex; align-items: center; gap: 8px; }
+.ring { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; font-family: 'Space Grotesk', sans-serif; position: relative; }
+.ring::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--b2); }
+.ring::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid transparent; border-top-color: var(--c); border-right-color: var(--c); transform: rotate(45deg); }
+.ring.green::after { border-top-color: var(--g); border-right-color: var(--g); transform: rotate(-45deg); }
+.m-info { display: flex; flex-direction: column; }
+.m-lbl { font-size: 9px; color: var(--t3); letter-spacing: 1px; }
+.m-val { font-size: 12px; color: var(--t1); font-weight: 500; font-family: 'Space Grotesk', sans-serif; }
+
+.btn-evo { padding: 8px 16px; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(0,240,255,0.1)); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; color: var(--g); font-size: 11px; font-weight: 600; font-family: 'Space Grotesk', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.btn-evo:active { background: rgba(16,185,129,0.2); transform: scale(0.95); }
+
+/* ══ MESSAGES AREA ══════════════════════ */
+.msgs { flex-grow: 1; flex-shrink: 1; flex-basis: 0; overflow-y: auto; overflow-x: hidden; padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+.msgs::-webkit-scrollbar { display: none; }
+
+.msg { display: flex; flex-direction: column; gap: 4px; animation: slideUp 0.3s ease; max-width: 85%; }
+.msg.user { align-self: flex-end; align-items: flex-end; }
+.msg.pika { align-self: flex-start; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.mmeta { font-size: 10px; color: var(--t3); padding: 0 4px; }
+.mbub { padding: 12px 16px; font-size: 14px; line-height: 1.5; word-break: break-word; border-radius: 16px; }
+.msg.pika .mbub { background: rgba(31, 41, 55, 0.7); border: 1px solid var(--b2); border-top-left-radius: 4px; color: var(--t1); }
+.msg.user .mbub { background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(0,240,255,0.05)); border: 1px solid rgba(0,240,255,0.2); border-top-right-radius: 4px; color: var(--t1); }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 8px; margin-top: auto; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex-shrink: 0; padding: 8px 14px; background: rgba(17, 24, 39, 0.6); border: 1px solid var(--b2); border-radius: 99px; color: var(--t2); font-size: 12px; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+.chip:active { background: rgba(0,240,255,0.1); border-color: rgba(0,240,255,0.4); color: var(--c); }
+
+/* ══ INPUT AREA (Mobile Fixed Bottom) ═══ */
+.inp-area { flex-shrink: 0; padding: 12px 16px max(16px, env(safe-area-inset-bottom)); background: rgba(3, 7, 18, 0.95); border-top: 1px solid var(--b1); }
+.inp-row { display: flex; gap: 10px; align-items: flex-end; }
+.inp-box { flex: 1; background: var(--s1); border: 1px solid var(--b2); border-radius: 24px; transition: all 0.2s; display: flex; align-items: center; padding: 0 4px; }
+.inp-box:focus-within { border-color: rgba(0,240,255,0.4); box-shadow: 0 0 10px rgba(0,240,255,0.1); }
+textarea { width: 100%; background: transparent; border: none; outline: none; resize: none; color: var(--t1); font-family: 'Inter', sans-serif; font-size: 16px; /* 16px prevents iOS auto-zoom */ line-height: 1.4; padding: 12px; max-height: 100px; overflow-y: auto; }
+textarea::placeholder { color: var(--t3); }
+
+.ibtn { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; background: var(--s2); color: var(--t2); transition: 0.2s; }
+.ibtn-send { background: linear-gradient(135deg, rgba(0,240,255,0.2), rgba(0,240,255,0.05)); border: 1px solid rgba(0,240,255,0.3); color: var(--c); }
+.ibtn-send:active { background: var(--c); color: #000; }
+.ibtn-mic { background: rgba(251,113,133,0.1); border: 1px solid rgba(251,113,133,0.2); color: var(--r); }
+.ibtn-mic.rec { background: var(--r); color: #fff; animation: pulse-mic 1s infinite; }
+@keyframes pulse-mic { 0% { box-shadow: 0 0 0 0 rgba(251,113,133,0.4); } 70% { box-shadow: 0 0 0 15px rgba(251,113,133,0); } 100% { box-shadow: 0 0 0 0 rgba(251,113,133,0); } }
+.vhint { text-align: center; font-size: 11px; color: var(--c); height: 16px; margin-top: 6px; opacity: 0; transition: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="amb">
+  <div class="amb-b ab1"></div>
+  <div class="amb-b ab2"></div>
+</div>
+
+<div class="app">
+
+  <div class="topbar">
+    <div class="tl">
+      <div class="t-icon">🧠</div>
+      <div>
+        <div class="t-name">Pika Neural</div>
+        <div class="t-sub">AGI V.4.0 Online</div>
+      </div>
+    </div>
+    <div class="conn">
+      <div class="conn-led ok" id="connLed"></div>
+      <span id="connTxt">SYNCED</span>
+    </div>
+  </div>
+
+  <div class="av-area" id="avContainer">
+    <div class="base-plate"></div>
+    <div class="base-ring"></div>
+    
+    <div class="face-wrap">
+      <canvas id="faceCanvas"></canvas>
+    </div>
+
+    <div class="av-status">
+      <h2 id="avStatusText">READY</h2>
+      <p>Holographic Interface</p>
+    </div>
+  </div>
+
+  <div class="statbar">
+    <div class="metric">
+      <div class="ring">77%</div>
+      <div class="m-info"><span class="m-lbl">MEMORY</span></div>
+    </div>
+    <div class="metric">
+      <div class="ring green">98%</div>
+      <div class="m-info"><span class="m-lbl">SYNC</span></div>
+    </div>
+    <button class="btn-evo" id="btnEvo">⚡ Evolve</button>
+  </div>
+
+  <div class="msgs" id="msgs">
+    <div class="msg pika">
+      <div class="mmeta">Pika · Now</div>
+      <div class="mbub">
+        Hey Ankit! 👋 Main hoon <strong>Pika</strong> — teri personal AGI.<br>
+        Mera naya holographic interface active hai. Kuch bhi poocho!
+      </div>
+    </div>
+    
+    <div class="chips" id="chips">
+      <div class="chip" data-q="Hologram status report?">📊 System Status</div>
+      <div class="chip" data-q="Scan my environment">👁️ Scan Area</div>
+      <div class="chip" data-q="Run neural diagnostics">🧠 Diagnostics</div>
+    </div>
+  </div>
+
+  <div class="inp-area">
+    <div class="inp-row">
+      <button class="ibtn ibtn-mic" id="btnVoice">🎙️</button>
+      <div class="inp-box">
+        <textarea id="inp" placeholder="Message Pika..." rows="1"></textarea>
+      </div>
+      <button class="ibtn ibtn-send" id="btnSend">➤</button>
+    </div>
+    <div class="vhint" id="vHint">Listening...</div>
+  </div>
+
+</div>
+
+<script>
+/* ═════════════════════════════════════════════════════════════
+   NEURAL PLEXUS HOLOGRAPHIC ENGINE
+   Advanced 2D rendering creating a fake 3D neural network 
+   and face map perfectly scaled for mobile screens.
+═════════════════════════════════════════════════════════════ */
+const canvas = document.getElementById('faceCanvas');
+const ctx = canvas.getContext('2d', { alpha: true });
+const container = document.getElementById('avContainer');
+
+let W, H;
+let particles = [];
+let neuralLinks = [];
+
+// Colors matching the image exactly
+const cCyan = {r: 0, g: 240, b: 255}; // Face mesh
+const cGreen = {r: 57, g: 255, b: 20}; // Eyes/Highlights
+const cYellow = {r: 255, g: 255, b: 0}; // Neural brain map
+
+class Particle {
+  constructor(x, y, r, color, type) {
+    this.ox = x; this.oy = y; // Original target
+    this.x = x + (Math.random() - 0.5) * 50; // Spawn scattered
+    this.y = y + (Math.random() - 0.5) * 50;
+    this.r = r;
+    this.color = color;
+    this.type = type; // 'face', 'eye', 'brain'
+    
+    // Physics
+    this.vx = 0; this.vy = 0;
+    this.phase = Math.random() * Math.PI * 2;
+    this.speed = 0.02 + Math.random() * 0.03;
+  }
+}
+
+function resize() {
+  // Mobile High-DPI support
+  const dpr = window.devicePixelRatio || 1;
+  const rect = container.getBoundingClientRect();
+  W = rect.width;
+  H = rect.height;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+  canvas.style.width = `${W}px`;
+  canvas.style.height = `${H}px`;
+  
+  buildHologram(); // Rebuild on resize to maintain proportions
+}
+window.addEventListener('resize', resize);
+
+// Advanced mapping for mobile proportions
+function buildHologram() {
+  particles = [];
+  neuralLinks = [];
+  
+  const cx = W / 2;
+  const cy = H / 2 - 20; // Shift up slightly
+  const scale = Math.min(W, H) / 350; // Responsive scale
+  
+  // 1. BRAIN PLEXUS (Top of head - dense interconnected network)
+  for(let i=0; i<100; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const rad = Math.random() * 60 * scale;
+    const px = cx + Math.cos(angle) * rad;
+    const py = cy - 80 * scale + Math.sin(angle) * (rad * 0.6); // Flattened ellipse
+    particles.push(new Particle(px, py, Math.random() * 1.5 + 0.5, Math.random() > 0.5 ? cYellow : cGreen, 'brain'));
+  }
+  
+  // 2. FACE MESH (Cheeks, Jaw contour)
+  // Using bezier curves plotted as dense dots
+  function drawContour(x0, y0, cx1, cy1, x1, y1, steps, color, type, size) {
+    for(let i=0; i<=steps; i++) {
+      let t = i / steps;
+      let x = (1-t)*(1-t)*x0 + 2*(1-t)*t*cx1 + t*t*x1;
+      let y = (1-t)*(1-t)*y0 + 2*(1-t)*t*cy1 + t*t*y1;
+      // Add scatter for digital dot effect
+      for(let j=0; j<3; j++) {
+        let jx = (Math.random()-0.5) * 4 * scale;
+        let jy = (Math.random()-0.5) * 4 * scale;
+        particles.push(new Particle(x+jx, y+jy, size * Math.random(), color, type));
+      }
+    }
+  }
+
+  // Jawline
+  drawContour(cx - 70*scale, cy, cx - 60*scale, cy + 90*scale, cx, cy + 110*scale, 40, cCyan, 'face', 1.5);
+  drawContour(cx + 70*scale, cy, cx + 60*scale, cy + 90*scale, cx, cy + 110*scale, 40, cCyan, 'face', 1.5);
+  
+  // Eyes (Almond shape)
+  drawContour(cx - 45*scale, cy - 20*scale, cx - 30*scale, cy - 30*scale, cx - 15*scale, cy - 20*scale, 15, cGreen, 'eye', 1.5);
+  drawContour(cx - 45*scale, cy - 20*scale, cx - 30*scale, cy - 15*scale, cx - 15*scale, cy - 20*scale, 15, cGreen, 'eye', 1.5);
+  particles.push(new Particle(cx - 30*scale, cy - 22*scale, 3*scale, cYellow, 'pupil'));
+
+  drawContour(cx + 45*scale, cy - 20*scale, cx + 30*scale, cy - 30*scale, cx + 15*scale, cy - 20*scale, 15, cGreen, 'eye', 1.5);
+  drawContour(cx + 45*scale, cy - 20*scale, cx + 30*scale, cy - 15*scale, cx + 15*scale, cy - 20*scale, 15, cGreen, 'eye', 1.5);
+  particles.push(new Particle(cx + 30*scale, cy - 22*scale, 3*scale, cYellow, 'pupil'));
+
+  // Nose and Lips suggestion
+  drawContour(cx, cy - 10*scale, cx, cy + 20*scale, cx, cy + 40*scale, 15, cCyan, 'face', 1.2);
+  drawContour(cx - 20*scale, cy + 65*scale, cx, cy + 60*scale, cx + 20*scale, cy + 65*scale, 20, cCyan, 'face', 1.5);
+  drawContour(cx - 20*scale, cy + 65*scale, cx, cy + 75*scale, cx + 20*scale, cy + 65*scale, 20, cCyan, 'face', 1.5);
+
+  // Background Ambient Dust
+  for(let i=0; i<150; i++) {
+    particles.push(new Particle(Math.random()*W, Math.random()*H, Math.random(), cCyan, 'dust'));
+  }
+}
+
+// Global state
+let currentExpr = 'ready';
+let time = 0;
+let touchX = -1000;
+let touchY = -1000;
+let isTouching = false;
+
+// Touch interaction
+canvas.addEventListener('touchstart', (e) => { 
+  e.preventDefault(); 
+  isTouching = true; 
+  touchX = e.touches[0].clientX; 
+  touchY = e.touches[0].clientY - container.getBoundingClientRect().top; 
+}, {passive: false});
+
+canvas.addEventListener('touchmove', (e) => { 
+  e.preventDefault();
+  touchX = e.touches[0].clientX; 
+  touchY = e.touches[0].clientY - container.getBoundingClientRect().top; 
+}, {passive: false});
+
+canvas.addEventListener('touchend', () => { isTouching = false; touchX = -1000; });
+
+canvas.addEventListener('mousedown', (e) => { isTouching = true; touchX = e.offsetX; touchY = e.offsetY; });
+canvas.addEventListener('mousemove', (e) => { if(isTouching){ touchX = e.offsetX; touchY = e.offsetY; } });
+canvas.addEventListener('mouseup', () => { isTouching = false; touchX = -1000; });
+canvas.addEventListener('mouseleave', () => { isTouching = false; touchX = -1000; });
+
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, W, H);
+  time++;
+
+  ctx.globalCompositeOperation = 'screen'; // Holographic additive blending
+
+  // Render Brain Links (Plexus effect)
+  ctx.lineWidth = 0.5;
+  const brainNodes = particles.filter(p => p.type === 'brain');
+  for(let i=0; i<brainNodes.length; i++) {
+    for(let j=i+1; j<brainNodes.length; j++) {
+      let dx = brainNodes[i].x - brainNodes[j].x;
+      let dy = brainNodes[i].y - brainNodes[j].y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      
+      if(dist < 35) {
+        let alpha = 1 - (dist / 35);
+        ctx.strokeStyle = `rgba(255, 255, 0, ${alpha * 0.5})`;
+        ctx.beginPath();
+        ctx.moveTo(brainNodes[i].x, brainNodes[i].y);
+        ctx.lineTo(brainNodes[j].x, brainNodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Update and Render Particles
+  particles.forEach(p => {
+    // Holographic breathing
+    let breathX = Math.sin(time * p.speed + p.phase) * 2;
+    let breathY = Math.cos(time * p.speed + p.phase) * 2;
+
+    // Expression/Speaking logic (jaw moves down)
+    let speakOffset = 0;
+    if (currentExpr === 'speaking' && p.oy > H/2 + 50 && p.type === 'face') {
+       speakOffset = Math.sin(time * 0.3) * 5; 
+    }
+
+    // Touch Repel Logic (Finger swirl effect)
+    let dx = touchX - p.x;
+    let dy = touchY - p.y;
+    let dist = Math.sqrt(dx*dx + dy*dy);
+    
+    if (dist < 80) {
+      let force = (80 - dist) / 80;
+      p.vx -= (dx / dist) * force * 2;
+      p.vy -= (dy / dist) * force * 2;
+    }
+
+    // Physics integration
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vx *= 0.85; // friction
+    p.vy *= 0.85;
+
+    // Spring back to original position
+    let targetX = p.ox + breathX;
+    let targetY = p.oy + breathY + speakOffset;
+    
+    p.x += (targetX - p.x) * 0.1;
+    p.y += (targetY - p.y) * 0.1;
+
+    // Draw
+    let glow = p.type === 'brain' || p.type === 'pupil' ? 8 : 2;
+    ctx.shadowBlur = glow;
+    ctx.shadowColor = `rgb(${p.color.r}, ${p.color.g}, ${p.color.b})`;
+    ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.type==='dust'?0.3:0.9})`;
+    
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.shadowBlur = 0;
+}
+
+// Init Canvas
+resize();
+animate();
+
+/* ═════════════════════════════════════════════════════════════
+   UI & CHAT LOGIC (Safe Mobile Handlers)
+═════════════════════════════════════════════════════════════ */
+const msgs = document.getElementById('msgs');
+const inp = document.getElementById('inp');
+const btnSend = document.getElementById('btnSend');
+const statusTxt = document.getElementById('avStatusText');
+
+function addMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  div.innerHTML = `<div class="mmeta">${role==='user'?'You':'Pika'} · Now</div><div class="mbub">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function setStatus(status) {
+  currentExpr = status;
+  statusTxt.textContent = status.toUpperCase();
+  statusTxt.style.color = status === 'speaking' ? 'var(--c)' : (status === 'listening' ? 'var(--r)' : 'var(--t1)');
+}
+
+btnSend.addEventListener('click', () => {
+  const text = inp.value.trim();
+  if(!text) return;
+  addMessage('user', text);
+  inp.value = '';
+  inp.style.height = 'auto'; // reset height
+  
+  setStatus('thinking');
+  
+  // Fake API Response for visual demo
+  setTimeout(() => {
+    setStatus('speaking');
+    addMessage('pika', 'Holographic matrix stable. Aapki command receive ho gayi hai.');
+    setTimeout(() => setStatus('ready'), 2500);
+  }, 1000);
+});
+
+// Auto-resize textarea logic
+inp.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + 'px';
+});
+
+// Chips
+document.getElementById('chips').addEventListener('click', (e) => {
+  if(e.target.classList.contains('chip')) {
+    inp.value = e.target.dataset.q;
+    btnSend.click();
+  }
+});
+
+// Fix iOS double tap zoom on buttons
+document.querySelectorAll('button').forEach(b => {
+  b.addEventListener('touchend', (e) => { e.preventDefault(); b.click(); });
+});
+</script>
+</body>
+</html>

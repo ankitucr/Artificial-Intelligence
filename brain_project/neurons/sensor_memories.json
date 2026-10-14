@@ -1,0 +1,1746 @@
+[
+  {
+    "state_id": 1,
+    "neuron": 0,
+    "distance": 0.0,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 2,
+    "neuron": 0,
+    "distance": 0.02169661968946457,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 3,
+    "neuron": 0,
+    "distance": 0.03316009044647217,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 4,
+    "neuron": 0,
+    "distance": 0.06073513999581337,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 5,
+    "neuron": 0,
+    "distance": 0.036753661930561066,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 6,
+    "neuron": 0,
+    "distance": 0.05854981020092964,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 7,
+    "neuron": 0,
+    "distance": 0.05803627520799637,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 8,
+    "neuron": 0,
+    "distance": 0.05852712318301201,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 9,
+    "neuron": 0,
+    "distance": 0.046959687024354935,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 10,
+    "neuron": 0,
+    "distance": 0.05504053831100464,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 11,
+    "neuron": 0,
+    "distance": 0.03926435858011246,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 12,
+    "neuron": 0,
+    "distance": 0.035494614392519,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 13,
+    "neuron": 0,
+    "distance": 0.04431208595633507,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 14,
+    "neuron": 0,
+    "distance": 0.034621160477399826,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 15,
+    "neuron": 0,
+    "distance": 0.028820477426052094,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 16,
+    "neuron": 0,
+    "distance": 0.05234318971633911,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 17,
+    "neuron": 0,
+    "distance": 0.07576058804988861,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 18,
+    "neuron": 0,
+    "distance": 0.03757476806640625,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 19,
+    "neuron": 0,
+    "distance": 0.036656029522418976,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 20,
+    "neuron": 0,
+    "distance": 0.019789867103099823,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 21,
+    "neuron": 0,
+    "distance": 0.026297040283679962,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 22,
+    "neuron": 0,
+    "distance": 0.020482998341321945,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 23,
+    "neuron": 0,
+    "distance": 0.0515563040971756,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 24,
+    "neuron": 0,
+    "distance": 0.03895904868841171,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 25,
+    "neuron": 0,
+    "distance": 0.037933290004730225,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 26,
+    "neuron": 0,
+    "distance": 0.01620529219508171,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 27,
+    "neuron": 0,
+    "distance": 0.019244175404310226,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 28,
+    "neuron": 0,
+    "distance": 0.026430321857333183,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 29,
+    "neuron": 0,
+    "distance": 0.013010667636990547,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 30,
+    "neuron": 0,
+    "distance": 0.03953981399536133,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 31,
+    "neuron": 0,
+    "distance": 0.019786253571510315,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 32,
+    "neuron": 0,
+    "distance": 0.01641814038157463,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 33,
+    "neuron": 0,
+    "distance": 0.0173015259206295,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 34,
+    "neuron": 0,
+    "distance": 0.06027818098664284,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 35,
+    "neuron": 0,
+    "distance": 0.03260737657546997,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 36,
+    "neuron": 0,
+    "distance": 0.02826792374253273,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 37,
+    "neuron": 0,
+    "distance": 0.020558640360832214,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 38,
+    "neuron": 0,
+    "distance": 0.05434384196996689,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 39,
+    "neuron": 0,
+    "distance": 0.04806261137127876,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 40,
+    "neuron": 0,
+    "distance": 0.04326485097408295,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 41,
+    "neuron": 0,
+    "distance": 0.044125039130449295,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 42,
+    "neuron": 0,
+    "distance": 0.037011414766311646,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 43,
+    "neuron": 0,
+    "distance": 0.05779656767845154,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 44,
+    "neuron": 0,
+    "distance": 0.046699732542037964,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 45,
+    "neuron": 0,
+    "distance": 0.02187611721456051,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 46,
+    "neuron": 0,
+    "distance": 0.019999351352453232,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 47,
+    "neuron": 0,
+    "distance": 0.01783931441605091,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 48,
+    "neuron": 0,
+    "distance": 0.013828272931277752,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 49,
+    "neuron": 0,
+    "distance": 0.01509018987417221,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 50,
+    "neuron": 0,
+    "distance": 0.015045045875012875,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 51,
+    "neuron": 0,
+    "distance": 0.006509585306048393,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 52,
+    "neuron": 0,
+    "distance": 0.01287932600826025,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 53,
+    "neuron": 0,
+    "distance": 0.019892077893018723,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 54,
+    "neuron": 0,
+    "distance": 0.017217174172401428,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 55,
+    "neuron": 0,
+    "distance": 0.012004355899989605,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 56,
+    "neuron": 0,
+    "distance": 0.009678220376372337,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 57,
+    "neuron": 0,
+    "distance": 0.008851177990436554,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 58,
+    "neuron": 0,
+    "distance": 0.008791441097855568,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 59,
+    "neuron": 1,
+    "distance": 0.07496720552444458,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 60,
+    "neuron": 2,
+    "distance": 0.05617954209446907,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 61,
+    "neuron": 2,
+    "distance": 0.06736259907484055,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 62,
+    "neuron": 2,
+    "distance": 0.09530462324619293,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 63,
+    "neuron": 2,
+    "distance": 0.059322599321603775,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 64,
+    "neuron": 2,
+    "distance": 0.0643894374370575,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 65,
+    "neuron": 2,
+    "distance": 0.04918618127703667,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 66,
+    "neuron": 2,
+    "distance": 0.043137259781360626,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 67,
+    "neuron": 2,
+    "distance": 0.0721820592880249,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 68,
+    "neuron": 2,
+    "distance": 0.07351343333721161,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 69,
+    "neuron": 2,
+    "distance": 0.0862240195274353,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 70,
+    "neuron": 2,
+    "distance": 0.06818346679210663,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 71,
+    "neuron": 0,
+    "distance": 0.03644761070609093,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 72,
+    "neuron": 0,
+    "distance": 0.033716991543769836,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 73,
+    "neuron": 2,
+    "distance": 0.0550258569419384,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 74,
+    "neuron": 2,
+    "distance": 0.04716668277978897,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 75,
+    "neuron": 2,
+    "distance": 0.036461636424064636,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 76,
+    "neuron": 0,
+    "distance": 0.036500051617622375,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 77,
+    "neuron": 2,
+    "distance": 0.04219101369380951,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 78,
+    "neuron": 2,
+    "distance": 0.029568862169981003,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 79,
+    "neuron": 2,
+    "distance": 0.05175544694066048,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 80,
+    "neuron": 2,
+    "distance": 0.023750267922878265,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 81,
+    "neuron": 2,
+    "distance": 0.021058309823274612,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 82,
+    "neuron": 2,
+    "distance": 0.032150816172361374,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 83,
+    "neuron": 0,
+    "distance": 0.03038238361477852,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 84,
+    "neuron": 2,
+    "distance": 0.02236023172736168,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 85,
+    "neuron": 2,
+    "distance": 0.042068734765052795,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 86,
+    "neuron": 2,
+    "distance": 0.023491162806749344,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 87,
+    "neuron": 2,
+    "distance": 0.03965304046869278,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 88,
+    "neuron": 2,
+    "distance": 0.02813178114593029,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 89,
+    "neuron": 2,
+    "distance": 0.02410813421010971,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 90,
+    "neuron": 0,
+    "distance": 0.026366988196969032,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 91,
+    "neuron": 2,
+    "distance": 0.038635578006505966,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 92,
+    "neuron": 2,
+    "distance": 0.02264101430773735,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 93,
+    "neuron": 0,
+    "distance": 0.02450188621878624,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 94,
+    "neuron": 2,
+    "distance": 0.0890968069434166,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 95,
+    "neuron": 2,
+    "distance": 0.02796025201678276,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 96,
+    "neuron": 2,
+    "distance": 0.02330285683274269,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 97,
+    "neuron": 0,
+    "distance": 0.02121313102543354,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 98,
+    "neuron": 0,
+    "distance": 0.0313771516084671,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 99,
+    "neuron": 0,
+    "distance": 0.061698220670223236,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 100,
+    "neuron": 0,
+    "distance": 0.01972845196723938,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 101,
+    "neuron": 0,
+    "distance": 0.02255956456065178,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 102,
+    "neuron": 0,
+    "distance": 0.015734611079096794,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 103,
+    "neuron": 0,
+    "distance": 0.05697685852646828,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 104,
+    "neuron": 0,
+    "distance": 0.01235675998032093,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 105,
+    "neuron": 0,
+    "distance": 0.013509869575500488,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 106,
+    "neuron": 0,
+    "distance": 0.010993478819727898,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 107,
+    "neuron": 0,
+    "distance": 0.014841968193650246,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 108,
+    "neuron": 0,
+    "distance": 0.010339874774217606,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 109,
+    "neuron": 0,
+    "distance": 0.008313477039337158,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 110,
+    "neuron": 0,
+    "distance": 0.011687335558235645,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 111,
+    "neuron": 0,
+    "distance": 0.056763723492622375,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 112,
+    "neuron": 0,
+    "distance": 0.007606630213558674,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 113,
+    "neuron": 0,
+    "distance": 0.055514462292194366,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 114,
+    "neuron": 0,
+    "distance": 0.008607317693531513,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 115,
+    "neuron": 0,
+    "distance": 0.0102717075496912,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 116,
+    "neuron": 0,
+    "distance": 0.007420474663376808,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 117,
+    "neuron": 0,
+    "distance": 0.00867923628538847,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 118,
+    "neuron": 0,
+    "distance": 0.005892644170671701,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 119,
+    "neuron": 0,
+    "distance": 0.007233729120343924,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 120,
+    "neuron": 0,
+    "distance": 0.005873518064618111,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 121,
+    "neuron": 0,
+    "distance": 0.05816183239221573,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 122,
+    "neuron": 0,
+    "distance": 0.05389901250600815,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 123,
+    "neuron": 0,
+    "distance": 0.00650353729724884,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 124,
+    "neuron": 0,
+    "distance": 0.005754094570875168,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 125,
+    "neuron": 0,
+    "distance": 0.0485161654651165,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 126,
+    "neuron": 0,
+    "distance": 0.04853169620037079,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 127,
+    "neuron": 0,
+    "distance": 0.008660657331347466,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 128,
+    "neuron": 0,
+    "distance": 0.04123488813638687,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 129,
+    "neuron": 0,
+    "distance": 0.026138579472899437,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 130,
+    "neuron": 0,
+    "distance": 0.009978098794817924,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 131,
+    "neuron": 0,
+    "distance": 0.01363508589565754,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 132,
+    "neuron": 0,
+    "distance": 0.007921004667878151,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 133,
+    "neuron": 0,
+    "distance": 0.010917996987700462,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 134,
+    "neuron": 0,
+    "distance": 0.006969439331442118,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 135,
+    "neuron": 0,
+    "distance": 0.006230415776371956,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 136,
+    "neuron": 0,
+    "distance": 0.008329465985298157,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 137,
+    "neuron": 0,
+    "distance": 0.05826636776328087,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 138,
+    "neuron": 0,
+    "distance": 0.006922479718923569,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 139,
+    "neuron": 0,
+    "distance": 0.008974104188382626,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 140,
+    "neuron": 0,
+    "distance": 0.05597909167408943,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 141,
+    "neuron": 0,
+    "distance": 0.05259902775287628,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 142,
+    "neuron": 0,
+    "distance": 0.009516235440969467,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 143,
+    "neuron": 0,
+    "distance": 0.008601075038313866,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 144,
+    "neuron": 0,
+    "distance": 0.04975300282239914,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 145,
+    "neuron": 0,
+    "distance": 0.011605793610215187,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 146,
+    "neuron": 0,
+    "distance": 0.01414246391505003,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 147,
+    "neuron": 0,
+    "distance": 0.012464771047234535,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 148,
+    "neuron": 0,
+    "distance": 0.05366213619709015,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 149,
+    "neuron": 0,
+    "distance": 0.012882770970463753,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 150,
+    "neuron": 0,
+    "distance": 0.01178013440221548,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 151,
+    "neuron": 0,
+    "distance": 0.01670614629983902,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 152,
+    "neuron": 0,
+    "distance": 0.009800071828067303,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 153,
+    "neuron": 0,
+    "distance": 0.06044720858335495,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 154,
+    "neuron": 0,
+    "distance": 0.01005616970360279,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 155,
+    "neuron": 0,
+    "distance": 0.009657999500632286,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 156,
+    "neuron": 0,
+    "distance": 0.05797383934259415,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 157,
+    "neuron": 0,
+    "distance": 0.017213329672813416,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 158,
+    "neuron": 0,
+    "distance": 0.01593344658613205,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 159,
+    "neuron": 0,
+    "distance": 0.06932300329208374,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 160,
+    "neuron": 0,
+    "distance": 0.056905701756477356,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 161,
+    "neuron": 0,
+    "distance": 0.05817127227783203,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 162,
+    "neuron": 0,
+    "distance": 0.06058685481548309,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 163,
+    "neuron": 0,
+    "distance": 0.05066464841365814,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 164,
+    "neuron": 0,
+    "distance": 0.04981430619955063,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 165,
+    "neuron": 0,
+    "distance": 0.03759311884641647,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 166,
+    "neuron": 0,
+    "distance": 0.0377650260925293,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 167,
+    "neuron": 0,
+    "distance": 0.01932138204574585,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 168,
+    "neuron": 0,
+    "distance": 0.040916718542575836,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 169,
+    "neuron": 0,
+    "distance": 0.03418291360139847,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 170,
+    "neuron": 0,
+    "distance": 0.02126741036772728,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 171,
+    "neuron": 0,
+    "distance": 0.03456565737724304,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 172,
+    "neuron": 0,
+    "distance": 0.03390474617481232,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 173,
+    "neuron": 0,
+    "distance": 0.03284670412540436,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 174,
+    "neuron": 0,
+    "distance": 0.02789199724793434,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 175,
+    "neuron": 0,
+    "distance": 0.028959477320313454,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 176,
+    "neuron": 0,
+    "distance": 0.025512831285595894,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 177,
+    "neuron": 0,
+    "distance": 0.03652277961373329,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 178,
+    "neuron": 0,
+    "distance": 0.021636713296175003,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 179,
+    "neuron": 0,
+    "distance": 0.028794825077056885,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 180,
+    "neuron": 0,
+    "distance": 0.031672485172748566,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 181,
+    "neuron": 0,
+    "distance": 0.026049016043543816,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 182,
+    "neuron": 0,
+    "distance": 0.01743941754102707,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 183,
+    "neuron": 0,
+    "distance": 0.021832622587680817,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 184,
+    "neuron": 0,
+    "distance": 0.01919875666499138,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 185,
+    "neuron": 0,
+    "distance": 0.018915189430117607,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 186,
+    "neuron": 0,
+    "distance": 0.01794116012752056,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 187,
+    "neuron": 0,
+    "distance": 0.03289434313774109,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 188,
+    "neuron": 0,
+    "distance": 0.017595987766981125,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 189,
+    "neuron": 0,
+    "distance": 0.015716373920440674,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 190,
+    "neuron": 0,
+    "distance": 0.013981449417769909,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 191,
+    "neuron": 0,
+    "distance": 0.01687328889966011,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 192,
+    "neuron": 0,
+    "distance": 0.013646194711327553,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 193,
+    "neuron": 0,
+    "distance": 0.012340704910457134,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 194,
+    "neuron": 2,
+    "distance": 0.04821867495775223,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 228
+  },
+  {
+    "state_id": 195,
+    "neuron": 2,
+    "distance": 0.04770742356777191,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 196,
+    "neuron": 2,
+    "distance": 0.042288150638341904,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 197,
+    "neuron": 2,
+    "distance": 0.037261877208948135,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 198,
+    "neuron": 2,
+    "distance": 0.03556337580084801,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 199,
+    "neuron": 2,
+    "distance": 0.025212567299604416,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 200,
+    "neuron": 2,
+    "distance": 0.02006535232067108,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 201,
+    "neuron": 2,
+    "distance": 0.019863000139594078,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 202,
+    "neuron": 2,
+    "distance": 0.04058961570262909,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 203,
+    "neuron": 2,
+    "distance": 0.01786983571946621,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 204,
+    "neuron": 2,
+    "distance": 0.03989933431148529,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 205,
+    "neuron": 2,
+    "distance": 0.04518715292215347,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 206,
+    "neuron": 0,
+    "distance": 0.020836299285292625,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 207,
+    "neuron": 0,
+    "distance": 0.021291429176926613,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 208,
+    "neuron": 0,
+    "distance": 0.037120379507541656,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 209,
+    "neuron": 0,
+    "distance": 0.01659221015870571,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 210,
+    "neuron": 0,
+    "distance": 0.014286979101598263,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 211,
+    "neuron": 0,
+    "distance": 0.03118283860385418,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 212,
+    "neuron": 0,
+    "distance": 0.01585496962070465,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 213,
+    "neuron": 0,
+    "distance": 0.013306784443557262,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 214,
+    "neuron": 0,
+    "distance": 0.01139412634074688,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 215,
+    "neuron": 0,
+    "distance": 0.010168636217713356,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 216,
+    "neuron": 0,
+    "distance": 0.010897582396864891,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  },
+  {
+    "state_id": 217,
+    "neuron": 0,
+    "distance": 0.020485112443566322,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 227
+  },
+  {
+    "state_id": 218,
+    "neuron": 0,
+    "distance": 0.040272705256938934,
+    "action": "observe",
+    "reward": 0.0,
+    "sensor_count": 225
+  }
+]

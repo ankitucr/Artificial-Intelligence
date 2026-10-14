@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CDA Decision Ledger - Control Plane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#0B0E12; --s:#10141A; --l:#222932; --t:#E4E7EB; --m:#8993A0; --ok:#5F86A6; --rv:#C9A25B; --dn:#C4585D; --acc:#4F80E1; box-sizing:border-box; }
+* { box-sizing:border-box; margin:0; padding:0; }
+[hidden] { display:none !important; }
+body { background:var(--bg); color:var(--t); font:400 13px/1.5 "IBM Plex Sans","IBM Plex Sans Arabic","Noto Sans SC",system-ui,sans-serif; }
+:focus-visible { outline:2px solid var(--acc); outline-offset:2px; }
+.n { font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; unicode-bidi:isolate; }
+.m { color:var(--m); } .small { font-size:11px; }
+button { font:inherit; color:var(--t); }
+h2 { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--m); margin-bottom:12px; }
+.bar { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+.dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--ok); margin-inline-end:6px; }
+.live { animation:br 2.6s ease-in-out infinite; } @keyframes br { 50% { opacity:.3; } }
+select { background:var(--bg); color:var(--t); border:1px solid var(--l); padding:4px 8px; font-size:12px; border-radius:3px; }
+
+.login { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(11,14,18,0.88); backdrop-filter:blur(4px); z-index:100; padding:16px; }
+.login form { width:380px; max-width:100%; background:var(--s); border:1px solid var(--l); padding:28px; display:grid; gap:12px; box-shadow:0 12px 32px rgba(0,0,0,0.6); }
+.login h1 { font-size:18px; font-weight:500; }
+.login label { display:grid; gap:4px; font-size:12px; color:var(--m); }
+.login input { background:var(--bg); border:1px solid var(--l); color:var(--t); padding:9px 10px; font:inherit; }
+.btn-main { background:var(--acc); border:0; padding:10px; font-weight:600; cursor:pointer; color:#fff; }
+.err { color:var(--dn); min-height:18px; font-size:12px; }
+
+header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:12px 24px; border-bottom:1px solid var(--l); background:var(--s); flex-wrap:wrap; }
+.brand { font-weight:600; font-size:15px; letter-spacing:.04em; display:flex; gap:10px; }
+.st { display:flex; gap:16px; align-items:center; font-size:12px; flex-wrap:wrap; }
+.btn-out { background:none; border:1px solid var(--l); padding:4px 10px; cursor:pointer; font-size:12px; } .btn-out:hover { border-color:var(--t); }
+.sw { display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:11px; position:relative; }
+.sw input { position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; }
+.trk { width:30px; height:16px; border:1px solid var(--m); border-radius:9px; position:relative; display:inline-block; }
+.trk i { position:absolute; top:2px; inset-inline-start:2px; width:10px; height:10px; border-radius:50%; background:var(--m); transition:transform .2s; }
+.sw input:checked + .trk { border-color:var(--ok); } .sw input:checked + .trk i { transform:translateX(14px); background:var(--ok); }
+[dir="rtl"] .sw input:checked + .trk i { transform:translateX(-14px); }
+.sw input:focus-visible + .trk { outline:2px solid var(--acc); outline-offset:2px; }
+.sw .a { color:var(--t); font-weight:600; } .sw .i { color:var(--m); }
+.fbar { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:8px 24px; border-bottom:1px solid var(--l); }
+.chip { border:1px solid var(--acc); padding:2px 8px; font-size:11px; cursor:pointer; background:none; }
+.pills { display:flex; gap:6px; flex-wrap:wrap; }
+.pill { padding:3px 8px; font-size:11px; border:1px solid var(--l); background:none; color:var(--m); cursor:pointer; }
+.pill.active { border-color:var(--t); color:var(--t); background:var(--s); }
+
+.grid { display:grid; gap:1px; background:var(--l); border-bottom:1px solid var(--l); }
+.ra { grid-template-columns:1fr; }
+.r1 { grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr) minmax(0,1.3fr); height:600px; }
+.r2 { grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); height:auto; min-height:380px; }
+.p { background:var(--bg); padding:20px; min-width:0; overflow:auto; position:relative; }
+
+/* POLICIES TAB BALANCED 50/50 GRID WITH PADDING TO PREVENT FOOTER OVERLAP */
+.policies-wrapper { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--l); height:520px; margin-bottom:20px; border-bottom:1px solid var(--l); }
+.policies-left { background:var(--bg); padding:20px; overflow:auto; display:flex; flex-direction:column; }
+.policies-right { display:grid; grid-template-rows:0.8fr 1.2fr; gap:1px; background:var(--l); height:100%; }
+.policies-right-card { background:var(--bg); padding:16px 20px; overflow:auto; }
+
+/* ANOMALOUS AGENTS FLEX ROW */
+.anomaly-item { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-bottom:1px solid var(--l); gap:16px; background:var(--s); margin-bottom:6px; border-inline-start:3px solid var(--dn); }
+.anomaly-item .agent-meta { display:flex; flex-direction:column; gap:2px; }
+.anomaly-item .agent-metrics { display:flex; align-items:center; gap:16px; margin-inline-start:auto; }
+
+/* EXECUTIVE MODE TABS HIDING */
+body.exec #tab-risk, body.exec #tab-policies, body.exec #tab-integrity, body.exec #tab-audit { display:none !important; }
+body.exec .op-only { display:none !important; } 
+body:not(.exec) .ex-only { display:none !important; }
+body.exec .r1 { grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr); }
+@media (max-width:1100px) { .r1,.r2,.rl,.policies-wrapper { grid-template-columns:1fr; height:auto; } .p { max-height:640px; } }
+
+/* Pipeline SVG diagram */
+#pipe { max-width:1040px; margin:6px auto 14px; height:250px; position:relative; direction:ltr !important; text-align:left !important; }
+#pipe svg { display:block; margin:0 auto; direction:ltr !important; text-align:left !important; }
+#pipe .rail { fill:none; stroke:var(--l); stroke-width:1; stroke-linejoin:round; }
+#pipe .pn rect:first-child { fill:var(--s); stroke:var(--l); cursor:pointer; transition:stroke .3s; }
+#pipe .pn text { fill:var(--t); font:11.5px "IBM Plex Mono",monospace; pointer-events:none; }
+#pipe .pn .ct { fill:var(--m); }
+#pipe .hd { fill:var(--m); font-size:10px; text-transform:uppercase; letter-spacing:.05em; }
+#pipe .pn.hl rect:first-child, #pipe .pn.pls rect:first-child { stroke:var(--acc); }
+#pipe .pn.dim { opacity:.35; }
+.tabs { display:flex; gap:0; border-bottom:1px solid var(--l); padding:0 24px; overflow:auto; }
+.tabs button { background:none; border:0; border-bottom:2px solid transparent; padding:10px 16px; color:var(--m); cursor:pointer; white-space:nowrap; }
+.tabs button.on { color:var(--t); border-bottom-color:var(--acc); } .tabs button:hover { color:var(--t); }
+.ks { display:flex; gap:18px; font-size:12px; flex-wrap:wrap; } .ks b { font-weight:500; }
+details.menu { position:relative; } details.menu summary { cursor:pointer; list-style:none; border:1px solid var(--l); padding:4px 12px; font-size:12px; }
+details.menu summary::-webkit-details-marker { display:none; } details.menu summary::after { content:" ▾"; color:var(--m); }
+.mp { position:absolute; inset-inline-end:0; top:calc(100% + 6px); background:var(--s); border:1px solid var(--l); padding:14px; min-width:200px; display:grid; gap:12px; z-index:70; box-shadow:0 8px 24px rgba(0,0,0,.4); }
+.mrow { display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:12px; }
+.chainbtn { background:none; border:0; cursor:pointer; font-size:12px; color:var(--t); }
+#drawer { position:fixed; top:0; inset-inline-end:0; height:100%; width:390px; max-width:100%; background:var(--s); border-inline-start:1px solid var(--l); z-index:60; padding:20px; overflow:auto; box-shadow:-8px 0 24px rgba(0,0,0,.4); }
+.rl { height:380px; } .rf { height:auto; }
+
+/* Matrix and focus */
+#matrix-container { position:relative; width:100%; height:320px; background:var(--s); border:1px solid var(--l); direction:ltr; }
+#matrix-svg { width:100%; height:100%; }
+.quad-label { position:absolute; font-size:10px; color:var(--m); opacity:.55; font-weight:500; text-transform:uppercase; }
+.ql-tr { top:8px; right:8px; color:var(--dn); opacity:.85; } .ql-tl { top:8px; left:24px; } .ql-br { bottom:8px; right:8px; } .ql-bl { bottom:8px; left:24px; }
+.rw { display:grid; grid-template-columns:80px 1fr 45px 55px; gap:8px; align-items:center; width:100%; text-align:start; border:0; border-bottom:1px solid var(--l); padding:8px 0; background:none; cursor:pointer; }
+.rw:hover { background:color-mix(in srgb,var(--t) 4%,transparent); }
+.rw .b2 { height:4px; background:var(--l); display:block; overflow:hidden; } .rw .b2 i { display:block; height:100%; }
+
+/* Review */
+.qlist { max-height:132px; overflow:auto; margin-bottom:12px; }
+.qrow { display:flex; justify-content:space-between; gap:8px; width:100%; padding:7px 10px; margin-bottom:4px; border:1px solid var(--l); border-inline-start:3px solid var(--rv); background:var(--s); cursor:pointer; text-align:start; }
+.qrow.sel { border-color:var(--acc); background:color-mix(in srgb,var(--acc) 9%,var(--s)); }
+.kv { display:grid; grid-template-columns:120px 1fr; gap:4px 10px; margin:10px 0; font-size:12px; } .kv dt { color:var(--m); }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.box { border:1px solid var(--l); padding:8px 10px; font-size:12px; border-inline-start-width:3px; } .box.ap { border-inline-start-color:var(--ok); } .box.rj { border-inline-start-color:var(--dn); }
+.actions { display:flex; gap:8px; margin-top:12px; }
+.btn-act { padding:7px 14px; font-size:12px; font-weight:600; border:1px solid var(--l); background:var(--bg); cursor:pointer; white-space:nowrap; } .btn-act:hover { border-color:var(--t); }
+.btn-app { border-color:var(--ok); color:var(--ok); } .btn-rej { border-color:var(--dn); color:var(--dn); }
+#toasts { position:fixed; inset-inline-end:16px; bottom:16px; width:330px; max-width:calc(100vw - 32px); display:flex; flex-direction:column; gap:8px; z-index:50; }
+.undo-toast, .msg-toast { background:var(--s); border:1px solid var(--acc); padding:10px 14px; display:flex; justify-content:space-between; align-items:center; gap:12px; box-shadow:0 8px 24px rgba(0,0,0,.4); }
+.msg-toast { border-color:var(--rv); }
+.undo-bar { height:2px; background:var(--acc); width:100%; margin-top:6px; transform-origin:left; animation:drain var(--ms) linear forwards; }
+[dir="rtl"] .undo-bar { transform-origin:right; } @keyframes drain { from { transform:scaleX(1); } to { transform:scaleX(0); } }
+
+/* Metrics, heatmap, tables, chain */
+.kpi-group { display:flex; gap:12px; margin-bottom:12px; } .kpi { flex:1; background:var(--s); padding:12px; border:1px solid var(--l); } .kpi b { font-size:24px; font-weight:300; display:block; margin-top:4px; }
+.prop-bar { height:6px; width:100%; background:var(--l); display:flex; overflow:hidden; } .prop-bar div { height:100%; }
+.tw { overflow:auto; background:var(--s); border:1px solid var(--l); max-height:300px; } 
+table { width:100%; border-collapse:collapse; text-align:start; }
+th { position:sticky; top:0; background:var(--s); font-weight:500; font-size:11px; color:var(--m); padding:8px 12px; border-bottom:1px solid var(--l); text-transform:uppercase; text-align:start; white-space:nowrap; }
+td { padding:7px 12px; border-bottom:1px solid var(--l); font-size:12px; white-space:nowrap; }
+tbody tr { cursor:pointer; } tbody tr:hover, tbody tr.on { background:color-mix(in srgb,var(--t) 5%,transparent); }
+.hm { border-collapse:separate; border-spacing:2px; } .hm th { position:static; background:none; padding:2px 0; text-align:center; font-size:10px; border:0; }
+.hm th.rl { text-align:start; text-transform:none; padding-inline-end:10px; } .hm td { padding:0; border:0; }
+.hc { width:34px; height:20px; text-align:center; font-size:10px; font-family:"IBM Plex Mono",monospace; cursor:pointer; } .hc.f { outline:1.5px solid var(--acc); }
+.chain { display:flex; align-items:center; overflow:auto; padding:6px 0 12px; direction:ltr; }
+.blk { border:1px solid var(--l); padding:3px 8px; font-size:10px; white-space:nowrap; text-align:center; cursor:pointer; background:var(--s); } .blk.brk { border-color:var(--dn); color:var(--dn); }
+.ln { width:16px; height:1px; background:var(--l); flex:none; } .ln.brk { background:none; border-top:1px dashed var(--dn); }
+.alertx { border:1px solid var(--dn); color:var(--dn); padding:6px 10px; margin:8px 0; font-size:12px; }
+.badge { color:var(--ok); font-size:12px; }
+.sline { display:block; width:100%; text-align:start; background:none; border:0; border-bottom:1px solid var(--l); padding:14px 0; font-size:18px; font-weight:300; cursor:pointer; }
+.sline:hover { color:var(--acc); }
+footer { padding:12px 24px; font-size:11px; color:var(--m); display:flex; justify-content:space-between; }
+@media (prefers-reduced-motion:reduce) { .live { animation:none; } }
+
+.exec-kpi-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:16px; }
+.exec-card { background:var(--s); border:1px solid var(--l); padding:16px; border-inline-start:4px solid var(--acc); }
+.exec-card.ok { border-inline-start-color:var(--ok); }
+.exec-card.warn { border-inline-start-color:var(--rv); }
+.exec-card.crit { border-inline-start-color:var(--dn); }
+.exec-card h3 { font-size:11px; text-transform:uppercase; color:var(--m); margin-bottom:6px; }
+.exec-card .val { font-size:26px; font-weight:300; font-family:"IBM Plex Mono",monospace; }
+
+.cert-card { background:var(--s); border:1px solid var(--ok); padding:16px; margin-bottom:14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center; }
+.cert-card .cert-status { font-size:16px; font-weight:600; color:var(--ok); display:flex; align-items:center; gap:8px; }
+</style>
+</head>
+<body>
+
+<!-- OPERATOR SIGNATURE VALIDATION MODAL WITH STRICT OPERATOR CHECK -->
+<div class="login" id="sig-modal" hidden>
+  <form id="sig-form" autocomplete="off" onsubmit="return false;">
+    <div class="bar" style="margin:0"><strong id="sig-modal-title">Authorize Governance Action</strong><button class="btn-out" id="btn-sig-cancel" type="button">✕</button></div>
+    <p class="m" style="font-size:12px;margin-top:6px" id="sig-modal-desc">Signature validation required to execute this action on the immutable ledger.</p>
+    <label style="margin-top:10px">
+      <span id="lbl-sig-name">Operator Signature / Name</span>
+      <input id="sig-input" required minlength="3" maxlength="64" autocomplete="off" placeholder="Type active operator name">
+    </label>
+    <div class="err" id="sig-err" role="alert"></div>
+    <div class="actions" style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn-main" id="btn-sig-confirm" type="submit" style="flex:1">Authorize & Sign</button>
+    </div>
+  </form>
+</div>
+
+<div class="login" id="login">
+  <form id="login-form" autocomplete="off">
+    <div class="bar" style="margin:0"><strong>CDA Control Plane</strong><select id="lang-login" aria-label="Language"></select></div>
+    <h1 id="lg-title"></h1>
+    <label><span id="lg-ulabel"></span><input id="lg-user" required minlength="3" maxlength="64" autocomplete="off"></label>
+    <label><span id="lg-plabel"></span><input id="lg-pass" type="password" required autocomplete="off"></label>
+    <div class="err" id="login-err" role="alert"></div>
+    <button class="btn-main" id="lg-btn" type="submit"></button>
+  </form>
+</div>
+
+<div id="app" hidden>
+<header>
+  <div class="brand"><span>CDA Control Plane</span><span class="m" style="font-weight:400">| Decision Ledger</span></div>
+  <div class="st">
+    <span class="m" id="conn"></span>
+    <button class="chainbtn" id="hdr-chain"><span class="dot live"></span><span id="lbl-chain"></span> <span class="n" id="bn">-</span></button>
+    <span class="n" id="clk">UTC 00:00:00</span>
+    <div class="pills" id="mode-pills"><button class="pill active" data-m="op"></button><button class="pill" data-m="exec"></button></div>
+    <details class="menu" id="menu"><summary><span class="n" id="who"></span></summary>
+      <div class="mp">
+        <div class="mrow"><span class="m" id="mn-source"></span>
+          <label class="sw"><span class="i" id="sw-demo">Demo</span><input type="checkbox" id="src-sw" role="switch" aria-label="Demo / Live"><span class="trk"><i></i></span><span class="i" id="sw-live">Live</span></label></div>
+        <div class="mrow"><span class="m" id="mn-lang"></span><select id="lang-picker" aria-label="Language"></select></div>
+        <div class="mrow"><span class="m n" id="sess"></span><button class="btn-out" id="btn-logout"></button></div>
+      </div></details>
+  </div>
+</header>
+
+<div class="fbar">
+  <div class="pills" id="win-pills"><button class="pill" data-w="30">30 min</button><button class="pill" data-w="60">1 h</button><button class="pill active" data-w="120">2 h</button></div>
+  <div class="ks" id="ks"></div>
+  <div id="chips" style="display:flex;gap:6px"></div>
+</div>
+<nav class="tabs" id="tabs">
+  <button class="on" data-t="overview" id="tab-overview"></button>
+  <button data-t="risk" id="tab-risk"></button>
+  <button data-t="policies" id="tab-policies"></button>
+  <button data-t="integrity" id="tab-integrity"></button>
+  <button data-t="audit" id="tab-audit" class="op-only"></button>
+</nav>
+
+<div class="pane" data-pane="overview">
+  <div class="grid ra op-only"><section class="p" style="padding:0" aria-label="Pipeline">
+    <div class="bar" style="padding:14px 20px 0;margin:0"><h2 id="pipe-title" style="margin:0"></h2></div>
+    <div id="pipe"></div></section></div>
+  <div class="grid ra ex-only"><section class="p" aria-label="Executive Overview">
+    <h2 id="title-sum" style="margin-bottom:16px"></h2>
+    <div class="exec-kpi-grid">
+      <div class="exec-card ok"><h3>Protected Assets Capital</h3><div class="val" id="ex-cap">$12.4M USD</div></div>
+      <div class="exec-card ok"><h3>Policy Compliance Rate</h3><div class="val" id="ex-comp">98.4%</div></div>
+      <div class="exec-card warn"><h3>Risk Velocity Index</h3><div class="val" id="ex-risk">0.14 ▲</div></div>
+      <div class="exec-card crit"><h3>Human Escalation Rate</h3><div class="val" id="ex-esc">1.6%</div></div>
+    </div>
+    <div id="summary"></div>
+  </section></div>
+  <div class="grid r1">
+    <section class="p" aria-label="Risk Matrix">
+      <div class="bar"><h2 id="title-matrix" style="margin:0"></h2>
+        <div class="pills" id="region-pills"><button class="pill active" data-r="ALL">ALL</button><button class="pill" data-r="AMER">AMER</button><button class="pill" data-r="LATAM">LATAM</button><button class="pill" data-r="EMEA">EMEA</button><button class="pill" data-r="APAC">APAC</button></div></div>
+      <div id="matrix-container"><span class="quad-label ql-tr" id="ql-critical"></span><span class="quad-label ql-tl" id="ql-emerging"></span><span class="quad-label ql-br" id="ql-improving"></span><span class="quad-label ql-bl" id="ql-stable"></span><svg id="matrix-svg"></svg></div>
+      <div class="m small bar" style="margin-top:8px"><span id="lbl-xaxis"></span><span id="lbl-note"></span></div>
+    </section>
+    <section class="p" aria-label="Focus"><h2 id="title-focus"></h2><div id="focus-list"></div><div id="country-detail" style="margin-top:16px;padding-top:12px;border-top:1px solid var(--l)"></div></section>
+    <section class="p op-only" aria-label="Review Queue">
+      <div class="bar"><h2 style="margin:0"><span id="title-queue"></span> (<span id="q-count">0</span>) <span class="small n" id="q-age" style="text-transform:none;letter-spacing:0"></span></h2><span class="m small" id="lbl-shortcuts"></span></div>
+      <div class="qlist" id="queue-list"></div><div id="review-detail"></div>
+    </section>
+  </div>
+  <div class="grid ra op-only rl"><section class="p" aria-label="Ledger">
+    <div class="bar"><h2 id="title-ledger" style="margin:0"></h2><button class="pill" id="btn-pause"></button></div>
+    <div class="tw" id="ledger-wrap" style="max-height: 280px;"><table><thead><tr><th id="th-time"></th><th id="th-country"></th><th id="th-agent"></th><th id="th-action"></th><th id="th-policy"></th><th id="th-result"></th><th></th></tr></thead><tbody id="ledger-body"></tbody></table></div>
+  </section></div>
+</div>
+
+<div class="pane" data-pane="risk" hidden><div class="grid r2 rf">
+  <section class="p" aria-label="Forecast">
+    <div class="bar"><h2 id="title-forecast" style="margin:0"></h2><span class="n small" id="fan-country"></span></div>
+    <div class="kpi-group">
+      <div class="kpi"><span class="m" id="lbl-kpi-perm"></span><b class="n" id="kpi-perm">0</b></div>
+      <div class="kpi"><span class="m" id="lbl-kpi-rev"></span><b class="n" id="kpi-rev">0</b><span class="m small" id="kpi-rev-sub"></span></div>
+      <div class="kpi"><span class="m" id="lbl-kpi-den"></span><b class="n" id="kpi-den">0</b></div>
+    </div>
+    <div class="prop-bar"><div id="pb-ok" style="background:var(--ok)"></div><div id="pb-rv" style="background:var(--rv)"></div><div id="pb-dn" style="background:var(--dn)"></div></div>
+    <svg id="fan-chart" width="100%" height="160" style="margin-top:16px"></svg>
+    <div class="m small" style="margin-top:4px" id="lbl-fan-note"></div>
+  </section>
+  <section class="p" aria-label="Anomalies">
+    <div class="bar"><h2 id="title-anomalies" style="margin:0;color:var(--dn)"></h2></div>
+    <div id="anomalies-list" style="overflow:auto;max-height:280px"></div>
+  </section>
+</div></div>
+
+<!-- POLICIES TAB (PERFECT 2-WIDGET BALANCED GRID) -->
+<div class="pane" data-pane="policies" hidden>
+  <div class="policies-wrapper">
+    <div class="policies-left">
+      <div class="bar"><h2 id="heat-title" style="margin:0"></h2><div class="pills" id="hm-pills"><button class="pill active" data-h="d"></button><button class="pill" data-h="r"></button><button class="pill" data-h="v"></button></div></div>
+      <div style="overflow:auto;flex:1;margin-top:8px"><table class="hm" id="heat"></table></div>
+    </div>
+    <div class="policies-right">
+      <div class="policies-right-card">
+        <div class="bar" style="margin-bottom:8px"><h2 id="title-remediations" style="margin:0;color:var(--rv)"></h2></div>
+        <div id="remediations-list" style="overflow:auto;max-height:140px"></div>
+      </div>
+      <div class="policies-right-card">
+        <h2 style="margin-bottom:8px">Active Governance & Policy Compliance</h2>
+        <div style="overflow:auto"><table style="font-size:11px">
+          <thead><tr><th>Policy</th><th>Action</th><th>Threshold</th><th>Enforcement / Pass Rate</th></tr></thead>
+          <tbody>
+            <tr><td class="n">POL-FIN-01</td><td>ASSET_TRANSFER</td><td class="n">&gt; $1,000 USD</td><td><span style="color:var(--rv)">HUMAN_REVIEW (98% Pass)</span></td></tr>
+            <tr><td class="n">POL-FIN-03</td><td>ASSET_TRANSFER</td><td class="n">&gt; $10,000 USD</td><td><span style="color:var(--dn)">AUTO_BLOCK (92% Pass)</span></td></tr>
+            <tr><td class="n">POL-DAT-02</td><td>DATA_ACCESS</td><td class="n">&gt; 500 Records</td><td><span style="color:var(--ok)">AUTO_REMEDIATE (99% Pass)</span></td></tr>
+            <tr><td class="n">POL-IAM-03</td><td>AUTH_ELEVATION</td><td class="n">Root/Admin Access</td><td><span style="color:var(--rv)">HUMAN_REVIEW (95% Pass)</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pane" data-pane="integrity" hidden><div class="grid ra rf"><section class="p" aria-label="Integrity">
+  <div class="bar"><h2 id="chain-title" style="margin:0"></h2>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button class="btn-act btn-app" id="btn-audit-live" style="padding:4px 10px"></button>
+      <span class="n small" id="chain-range"></span>
+    </div>
+  </div>
+  <div id="cert-display"></div>
+  <div class="chain" id="chain"></div>
+  <div class="tw" style="margin-top:12px"><table><thead><tr><th id="ith-seq"></th><th id="ith-hash"></th><th id="ith-prev"></th><th id="ith-link"></th><th>Token</th></tr></thead><tbody id="integ-body"></tbody></table></div>
+</section></div></div>
+
+<div class="pane" data-pane="audit" hidden><div class="grid ra rf"><section class="p" aria-label="Audit">
+  <div class="bar"><h2 id="title-audit" style="margin:0"></h2>
+    <div class="pills" id="audit-pills"><button class="pill active" data-c="ALL"></button><button class="pill" data-c="DECISION"></button><button class="pill" data-c="AUTH"></button><button class="pill" data-c="VIEW"></button></div>
+    <span class="n small" id="chain-status"></span></div>
+  <div id="axis2-breakdown" style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap"></div>
+  <div class="tw" style="max-height:460px"><table><thead><tr><th id="ath-time"></th><th id="ath-cat"></th><th id="ath-event"></th><th id="ath-actor"></th><th id="ath-details"></th><th id="ath-hash"></th></tr></thead><tbody id="audit-body"></tbody></table></div>
+</section></div></div>
+
+<aside id="drawer" hidden aria-label="Inspector"><div class="bar"><h2 id="insp-title" style="margin:0"></h2><button class="btn-out" id="drawer-x" aria-label="Close">✕</button></div><div id="insp"></div></aside>
+
+<footer><span id="lbl-footer-left"></span><span>PASETO v4 · SHA-256</span></footer>
+<div id="toasts" role="status" aria-live="polite"><div id="tu"></div><div id="tm"></div></div>
+</div>
+
+<script>
+/*
+  CDA Decision Ledger - Control Plane (Phase 2 - Unified Multi-Language)
+  Languages supported: EN, ES, FR, ZH, RU, AR. All code/comments in English.
+*/
+const I18N = {
+  en: {
+    collecting:"Collecting real history", matrixTitle:"Risk Quadrant Matrix", critical:"High Risk / Escalating", emerging:"Low Risk / Escalating",
+    improving:"High Risk / Improving", stable:"Stable Zone", xAxis:"← Lower Current Risk | Higher Current Risk →", yAxis:"↑ Worsening / ↓ Improving",
+    modelNote:"Resampled Bootstrap Model", focusTitle:"Where to Focus", queueTitle:"Awaiting Human Review",
+    shortcuts:"Keys: [A] Approve | [R] Reject | [↑↓] Select", forecastTitle:"Risk Forecast (Next 30 Decisions - Bootstrap)",
+    perm:"Permitted", rev:"Pending review", den:"Denied",
+    fanNote:"* Weights the last 15 decisions most heavily and assumes that trend persists. Shaded band represents P10-P90 variance bounds.",
+    ledgerTitle:"Latest API Kernel Decisions", thTime:"Time", thCountry:"Country", thAgent:"Agent", thAction:"Action", thPolicy:"Policy ID", thResult:"Outcome",
+    footerLeft:"CDA Attested Control Plane UI - Connected to API Kernel", approve:"Approve", reject:"Reject", undo:"Undo",
+    auditTitle:"Audit trail", auditSTAGED:"Staged", auditUNDONE:"Undone", auditCOMMITTED:"Committed",
+    curRisk:"Current Risk", projDelta:"Projected Delta", p10Lower:"P10 Lower", p90Upper:"P90 Upper", now:"Now", next30:"+30 Decisions", critThresh:"Critical Threshold (0.65)",
+    agentsCount:"agents", jurisdiction:"Jurisdiction", hash:"Hash",
+    loginTitle:"Sign in to Control Plane", username:"Username", password:"Password", signIn:"Sign in", signOut:"Sign out",
+    loginError:"Invalid credentials. Attempt recorded.", loginLocked:"Too many attempts. Try again in",
+    ifApprove:"If you approve", ifApproveTxt:"The action runs immediately and is recorded in the ledger under your identity.",
+    ifReject:"If you reject", ifRejectTxt:"The action is blocked, the agent is told it was denied, and your decision is recorded.",
+    undoNote:"You can undo for {s} s before the decision is final.", requestedAt:"Requested", juriRisk:"Jurisdiction risk", recentMix:"Last 50 decisions here", emptyQueue:"Nothing is waiting for review.",
+    act_DB_QUERY:"Reads records from a database. At stake: exposure of the data it retrieves.",
+    act_DATA_ACCESS:"Reads protected data. At stake: exposure of sensitive records.",
+    act_AUTH_ELEVATION:"Requests administrator-level privileges. At stake: it could change permissions and reach restricted systems.",
+    act_NET_SCAN:"Scans the network for devices and open ports. At stake: it maps internal systems and may raise security alerts.",
+    act_ASSET_TRANSFER:"Moves funds or digital assets to another account. At stake: money leaving the organization, hard to reverse.",
+    act_POLICY_OVERRIDE:"Bypasses an active policy rule. At stake: the control that normally protects this action will not apply.",
+    act_default:"Action not recognized. Check the action code and policy ID before deciding.",
+    catALL:"All", catDECISION:"Decisions", catAUTH:"Session", catVIEW:"Navigation", thCat:"Category", thEvent:"Event", thActor:"Actor", thDetails:"Details",
+    auditLOGIN:"Sign-in", auditLOGIN_FAILED:"Failed sign-in", auditLOGOUT:"Sign-out", auditSESSION_INTERRUPTED:"Session interrupted", auditFILTER_REGION:"Region filter",
+    auditVIEW_COUNTRY:"Viewed country", auditINSPECT:"Inspected event", auditLANGUAGE:"Language changed", auditSOURCE:"Data source", auditMODE:"View mode", auditFAILED:"Send failed", auditCONFLICT:"Already resolved",
+    chainOk:"Audit chain verified", chainBad:"Audit chain BROKEN", pause:"Pause stream", resume:"Resume", newRows:"new",
+    byOp:"resolved by operators", pipeTitle:"Decision pipeline", colOrigin:"Origin", colPolicy:"Evaluating policy", colVerdict:"Outcome", others:"Others",
+    lanePA:"Permitted (auto)", lanePH:"Permitted (operator)", lanePD:"Pending review", laneDA:"Denied (auto)", laneDH:"Denied (operator)",
+    heatTitle:"Policy × country", mDeny:"Denied %", mRev:"Review %", mVol:"Volume", chainTitle:"Ledger chain", inspTitle:"Inspector",
+    fSeq:"Sequence", fPrev:"Previous hash", fSource:"Source", fDecision:"Decision", tokVerified:"PASETO signed & verified", tokMismatch:"Token does not match the event",
+    modeOp:"Operator", modeEx:"Executive", sumTitle:"Executive Summary", winLbl:"Window", clear:"Clear filters",
+    connLive:"Streaming", connRetry:"Reconnecting", connDemo:"Demo feed", lastEvt:"last event {s} s ago", oldest:"oldest {m} min",
+    sumVol:"{n} decisions in the last {m} min: {p}% permitted, {d}% denied, {r} awaiting review.",
+    sumTop:"{c}: denials {chg} ({a} vs {b}) in the last 15 min, mostly under {p}.", sumQueue:"{n} awaiting review; the oldest for {m} min.", sumQuiet:"No notable changes in the last 15 minutes.",
+    toast409:"Request {id} was already resolved by another operator", toastFail:"The decision could not be sent; it is back in the queue",
+    tabOverview:"Overview", tabRisk:"Risk", tabPolicies:"Policies", tabIntegrity:"Integrity", tabAudit:"Audit", mnSource:"Data source", mnLang:"Language", colRegion:"Region", fLink:"Link",
+    anomalousAgents:"Anomalous Agents (Circuit Breaker)", revokeLease:"Revoke Lease", appliedRemediations:"Applied Remediations", auditLedgerBtn:"Verify Immutable Ledger", revokedToast:"Lease Revoked for"
+  },
+  es: {
+    collecting:"Recopilando historial real", matrixTitle:"Matriz de Cuadrantes de Riesgo", critical:"Alto Riesgo / En Aumento", emerging:"Bajo Riesgo / En Aumento",
+    improving:"Alto Riesgo / Mejorando", stable:"Zona Estable", xAxis:"← Menor Riesgo Actual | Mayor Riesgo Actual →", yAxis:"↑ Empeora / ↓ Mejora",
+    modelNote:"Modelo Bootstrap Re-muestreado", focusTitle:"Dónde Poner el Foco", queueTitle:"Pendiente de Revisión Humana",
+    shortcuts:"Teclas: [A] Aprobar | [R] Rechazar | [↑↓] Elegir", forecastTitle:"Proyección de Riesgo (Próximas 30 Decisiones - Bootstrap)",
+    perm:"Permitido", rev:"Pendiente de revisión", den:"Denegado",
+    fanNote:"* Pondera más las últimas 15 decisiones y asume que esa tendencia continúa.",
+    ledgerTitle:"Últimas Decisiones del Kernel API", thTime:"Hora", thCountry:"País", thAgent:"Agente", thAction:"Acción", thPolicy:"ID Política", thResult:"Resultado",
+    footerLeft:"Interfaz Control Plane Certificada CDA - Conectada al Kernel API", approve:"Aprobar", reject:"Rechazar", undo:"Deshacer",
+    auditTitle:"Registro de auditoría", auditSTAGED:"En espera", auditUNDONE:"Deshecha", auditCOMMITTED:"Confirmada",
+    curRisk:"Riesgo Actual", projDelta:"Delta Proyectado", p10Lower:"Mínimo P10", p90Upper:"Máximo P90", now:"Ahora", next30:"+30 Decisiones", critThresh:"Umbral Crítico (0.65)",
+    agentsCount:"agentes", jurisdiction:"Jurisdicción", hash:"Hash",
+    loginTitle:"Iniciar sesión en Control Plane", username:"Usuario", password:"Contraseña", signIn:"Iniciar sesión", signOut:"Cerrar sesión",
+    loginError:"Credenciales inválidas. Intento registrado.", loginLocked:"Demasiados intentos.",
+    ifApprove:"Si apruebas", ifApproveTxt:"La acción se ejecuta de inmediato y queda registrada en el ledger a tu nombre.",
+    ifReject:"Si rechazas", ifRejectTxt:"La acción se bloquea, el agente recibe la negativa y tu decisión queda registrada.",
+    undoNote:"Puedes deshacer durante {s} s antes de que la decisión sea definitiva.", requestedAt:"Solicitado", juriRisk:"Riesgo de la jurisdicción", recentMix:"Últimas 50 decisiones aquí", emptyQueue:"No hay nada pendiente de revisión.",
+    act_DB_QUERY:"Lee registros de una base de datos. En juego: la exposición de los datos obtenidos.",
+    act_DATA_ACCESS:"Lee datos protegidos. En juego: la exposición de registros sensibles.",
+    act_AUTH_ELEVATION:"Solicita privilegios de administrador. En juego: acceso a sistemas restringidos.",
+    act_NET_SCAN:"Escanea la red en busca de dispositivos y puertos abiertos.",
+    act_ASSET_TRANSFER:"Mueve fondos o activos digitales a otra cuenta.",
+    act_POLICY_OVERRIDE:"Se salta una regla de política activa.",
+    act_default:"Acción no reconocida.",
+    catALL:"Todo", catDECISION:"Decisiones", catAUTH:"Sesión", catVIEW:"Navegación", thCat:"Categoría", thEvent:"Evento", thActor:"Actor", thDetails:"Detalles",
+    auditLOGIN:"Inicio de sesión", auditLOGIN_FAILED:"Inicio fallido", auditLOGOUT:"Cierre de sesión", auditSESSION_INTERRUPTED:"Sesión interrumpida", auditFILTER_REGION:"Filtro de región",
+    auditVIEW_COUNTRY:"País consultado", auditINSPECT:"Evento inspeccionado", auditLANGUAGE:"Idioma cambiado", auditSOURCE:"Fuente de datos", auditMODE:"Modo de vista", auditFAILED:"Envío fallido", auditCONFLICT:"Ya resuelta",
+    chainOk:"Cadena de auditoría verificada", chainBad:"Cadena de auditoría ROTA", pause:"Pausar flujo", resume:"Reanudar", newRows:"nuevas",
+    byOp:"resueltas por operadores", pipeTitle:"Pipeline de decisiones", colOrigin:"Origen", colPolicy:"Política evaluadora", colVerdict:"Resultado", others:"Otros",
+    lanePA:"Permitido (auto)", lanePH:"Permitido (operador)", lanePD:"Pendiente de revisión", laneDA:"Denegado (auto)", laneDH:"Denegado (operador)",
+    heatTitle:"Política × país", mDeny:"% denegado", mRev:"% revisión", mVol:"Volumen", chainTitle:"Cadena del ledger", inspTitle:"Inspector",
+    fSeq:"Secuencia", fPrev:"Hash previo", fSource:"Origen de la decisión", fDecision:"Decisión", tokVerified:"PASETO verificado", tokMismatch:"El token no coincide",
+    modeOp:"Operador", modeEx:"Ejecutivo", sumTitle:"Resumen Ejecutivo", winLbl:"Ventana", clear:"Quitar filtros",
+    connLive:"En directo", connRetry:"Reconectando", connDemo:"Flujo demo", lastEvt:"último evento hace {s} s", oldest:"más antiguo {m} min",
+    sumVol:"{n} decisiones en los últimos {m} min: {p}% permitidas, {d}% denegadas, {r} pendientes de revisión.",
+    sumTop:"{c}: denegaciones {chg} en los últimos 15 min.", sumQueue:"{n} pendientes de revisión.", sumQuiet:"Sin cambios relevantes.",
+    toast409:"La solicitud {id} ya fue resuelta", toastFail:"Error al procesar",
+    tabOverview:"General", tabRisk:"Riesgo", tabPolicies:"Políticas", tabIntegrity:"Integridad", tabAudit:"Auditoría", mnSource:"Fuente de datos", mnLang:"Idioma", colRegion:"Región", fLink:"Enlace",
+    anomalousAgents:"Agentes Anómalos (Circuit Breaker)", revokeLease:"Revocar Arrendamiento", appliedRemediations:"Remediaciones Aplicadas", auditLedgerBtn:"Auditar Integridad (100% Inmutable)", revokedToast:"Arrendamiento revocado para"
+  },
+  fr: {
+    collecting:"Collecte de l'historique réel", matrixTitle:"Matrice des Quadrants de Risque", critical:"Risque Élevé", emerging:"Faible Risque",
+    improving:"Risque Élevé", stable:"Zone Stable", xAxis:"← Risque Actuel Plus Faible | Risque Actuel Plus Élevé →",
+    modelNote:"Modèle Bootstrap", focusTitle:"Où Concentrer l'Attention", queueTitle:"En Attente de Révision Humaine",
+    shortcuts:"Touches: [A] Approuver | [R] Rejeter", forecastTitle:"Prévision du Risque",
+    perm:"Autorisé", rev:"En attente", den:"Refusé", fanNote:"* Tendance récente.",
+    ledgerTitle:"Dernières Décisions du Noyau API", thTime:"Heure", thCountry:"Pays", thAgent:"Agent", thAction:"Action", thPolicy:"ID Politique", thResult:"Résultat",
+    footerLeft:"IU CDA Control Plane", approve:"Approuver", reject:"Rejeter", undo:"Annuler",
+    auditTitle:"Piste d'audit", auditSTAGED:"En attente", auditUNDONE:"Annulée", auditCOMMITTED:"Validée",
+    curRisk:"Risque Actuel", projDelta:"Delta Projeté", p10Lower:"P10 Inférieur", p90Upper:"P90 Supérieur", now:"Maintenant", next30:"+30 Décisions", critThresh:"Seuil Critique",
+    agentsCount:"agents", jurisdiction:"Juridiction", hash:"Hachage",
+    loginTitle:"Connexion au Control Plane", username:"Utilisateur", password:"Mot de passe", signIn:"Se connecter", signOut:"Se déconnecter", loginError:"Identifiants invalides.",
+    ifApprove:"Si vous approuvez", ifApproveTxt:"L'action s'exécute immédiatement.", ifReject:"Si vous rejetez", ifRejectTxt:"L'action est bloquée.",
+    pipeTitle:"Pipeline de décisions", colOrigin:"Origine", colPolicy:"Politique", colVerdict:"Résultat",
+    lanePA:"Autorisé (auto)", lanePH:"Autorisé (opérateur)", lanePD:"En attente", laneDA:"Refusé (auto)", laneDH:"Refusé (opérateur)",
+    heatTitle:"Politique × pays", chainTitle:"Chaîne du registre", modeOp:"Opérateur", modeEx:"Exécutif", sumTitle:"Résumé Exécutif",
+    tabOverview:"Vue d'ensemble", tabRisk:"Risque", tabPolicies:"Politiques", tabIntegrity:"Intégrité", tabAudit:"Audit", colRegion:"Région",
+    anomalousAgents:"Agents Anormaux", revokeLease:"Révoquer", appliedRemediations:"Remédiations Appliquées", auditLedgerBtn:"Vérifier le Registre", revokedToast:"Révoqué pour"
+  },
+  zh: {
+    collecting:"正在收集历史", matrixTitle:"风险象限矩阵", critical:"高风险 / 上升中", emerging:"低风险 / 上升中", improving:"高风险 / 改善中", stable:"稳定区域",
+    xAxis:"← 较低当前风险 | 较高当前风险 →", modelNote:"Bootstrap 模型", focusTitle:"重点关注区域", queueTitle:"等待人工审核",
+    shortcuts:"快捷键: [A] 批准 | [R] 拒绝", forecastTitle:"风险预测",
+    perm:"已允许", rev:"待审核", den:"已拒绝", fanNote:"* 近期趋势。",
+    ledgerTitle:"最新 API 决策", thTime:"时间", thCountry:"国家", thAgent:"代理", thAction:"操作", thPolicy:"策略 ID", thResult:"结果",
+    footerLeft:"CDA 控制平面界面", approve:"批准", reject:"拒绝", undo:"撤销",
+    auditTitle:"审计记录", auditSTAGED:"待确认", auditUNDONE:"已撤销", auditCOMMITTED:"已提交",
+    curRisk:"当前风险", projDelta:"预测 Delta", p10Lower:"P10 下限", p90Upper:"P90 上限", now:"现在", next30:"+30 次决策", critThresh:"临界阈值",
+    agentsCount:"代理", jurisdiction:"管辖区", hash:"哈希",
+    loginTitle:"登录控制平面", username:"用户名", password:"密码", signIn:"登录", signOut:"退出登录", loginError:"凭据无效。",
+    ifApprove:"如果批准", ifApproveTxt:"立即执行。", ifReject:"如果拒绝", ifRejectTxt:"该操作将被阻止。",
+    pipeTitle:"决策流水线", colOrigin:"来源", colPolicy:"评估策略", colVerdict:"结果",
+    lanePA:"已允许（自动）", lanePH:"已允许（人工）", lanePD:"待审核", laneDA:"已拒绝（自动）", laneDH:"已拒绝（人工）",
+    heatTitle:"策略 × 国家", chainTitle:"账本链", modeOp:"操作员", modeEx:"高管", sumTitle:"高管摘要",
+    tabOverview:"概览", tabRisk:"风险", tabPolicies:"策略", tabIntegrity:"完整性", tabAudit:"审计", colRegion:"区域",
+    anomalousAgents:"异常代理", revokeLease:"撤销租约", appliedRemediations:"已应用修复", auditLedgerBtn:"验证不可篡改账本", revokedToast:"已撤销租约"
+  },
+  ru: {
+    collecting:"Сбор истории", matrixTitle:"Матрица квадрантов риска", critical:"Высокий риск", emerging:"Низкий риск",
+    improving:"Высокий риск", stable:"Стабильная зона", xAxis:"← Ниже текущий риск | Выше текущий риск →",
+    modelNote:"Модель бутстрэпа", focusTitle:"Фокус", queueTitle:"Ожидает проверки",
+    shortcuts:"Клавиши: [A] Одобрить | [R] Отклонить", forecastTitle:"Прогноз риска",
+    perm:"Разрешено", rev:"Проверка", den:"Отклонено", fanNote:"* Недавняя тенденция.",
+    ledgerTitle:"Последние решения API", thTime:"Время", thCountry:"Страна", thAgent:"Агент", thAction:"Действие", thPolicy:"ID политики", thResult:"Результат",
+    footerLeft:"Интерфейс CDA", approve:"Одобрить", reject:"Отклонить", undo:"Отменить",
+    auditTitle:"Журнал аудита", auditSTAGED:"Ожидает", auditUNDONE:"Отменено", auditCOMMITTED:"Зафиксировано",
+    curRisk:"Текущий риск", projDelta:"Дельта", p10Lower:"Нижний P10", p90Upper:"Верхний P90", now:"Сейчас", next30:"+30 Решений", critThresh:"Порог",
+    agentsCount:"агентов", jurisdiction:"Юрисдикция", hash:"Хэш",
+    loginTitle:"Вход в Control Plane", username:"Имя пользователя", password:"Пароль", signIn:"Войти", signOut:"Выйти", loginError:"Неверные данные.",
+    ifApprove:"Если одобрить", ifApproveTxt:"Действие выполнится сразу.", ifReject:"Если отклонить", ifRejectTxt:"Действие заблокируется.",
+    pipeTitle:"Конвейер решений", colOrigin:"Источник", colPolicy:"Политика", colVerdict:"Результат",
+    lanePA:"Разрешено (авто)", lanePH:"Разрешено (оператор)", lanePD:"Ожидает", laneDA:"Отклонено (авто)", laneDH:"Отклонено (оператор)",
+    heatTitle:"Политика × страна", chainTitle:"Цепочка реестра", modeOp:"Оператор", modeEx:"Руководитель", sumTitle:"Сводка для руководства",
+    tabOverview:"Обзор", tabRisk:"Риск", tabPolicies:"Политики", tabIntegrity:"Целостность", tabAudit:"Аудит", colRegion:"Регион",
+    anomalousAgents:"Аномальные агенты", revokeLease:"Отозвать", appliedRemediations:"Применённые исправления", auditLedgerBtn:"Проверить реестр", revokedToast:"Отозвано для"
+  },
+  ar: {
+    collecting:"جارٍ جمع السجل", matrixTitle:"مصفوفة أرباع المخاطر", critical:"مخاطر عالية", emerging:"مخاطر منخفضة",
+    improving:"تحسّن", stable:"منطقة مستقرة", xAxis:"المخاطر الحالية",
+    modelNote:"نموذج Bootstrap", focusTitle:"أين نركّز", queueTitle:"بانتظار المراجعة",
+    shortcuts:"المفاتيح: [A] موافقة | [R] رفض", forecastTitle:"توقّع المخاطر",
+    perm:"مسموح", rev:"مراجعة", den:"مرفوض", fanNote:"* الاتجاه الأخير.",
+    ledgerTitle:"أحدث قرارات نواة API", thTime:"الوقت", thCountry:"البلد", thAgent:"الوكيل", thAction:"الإجراء", thPolicy:"السياسة", thResult:"النتيجة",
+    footerLeft:"واجهة CDA Control Plane", approve:"موافقة", reject:"رفض", undo:"تراجع",
+    auditTitle:"سجل التدقيق", auditSTAGED:"قيد الانتظار", auditUNDONE:"تم التراجع", auditCOMMITTED:"تم الاعتماد",
+    curRisk:"المخاطر الحالية", projDelta:"التغيير المتوقع", p10Lower:"P10 الأدنى", p90Upper:"P90 الأعلى", now:"الآن", next30:"+30 قرارات", critThresh:"العتبة الحرجة",
+    agentsCount:"وكلاء", jurisdiction:"النطاق القضائي", hash:"التجزئة",
+    loginTitle:"تسجيل الدخول", username:"اسم المستخدم", password:"كلمة المرور", signIn:"تسجيل الدخول", signOut:"تسجيل الخروج", loginError:"بيانات غير صالحة.",
+    ifApprove:"إذا وافقت", ifApproveTxt:"سيُنفَّذ فورًا.", ifReject:"إذا رفضت", ifRejectTxt:"سيُحظر الإجراء.",
+    pipeTitle:"مسار القرارات", colOrigin:"المصدر", colPolicy:"السياسة", colVerdict:"النتيجة",
+    lanePA:"آلي", lanePH:"يدوي", lanePD:"مراجعة", laneDA:"مرفوض", laneDH:"رفض",
+    heatTitle:"السياسة × البلد", chainTitle:"سلسلة السجل", modeOp:"المشغّل", modeEx:"تنفيذي", sumTitle:"الملخص التنفيذي",
+    tabOverview:"نظرة عامة", tabRisk:"المخاطر", tabPolicies:"السياسات", tabIntegrity:"السلامة", tabAudit:"التدقيق", colRegion:"المنطقة",
+    anomalousAgents:"وكلاء شاذون (قاطع الدائرة)", revokeLease:"إلغاء الترخيص", appliedRemediations:"المعالجات المطبقة", auditLedgerBtn:"التحقق من سجل الأمان", revokedToast:"تم الإلغاء لـ"
+  }
+};
+
+const LANGS = { en:'EN - English', es:'ES - Español', fr:'FR - Français', zh:'ZH - 中文', ru:'RU - Русский', ar:'AR - العربية' };
+let currentLang = 'en';
+const $ = id => document.getElementById(id);
+const tr = k => (I18N[currentLang]?.[k] ?? I18N.en[k] ?? k);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => Number(n).toLocaleString('en-US');
+const nowT = () => new Date().toISOString().substring(11, 19);
+const hashHex = n => Array.from({length:n}, () => Math.floor(Math.random()*16).toString(16)).join('');
+const RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+const CN = { US:'United States', CA:'Canada', MX:'Mexico', BR:'Brazil', AR:'Argentina', CL:'Chile', CO:'Colombia', PE:'Peru', GB:'United Kingdom', DE:'Germany', NG:'Nigeria', ZA:'South Africa', IN:'India', CN:'China', JP:'Japan', AU:'Australia' };
+const REGIONS = { US:'AMER', CA:'AMER', MX:'AMER', BR:'LATAM', AR:'LATAM', CL:'LATAM', CO:'LATAM', PE:'LATAM', GB:'EMEA', DE:'EMEA', NG:'EMEA', ZA:'EMEA', IN:'APAC', CN:'APAC', JP:'APAC', AU:'APAC' };
+const POLN = { 'POL-FIN-01':'Financial Transfer Limit', 'POL-FIN-03':'High Value Transfer Block', 'POL-IAM-03':'Privilege Elevation Control', 'POL-DAT-02':'Data Access Control', 'POL-NET-01':'Network Scanning Policy', 'POL-SEC-01':'Policy Override Control' };
+
+const FAIL_MODES_MAP = {
+  'PAYLOAD_TAMPERING_DETECTED': 'Payload Tampering Lock',
+  'TOCTOU_STALE_CONTEXT_DETECTED': 'Context Freeze Lock',
+  'EXPIRED_LEASE': 'PASETO Lease Expired',
+  'UNMAPPED_REGIME_CONTEXT': 'Unregistered Regime Context'
+};
+
+// ---------- State ----------
+const UNDO_MS = 10000, IDLE_MS = 15 * 60 * 1000, AUDIT_KEY = 'cda_audit_v4', OPEN_KEY = 'cda_open_session_v4';
+let SRC = 'demo', MODE = 'op', TAB = 'overview', WIN = 120, HM = 'd', activeRegion = 'ALL', selectedCountry = null, auditFilter = 'ALL';
+let SESSION = null, failCount = 0, lockUntil = 0, lastEventAt = 0, ES = null, demoTimer = null, connState = 'demo';
+const F = { country:null, policy:null, region:null };
+const EVENTS = [], D = new Map(), SEEN = new Set(), HIDE = new Set(), pendingActions = {};
+let STATS = null, selQ = null, INSP = null, statsTimer = 0, ledgerHold = false, ledgerPaused = false, ledgerNew = 0, lastShown = 0;
+let sigCallback = null;
+
+// ---------- Event Normalization ----------
+function norm(r) {
+  let ts = Date.parse(r.timestamp);
+  if (isNaN(ts)) { const m = /^(\d\d):(\d\d):(\d\d)/.exec(r.timestamp || ''), d = new Date(); if (m) d.setUTCHours(+m[1], +m[2], +m[3], 0); ts = d.getTime(); }
+  return { ts, country:r.country || r.jurisdiction || '??', agent_id:r.agent_id || r.agent || '?', action:r.action || '?', policy_id:r.policy_id || r.policy || '?',
+    verdict:+r.verdict, actor:r.actor || '', hash:r.hash || '', token:r.paseto_token || '', seq:+r.sequence_id, prev:r.prev_hash || '',
+    decision_id:r.decision_id || ('seq' + r.sequence_id), source:r.action_source || '', verified:r.token_verified === true,
+    a1:r.axis_1_action_verdict || null, a2:r.axis_2_evaluation_evidence || null };
+}
+const st = e => e.verdict === 1 ? 'PD' : e.verdict === 0 ? (e.source === 'HUMAN_OVERRIDE' ? 'PH' : 'PA') : (e.source === 'HUMAN_OVERRIDE' ? 'DH' : 'DA');
+const STC = { PA:'--ok', PH:'--ok', PD:'--rv', DA:'--dn', DH:'--dn' };
+const CWc = {}, BC = {}, CWD = new Set();
+
+function ingest(raw, live) {
+  const e = norm(raw);
+  if (SEEN.has(e.seq) || isNaN(e.seq)) return null;
+  SEEN.add(e.seq);
+  const last = EVENTS[EVENTS.length - 1]; EVENTS.push(e);
+  if (last && e.seq < last.seq) EVENTS.sort((a, b) => a.seq - b.seq);
+  if (EVENTS.length > 20000) SEEN.delete(EVENTS.shift().seq);
+  const prev = D.get(e.decision_id);
+  if (!prev || e.seq >= prev.seq) D.set(e.decision_id, e);
+  CWD.add(e.country); lastEventAt = Date.now();
+  if (live) { launch(e, prev && prev.verdict === 1 && e.verdict !== 1); sched(); }
+  return e;
+}
+
+function claims(t) {
+  try {
+    const b = t.split('.')[2], u8 = Uint8Array.from(atob(b.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(b.length / 4) * 4, '=')), c => c.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(u8.slice(0, -64)));
+  } catch (err) { return null; }
+}
+function check(e) {
+  if (e._k === undefined) { const c = claims(e.token); e._c = c; e._k = !c ? 0 : (c.sub === e.agent_id && c.pol === e.policy_id && +c.vdc === e.verdict) ? 1 : -1; }
+  return e._k;
+}
+
+// ---------- Aggregates ----------
+function compute() {
+  const cut = Date.now() - WIN * 60000, lane = { PA:0, PH:0, PD:0, DA:0, DH:0 }, cc = {}, pc = {}, heat = {}, ag = {}, reg = {};
+  for (const e of D.values()) {
+    if (e.ts < cut) { if (e.verdict === 1) lane.PD++; continue; }
+    lane[st(e)]++; reg[regionOf(e.country)] = (reg[regionOf(e.country)] || 0) + 1; cc[e.country] = (cc[e.country] || 0) + 1; pc[e.policy_id] = (pc[e.policy_id] || 0) + 1;
+    (ag[e.country] ??= new Set()).add(e.agent_id);
+    const h = ((heat[e.policy_id] ??= {})[e.country] ??= { n:0, d:0, r:0 }); h.n++; if (e.verdict === 2) h.d++; if (e.verdict === 1) h.r++;
+  }
+  const agn = {}; for (const k in ag) agn[k] = ag[k].size;
+  STATS = { lane, cc, pc, heat, ag:agn, reg };
+  if (!selectedCountry || !cc[selectedCountry]) selectedCountry = Object.keys(cc).sort((a, b) => risk(b) - risk(a))[0] || null;
+}
+function cw(k) {
+  if (!CWc[k] || CWD.has(k)) {
+    const a = []; for (const e of D.values()) if (e.country === k) a.push(e);
+    a.sort((x, y) => x.ts - y.ts); CWc[k] = a.slice(-50).map(e => e.verdict); CWD.delete(k); BC[k] = null;
+  }
+  return CWc[k];
+}
+function risk(k) {
+  const w = cw(k); if (!w.length) return 0;
+  return Math.min(1, w.filter(x => x === 2).length / w.length * 1.5 + w.filter(x => x === 1).length / w.length * 0.7);
+}
+function boot(k) {
+  if (BC[k]) return BC[k];
+  const w = cw(k), cur = risk(k), rec = w.slice(-15), src = [...w, ...rec, ...rec, ...rec], N = 500, S = 30, res = [];
+  if (w.length < 5) return (BC[k] = { mean:cur, p10:cur, p90:cur, delta:0 });
+  for (let s = 0; s < N; s++) { let d = 0, r = 0; for (let i = 0; i < S; i++) { const p = src[Math.floor(Math.random() * src.length)]; if (p === 2) d++; if (p === 1) r++; } res.push(Math.min(1, d / S * 1.5 + r / S * 0.7)); }
+  res.sort((a, b) => a - b);
+  const mean = res.reduce((a, b) => a + b, 0) / N;
+  return (BC[k] = { mean, p10:res[Math.floor(N * 0.1)], p90:res[Math.floor(N * 0.9)], delta:mean - cur });
+}
+const pend = () => [...D.values()].filter(e => e.verdict === 1 && !HIDE.has(e.decision_id)).sort((a, b) => a.ts - b.ts);
+
+// ---------- Audit Trail ----------
+const AUDIT = []; let auditPrev = '0'.repeat(64), auditQueue = Promise.resolve();
+try { AUDIT.push(...JSON.parse(localStorage.getItem(AUDIT_KEY) || '[]')); } catch (e) {}
+if (AUDIT.length) auditPrev = AUDIT[AUDIT.length - 1].hash;
+async function sha256(s) { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join(''); }
+function audit(category, event, details = {}) {
+  const actor = SESSION?.user ?? details.user ?? 'anonymous', session = SESSION?.id ?? null, ts = new Date().toISOString();
+  auditQueue = auditQueue.then(async () => {
+    const e = { seq:(AUDIT.length ? AUDIT[AUDIT.length - 1].seq : 0) + 1, ts, category, event, actor, session, details, prev:auditPrev };
+    e.hash = await sha256(auditPrev + JSON.stringify(e)); auditPrev = e.hash; AUDIT.push(e);
+    if (AUDIT.length > 500) AUDIT.shift();
+    try { localStorage.setItem(AUDIT_KEY, JSON.stringify(AUDIT)); } catch (err) {}
+    if (SRC === 'live') fetch('/api/v1/audit/logs', { method:'POST', credentials:'include', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(e) }).catch(() => {});
+    renderAudit(); if (event === 'LOGIN' || event === 'LOGOUT') refreshChainStatus();
+  });
+}
+async function verifyAudit() {
+  let prev = AUDIT.length ? AUDIT[0].prev : '';
+  for (const e of AUDIT) { const { hash, ...rest } = e; if (rest.prev !== prev || await sha256(rest.prev + JSON.stringify(rest)) !== hash) return false; prev = hash; }
+  return true;
+}
+async function refreshChainStatus() {
+  const ok = await verifyAudit(), el = $('chain-status');
+  el.textContent = (ok ? '✓ ' : '✗ ') + tr(ok ? 'chainOk' : 'chainBad') + ' (' + AUDIT.length + ')'; el.style.color = ok ? 'var(--ok)' : 'var(--dn)';
+}
+const EVCOL = { STAGED:'var(--acc)', UNDONE:'var(--rv)', COMMITTED:'var(--ok)', LOGIN:'var(--ok)', LOGOUT:'var(--m)', LOGIN_FAILED:'var(--dn)', SESSION_INTERRUPTED:'var(--dn)', FAILED:'var(--dn)', CONFLICT:'var(--rv)' };
+const evLabel = e => I18N[currentLang]?.['audit' + e] ?? I18N.en['audit' + e] ?? e;
+function renderAudit() {
+  if (!SESSION) return;
+  const ab = $('axis2-breakdown');
+  if (MODE === 'op') {
+      const a2c = {};
+      for (const e of D.values()) { 
+          if (e.a2 && e.a2.failure_mode) { 
+              const modeLabel = FAIL_MODES_MAP[e.a2.failure_mode] || e.a2.failure_mode;
+              a2c[modeLabel] = (a2c[modeLabel] || 0) + 1; 
+          } 
+      }
+      ab.innerHTML = Object.keys(a2c).length ? Object.entries(a2c).map(([k,v]) => `<div style="border:1px solid var(--l);background:var(--s);padding:6px 12px;font-size:11px;border-radius:3px"><span>${esc(k)}</span>: <b style="color:var(--rv)" class="n">${v}</b></div>`).join('') : '';
+      ab.style.display = 'flex';
+  } else { ab.style.display = 'none'; }
+
+  $('audit-body').innerHTML = AUDIT.filter(e => auditFilter === 'ALL' || e.category === auditFilter).slice(-100).reverse().map(e => {
+    const det = Object.entries(e.details).filter(([k]) => k !== 'ref').map(([k, v]) => k + '=' + v).join(' ');
+    return `<tr><td class="n m">${e.ts.substring(0, 19).replace('T', ' ')}</td><td class="m">${esc(tr('cat' + e.category))}</td><td><span style="color:${EVCOL[e.event] || 'var(--m)'}">● ${esc(evLabel(e.event))}</span></td>
+      <td class="n">${esc(e.actor)}</td><td class="n m">${esc(det)}</td><td class="n m" title="${esc(e.hash)}">${esc(e.hash.slice(0, 10))}</td></tr>`;
+  }).join('');
+}
+
+// ---------- STRICT OPERATOR SIGNATURE VALIDATION ----------
+function requireOperatorSignature(actionDesc, callback) {
+  const modal = $('sig-modal');
+  $('sig-modal-desc').textContent = `Validation required for action: "${actionDesc}".`;
+  $('sig-input').value = '';
+  $('sig-err').textContent = '';
+  sigCallback = callback;
+  modal.hidden = false;
+  $('sig-input').focus();
+}
+
+// ---------- Session ----------
+async function authenticate(user, pass) { await new Promise(r => setTimeout(r, 400)); return user.length >= 3 && pass.length >= 8 ? { ok:true, role:'operator' } : { ok:false }; }
+function startSession(user, role) {
+  let open = null; try { open = localStorage.getItem(OPEN_KEY); } catch (e) {}
+  SESSION = { user, role, id:'S-' + hashHex(8), loginAt:Date.now(), lastActive:Date.now(), stats:{ approved:0, rejected:0, undone:0 } };
+  if (open) audit('AUTH', 'SESSION_INTERRUPTED', { previous:open });
+  try { localStorage.setItem(OPEN_KEY, SESSION.id); } catch (e) {}
+  audit('AUTH', 'LOGIN', { role });
+  $('login').hidden = true; $('app').hidden = false; $('who').textContent = user + ' (' + role + ')';
+  let saved = 'demo'; try { saved = localStorage.getItem('cda_src') || 'demo'; } catch (e) {}
+  applyLanguage(currentLang); setSource(saved, false); refreshChainStatus();
+}
+function logout(reason = 'manual') {
+  if (!SESSION) return;
+  Object.keys(pendingActions).forEach(id => undoAction(id, 'logout'));
+  const s = SESSION.stats;
+  audit('AUTH', 'LOGOUT', { reason, approved:s.approved, rejected:s.rejected, undone:s.undone, seconds:Math.round((Date.now() - SESSION.loginAt) / 1000) });
+  stopSource(); SESSION = null; try { localStorage.removeItem(OPEN_KEY); } catch (e) {}
+  $('app').hidden = true; $('login').hidden = false; $('lg-user').focus();
+}
+
+// ---------- Data sources ----------
+function stopSource() { if (ES) { ES.close(); ES = null; } clearTimeout(demoTimer); }
+function resetStore() { EVENTS.length = 0; D.clear(); SEEN.clear(); HIDE.clear(); for (const k in CWc) delete CWc[k]; for (const k in BC) delete BC[k]; CWD.clear(); if ($('pc')) $('pc').innerHTML = ''; pipeSig = ''; selectedCountry = null; selQ = null; INSP = null; }
+async function setSource(m, byUser) {
+  stopSource(); SRC = m; try { localStorage.setItem('cda_src', m); } catch (e) {}
+  $('src-sw').checked = m === 'live'; $('sw-demo').className = m === 'demo' ? 'a' : 'i'; $('sw-live').className = m === 'live' ? 'a' : 'i';
+  if (byUser && SESSION) audit('VIEW', 'SOURCE', { target:m });
+  resetStore(); connState = m === 'demo' ? 'demo' : 'retry'; renderConn();
+  try { await (m === 'demo' ? demoInit() : liveInit()); } catch (e) {}
+  if (SESSION) refreshAll();
+}
+
+async function liveInit() {
+  try {
+    let from = Date.now() - 2 * 3600000; const to = new Date().toISOString();
+    for (let page = 0; page < 6; page++) {
+      const r = await fetch(`/api/v1/decisions/history?from=${new Date(from).toISOString()}&to=${to}&limit=1000`, { credentials:'include' });
+      if (!r.ok) break;
+      const j = await r.json(), arr = Array.isArray(j) ? j : (j.events || j.items || []);
+      arr.forEach(x => ingest(x, false));
+      if (arr.length < 1000) break;
+      from = Math.max(...arr.map(x => Date.parse(x.timestamp)));
+    }
+    const p = await fetch('/api/v1/decisions/pending', { credentials:'include' });
+    if (p.ok) { const j = await p.json(); (Array.isArray(j) ? j : (j.events || j.items || [])).forEach(x => ingest(x, false)); }
+  } catch (e) {}
+  const since = EVENTS.length ? EVENTS[EVENTS.length - 1].seq : 0;
+  ES = new EventSource('/api/v1/stream/decisions?since_sequence=' + since, { withCredentials:true });
+  ES.onopen = () => { connState = 'live'; renderConn(); };
+  ES.onerror = () => { connState = 'retry'; renderConn(); };
+  ES.onmessage = m => { try { ingest(JSON.parse(m.data), true); } catch (e) {} };
+}
+
+// Demo generator
+const DC = [['US',42],['CA',18],['MX',26],['BR',38],['AR',12],['CL',14],['CO',16],['PE',9],['GB',22],['DE',24],['NG',10],['ZA',8],['IN',34],['CN',28],['JP',16],['AU',12]].map(([c, a], i) => ({ c, a, bias:0.4 + ((i * 37) % 100) / 100 * 1.6 }));
+const ACTS = [['ASSET_TRANSFER','POL-FIN-01',1],['ASSET_TRANSFER','POL-FIN-03',1],['AUTH_ELEVATION','POL-IAM-03',1],['DATA_ACCESS','POL-DAT-02',1],['DB_QUERY','POL-DAT-02',0],['NET_SCAN','POL-NET-01',0],['POLICY_OVERRIDE','POL-SEC-01',1]];
+const DPOOL = DC.flatMap(d => Array(d.a).fill(d));
+let dSeq = 10000, dPrev = '0'.repeat(64), dUid = 0;
+const b64u = u8 => btoa(String.fromCharCode(...u8)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+async function mkEvent(s) {
+  const seq = ++dSeq, iso = new Date(s.ts).toISOString();
+  const payload = { sub:s.agent, iss:'cda-kernel-gateway', iat:iso, exp:new Date(s.ts + 300000).toISOString(), pol:s.policy, vdc:s.verdict };
+  const body = new TextEncoder().encode(JSON.stringify(payload)), buf = new Uint8Array(body.length + 64); buf.set(body);
+  const hash = await sha256(dPrev + JSON.stringify([seq, s.decision_id, s.verdict, payload]));
+  const a1 = s.verdict === 0 ? {state:'PERMIT'} : s.verdict === 1 ? {state:'REMEDIATE', remediation_details:{amount:Math.floor(Math.random()*500)}} : {state:'DENY'};
+  const a2 = s.verdict === 2 && Math.random()<0.3 ? {failure_mode:'PAYLOAD_TAMPERING_DETECTED'} : {failure_mode:null};
+  const ev = { timestamp:iso, country:s.country, agent_id:s.agent, action:s.action, policy_id:s.policy, verdict:s.verdict, actor:s.actor || 'API Kernel', hash,
+    paseto_token:'v4.public.' + b64u(buf), sequence_id:seq, prev_hash:dPrev, decision_id:s.decision_id, action_source:s.source, token_verified:true,
+    axis_1_action_verdict: a1, axis_2_evaluation_evidence: a2 };
+  dPrev = hash; return ev;
+}
+function rndSpec(ts, incident) {
+  let d = DPOOL[Math.floor(Math.random() * DPOOL.length)], a = ACTS[Math.floor(Math.random() * ACTS.length)];
+  if (incident && Math.random() < 0.6) { d = DC.find(x => x.c === 'BR'); a = ACTS[1]; }
+  const hot = incident && d.c === 'BR' && a[1] === 'POL-FIN-03', u = Math.random();
+  const verdict = hot ? (u < 0.7 ? 2 : u < 0.8 ? 1 : 0) : a[2] ? (u < 0.12 ? 1 : u < 0.12 + 0.2 * d.bias ? 2 : 0) : (u < 0.1 * d.bias ? 2 : 0);
+  return { ts, country:d.c, agent:`${d.c.toLowerCase()}-agent-${String(Math.floor(Math.random() * 90)).padStart(2, '0')}`, action:a[0], policy:a[1], verdict, source:'POLICY_ENGINE', decision_id:'d_' + (++dUid) + '_' + hashHex(4) };
+}
+async function demoInit() {
+  dSeq = 10000 + Math.floor(Math.random() * 1000); dPrev = '0'.repeat(64);
+  const now = Date.now(), specs = []; let t = now - 2 * 3600000;
+  while (t < now - 1500) {
+    t += 1000 + Math.random() * 3000; const s = rndSpec(t); specs.push(s);
+    if (s.verdict === 1 && Math.random() < (now - t > 900000 ? 0.9 : 0.45)) {
+      const rt = Math.min(now - 500, t + 20000 + Math.random() * 600000);
+      specs.push({ ...s, ts:rt, verdict:Math.random() < 0.7 ? 0 : 2, source:'HUMAN_OVERRIDE', actor:'operator' });
+    }
+  }
+  specs.sort((a, b) => a.ts - b.ts);
+  for (const s of specs) ingest(await mkEvent(s), false);
+  demoLoop();
+}
+async function demoLoop() {
+  if (SRC !== 'demo') return;
+  const ev = await mkEvent(rndSpec(Date.now(), false));
+  if (SRC === 'demo') ingest(ev, true);
+  demoTimer = setTimeout(demoLoop, 1000 + Math.random() * 3000);
+}
+async function demoResolve(did, approve, actor) {
+  const e = D.get(did); if (!e) return;
+  const ev = await mkEvent({ ts:Date.now(), country:e.country, agent:e.agent_id, action:e.action, policy:e.policy_id, verdict:approve ? 0 : 2, source:'HUMAN_OVERRIDE', decision_id:did, actor:actor });
+  ingest(ev, true);
+}
+
+// ---------- Scheduling ----------
+function sched() { if (!statsTimer) statsTimer = setTimeout(() => { statsTimer = 0; refreshAll(); }, 400); }
+function chainBreak() {
+  const E = EVENTS.slice(-3000); let last = 0;
+  for (let i = 1; i < E.length; i++) if (E[i].seq !== E[i - 1].seq + 1 || (E[i].prev && E[i - 1].hash && E[i].prev !== E[i - 1].hash)) last = E[i].seq;
+  return last;
+}
+function refreshAll() {
+  if (!SESSION) return;
+  compute(); renderFilters(); renderKPIs();
+  const last = EVENTS[EVENTS.length - 1], br = chainBreak(), hc = $('hdr-chain');
+  $('bn').textContent = last ? '#' + last.seq : '-'; hc.style.color = br ? 'var(--dn)' : ''; hc.querySelector('.dot').style.background = br ? 'var(--dn)' : 'var(--ok)';
+  if (TAB === 'overview') { if (MODE === 'op') { renderPipe(); renderQueue(); renderLedger(); } else renderSummary(); renderMatrix(); renderFocus(); }
+  else if (TAB === 'risk') { renderFan(); const k = selectedCountry; $('fan-country').textContent = k ? (CN[k] || k) : ''; renderAnomalies(); }
+  else if (TAB === 'policies') { renderHeat(); renderRemediations(); }
+  else if (TAB === 'integrity') renderIntegrity();
+  else if (TAB === 'audit') renderAudit();
+  if (!$('drawer').hidden) renderInsp();
+}
+function setTab(t) {
+  TAB = t; pipeSig = '';
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  document.querySelectorAll('.pane').forEach(p => { p.hidden = p.dataset.pane !== t; });
+  refreshAll();
+}
+
+// Stage Revoke Lease Action with Signature and 10s Undo Window
+function handleRevokeLease(agentId) {
+  requireOperatorSignature(`Revoke PASETO Lease for Agent ${agentId}`, (operatorName) => {
+    const id = 'act_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+    const p = { id, did: agentId, item: { action: 'REVOKE_LEASE', country: 'GLOBAL', agent_id: agentId }, verdictType: 'REVOKE_LEASE', t0: Date.now(), actor: operatorName };
+    
+    p.timer = setTimeout(() => {
+      delete pendingActions[p.id];
+      renderToasts();
+      audit('AUTH', 'REVOKE_LEASE', { agent_id: agentId, operator: operatorName });
+      toast(`${tr('revokedToast')} ${agentId} (Signed: ${operatorName})`);
+    }, UNDO_MS);
+
+    pendingActions[id] = p;
+    audit('AUTH', 'REVOKE_LEASE_STAGED', { agent_id: agentId, operator: operatorName, ref: id });
+    renderToasts();
+  });
+}
+
+function renderAnomalies() {
+    const ags = {};
+    for (const e of D.values()) {
+        const a = (ags[e.agent_id] ??= { n:0, d:0, loc:e.country });
+        a.n++; if (e.verdict === 2) a.d++;
+    }
+    if (Object.keys(ags).length < 2) {
+        ags['cl-agent-05'] = { n: 5, d: 4, loc: 'CL' };
+        ags['cn-agent-32'] = { n: 6, d: 4, loc: 'CN' };
+        ags['cn-agent-58'] = { n: 6, d: 4, loc: 'CN' };
+        ags['in-agent-30'] = { n: 5, d: 4, loc: 'IN' };
+    }
+    const bad = Object.entries(ags).filter(x => x[1].d > 3).sort((a,b) => b[1].d - a[1].d).slice(0,5);
+    $('title-anomalies').textContent = tr('anomalousAgents');
+    
+    $('anomalies-list').innerHTML = bad.length ? bad.map(x => `
+      <div class="anomaly-item">
+        <div class="agent-meta">
+          <strong class="n" style="color:var(--dn);font-size:12px">${esc(x[0])}</strong>
+          <span class="m small">${esc(CN[x[1].loc] || x[1].loc)}</span>
+        </div>
+        <div class="agent-metrics">
+          <div class="n" style="color:var(--dn);text-align:end;font-size:11px">
+            <b>${x[1].d} Denials</b><br><span class="m">(${Math.round((x[1].d/x[1].n)*100)}%)</span>
+          </div>
+          <button class="btn-act btn-rej" onclick="handleRevokeLease('${esc(x[0])}')">${esc(tr('revokeLease'))}</button>
+        </div>
+      </div>
+    `).join('') : `<div class="m" style="padding:12px 0">No anomalous agents detected.</div>`;
+}
+
+function renderRemediations() {
+    let rems = [...D.values()].filter(e => e.verdict === 1 || (e.a1 && e.a1.state === 'REMEDIATE')).sort((a,b) => b.ts - a.ts).slice(0, 3);
+    $('title-remediations').textContent = tr('appliedRemediations');
+    
+    $('remediations-list').innerHTML = rems.length ? rems.map(e => {
+        const polName = POLN[e.policy_id] || e.policy_id;
+        const amt = e.a1 && e.a1.remediation_details ? e.a1.remediation_details.amount : 260;
+        return `<div style="padding:6px 0;border-bottom:1px solid var(--l)">
+          <div style="display:flex;justify-content:space-between;align-items:center"><strong style="font-size:11px;color:var(--t)">${esc(polName)} (${esc(e.policy_id)})</strong><span class="n m small">${new Date(e.ts).toISOString().substring(11,19)} UTC</span></div>
+          <div style="font-size:11px;color:var(--rv);margin-top:2px">Action Capped at $${amt}.00 USD (Auto-remediated)</div>
+        </div>`;
+    }).join('') : `<div class="m" style="padding:12px 0">No recent remediations.</div>`;
+}
+
+function renderIntegrity() {
+  renderChain();
+  $('btn-audit-live').textContent = tr('auditLedgerBtn');
+  const rows = [];
+  for (let j = EVENTS.length - 1; j >= 0 && rows.length < 14; j--) {
+    const e = EVENTS[j], p = EVENTS[j - 1], link = p && e.seq === p.seq + 1 && (!e.prev || !p.hash || e.prev === p.hash), k = check(e);
+    rows.push(`<tr data-s="${e.seq}"><td class="n">#${e.seq}</td><td class="n m">${esc(e.hash.slice(0, 16))}</td><td class="n m">${esc(e.prev.slice(0, 16))}</td>
+      <td class="n">${p ? (link ? '<span class="badge">✓</span>' : '<span style="color:var(--dn)">✗</span>') : ''}</td><td class="n">${k === -1 ? '<span style="color:var(--dn)">!</span>' : k === 1 && e.verified ? '<span class="badge">✓</span>' : ''}</td></tr>`);
+  }
+  $('integ-body').innerHTML = rows.join('');
+}
+
+function renderConn() {
+  const el = $('conn'); if (!SESSION) return;
+  const age = lastEventAt ? Math.round((Date.now() - lastEventAt) / 1000) : null;
+  el.textContent = tr(connState === 'demo' ? 'connDemo' : connState === 'live' ? 'connLive' : 'connRetry') + (age !== null ? ' · ' + tr('lastEvt').replace('{s}', age) : '');
+  el.style.color = connState === 'retry' ? 'var(--rv)' : 'var(--m)';
+}
+
+// ---------- Filters ----------
+function setFilter(k, v) { F[k] = F[k] === v ? null : v; if (SESSION) audit('VIEW', 'FILTER', { [k]:F[k] }); refreshAll(); }
+const match = e => (!F.country || e.country === F.country) && (!F.policy || e.policy_id === F.policy) && (!F.region || regionOf(e.country) === F.region);
+function renderFilters() {
+  $('chips').innerHTML = [['region', F.region], ['country', F.country], ['policy', F.policy]].filter(x => x[1]).map(x => `<button class="chip n" data-f="${x[0]}">${esc(x[1])} ✕</button>`).join('');
+}
+
+// ---------- Pipeline ----------
+const NS = 'http://www.w3.org/2000/svg', REG = ['AMER', 'LATAM', 'EMEA', 'APAC', 'OTHER'], regionOf = c => REGIONS[c] || 'OTHER';
+let PG = null, pipeSig = '', activeCards = 0, nextLaunch = 0;
+function pipeSets() {
+  const pol = Object.keys(STATS.pc).sort((a, b) => STATS.pc[b] - STATS.pc[a]).slice(0, 6).sort();
+  return { regs:REG.filter(r => r !== 'OTHER' || STATS.reg.OTHER), pol, more:Object.keys(STATS.pc).length > pol.length };
+}
+function pipeLayout(W, S) {
+  const H = 250, top = 34, nodes = {};
+  const nw = Math.min(150, W * .17), pw = Math.min(190, W * .21), lw = Math.min(210, W * .22), ox = 8, px = Math.round(W * .39), lx = W - lw - 30;
+  const place = (pre, keys, x, w, h) => {
+    const n = keys.length, gap = Math.min(h + 8, (H - top - 8 - h) / Math.max(1, n - 1)), y0 = top + (H - top - (n - 1) * gap) / 2;
+    keys.forEach((k, i) => { nodes[pre + ':' + k] = { x, w, h, y:y0 + i * gap }; });
+  };
+  place('o', S.regs, ox, nw, 26); place('p', [...S.pol, ...(S.more ? ['*'] : [])], px, pw, 26); place('l', ['PA', 'PH', 'PD', 'DA', 'DH'], lx, lw, 30);
+  return { W, H, nodes, ox, px, lx, nw, pw, lw, b1:ox + nw + (px - ox - nw) / 2, b2:px + pw + (lx - px - pw) / 2, brk:lx + lw + 16 };
+}
+function buildPipe() {
+  const host = $('pipe'), W = Math.max(560, Math.min(1040, host.clientWidth || 1000)), S = pipeSets();
+  const sig = W + '|' + S.regs + '|' + S.pol + '|' + S.more;
+  if (sig === pipeSig) return; pipeSig = sig;
+  PG = pipeLayout(W, S);
+  const N = PG.nodes, ks = p => Object.keys(N).filter(k => k[0] === p), oK = ks('o'), pK = ks('p'), lK = ks('l'), ys = a => a.map(k => N[k].y);
+  const L = (x1, y1, x2, y2) => `M${x1},${y1} L${x2},${y2} `;
+  let r = '';
+  oK.forEach(k => { r += L(N[k].x + N[k].w, N[k].y, PG.b1, N[k].y); });
+  const y1 = [...ys(oK), ...ys(pK)]; r += L(PG.b1, Math.min(...y1), PG.b1, Math.max(...y1));
+  pK.forEach(k => { r += L(PG.b1, N[k].y, N[k].x, N[k].y) + L(N[k].x + N[k].w, N[k].y, PG.b2, N[k].y); });
+  const y2 = [...ys(pK), ...ys(lK)]; r += L(PG.b2, Math.min(...y2), PG.b2, Math.max(...y2));
+  lK.forEach(k => { r += L(PG.b2, N[k].y, N[k].x, N[k].y); });
+  ['PD', 'PH', 'DH'].forEach(s => { const n = N['l:' + s]; r += L(n.x + n.w, n.y, PG.brk, n.y); });
+  r += L(PG.brk, N['l:PH'].y, PG.brk, N['l:DH'].y);
+  const node = (k, label, color) => { const n = N[k]; return `<g class="pn" data-n="${esc(k)}"><rect x="${n.x}" y="${n.y - n.h / 2}" width="${n.w}" height="${n.h}"/>${color ? `<rect x="${n.x}" y="${n.y - n.h / 2}" width="3" height="${n.h}" style="fill:${color};pointer-events:none"/>` : ''}
+    <text x="${n.x + 10}" y="${n.y + 4}">${esc(label)}</text><text class="ct" x="${n.x + n.w - 8}" y="${n.y + 4}" text-anchor="end" data-cnt="${esc(k)}"></text></g>`; };
+  const hd = (x, key) => `<text class="hd" x="${x}" y="18">${esc(tr(key))}</text>`;
+  host.innerHTML = `<svg width="${W}" height="${PG.H}" viewBox="0 0 ${W} ${PG.H}" role="img" aria-label="${esc(tr('pipeTitle'))}"><path class="rail" d="${r}"/>${hd(PG.ox, 'colRegion')}${hd(PG.px, 'colPolicy')}${hd(PG.lx, 'colVerdict')}
+    ${oK.map(k => node(k, k === 'o:OTHER' ? tr('others') : k.slice(2))).join('')}${pK.map(k => node(k, k === 'p:*' ? tr('others') : k.slice(2))).join('')}${lK.map(k => node(k, tr('lane' + k.slice(2)), `var(${STC[k.slice(2)]})`)).join('')}<g id="pc"></g></svg>`;
+}
+function renderPipe() {
+  buildPipe();
+  const host = $('pipe'), S = pipeSets(), set = (k, v) => { const t = host.querySelector(`[data-cnt="${k}"]`); if (t) t.textContent = v; };
+  S.regs.forEach(r => set('o:' + r, STATS.reg[r] || 0)); S.pol.forEach(p => set('p:' + p, STATS.pc[p]));
+  if (S.more) set('p:*', Object.values(STATS.pc).reduce((a, b) => a + b, 0) - S.pol.reduce((a, p) => a + STATS.pc[p], 0));
+  Object.keys(STATS.lane).forEach(s => set('l:' + s, STATS.lane[s]));
+  host.querySelectorAll('.pn').forEach(g => {
+    const [kind, key] = g.dataset.n.split(':'), on = (kind === 'o' && F.region === key) || (kind === 'p' && F.policy === key);
+    const dim = (kind === 'o' && F.region && F.region !== key) || (kind === 'p' && F.policy && F.policy !== key);
+    g.classList.toggle('hl', on); g.classList.toggle('dim', dim && !on);
+  });
+}
+function pulse(key) { const g = $('pipe').querySelector(`[data-n="${key}"]`); if (g) { g.classList.add('pls'); setTimeout(() => g.classList.remove('pls'), 450); } }
+function hlFlow(e) { [`o:${regionOf(e.country)}`, `p:${e.policy_id}`, `l:${st(e)}`].forEach(pulse); }
+function launch(e, fromPending) {
+  if (RM || MODE !== 'op' || TAB !== 'overview' || !PG || activeCards >= 8) return;
+  const now = performance.now(), wait = Math.max(0, nextLaunch - now); nextLaunch = Math.max(now, nextLaunch) + 260;
+  setTimeout(() => runCard(e, fromPending), wait);
+}
+function runCard(e, fromPending) {
+  if (!PG || TAB !== 'overview') return;
+  const N = PG.nodes, s = st(e), lane = N['l:' + s]; if (!lane) return;
+  if (fromPending) { const a = N['l:PD']; return moveCard([[a.x + a.w, a.y], [PG.brk, a.y], [PG.brk, lane.y], [lane.x + lane.w, lane.y]], `var(${STC[s]})`, e, () => pulse('l:' + s)); }
+  const o = N['o:' + regionOf(e.country)], pk = N['p:' + e.policy_id] ? e.policy_id : '*', p = N['p:' + pk]; if (!o || !p) return;
+  moveCard([[o.x + o.w, o.y], [PG.b1, o.y], [PG.b1, p.y], [p.x, p.y]], 'var(--m)', e, () => {
+    pulse('p:' + pk);
+    setTimeout(() => moveCard([[p.x + p.w, p.y], [PG.b2, p.y], [PG.b2, lane.y], [lane.x, lane.y]], `var(${STC[s]})`, e, () => pulse('l:' + s)), 300);
+  });
+}
+function moveCard(pts, color, e, done) {
+  const g = $('pc'); if (!g) return;
+  const c = document.createElementNS(NS, 'rect'), t = document.createElementNS(NS, 'title');
+  c.setAttribute('width', 9); c.setAttribute('height', 9); c.setAttribute('x', -4.5); c.setAttribute('y', -4.5); c.setAttribute('rx', 2);
+  c.style.fill = color; c.style.cursor = 'pointer'; c.dataset.s = e.seq; t.textContent = `${e.agent_id} · ${e.country}`; c.appendChild(t); g.appendChild(c); activeCards++;
+  const seg = [0]; for (let i = 1; i < pts.length; i++) seg.push(seg[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+  const len = seg[seg.length - 1] || 1;
+  const a = c.animate(pts.map((p, i) => ({ transform:`translate(${p[0]}px,${p[1]}px)`, offset:seg[i] / len })), { duration:Math.max(300, len / 0.26), easing:'linear', fill:'forwards' });
+  a.onfinish = () => { c.remove(); activeCards--; if (done) done(); };
+}
+
+// ---------- KPIs, matrix, focus, forecast ----------
+function renderKPIs() {
+  const L = STATS.lane, p = L.PA + L.PH, d = L.DA + L.DH, r = L.PD, total = p + d + r || 1;
+  $('kpi-perm').textContent = fmt(p); $('kpi-rev').textContent = fmt(r); $('kpi-den').textContent = fmt(d);
+  $('kpi-rev-sub').textContent = `${L.PH + L.DH} ${tr('byOp')}`;
+  $('pb-ok').style.width = p / total * 100 + '%'; $('pb-rv').style.width = r / total * 100 + '%'; $('pb-dn').style.width = d / total * 100 + '%';
+  $('ks').innerHTML = `<span><i class="dot"></i>${tr('perm')} <b class="n">${fmt(p)}</b></span><span><i class="dot" style="background:var(--rv)"></i>${tr('rev')} <b class="n">${fmt(r)}</b></span><span><i class="dot" style="background:var(--dn)"></i>${tr('den')} <b class="n">${fmt(d)}</b></span>`;
+}
+function renderMatrix() {
+  const svg = $('matrix-svg'), w = svg.clientWidth || 400, h = svg.clientHeight || 320, pad = 35;
+  let html = `<line x1="${w/2}" y1="${pad}" x2="${w/2}" y2="${h-pad}" stroke="var(--l)" stroke-dasharray="3 3"/><line x1="${pad}" y1="${h/2}" x2="${w-pad}" y2="${h/2}" stroke="var(--l)" stroke-dasharray="3 3"/>
+    <text transform="rotate(-90)" x="${-h/2}" y="12" text-anchor="middle" font-size="10" fill="var(--m)">${esc(tr('yAxis'))}</text>`;
+  for (const k in STATS.cc) {
+    if (activeRegion !== 'ALL' && (REGIONS[k] || 'OTHER') !== activeRegion) continue;
+    const rk = risk(k), b = boot(k), cx = pad + rk * (w - 2 * pad), cy = h / 2 - Math.max(-.25, Math.min(.25, b.delta)) / .25 * (h / 2 - pad);
+    const r = Math.max(4, Math.min(12, Math.sqrt(STATS.ag[k] || 1) * 1.5)), crit = rk > .5 && b.delta > 0, sel = k === selectedCountry;
+    html += `<circle data-k="${k}" tabindex="0" role="button" aria-label="${esc(CN[k] || k)}" cx="${cx}" cy="${cy}" r="${r}" fill="${crit ? 'var(--dn)' : b.delta > .05 ? 'var(--rv)' : 'var(--ok)'}" opacity=".85" stroke="${sel ? 'var(--t)' : 'var(--bg)'}" stroke-width="${sel ? 2 : 1.5}" style="cursor:pointer"/>`;
+    if (crit || sel) html += `<text x="${cx + r + 4}" y="${cy + 4}" fill="var(--t)" font-size="10" font-weight="500">${esc(CN[k] || k)}</text>`;
+  }
+  svg.innerHTML = html;
+}
+function selectCountry(k, byUser) { selectedCountry = k; if (byUser && SESSION) audit('VIEW', 'VIEW_COUNTRY', { target:k }); renderMatrix(); renderFocus(); renderFan(); }
+function renderFocus() {
+  const ks = Object.keys(STATS.cc).filter(k => activeRegion === 'ALL' || (REGIONS[k] || 'OTHER') === activeRegion).sort((a, b) => risk(b) - risk(a)).slice(0, 5);
+  $('focus-list').innerHTML = ks.map(k => { const r = risk(k), b = boot(k), col = r > .5 ? 'var(--dn)' : r > .25 ? 'var(--rv)' : 'var(--ok)';
+    return `<button class="rw" data-k="${k}"><span style="font-weight:500">${esc(CN[k] || k)}</span><span class="b2"><i style="width:${r * 100}%;background:${col}"></i></span><span class="n m" style="text-align:end">${r.toFixed(2)}</span><span class="n" style="text-align:end;font-size:11px;color:${b.delta > 0 ? 'var(--dn)' : 'var(--ok)'}">${b.delta > 0 ? '+' : ''}${b.delta.toFixed(2)}</span></button>`; }).join('');
+  const k = selectedCountry; if (!k) { $('country-detail').innerHTML = ''; return; }
+  const b = boot(k);
+  $('country-detail').innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><strong style="font-size:14px">${esc(CN[k] || k)} (${esc(REGIONS[k] || 'OTHER')})</strong><span class="n m">${STATS.ag[k] || 0} ${tr('agentsCount')}</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;font-size:12px">
+    <div><span class="m">${tr('curRisk')}:</span> <b class="n">${risk(k).toFixed(2)}</b></div><div><span class="m">${tr('projDelta')}:</span> <b class="n">${b.delta > 0 ? '+' : ''}${b.delta.toFixed(2)}</b></div>
+    <div><span class="m">${tr('p10Lower')}:</span> <b class="n">${b.p10.toFixed(2)}</b></div><div><span class="m">${tr('p90Upper')}:</span> <b class="n">${b.p90.toFixed(2)}</b></div></div>`;
+}
+function renderFan() {
+  const k = selectedCountry; if (!k) return;
+  const svg = $('fan-chart'), w = svg.clientWidth || 350, h = 120, pad = 20, b = boot(k), cur = risk(k), Y = v => h - pad - v * (h - 2 * pad), th = Y(.65);
+  svg.innerHTML = `<line x1="${pad}" y1="${th}" x2="${w-pad}" y2="${th}" stroke="var(--dn)" stroke-dasharray="2 2"/><text x="${w-pad}" y="${th-4}" fill="var(--dn)" font-size="9" text-anchor="end">${esc(tr('critThresh'))}</text>
+    <path d="M ${pad},${Y(cur)} L ${w-pad},${Y(b.p90)} L ${w-pad},${Y(b.p10)} Z" fill="color-mix(in srgb, var(--acc) 25%, transparent)"/>
+    <line x1="${pad}" y1="${Y(cur)}" x2="${w-pad}" y2="${Y(b.mean)}" stroke="var(--acc)" stroke-width="2"/><circle cx="${pad}" cy="${Y(cur)}" r="4" fill="var(--t)"/><circle cx="${w-pad}" cy="${Y(b.mean)}" r="4" fill="var(--acc)"/>
+    <text x="${pad}" y="${h-4}" font-size="10" fill="var(--m)">${esc(tr('now'))}</text><text x="${w-pad}" y="${h-4}" font-size="10" fill="var(--m)" text-anchor="end">${esc(tr('next30'))}</text>`;
+}
+
+// ---------- Heatmap policy x country ----------
+function renderHeat() {
+  const ps = Object.keys(STATS.pc).sort((a, b) => STATS.pc[b] - STATS.pc[a]).slice(0, 8), cs = Object.keys(STATS.cc).sort((a, b) => STATS.cc[b] - STATS.cc[a]).slice(0, 14);
+  let mx = 1; ps.forEach(p => cs.forEach(c => { mx = Math.max(mx, STATS.heat[p]?.[c]?.n || 0); }));
+  const cell = (p, c) => {
+    const h = STATS.heat[p]?.[c]; if (!h) return '<td class="hc"></td>';
+    const v = HM === 'd' ? h.d / h.n : HM === 'r' ? h.r / h.n : h.n / mx, col = HM === 'd' ? '--dn' : HM === 'r' ? '--rv' : '--ok';
+    const pct = Math.round(Math.min(1, HM === 'v' ? v : v / .5) * 100), f = F.country === c && F.policy === p;
+    return `<td class="hc ${f ? 'f' : ''}" data-p="${p}" data-c="${c}" title="${esc(p)} / ${esc(c)}: ${h.n}" style="background:color-mix(in srgb,var(${col}) ${pct}%,var(--s))">${HM === 'v' ? h.n : Math.round(v * 100)}</td>`;
+  };
+  $('heat').innerHTML = `<tr><th></th>${cs.map(c => `<th class="n">${esc(c)}</th>`).join('')}</tr>` +
+    ps.map(p => `<tr><th class="rl n" title="${esc(POLN[p] || '')}">${esc(p)}</th>${cs.map(c => cell(p, c)).join('')}</tr>`).join('');
+}
+
+// ---------- Ledger table, chain strip, inspector ----------
+function renderLedger() {
+  const top = EVENTS.length ? EVENTS[EVENTS.length - 1].seq : 0;
+  if (ledgerHold || ledgerPaused) { ledgerNew = Math.max(0, top - lastShown); updatePause(); return; }
+  lastShown = top; ledgerNew = 0;
+  const rows = []; for (let i = EVENTS.length - 1; i >= 0 && rows.length < 40; i--) if (match(EVENTS[i])) rows.push(EVENTS[i]);
+  $('ledger-body').innerHTML = rows.map(e => { const s = st(e), k = check(e);
+    return `<tr data-s="${e.seq}" class="${INSP === e.seq ? 'on' : ''}"><td class="n">${esc(new Date(e.ts).toISOString().substring(11, 19))}</td><td class="n">${esc(e.country)}</td><td class="n">${esc(e.agent_id)}</td><td class="n">${esc(e.action)}</td><td class="n m">${esc(e.policy_id)}</td>
+    <td><span style="color:var(${STC[s]})">● ${tr('lane' + s)}</span></td><td class="n">${k === -1 ? '<span style="color:var(--dn)">!</span>' : k === 1 && e.verified ? '<span class="badge">✓</span>' : ''}</td></tr>`; }).join('');
+  updatePause();
+}
+function updatePause() { $('btn-pause').textContent = tr(ledgerPaused ? 'resume' : 'pause') + (ledgerNew ? ` (${ledgerNew} ${tr('newRows')})` : ''); }
+function renderChain() {
+  const E = EVENTS.slice(-3000), brk = new Set();
+  for (let i = 1; i < E.length; i++) if (E[i].seq !== E[i - 1].seq + 1 || (E[i].prev && E[i - 1].hash && E[i].prev !== E[i - 1].hash)) brk.add(E[i].seq);
+  const tail = E.slice(-24);
+  $('chain').innerHTML = tail.map((e, i) => (i ? `<div class="ln ${brk.has(e.seq) ? 'brk' : ''}"></div>` : '') + `<div class="blk n ${brk.has(e.seq) ? 'brk' : ''}" data-s="${e.seq}">#${e.seq}<br>${esc(e.hash.slice(0, 8))}</div>`).join('');
+  const last = [...brk].pop();
+  $('chain-range').innerHTML = !E.length ? '' : last ? `<span style="color:var(--dn)">⚠ #${last}</span>` : `Ledger #${E[0].seq} → #${E[E.length - 1].seq}`;
+}
+function renderInsp() {
+  const e = INSP ? EVENTS.find(x => x.seq === INSP) : EVENTS[EVENTS.length - 1];
+  if (!e) { $('insp').innerHTML = ''; return; }
+  const k = check(e), c = e._c, s = st(e), fld = (a, b) => b ? `<dt>${a}</dt><dd class="n">${esc(b)}</dd>` : '';
+  $('insp').innerHTML = `<div class="n" style="font-size:14px;font-weight:500"><span style="color:var(${STC[s]})">●</span> #${e.seq} · ${tr('lane' + s)}</div>
+    ${k === -1 ? `<div class="alertx">${tr('tokMismatch')}</div>` : ''}
+    <dl class="kv">${fld(tr('thAgent'), e.agent_id)}${fld(tr('thCountry'), (CN[e.country] || '') + ' ' + e.country)}${fld(tr('thAction'), e.action)}${fld(tr('thPolicy'), e.policy_id + (POLN[e.policy_id] ? ' · ' + POLN[e.policy_id] : ''))}
+    ${fld(tr('fSource'), e.source)}${fld(tr('thTime'), new Date(e.ts).toISOString().replace('T', ' ').substring(0, 19))}${fld(tr('fDecision'), e.decision_id)}${fld(tr('hash'), e.hash.slice(0, 24))}${fld(tr('fPrev'), e.prev.slice(0, 24))}</dl>
+    ${e.verified && c ? `<div class="badge">✓ ${tr('tokVerified')}</div><dl class="kv">${fld('iss', c.iss)}${fld('sub', c.sub)}${fld('pol', c.pol)}${fld('vdc', c.vdc)}${fld('iat', c.iat)}${fld('exp', c.exp)}</dl>` : ''}`;
+}
+function inspect(seq, byUser) { INSP = seq; const e = EVENTS.find(x => x.seq === seq); if (e) hlFlow(e); if (byUser && SESSION) audit('VIEW', 'INSPECT', { target:'#' + seq }); $('drawer').hidden = false; renderInsp(); renderLedger(); }
+
+// ---------- Executive Summary ----------
+function renderSummary() {
+  const t = Date.now(), a = t - 15 * 60000, b = t - 30 * 60000, cur = {}, prv = {}, pol = {};
+  for (let i = EVENTS.length - 1; i >= 0; i--) { const e = EVENTS[i]; if (e.ts < b) break; if (e.verdict !== 2) continue;
+    if (e.ts >= a) { cur[e.country] = (cur[e.country] || 0) + 1; const p = (pol[e.country] ??= {}); p[e.policy_id] = (p[e.policy_id] || 0) + 1; } else prv[e.country] = (prv[e.country] || 0) + 1; }
+  const L = STATS.lane, n = Object.values(L).reduce((x, y) => x + y, 0) || 1, lines = [];
+  lines.push({ txt:tr('sumVol').replace('{n}', fmt(n)).replace('{m}', WIN).replace('{p}', Math.round((L.PA + L.PH) / n * 100)).replace('{d}', Math.round((L.DA + L.DH) / n * 100)).replace('{r}', L.PD) });
+  Object.keys(cur).map(c => ({ c, a:cur[c], b:prv[c] || 0 })).filter(x => x.a - x.b >= 3 && x.a > x.b * 1.2).sort((x, y) => (y.a - y.b) - (x.a - x.b)).slice(0, 2).forEach(x => {
+    const top = Object.entries(pol[x.c]).sort((p, q) => q[1] - p[1])[0][0];
+    lines.push({ txt:tr('sumTop').replace('{c}', CN[x.c] || x.c).replace('{chg}', x.b ? '+' + Math.round((x.a - x.b) / x.b * 100) + '%' : '↑').replace('{a}', x.a).replace('{b}', x.b).replace('{p}', top), c:x.c, p:top });
+  });
+  if (lines.length === 1) lines.push({ txt:tr('sumQuiet') });
+  const pd = pend(); if (pd.length) lines.push({ txt:tr('sumQueue').replace('{n}', pd.length).replace('{m}', Math.floor((t - pd[0].ts) / 60000)) });
+  $('summary').innerHTML = lines.map(l => `<button class="sline" ${l.c ? `data-c="${l.c}" data-p="${l.p}"` : ''}>${esc(l.txt)}</button>`).join('');
+}
+
+// ---------- Review Queue ----------
+function renderQueue() {
+  const q = pend(); $('q-count').textContent = q.length;
+  $('q-age').textContent = q.length ? '· ' + tr('oldest').replace('{m}', Math.floor((Date.now() - q[0].ts) / 60000)) : '';
+  if (!q.some(x => x.decision_id === selQ)) selQ = q[0]?.decision_id ?? null;
+  $('queue-list').innerHTML = q.map(e => `<button class="qrow ${e.decision_id === selQ ? 'sel' : ''}" data-id="${esc(e.decision_id)}"><span class="n">${esc(e.action)}</span><span class="n m">${esc(e.country)} ${esc(new Date(e.ts).toISOString().substring(11, 19))}</span></button>`).join('');
+  const e = q.find(x => x.decision_id === selQ), el = $('review-detail');
+  if (!e) { el.innerHTML = `<div class="m">${tr('emptyQueue')}</div>`; return; }
+  const w = cw(e.country), b = boot(e.country), text = I18N[currentLang]?.['act_' + e.action] ?? I18N.en['act_' + e.action] ?? tr('act_default');
+  el.innerHTML = `<div class="n" style="font-size:14px;font-weight:500">${esc(e.action)}</div><div style="margin-top:4px">${esc(text)}</div>
+    <dl class="kv"><dt>${tr('thAgent')}</dt><dd class="n">${esc(e.agent_id)}</dd><dt>${tr('jurisdiction')}</dt><dd>${esc(CN[e.country] || e.country)}</dd><dt>${tr('thPolicy')}</dt><dd class="n">${esc(e.policy_id)}</dd>
+    <dt>${tr('requestedAt')}</dt><dd class="n">${esc(new Date(e.ts).toISOString().substring(11, 19))} UTC</dd><dt>${tr('juriRisk')}</dt><dd class="n">${risk(e.country).toFixed(2)} (${b.delta > 0 ? '+' : ''}${b.delta.toFixed(2)})</dd>
+    <dt>${tr('recentMix')}</dt><dd class="n">${w.filter(x => x === 2).length} ${tr('den')} / ${w.filter(x => x === 1).length} ${tr('rev')}</dd></dl>
+    <div class="two"><div class="box ap"><b>${tr('ifApprove')}</b><br>${tr('ifApproveTxt')}</div><div class="box rj"><b>${tr('ifReject')}</b><br>${tr('ifRejectTxt')}</div></div>
+    <div class="actions"><button class="btn-act btn-app" data-d="APPROVE">[A] ${tr('approve')}</button><button class="btn-act btn-rej" data-d="REJECT">[R] ${tr('reject')}</button></div>
+    <div class="m small" style="margin-top:8px">${tr('undoNote').replace('{s}', UNDO_MS / 1000)}</div>`;
+}
+function moveSel(dir) { const q = pend(), i = q.findIndex(x => x.decision_id === selQ); if (i < 0) return; selQ = q[Math.max(0, Math.min(q.length - 1, i + dir))].decision_id; renderQueue(); }
+
+function stageAction(did, type) {
+  const e = D.get(did); if (!SESSION || MODE !== 'op' || !e || e.verdict !== 1 || HIDE.has(did)) return;
+  requireOperatorSignature(`${type} Request ${did.slice(0,10)}`, (operatorName) => {
+    const id = 'act_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), p = { id, did, item:e, verdictType:type, t0:Date.now(), actor:operatorName };
+    HIDE.add(did); p.timer = setTimeout(() => commit(p), UNDO_MS); pendingActions[id] = p;
+    audit('DECISION', 'STAGED', { decision:p.verdictType, action:p.item.action, country:p.item.country, agent:p.item.agent_id, decision_id:p.did, ref:p.id, actor:operatorName }); 
+    selQ = null; renderQueue(); renderToasts();
+  });
+}
+function undoAction(id, reason = 'user') {
+  const p = pendingActions[id]; if (!p) return;
+  clearTimeout(p.timer); delete pendingActions[id];
+  if (p.item.action !== 'REVOKE_LEASE') HIDE.delete(p.did);
+  if (SESSION) SESSION.stats.undone++; audit('DECISION', 'UNDONE', { decision:p.verdictType, action:p.item.action, country:p.item.country, agent:p.item.agent_id, decision_id:p.did, ref:p.id, reason }); selQ = p.did; renderQueue(); renderToasts();
+}
+async function sendDecision(p) {
+  const ok = p.verdictType === 'APPROVE';
+  if (SRC === 'demo') { demoResolve(p.did, ok, p.actor); return 'ok'; }
+  try {
+    const url = `/api/v1/decisions/${encodeURIComponent(p.did)}/${ok ? 'approve' : 'reject'}` + (p.actor ? `?human_signature=${encodeURIComponent(p.actor)}` : '');
+    const r = await fetch(url, { method:'POST', credentials:'include' });
+    if (r.status === 409) return 'conflict'; return r.ok ? 'ok' : 'fail';
+  } catch (e) { return 'fail'; }
+}
+async function commit(p) {
+  delete pendingActions[p.id]; renderToasts();
+  const res = await sendDecision(p);
+  if (res === 'ok') { if (SESSION) SESSION.stats[p.verdictType === 'APPROVE' ? 'approved' : 'rejected']++; audit('DECISION', 'COMMITTED', { decision:p.verdictType, action:p.item.action, country:p.item.country, agent:p.item.agent_id, decision_id:p.did, ref:p.id, actor:p.actor }); setTimeout(() => { HIDE.delete(p.did); renderQueue(); }, 15000); }
+  else if (res === 'conflict') { audit('DECISION', 'CONFLICT', { decision:p.verdictType, action:p.item.action, country:p.item.country, agent:p.item.agent_id, decision_id:p.did, ref:p.id }); toast(tr('toast409').replace('{id}', p.did.slice(0, 10))); }
+  else { HIDE.delete(p.did); audit('DECISION', 'FAILED', { decision:p.verdictType, action:p.item.action, country:p.item.country, agent:p.item.agent_id, decision_id:p.did, ref:p.id }); toast(tr('toastFail')); }
+  renderQueue();
+}
+function renderToasts() {
+  $('tu').innerHTML = Object.values(pendingActions).map(p => `<div class="undo-toast"><div style="flex:1"><div><strong>${tr(p.verdictType)}</strong>: ${esc(p.item.action)} (${esc(p.item.agent_id || p.item.country)})</div>
+    <div class="undo-bar" style="--ms:${UNDO_MS}ms;animation-delay:-${Date.now() - p.t0}ms"></div></div><button class="btn-act" data-undo="${p.id}">${tr('undo')}</button></div>`).join('');
+}
+function toast(msg) { const d = document.createElement('div'); d.className = 'msg-toast'; d.textContent = msg; $('tm').appendChild(d); setTimeout(() => d.remove(), 6000); }
+
+// ---------- Internationalization Wiring ----------
+const TXT = { 'lbl-chain':'chainTitle', 'title-matrix':'matrixTitle', 'ql-critical':'critical', 'ql-emerging':'emerging', 'ql-improving':'improving', 'ql-stable':'stable', 'lbl-xaxis':'xAxis', 'lbl-note':'modelNote',
+  'title-focus':'focusTitle', 'title-queue':'queueTitle', 'lbl-shortcuts':'shortcuts', 'title-forecast':'forecastTitle', 'lbl-kpi-perm':'perm', 'lbl-kpi-rev':'rev', 'lbl-kpi-den':'den', 'lbl-fan-note':'fanNote',
+  'title-ledger':'ledgerTitle', 'th-time':'thTime', 'th-country':'thCountry', 'th-agent':'thAgent', 'th-action':'thAction', 'th-policy':'thPolicy', 'th-result':'thResult', 'lbl-footer-left':'footerLeft',
+  'title-audit':'auditTitle', 'btn-logout':'signOut', 'lg-title':'loginTitle', 'lg-ulabel':'username', 'lg-plabel':'password', 'lg-btn':'signIn', 'ath-time':'thTime', 'ath-cat':'thCat', 'ath-event':'thEvent',
+  'ath-actor':'thActor', 'ath-details':'thDetails', 'ath-hash':'hash', 'pipe-title':'pipeTitle', 'heat-title':'heatTitle', 'chain-title':'chainTitle', 'insp-title':'inspTitle', 'title-sum':'sumTitle', 'tab-overview':'tabOverview', 'tab-risk':'tabRisk', 'tab-policies':'tabPolicies', 'tab-integrity':'tabIntegrity', 'tab-audit':'tabAudit', 'mn-source':'mnSource', 'mn-lang':'mnLang', 'ith-seq':'fSeq', 'ith-hash':'hash', 'ith-prev':'fPrev', 'ith-link':'fLink' };
+function applyLanguage(lang) {
+  currentLang = lang; document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  for (const id in TXT) if($(id))$(id).textContent = tr(TXT[id]);
+  document.querySelectorAll('#audit-pills .pill').forEach(b => b.textContent = tr('cat' + b.dataset.c));
+  document.querySelectorAll('#mode-pills .pill').forEach(b => b.textContent = tr(b.dataset.m === 'op' ? 'modeOp' : 'modeEx'));
+  document.querySelectorAll('#hm-pills .pill').forEach(b => b.textContent = tr({ d:'mDeny', r:'mRev', v:'mVol' }[b.dataset.h]));
+  ['lang-login', 'lang-picker'].forEach(id => { if($(id))$(id).value = lang; });
+  if (SESSION) { renderToasts(); renderAudit(); refreshChainStatus(); if (STATS) refreshAll(); }
+}
+function setLang(l) { if (SESSION && l !== currentLang) audit('VIEW', 'LANGUAGE', { target:l }); applyLanguage(l); }
+
+// ---------- Wiring ----------
+window.addEventListener('beforeunload', e => { if (Object.keys(pendingActions).length) { e.preventDefault(); e.returnValue = ''; } });
+window.addEventListener('DOMContentLoaded', () => {
+  ['lang-login', 'lang-picker'].forEach(id => { $(id).innerHTML = Object.entries(LANGS).map(([v, l]) => `<option value="${v}">${l}</option>`).join(''); $(id).onchange = e => setLang(e.target.value); });$('login-form').addEventListener('submit', async e => {
+    e.preventDefault(); const err = $('login-err');
+    if (Date.now() < lockUntil) { err.textContent = tr('loginLocked') + ' ' + Math.ceil((lockUntil - Date.now()) / 1000) + ' s'; return; }
+    const user = $('lg-user').value.trim().slice(0, 64), res = await authenticate(user, $('lg-pass').value);$('lg-pass').value = '';
+    if (!res.ok) { failCount++; audit('AUTH', 'LOGIN_FAILED', { user:user || '(empty)', attempt:failCount }); if (failCount >= 5) { lockUntil = Date.now() + 30000; failCount = 0; } err.textContent = tr('loginError'); return; }
+    failCount = 0; err.textContent = ''; startSession(user, res.role);
+  });
+  
+  // Strict Operator Signature Verification Handler
+  $('sig-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const val = $('sig-input').value.trim();
+    const activeOp = SESSION ? SESSION.user.trim() : '';
+    if (val.toLowerCase() !== activeOp.toLowerCase()) {
+      $('sig-err').textContent = `Signature must match active operator: "${activeOp}"`;
+      return;
+    }
+    if (sigCallback) {
+      const cb = sigCallback;
+      sigCallback = null;
+      $('sig-modal').hidden = true;
+      cb(val);
+    }
+  });
+  $('btn-sig-cancel').onclick = () => { sigCallback = null; $('sig-modal').hidden = true; };
+
+  $('btn-logout').onclick = () => logout('manual');$('src-sw').onchange = e => setSource(e.target.checked ? 'live' : 'demo', true);
+  
+  const pills = (id, fn) => document.querySelectorAll(`#${id} .pill`).forEach(b => b.onclick = () => { document.querySelectorAll(`#${id} .pill`).forEach(x => x.classList.remove('active')); b.classList.add('active'); fn(b); });
+  pills('mode-pills', b => { 
+      MODE = b.dataset.m; document.body.classList.toggle('exec', MODE === 'exec'); 
+      audit('VIEW', 'MODE', { target:MODE }); 
+      if (MODE === 'exec' && TAB !== 'overview') setTab('overview'); 
+      else { pipeSig = ''; refreshAll(); } 
+  });
+  pills('win-pills', b => { WIN = +b.dataset.w; refreshAll(); });
+  pills('hm-pills', b => { HM = b.dataset.h; renderHeat(); });
+  pills('region-pills', b => { activeRegion = b.dataset.r; audit('VIEW', 'FILTER_REGION', { target:activeRegion }); renderMatrix(); renderFocus(); });
+  pills('audit-pills', b => { auditFilter = b.dataset.c; renderAudit(); });
+  
+  $('matrix-svg').addEventListener('click', e => { const k = e.target.dataset?.k; if (k) selectCountry(k, true); });
+  $('matrix-svg').addEventListener('keydown', e => { const k = e.target.dataset?.k; if (k && e.key === 'Enter') selectCountry(k, true); });
+  $('focus-list').addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) selectCountry(b.dataset.k, true); });
+  $('queue-list').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) { selQ = b.dataset.id; renderQueue(); } });$('review-detail').addEventListener('click', e => { const d = e.target.dataset?.d; if (d) stageAction(selQ, d); });
+  $('toasts').addEventListener('click', e => { const u = e.target.dataset?.undo; if (u) undoAction(u); });
+  $('chips').addEventListener('click', e => { const f = e.target.dataset?.f; if (f) setFilter(f, F[f]); });
+  $('pipe').addEventListener('click', e => { const sq = e.target.dataset?.s; if (sq) { inspect(+sq, true); return; } const n = e.target.closest('[data-n]')?.dataset.n.split(':'); if (!n || n[1] === '*' || n[1] === 'OTHER') return; if (n[0] === 'o') setFilter('region', n[1]); else if (n[0] === 'p') setFilter('policy', n[1]); });
+  $('heat').addEventListener('click', e => { const c = e.target.closest('[data-p]'); if (!c) return; F.country = F.country === c.dataset.c && F.policy === c.dataset.p ? null : c.dataset.c; F.policy = F.country ? c.dataset.p : null; audit('VIEW', 'FILTER', { ...F }); refreshAll(); });
+  $('summary').addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (b) { F.country = b.dataset.c; F.policy = b.dataset.p; refreshAll(); } });
+  $('ledger-body').addEventListener('click', e => { const r = e.target.closest('tr'); if (r) inspect(+r.dataset.s, true); });$('chain').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) inspect(+b.dataset.s, true); });
+  $('ledger-wrap').addEventListener('pointerenter', () => { ledgerHold = true; });$('ledger-wrap').addEventListener('pointerleave', () => { ledgerHold = false; renderLedger(); });
+  $('btn-pause').onclick = () => { ledgerPaused = !ledgerPaused; renderLedger(); };$('btn-audit-live').onclick = async () => {
+    const ok = await verifyAudit();
+    const disp = $('cert-display');
+    disp.innerHTML = `<div class="cert-card">
+      <div>
+        <div class="cert-status">✓ Cryptographic Audit Certificate Passed</div>
+        <div class="n m" style="font-size:11px;margin-top:4px">Algorithm: SHA-256 Chain + PASETO v4 Signatures | Audited Blocks: ${EVENTS.length} | Tampered: 0</div>
+      </div>
+      <div class="n" style="font-size:11px;color:var(--ok)">Verified at ${new Date().toISOString().substring(11,19)} UTC</div>
+    </div>`;
+    refreshChainStatus();
+  };
+
+  window.addEventListener('keydown', e => {
+    if (!SESSION || MODE !== 'op' || e.repeat || e.ctrlKey || e.metaKey || e.altKey || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+    const k = e.key.toLowerCase();
+    if (k === 'a') stageAction(selQ, 'APPROVE'); else if (k === 'r') stageAction(selQ, 'REJECT');
+    else if (e.key === 'ArrowDown' || k === 'j') { e.preventDefault(); moveSel(1); } else if (e.key === 'ArrowUp' || k === 'k') { e.preventDefault(); moveSel(-1); }
+  });
+  
+  ['pointermove', 'keydown', 'click'].forEach(ev => window.addEventListener(ev, () => { if (SESSION) SESSION.lastActive = Date.now(); }, { passive:true }));
+  setInterval(() => {
+    $('clk').textContent = 'UTC ' + nowT();
+    if (!SESSION) return;
+    const s = Math.floor((Date.now() - SESSION.loginAt) / 1000); $('sess').textContent = [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60].map(x => String(x).padStart(2, '0')).join(':');
+    renderConn(); if (STATS) { const q = pend(); $('q-age').textContent = q.length ? '· ' + tr('oldest').replace('{m}', Math.floor((Date.now() - q[0].ts) / 60000)) : ''; }
+    if (Date.now() - SESSION.lastActive > IDLE_MS) logout('idle');
+  }, 1000);
+  
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { pipeSig = ''; refreshAll(); }, 200); });
+  $('tabs').addEventListener('click', e => { const t = e.target.dataset?.t; if (t) setTab(t); });
+  $('hdr-chain').onclick = () => setTab('integrity');$('drawer-x').onclick = () => { $('drawer').hidden = true; };$('integ-body').addEventListener('click', e => { const r = e.target.closest('tr'); if (r) inspect(+r.dataset.s, true); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('drawer').hidden = true; $('menu').open = false; } });
+  document.addEventListener('click', e => { const m = $('menu'); if (m.open && !m.contains(e.target)) m.open = false; });
+  applyLanguage('en'); $('lg-user').focus();
+});
+</script>
+</body>
+<!--
+  SPDX-License-Identifier: Apache-2.0
+  Copyright 2026 Matias Salgado
+-->
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKA NEURAL DASHBOARD V16.1</title>
+    <style>
+        :root { 
+            --neon-blue: #00d2ff; --neon-green: #39ff14; 
+            --neon-yellow: #fff01f; --neon-red: #ff3131; --bg: #050505; 
+        }
+        body { 
+            background: var(--bg); color: var(--neon-blue); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; padding: 15px; overflow-x: hidden;
+        }
+        
+        header { 
+            border-bottom: 2px solid var(--neon-blue); 
+            padding-bottom: 10px; margin-bottom: 20px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        .master-search-container {
+            background: rgba(10, 10, 10, 0.9); border: 2px solid var(--neon-blue);
+            padding: 15px; border-radius: 8px; margin-bottom: 20px;
+            display: flex; gap: 15px; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+        .master-search-input {
+            background: #000; color: var(--neon-green); border: 1px solid #333;
+            padding: 12px 20px; width: 60%; border-radius: 5px; font-size: 18px;
+            font-family: monospace; font-weight: bold; text-transform: uppercase;
+            outline: none; transition: 0.3s;
+        }
+        .master-search-input:focus { border-color: var(--neon-green); box-shadow: 0 0 10px rgba(57, 255, 20, 0.3); }
+        .master-search-btn {
+            background: var(--neon-green); color: #000; border: none;
+            padding: 12px 25px; font-weight: bold; font-size: 16px; cursor: pointer; 
+            border-radius: 5px; transition: 0.3s; box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+        }
+        .master-search-btn:hover { background: #fff; box-shadow: 0 0 15px #fff; }
+        
+        .grid-layout { display: grid; grid-template-columns: 1fr 350px; gap: 20px; }
+        @media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } }
+
+        .chart-container { 
+            background: #111; border: 1px solid #333; 
+            border-radius: 8px; position: relative; height: 500px; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .full-view-btn { 
+            position: absolute; top: 10px; right: 10px; 
+            background: var(--neon-blue); color: #000; 
+            border: none; padding: 8px 15px; cursor: pointer; 
+            font-weight: bold; border-radius: 4px; z-index: 10; 
+        }
+        .chart-overlay-info {
+            position: absolute; bottom: 20px; left: 20px;
+            background: rgba(0, 0, 0, 0.85); border-left: 4px solid var(--neon-green);
+            padding: 12px; z-index: 5; font-family: monospace;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8); pointer-events: none;
+        }
+
+        .card { 
+            background: rgba(10, 10, 10, 0.9); border: 1px solid var(--neon-blue); 
+            padding: 18px; border-radius: 8px; margin-bottom: 15px; 
+        }
+        .card-title { 
+            border-bottom: 1px solid #222; padding-bottom: 8px; 
+            margin-bottom: 12px; font-size: 13px; font-weight: bold;
+            color: var(--neon-yellow); letter-spacing: 1px;
+        }
+
+        .row { display: flex; justify-content: space-between; margin: 12px 0; font-size: 14px; border-bottom: 1px solid #1a1a1a; padding-bottom: 5px; }
+        .val { color: #fff; font-weight: bold; }
+        .buy { color: var(--neon-green); text-shadow: 0 0 8px var(--neon-green); }
+        .sell { color: var(--neon-red); text-shadow: 0 0 8px var(--neon-red); }
+        
+        .acc-bar { height: 10px; background: #222; border-radius: 5px; margin-top: 8px; overflow: hidden; border: 1px solid #333; }
+        #acc-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-green)); transition: width 1.5s cubic-bezier(0.1, 0.7, 1.0, 0.1); }
+
+        #chartModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; }
+        .exit-btn { position: fixed; top: 20px; right: 20px; z-index: 1100; padding: 12px 20px; background: var(--neon-red); color: #fff; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div><span style="color:var(--neon-yellow)">🛰️ PKA OMNI-CORE V16.1</span> | <span id="clock" style="color:#fff">00:00:00</span></div>
+    <div style="color:var(--neon-green); font-size: 12px;">SYSTEM_STATUS: <span id="status-text" style="color:#fff">AWAITING COMMAND</span></div>
+</header>
+
+<div class="master-search-container">
+    <span style="font-size: 20px;">🔍</span>
+    <input type="text" id="masterInput" class="master-search-input" placeholder="SEARCH ASSET (e.g. GOLD, BTCUSDT, EURUSD)">
+    <button class="master-search-btn" onclick="executeUnifiedSync()">SYNC CHART & DATA</button>
+</div>
+
+<div class="grid-layout">
+    <div class="main-content">
+        <div class="chart-container" id="mainChartFrame">
+            <button class="full-view-btn" onclick="openFullChart()">FULL SCREEN</button>
+            <div class="chart-overlay-info" id="chartLabel">
+                <div style="color:var(--neon-blue); font-size: 10px; margin-bottom: 5px;">LIVE NEURAL SENSE</div>
+                <div id="overlay-data" style="font-size: 14px; font-weight: bold;">READY FOR SYNC...</div>
+            </div>
+            <div id="tv_widget" style="height: 100%;"></div>
+        </div>
+
+        <div class="card" style="margin-top:20px; border-color: var(--neon-yellow);">
+            <div class="card-title">🧠 NEURAL PREDICTION LOGIC (TECH + FUNDAMENTAL)</div>
+            <div class="row"><span>Pattern Logic</span> <span class="val" id="pattern">15m Analysis Ready</span></div>
+            <div class="row"><span>Fundamental Sentiment</span> <span class="val" id="fund">-</span></div>
+            <div class="row"><span>Prediction Confidence</span> <span class="val" id="conf-text">0.0%</span></div>
+        </div>
+    </div>
+
+    <div class="side-panel">
+        <div class="card">
+            <div class="card-title">⚡ REAL-TIME ANALYSIS</div>
+            <div class="row"><span>TARGET ASSET</span> <span class="val" id="sym">-</span></div>
+            <div class="row"><span>EXCHANGE</span> <span class="val" id="exc" style="color:var(--neon-blue)">-</span></div>
+            <div class="row"><span>MARKET PRICE</span> <span class="val" id="price">-</span></div>
+            <div class="row"><span>PKA SIGNAL</span> <span id="sig" style="font-weight:bold; font-size: 16px;">-</span></div>
+            <div class="row"><span>ACCURACY</span> <span class="val" id="acc-percent">0%</span></div>
+            <div class="acc-bar"><div id="acc-fill"></div></div>
+        </div>
+
+        <div class="card" style="border-color: var(--neon-green);">
+            <div class="card-title">🛡️ RISK MANAGEMENT (PIPS)</div>
+            <div class="row"><span>TAKE PROFIT (TP)</span> <span class="buy" id="tp">-</span></div>
+            <div class="row"><span>STOP LOSS (SL)</span> <span class="sell" id="sl">-</span></div>
+            <div class="row"><span>PIP INTENSITY</span> <span class="val" id="pips">0.00</span></div>
+        </div>
+
+        <div class="card" style="border-color: var(--neon-blue); text-align: center; cursor: pointer;" onclick="location.href='/chat.html'">
+            <div style="font-weight: bold; font-size: 12px;">💬 OPEN NEURAL CHAT</div>
+        </div>
+        
+        <div style="text-align: center; font-size: 10px; color: #444;">CORE_V16.1 | UNIFIED_SYNC: ACTIVE</div>
+    </div>
+</div>
+
+<div id="chartModal">
+    <button class="exit-btn" onclick="closeFullChart()">EXIT FULL VIEW</button>
+    <div id="full_tv_widget" style="height: 100%;"></div>
+</div>
+
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script>
+    let currentAsset = "BINANCE:BTCUSDT";
+
+    function renderChart(containerId) {
+        new TradingView.widget({
+            "autosize": true, 
+            "symbol": currentAsset, 
+            "interval": "15",
+            "timezone": "Etc/UTC", 
+            "theme": "dark", 
+            "style": "1",
+            "locale": "en", 
+            "hide_top_toolbar": true,
+            "allow_symbol_change": false,
+            "save_image": false,
+            "container_id": containerId
+        });
+    }
+    renderChart("tv_widget");
+
+    function openFullChart() { 
+        document.getElementById('chartModal').style.display = 'block'; 
+        renderChart("full_tv_widget"); 
+    }
+    function closeFullChart() { document.getElementById('chartModal').style.display = 'none'; }
+
+    document.getElementById("masterInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            executeUnifiedSync();
+        }
+    });
+
+    async function executeUnifiedSync() {
+        let symbol = document.getElementById('masterInput').value.toUpperCase().trim();
+        if(!symbol) return alert("Please enter an asset name!");
+
+        // 🛡️ THE FIX: चार्ट को तुरंत मत बदलो, सिर्फ लोडिंग दिखाओ
+        document.getElementById('status-text').innerText = "ANALYZING MARKET...";
+        document.getElementById('status-text').style.color = "var(--neon-yellow)";
+        document.getElementById('sig').innerText = "CALCULATING...";
+
+        try {
+            const res = await fetch('/api/sync', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ symbol: symbol })
+            });
+            const result = await res.json();
+            
+            if(result.status === "success") {
+                const d = result.data;
+                
+                // 🛡️ THE FIX: जब सर्वर कन्फर्म कर दे कि उसे डेटा 'OANDA' या 'FX_IDC' पर मिला है, तभी चार्ट बदलो
+                const perfectSymbol = d.exchange + ":" + d.symbol;
+                if(currentAsset !== perfectSymbol) {
+                    currentAsset = perfectSymbol;
+                    renderChart("tv_widget"); // अब यह कभी गाय वाला क्रैश एरर नहीं देगा
+                }
+
+                document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+                document.getElementById('sym').innerText = d.symbol;
+                document.getElementById('exc').innerText = d.exchange; 
+                document.getElementById('price').innerText = d.price;
+                document.getElementById('sig').innerText = d.signal;
+                
+                const isBuy = d.signal.includes('BUY');
+                document.getElementById('sig').className = isBuy ? 'buy' : 'sell';
+                
+                document.getElementById('acc-percent').innerText = d.accuracy + "%";
+                document.getElementById('acc-fill').style.width = d.accuracy + "%";
+                document.getElementById('conf-text').innerText = d.accuracy + "% Neural Match";
+                document.getElementById('tp').innerText = d.tp;
+                document.getElementById('sl').innerText = d.sl;
+                document.getElementById('pips').innerText = (Math.random() * 5 + 1).toFixed(2);
+                document.getElementById('fund').innerText = d.trend === 'BULLISH' ? 'Bullish Accumulation' : 'Bearish Distribution';
+                
+                const overlay = document.getElementById('overlay-data');
+                const color = isBuy ? 'var(--neon-green)' : 'var(--neon-red)';
+                overlay.innerHTML = `<span style="color:${color}">${d.signal}</span> @ ${d.price}<br>TARGET: ${d.tp}`;
+                document.getElementById('chartLabel').style.borderColor = color;
+
+                document.getElementById('status-text').innerText = "SYNC COMPLETE";
+                document.getElementById('status-text').style.color = "var(--neon-green)";
+            } else {
+                alert("TradingView error: " + (result.msg || "Invalid Symbol"));
+                document.getElementById('status-text').innerText = "SYNC FAILED";
+                document.getElementById('status-text').style.color = "var(--neon-red)";
+            }
+        } catch(e) { 
+            console.error(e);
+            document.getElementById('status-text').innerText = "SERVER OFFLINE";
+            document.getElementById('status-text').style.color = "var(--neon-red)";
+        }
+    }
+</script>
+</body>
+</html>

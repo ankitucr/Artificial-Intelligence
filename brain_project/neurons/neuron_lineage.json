@@ -1,0 +1,302 @@
+{
+  "0": {
+    "id": 0,
+    "parent": null,
+    "born_generation": 0,
+    "event": "initial"
+  },
+  "1": {
+    "id": 1,
+    "parent": null,
+    "born_generation": 0,
+    "event": "initial"
+  },
+  "2": {
+    "id": 2,
+    "parent": null,
+    "born_generation": 0,
+    "event": "initial"
+  },
+  "3": {
+    "id": 3,
+    "parent": null,
+    "born_generation": 0,
+    "event": "initial"
+  },
+  "4": {
+    "id": 4,
+    "parent": null,
+    "born_generation": 0,
+    "event": "initial"
+  },
+  "5": {
+    "id": 5,
+    "parent": 4,
+    "born_generation": 3,
+    "event": "neurogenesis"
+  },
+  "6": {
+    "id": 6,
+    "parent": 4,
+    "born_generation": 8,
+    "event": "neurogenesis"
+  },
+  "7": {
+    "id": 7,
+    "parent": 4,
+    "born_generation": 13,
+    "event": "neurogenesis"
+  },
+  "8": {
+    "id": 8,
+    "parent": 4,
+    "born_generation": 18,
+    "event": "neurogenesis"
+  },
+  "9": {
+    "id": 9,
+    "parent": 4,
+    "born_generation": 23,
+    "event": "neurogenesis"
+  },
+  "10": {
+    "id": 10,
+    "parent": 4,
+    "born_generation": 28,
+    "event": "neurogenesis"
+  },
+  "11": {
+    "id": 11,
+    "parent": 4,
+    "born_generation": 33,
+    "event": "neurogenesis"
+  },
+  "12": {
+    "id": 12,
+    "parent": 4,
+    "born_generation": 38,
+    "event": "neurogenesis"
+  },
+  "13": {
+    "id": 13,
+    "parent": 4,
+    "born_generation": 43,
+    "event": "neurogenesis"
+  },
+  "14": {
+    "id": 14,
+    "parent": 4,
+    "born_generation": 48,
+    "event": "neurogenesis"
+  },
+  "15": {
+    "id": 15,
+    "parent": 4,
+    "born_generation": 53,
+    "event": "neurogenesis"
+  },
+  "16": {
+    "id": 16,
+    "parent": 4,
+    "born_generation": 58,
+    "event": "neurogenesis"
+  },
+  "17": {
+    "id": 17,
+    "parent": 4,
+    "born_generation": 63,
+    "event": "neurogenesis"
+  },
+  "18": {
+    "id": 18,
+    "parent": 4,
+    "born_generation": 68,
+    "event": "neurogenesis"
+  },
+  "19": {
+    "id": 19,
+    "parent": 4,
+    "born_generation": 73,
+    "event": "neurogenesis"
+  },
+  "20": {
+    "id": 20,
+    "parent": 4,
+    "born_generation": 78,
+    "event": "neurogenesis"
+  },
+  "21": {
+    "id": 21,
+    "parent": 4,
+    "born_generation": 83,
+    "event": "neurogenesis"
+  },
+  "22": {
+    "id": 22,
+    "parent": 4,
+    "born_generation": 88,
+    "event": "neurogenesis"
+  },
+  "23": {
+    "id": 23,
+    "parent": 4,
+    "born_generation": 93,
+    "event": "neurogenesis"
+  },
+  "24": {
+    "id": 24,
+    "parent": 4,
+    "born_generation": 98,
+    "event": "neurogenesis"
+  },
+  "25": {
+    "id": 25,
+    "parent": 4,
+    "born_generation": 103,
+    "event": "neurogenesis"
+  },
+  "26": {
+    "id": 26,
+    "parent": 4,
+    "born_generation": 108,
+    "event": "neurogenesis"
+  },
+  "27": {
+    "id": 27,
+    "parent": 4,
+    "born_generation": 113,
+    "event": "neurogenesis"
+  },
+  "28": {
+    "id": 28,
+    "parent": 4,
+    "born_generation": 118,
+    "event": "neurogenesis"
+  },
+  "29": {
+    "id": 29,
+    "parent": 4,
+    "born_generation": 123,
+    "event": "neurogenesis"
+  },
+  "30": {
+    "id": 30,
+    "parent": 4,
+    "born_generation": 128,
+    "event": "neurogenesis"
+  },
+  "31": {
+    "id": 31,
+    "parent": 4,
+    "born_generation": 133,
+    "event": "neurogenesis"
+  },
+  "32": {
+    "id": 32,
+    "parent": 4,
+    "born_generation": 138,
+    "event": "neurogenesis"
+  },
+  "33": {
+    "id": 33,
+    "parent": 4,
+    "born_generation": 143,
+    "event": "neurogenesis"
+  },
+  "34": {
+    "id": 34,
+    "parent": 4,
+    "born_generation": 148,
+    "event": "neurogenesis"
+  },
+  "35": {
+    "id": 35,
+    "parent": 4,
+    "born_generation": 153,
+    "event": "neurogenesis"
+  },
+  "36": {
+    "id": 36,
+    "parent": 4,
+    "born_generation": 158,
+    "event": "neurogenesis"
+  },
+  "37": {
+    "id": 37,
+    "parent": 4,
+    "born_generation": 163,
+    "event": "neurogenesis"
+  },
+  "38": {
+    "id": 38,
+    "parent": 4,
+    "born_generation": 168,
+    "event": "neurogenesis"
+  },
+  "39": {
+    "id": 39,
+    "parent": 4,
+    "born_generation": 173,
+    "event": "neurogenesis"
+  },
+  "40": {
+    "id": 40,
+    "parent": 4,
+    "born_generation": 178,
+    "event": "neurogenesis"
+  },
+  "41": {
+    "id": 41,
+    "parent": 4,
+    "born_generation": 183,
+    "event": "neurogenesis"
+  },
+  "42": {
+    "id": 42,
+    "parent": 4,
+    "born_generation": 188,
+    "event": "neurogenesis"
+  },
+  "43": {
+    "id": 43,
+    "parent": 4,
+    "born_generation": 193,
+    "event": "neurogenesis"
+  },
+  "44": {
+    "id": 44,
+    "parent": 4,
+    "born_generation": 198,
+    "event": "neurogenesis"
+  },
+  "45": {
+    "id": 45,
+    "parent": 4,
+    "born_generation": 203,
+    "event": "neurogenesis"
+  },
+  "46": {
+    "id": 46,
+    "parent": 4,
+    "born_generation": 208,
+    "event": "neurogenesis"
+  },
+  "47": {
+    "id": 47,
+    "parent": 4,
+    "born_generation": 213,
+    "event": "neurogenesis"
+  },
+  "48": {
+    "id": 48,
+    "parent": 4,
+    "born_generation": 218,
+    "event": "neurogenesis"
+  },
+  "49": {
+    "id": 49,
+    "parent": 4,
+    "born_generation": 223,
+    "event": "neurogenesis"
+  }
+}

@@ -1,0 +1,129 @@
+import asyncio
+import tempfile
+from pathlib import Path
+
+from core.brain import PIKABrain
+from core.semantic_code_memory import SemanticCodeMemory
+from tests.test_phase34_brain_integration import (
+    FakeMemory,
+    FakeAnalyzer,
+    FakePlanner,
+    FakeDecision,
+    FakeAgent,
+    FakeRouter,
+    FakeWorkspaceExecutor,
+    FakePhase32,
+    FakePhase33,
+)
+
+
+class EmptyLearning:
+    def lookup_candidates(self, **kwargs):
+        return []
+
+
+class SuccessfulGenerator:
+    async def generate_from_failure(self, **kwargs):
+        return {
+            "success": True,
+            "target_path": "calculator.py",
+            "old_text": "return a - b",
+            "test_path": "test_calculator.py",
+            "candidates": ["return a + b"],
+        }
+
+
+async def run_test():
+    with tempfile.TemporaryDirectory(prefix="pika_phase35_") as tmp:
+        db_path = Path(tmp) / "semantic_memory.json"
+        semantic = SemanticCodeMemory(db_path)
+
+        # Add one implementation with explicit test evidence.
+        saved = semantic.remember(
+            intent="Build a calculator and fix multiplication code errors",
+            code="return a * b",
+            language="python",
+            description="Calculator multiplication implementation",
+            tags=["calculator", "multiplication", "repair"],
+            verification="test_verified",
+            evidence=["Dedicated isolated test fixture"],
+        )
+        assert saved["verification"] == "test_verified"
+
+        # Unverified code must never be retrieved in verified-only mode.
+        semantic.remember(
+            intent="calculator multiplication unverified",
+            code="return a / b",
+            tags=["calculator", "multiplication"],
+            verification="unverified",
+        )
+
+        hits = semantic.retrieve(
+            query="Build a calculator project and fix its code error",
+            verified_only=True,
+            limit=3,
+        )
+        assert any(item["id"] == saved["id"] for item in hits), hits
+        assert all(item["verification"] in {
+            "test_verified", "formally_verified"
+        } for item in hits), hits
+
+        agent = FakeAgent()
+        brain = PIKABrain(
+            router=FakeRouter(agent),
+            memory=FakeMemory(),
+            planner=FakePlanner(),
+            evaluator=object(),
+            experience=object(),
+            task_analyzer=FakeAnalyzer(),
+            decision_engine=FakeDecision(),
+            tool_runtime=None,
+            max_retries=0,
+        )
+
+        # Inject isolated test doubles into the real Brain flow.
+        brain.tool_runtime = object()
+        brain.workspace_executor = FakeWorkspaceExecutor()
+        brain.phase32_controller = FakePhase32()
+        brain.phase34_learning = EmptyLearning()
+        brain.phase33_controller = FakePhase33()
+        brain.repair_candidate_generator = SuccessfulGenerator()
+        brain.semantic_code_memory = semantic
+
+        result = await brain.think(
+            "Build a calculator project and fix its code error"
+        )
+
+        assert result.get("success") is True, result
+        assert "phase33_repair" in result, result
+
+        calls = brain.phase33_controller.calls
+        assert len(calls) == 1, calls
+        candidates = calls[0]["candidates"]
+
+        # Semantic memory's verified candidate must reach Phase 33.
+        assert "return a * b" in candidates, candidates
+
+        # The generated fallback candidate must still be preserved.
+        assert "return a + b" in candidates, candidates
+
+        # Retrieval alone must not promote unverified code.
+        fresh = SemanticCodeMemory(db_path)
+        unverified = [
+            v for v in fresh.data["variants"]
+            if v["code"] == "return a / b"
+        ]
+        assert len(unverified) == 1
+        assert unverified[0]["verification"] == "unverified"
+
+        print("\nPHASE 35 BRAIN SEMANTIC INTEGRATION: PASS")
+        print("Verified: real PIKABrain.think() retrieved semantic memory.")
+        print("Verified: only verified memory candidates were retrieved.")
+        print("Verified: semantic candidate reached Phase 33.")
+        print("Verified: generated fallback candidate was preserved.")
+        print("Verified: unverified memory variant remained unverified.")
+        print("Verified: isolated temporary database was used.")
+
+
+if __name__ == "__main__":
+    asyncio.run(run_test())

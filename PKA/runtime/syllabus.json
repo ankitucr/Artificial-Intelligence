@@ -1,0 +1,1932 @@
+[
+  {
+    "topic": "Part of Speech",
+    "url": "https://en.wikipedia.org/wiki/Part_of_speech",
+    "status": "learned"
+  },
+  {
+    "topic": "Noun",
+    "url": "https://en.wikipedia.org/wiki/Noun",
+    "status": "learned"
+  },
+  {
+    "topic": "Verb",
+    "url": "https://en.wikipedia.org/wiki/Verb",
+    "status": "learned"
+  },
+  {
+    "topic": "Adjective",
+    "url": "https://en.wikipedia.org/wiki/Adjective",
+    "status": "learned"
+  },
+  {
+    "topic": "Adverb",
+    "url": "https://en.wikipedia.org/wiki/Adverb",
+    "status": "learned"
+  },
+  {
+    "topic": "Pronoun",
+    "url": "https://en.wikipedia.org/wiki/Pronoun",
+    "status": "learned"
+  },
+  {
+    "topic": "Grammatical Tense",
+    "url": "https://en.wikipedia.org/wiki/Grammatical_tense",
+    "status": "learned"
+  },
+  {
+    "topic": "Sentence (linguistics)",
+    "url": "https://en.wikipedia.org/wiki/Sentence_(linguistics)",
+    "status": "learned"
+  },
+  {
+    "topic": "Syntax",
+    "url": "https://en.wikipedia.org/wiki/Syntax",
+    "status": "learned"
+  },
+  {
+    "topic": "Semantics",
+    "url": "https://en.wikipedia.org/wiki/Semantics",
+    "status": "learned"
+  },
+  {
+    "topic": "Pragmatics",
+    "url": "https://en.wikipedia.org/wiki/Pragmatics",
+    "status": "learned"
+  },
+  {
+    "topic": "Morphology (linguistics)",
+    "url": "https://en.wikipedia.org/wiki/Morphology_(linguistics)",
+    "status": "learned"
+  },
+  {
+    "topic": "Phonology",
+    "url": "https://en.wikipedia.org/wiki/Phonology",
+    "status": "learned"
+  },
+  {
+    "topic": "Phonetics",
+    "url": "https://en.wikipedia.org/wiki/Phonetics",
+    "status": "learned"
+  },
+  {
+    "topic": "Discourse Analysis",
+    "url": "https://en.wikipedia.org/wiki/Discourse_analysis",
+    "status": "learned"
+  },
+  {
+    "topic": "Supervised Learning",
+    "url": "https://en.wikipedia.org/wiki/Supervised_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Unsupervised Learning",
+    "url": "https://en.wikipedia.org/wiki/Unsupervised_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Generative Model",
+    "url": "https://en.wikipedia.org/wiki/Generative_model",
+    "status": "learned"
+  },
+  {
+    "topic": "Large Language Model",
+    "url": "https://en.wikipedia.org/wiki/Large_language_model",
+    "status": "learned"
+  },
+  {
+    "topic": "Computer Vision",
+    "url": "https://en.wikipedia.org/wiki/Computer_vision",
+    "status": "learned"
+  },
+  {
+    "topic": "Gradient Descent",
+    "url": "https://en.wikipedia.org/wiki/Gradient_descent",
+    "status": "learned"
+  },
+  {
+    "topic": "Backpropagation",
+    "url": "https://en.wikipedia.org/wiki/Backpropagation",
+    "status": "learned"
+  },
+  {
+    "topic": "Bayesian Inference",
+    "url": "https://en.wikipedia.org/wiki/Bayesian_inference",
+    "status": "learned"
+  },
+  {
+    "topic": "Markov Chain",
+    "url": "https://en.wikipedia.org/wiki/Markov_chain",
+    "status": "learned"
+  },
+  {
+    "topic": "Hidden Markov Model",
+    "url": "https://en.wikipedia.org/wiki/Hidden_Markov_model",
+    "status": "learned"
+  },
+  {
+    "topic": "Data Mining",
+    "url": "https://en.wikipedia.org/wiki/Data_mining",
+    "status": "learned"
+  },
+  {
+    "topic": "Feature Engineering",
+    "url": "https://en.wikipedia.org/wiki/Feature_engineering",
+    "status": "learned"
+  },
+  {
+    "topic": "Recommender System",
+    "url": "https://en.wikipedia.org/wiki/Recommender_system",
+    "status": "learned"
+  },
+  {
+    "topic": "Knowledge Graph",
+    "url": "https://en.wikipedia.org/wiki/Knowledge_graph",
+    "status": "learned"
+  },
+  {
+    "topic": "Reinforcement Learning",
+    "url": "https://en.wikipedia.org/wiki/Reinforcement_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Linear Algebra",
+    "url": "https://en.wikipedia.org/wiki/Linear_algebra",
+    "status": "learned"
+  },
+  {
+    "topic": "Calculus",
+    "url": "https://en.wikipedia.org/wiki/Calculus",
+    "status": "learned"
+  },
+  {
+    "topic": "Probability Theory",
+    "url": "https://en.wikipedia.org/wiki/Probability_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Statistics",
+    "url": "https://en.wikipedia.org/wiki/Statistics",
+    "status": "learned"
+  },
+  {
+    "topic": "Discrete Mathematics",
+    "url": "https://en.wikipedia.org/wiki/Discrete_mathematics",
+    "status": "learned"
+  },
+  {
+    "topic": "Graph Theory",
+    "url": "https://en.wikipedia.org/wiki/Graph_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Number Theory",
+    "url": "https://en.wikipedia.org/wiki/Number_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Topology",
+    "url": "https://en.wikipedia.org/wiki/Topology",
+    "status": "learned"
+  },
+  {
+    "topic": "Differential Equation",
+    "url": "https://en.wikipedia.org/wiki/Differential_equation",
+    "status": "learned"
+  },
+  {
+    "topic": "Matrix (mathematics)",
+    "url": "https://en.wikipedia.org/wiki/Matrix_(mathematics)",
+    "status": "learned"
+  },
+  {
+    "topic": "Eigenvalues and Eigenvectors",
+    "url": "https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors",
+    "status": "learned"
+  },
+  {
+    "topic": "Set Theory",
+    "url": "https://en.wikipedia.org/wiki/Set_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Combinatorics",
+    "url": "https://en.wikipedia.org/wiki/Combinatorics",
+    "status": "learned"
+  },
+  {
+    "topic": "Fourier Transform",
+    "url": "https://en.wikipedia.org/wiki/Fourier_transform",
+    "status": "learned"
+  },
+  {
+    "topic": "Chaos Theory",
+    "url": "https://en.wikipedia.org/wiki/Chaos_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Classical Mechanics",
+    "url": "https://en.wikipedia.org/wiki/Classical_mechanics",
+    "status": "learned"
+  },
+  {
+    "topic": "Quantum Mechanics",
+    "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+    "status": "learned"
+  },
+  {
+    "topic": "Particle Physics",
+    "url": "https://en.wikipedia.org/wiki/Particle_physics",
+    "status": "learned"
+  },
+  {
+    "topic": "Nuclear Physics",
+    "url": "https://en.wikipedia.org/wiki/Nuclear_physics",
+    "status": "learned"
+  },
+  {
+    "topic": "Plasma Physics",
+    "url": "https://en.wikipedia.org/wiki/Plasma_physics",
+    "status": "learned"
+  },
+  {
+    "topic": "Optics",
+    "url": "https://en.wikipedia.org/wiki/Optics",
+    "status": "learned"
+  },
+  {
+    "topic": "Wave",
+    "url": "https://en.wikipedia.org/wiki/Wave",
+    "status": "learned"
+  },
+  {
+    "topic": "Quantum Field Theory",
+    "url": "https://en.wikipedia.org/wiki/Quantum_field_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "String Theory",
+    "url": "https://en.wikipedia.org/wiki/String_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Cosmology",
+    "url": "https://en.wikipedia.org/wiki/Cosmology",
+    "status": "learned"
+  },
+  {
+    "topic": "Dark Matter",
+    "url": "https://en.wikipedia.org/wiki/Dark_matter",
+    "status": "learned"
+  },
+  {
+    "topic": "Dark Energy",
+    "url": "https://en.wikipedia.org/wiki/Dark_energy",
+    "status": "learned"
+  },
+  {
+    "topic": "Black Hole",
+    "url": "https://en.wikipedia.org/wiki/Black_hole",
+    "status": "learned"
+  },
+  {
+    "topic": "Time Dilation",
+    "url": "https://en.wikipedia.org/wiki/Time_dilation",
+    "status": "learned"
+  },
+  {
+    "topic": "Entropy",
+    "url": "https://en.wikipedia.org/wiki/Entropy",
+    "status": "learned"
+  },
+  {
+    "topic": "Operating System",
+    "url": "https://en.wikipedia.org/wiki/Operating_system",
+    "status": "learned"
+  },
+  {
+    "topic": "Compiler",
+    "url": "https://en.wikipedia.org/wiki/Compiler",
+    "status": "learned"
+  },
+  {
+    "topic": "Interpreter (computing)",
+    "url": "https://en.wikipedia.org/wiki/Interpreter_(computing)",
+    "status": "learned"
+  },
+  {
+    "topic": "Object-oriented Programming",
+    "url": "https://en.wikipedia.org/wiki/Object-oriented_programming",
+    "status": "learned"
+  },
+  {
+    "topic": "Functional Programming",
+    "url": "https://en.wikipedia.org/wiki/Functional_programming",
+    "status": "learned"
+  },
+  {
+    "topic": "Cloud Computing",
+    "url": "https://en.wikipedia.org/wiki/Cloud_computing",
+    "status": "learned"
+  },
+  {
+    "topic": "Microservices",
+    "url": "https://en.wikipedia.org/wiki/Microservices",
+    "status": "learned"
+  },
+  {
+    "topic": "Virtualization",
+    "url": "https://en.wikipedia.org/wiki/Virtualization",
+    "status": "learned"
+  },
+  {
+    "topic": "API",
+    "url": "https://en.wikipedia.org/wiki/API",
+    "status": "learned"
+  },
+  {
+    "topic": "Web Server",
+    "url": "https://en.wikipedia.org/wiki/Web_server",
+    "status": "learned"
+  },
+  {
+    "topic": "Distributed Computing",
+    "url": "https://en.wikipedia.org/wiki/Distributed_computing",
+    "status": "learned"
+  },
+  {
+    "topic": "Parallel Computing",
+    "url": "https://en.wikipedia.org/wiki/Parallel_computing",
+    "status": "learned"
+  },
+  {
+    "topic": "Database",
+    "url": "https://en.wikipedia.org/wiki/Database",
+    "status": "learned"
+  },
+  {
+    "topic": "Blockchain",
+    "url": "https://en.wikipedia.org/wiki/Blockchain",
+    "status": "learned"
+  },
+  {
+    "topic": "Containerization",
+    "url": "https://en.wikipedia.org/wiki/Containerization_(computing)",
+    "status": "learned"
+  },
+  {
+    "topic": "Capitalism",
+    "url": "https://en.wikipedia.org/wiki/Capitalism",
+    "status": "learned"
+  },
+  {
+    "topic": "Inflation",
+    "url": "https://en.wikipedia.org/wiki/Inflation",
+    "status": "learned"
+  },
+  {
+    "topic": "Monetary Policy",
+    "url": "https://en.wikipedia.org/wiki/Monetary_policy",
+    "status": "learned"
+  },
+  {
+    "topic": "Fiscal Policy",
+    "url": "https://en.wikipedia.org/wiki/Fiscal_policy",
+    "status": "learned"
+  },
+  {
+    "topic": "Supply and Demand",
+    "url": "https://en.wikipedia.org/wiki/Supply_and_demand",
+    "status": "learned"
+  },
+  {
+    "topic": "Gross Domestic Product",
+    "url": "https://en.wikipedia.org/wiki/Gross_domestic_product",
+    "status": "learned"
+  },
+  {
+    "topic": "Stock Exchange",
+    "url": "https://en.wikipedia.org/wiki/Stock_exchange",
+    "status": "learned"
+  },
+  {
+    "topic": "Portfolio Theory",
+    "url": "https://en.wikipedia.org/wiki/Modern_portfolio_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Risk Management",
+    "url": "https://en.wikipedia.org/wiki/Risk_management",
+    "status": "learned"
+  },
+  {
+    "topic": "Financial Derivative",
+    "url": "https://en.wikipedia.org/wiki/Derivative_(finance)",
+    "status": "learned"
+  },
+  {
+    "topic": "Venture Capital",
+    "url": "https://en.wikipedia.org/wiki/Venture_capital",
+    "status": "learned"
+  },
+  {
+    "topic": "Private Equity",
+    "url": "https://en.wikipedia.org/wiki/Private_equity",
+    "status": "learned"
+  },
+  {
+    "topic": "Behavioral Finance",
+    "url": "https://en.wikipedia.org/wiki/Behavioral_finance",
+    "status": "learned"
+  },
+  {
+    "topic": "Economic Growth",
+    "url": "https://en.wikipedia.org/wiki/Economic_growth",
+    "status": "learned"
+  },
+  {
+    "topic": "Globalization",
+    "url": "https://en.wikipedia.org/wiki/Globalization",
+    "status": "learned"
+  },
+  {
+    "topic": "English language",
+    "url": "https://en.wikipedia.org/wiki/English_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Hindi",
+    "url": "https://en.wikipedia.org/wiki/Hindi",
+    "status": "learned"
+  },
+  {
+    "topic": "Spanish language",
+    "url": "https://en.wikipedia.org/wiki/Spanish_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Mandarin Chinese",
+    "url": "https://en.wikipedia.org/wiki/Mandarin_Chinese",
+    "status": "learned"
+  },
+  {
+    "topic": "Arabic",
+    "url": "https://en.wikipedia.org/wiki/Arabic",
+    "status": "learned"
+  },
+  {
+    "topic": "French language",
+    "url": "https://en.wikipedia.org/wiki/French_language",
+    "status": "learned"
+  },
+  {
+    "topic": "German language",
+    "url": "https://en.wikipedia.org/wiki/German_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Russian language",
+    "url": "https://en.wikipedia.org/wiki/Russian_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Japanese language",
+    "url": "https://en.wikipedia.org/wiki/Japanese_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Portuguese language",
+    "url": "https://en.wikipedia.org/wiki/Portuguese_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Korean language",
+    "url": "https://en.wikipedia.org/wiki/Korean_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Italian language",
+    "url": "https://en.wikipedia.org/wiki/Italian_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Turkish language",
+    "url": "https://en.wikipedia.org/wiki/Turkish_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Persian language",
+    "url": "https://en.wikipedia.org/wiki/Persian_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Bengali language",
+    "url": "https://en.wikipedia.org/wiki/Bengali_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Urdu",
+    "url": "https://en.wikipedia.org/wiki/Urdu",
+    "status": "learned"
+  },
+  {
+    "topic": "Tamil language",
+    "url": "https://en.wikipedia.org/wiki/Tamil_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Telugu language",
+    "url": "https://en.wikipedia.org/wiki/Telugu_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Punjabi language",
+    "url": "https://en.wikipedia.org/wiki/Punjabi_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Marathi language",
+    "url": "https://en.wikipedia.org/wiki/Marathi_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Vietnamese language",
+    "url": "https://en.wikipedia.org/wiki/Vietnamese_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Thai language",
+    "url": "https://en.wikipedia.org/wiki/Thai_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Greek language",
+    "url": "https://en.wikipedia.org/wiki/Greek_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Hebrew language",
+    "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Swahili language",
+    "url": "https://en.wikipedia.org/wiki/Swahili_language",
+    "status": "learned"
+  },
+  {
+    "topic": "C (programming language)",
+    "url": "https://en.wikipedia.org/wiki/C_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "C++",
+    "url": "https://en.wikipedia.org/wiki/C%2B%2B",
+    "status": "learned"
+  },
+  {
+    "topic": "Java (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "C#",
+    "url": "https://en.wikipedia.org/wiki/C_Sharp_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Python (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "JavaScript",
+    "url": "https://en.wikipedia.org/wiki/JavaScript",
+    "status": "learned"
+  },
+  {
+    "topic": "TypeScript",
+    "url": "https://en.wikipedia.org/wiki/TypeScript",
+    "status": "learned"
+  },
+  {
+    "topic": "Go (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Go_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Rust (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Swift (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Swift_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Kotlin (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Kotlin_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Dart (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Dart_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "PHP",
+    "url": "https://en.wikipedia.org/wiki/PHP",
+    "status": "learned"
+  },
+  {
+    "topic": "Ruby (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Ruby_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Scala (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Scala_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "R (programming language)",
+    "url": "https://en.wikipedia.org/wiki/R_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "MATLAB",
+    "url": "https://en.wikipedia.org/wiki/MATLAB",
+    "status": "learned"
+  },
+  {
+    "topic": "Assembly language",
+    "url": "https://en.wikipedia.org/wiki/Assembly_language",
+    "status": "learned"
+  },
+  {
+    "topic": "Groovy (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Groovy_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Objective-C",
+    "url": "https://en.wikipedia.org/wiki/Objective-C",
+    "status": "learned"
+  },
+  {
+    "topic": "Visual Basic .NET",
+    "url": "https://en.wikipedia.org/wiki/Visual_Basic_.NET",
+    "status": "learned"
+  },
+  {
+    "topic": "Haskell",
+    "url": "https://en.wikipedia.org/wiki/Haskell_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Elixir (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Elixir_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Lua (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Lua_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Julia (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Julia_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "COBOL",
+    "url": "https://en.wikipedia.org/wiki/COBOL",
+    "status": "learned"
+  },
+  {
+    "topic": "Fortran",
+    "url": "https://en.wikipedia.org/wiki/Fortran",
+    "status": "learned"
+  },
+  {
+    "topic": "Scratch (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Scratch_(programming_language)",
+    "status": "learned"
+  },
+  {
+    "topic": "Solidity",
+    "url": "https://en.wikipedia.org/wiki/Solidity",
+    "status": "learned"
+  },
+  {
+    "topic": "Bash (Unix shell)",
+    "url": "https://en.wikipedia.org/wiki/Bash_(Unix_shell)",
+    "status": "learned"
+  },
+  {
+    "topic": "PowerShell",
+    "url": "https://en.wikipedia.org/wiki/PowerShell",
+    "status": "learned"
+  },
+  {
+    "topic": "SQL",
+    "url": "https://en.wikipedia.org/wiki/SQL",
+    "status": "learned"
+  },
+  {
+    "topic": "NoSQL",
+    "url": "https://en.wikipedia.org/wiki/NoSQL",
+    "status": "learned"
+  },
+  {
+    "topic": "GraphQL",
+    "url": "https://en.wikipedia.org/wiki/GraphQL",
+    "status": "learned"
+  },
+  {
+    "topic": "Visual Studio",
+    "url": "https://en.wikipedia.org/wiki/Microsoft_Visual_Studio",
+    "status": "learned"
+  },
+  {
+    "topic": "Visual Studio Code",
+    "url": "https://en.wikipedia.org/wiki/Visual_Studio_Code",
+    "status": "learned"
+  },
+  {
+    "topic": "Android Studio",
+    "url": "https://en.wikipedia.org/wiki/Android_Studio",
+    "status": "learned"
+  },
+  {
+    "topic": "Xcode",
+    "url": "https://en.wikipedia.org/wiki/Xcode",
+    "status": "learned"
+  },
+  {
+    "topic": "IntelliJ IDEA",
+    "url": "https://en.wikipedia.org/wiki/IntelliJ_IDEA",
+    "status": "learned"
+  },
+  {
+    "topic": "Eclipse (software)",
+    "url": "https://en.wikipedia.org/wiki/Eclipse_(software)",
+    "status": "learned"
+  },
+  {
+    "topic": "NetBeans",
+    "url": "https://en.wikipedia.org/wiki/NetBeans",
+    "status": "learned"
+  },
+  {
+    "topic": "Git",
+    "url": "https://en.wikipedia.org/wiki/Git",
+    "status": "learned"
+  },
+  {
+    "topic": "GitHub",
+    "url": "https://en.wikipedia.org/wiki/GitHub",
+    "status": "learned"
+  },
+  {
+    "topic": "GitLab",
+    "url": "https://en.wikipedia.org/wiki/GitLab",
+    "status": "learned"
+  },
+  {
+    "topic": "Docker (software)",
+    "url": "https://en.wikipedia.org/wiki/Docker_(software)",
+    "status": "learned"
+  },
+  {
+    "topic": "Kubernetes",
+    "url": "https://en.wikipedia.org/wiki/Kubernetes",
+    "status": "learned"
+  },
+  {
+    "topic": "Firebase",
+    "url": "https://en.wikipedia.org/wiki/Firebase",
+    "status": "learned"
+  },
+  {
+    "topic": "Node.js",
+    "url": "https://en.wikipedia.org/wiki/Node.js",
+    "status": "learned"
+  },
+  {
+    "topic": "NPM",
+    "url": "https://en.wikipedia.org/wiki/Npm",
+    "status": "learned"
+  },
+  {
+    "topic": "Webpack",
+    "url": "https://en.wikipedia.org/wiki/Webpack",
+    "status": "learned"
+  },
+  {
+    "topic": "Vite",
+    "url": "https://en.wikipedia.org/wiki/Vite_(software)",
+    "status": "learned"
+  },
+  {
+    "topic": "React (software)",
+    "url": "https://en.wikipedia.org/wiki/React_(software)",
+    "status": "learned"
+  },
+  {
+    "topic": "Angular (web framework)",
+    "url": "https://en.wikipedia.org/wiki/Angular_(web_framework)",
+    "status": "learned"
+  },
+  {
+    "topic": "Vue.js",
+    "url": "https://en.wikipedia.org/wiki/Vue.js",
+    "status": "learned"
+  },
+  {
+    "topic": "Flutter (software)",
+    "url": "https://en.wikipedia.org/wiki/Flutter_(software)",
+    "status": "learned"
+  },
+  {
+    "topic": "Unity (game engine)",
+    "url": "https://en.wikipedia.org/wiki/Unity_(game_engine)",
+    "status": "learned"
+  },
+  {
+    "topic": "Unreal Engine",
+    "url": "https://en.wikipedia.org/wiki/Unreal_Engine",
+    "status": "learned"
+  },
+  {
+    "topic": "Gradle",
+    "url": "https://en.wikipedia.org/wiki/Gradle",
+    "status": "learned"
+  },
+  {
+    "topic": "Maven",
+    "url": "https://en.wikipedia.org/wiki/Apache_Maven",
+    "status": "learned"
+  },
+  {
+    "topic": "Jenkins",
+    "url": "https://en.wikipedia.org/wiki/Jenkins_(software)",
+    "status": "learned"
+  },
+  {
+    "topic": "CI/CD",
+    "url": "https://en.wikipedia.org/wiki/CI/CD",
+    "status": "learned"
+  },
+  {
+    "topic": "Linux",
+    "url": "https://en.wikipedia.org/wiki/Linux",
+    "status": "learned"
+  },
+  {
+    "topic": "Ubuntu",
+    "url": "https://en.wikipedia.org/wiki/Ubuntu",
+    "status": "learned"
+  },
+  {
+    "topic": "Microsoft Windows",
+    "url": "https://en.wikipedia.org/wiki/Microsoft_Windows",
+    "status": "learned"
+  },
+  {
+    "topic": "macOS",
+    "url": "https://en.wikipedia.org/wiki/MacOS",
+    "status": "learned"
+  },
+  {
+    "topic": "Terminal emulator",
+    "url": "https://en.wikipedia.org/wiki/Terminal_emulator",
+    "status": "learned"
+  },
+  {
+    "topic": "REST",
+    "url": "https://en.wikipedia.org/wiki/Representational_state_transfer",
+    "status": "learned"
+  },
+  {
+    "topic": "HTTP",
+    "url": "https://en.wikipedia.org/wiki/HTTP",
+    "status": "learned"
+  },
+  {
+    "topic": "WebSocket",
+    "url": "https://en.wikipedia.org/wiki/WebSocket",
+    "status": "learned"
+  },
+  {
+    "topic": "Book",
+    "url": "https://en.wikipedia.org/wiki/Book",
+    "status": "learned"
+  },
+  {
+    "topic": "Novel",
+    "url": "https://en.wikipedia.org/wiki/Novel",
+    "status": "learned"
+  },
+  {
+    "topic": "Textbook",
+    "url": "https://en.wikipedia.org/wiki/Textbook",
+    "status": "learned"
+  },
+  {
+    "topic": "Reference book",
+    "url": "https://en.wikipedia.org/wiki/Reference_work",
+    "status": "learned"
+  },
+  {
+    "topic": "Non-fiction",
+    "url": "https://en.wikipedia.org/wiki/Non-fiction",
+    "status": "learned"
+  },
+  {
+    "topic": "Fiction",
+    "url": "https://en.wikipedia.org/wiki/Fiction",
+    "status": "learned"
+  },
+  {
+    "topic": "Autobiography",
+    "url": "https://en.wikipedia.org/wiki/Autobiography",
+    "status": "learned"
+  },
+  {
+    "topic": "Biography",
+    "url": "https://en.wikipedia.org/wiki/Biography",
+    "status": "learned"
+  },
+  {
+    "topic": "Science fiction",
+    "url": "https://en.wikipedia.org/wiki/Science_fiction",
+    "status": "learned"
+  },
+  {
+    "topic": "Philosophy book",
+    "url": "https://en.wikipedia.org/wiki/Philosophy",
+    "status": "learned"
+  },
+  {
+    "topic": "Psychology book",
+    "url": "https://en.wikipedia.org/wiki/Psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "Computer programming book",
+    "url": "https://en.wikipedia.org/wiki/Computer_programming",
+    "status": "learned"
+  },
+  {
+    "topic": "Linguistics book",
+    "url": "https://en.wikipedia.org/wiki/Linguistics",
+    "status": "learned"
+  },
+  {
+    "topic": "Cognitive science",
+    "url": "https://en.wikipedia.org/wiki/Cognitive_science",
+    "status": "learned"
+  },
+  {
+    "topic": "Self-help book",
+    "url": "https://en.wikipedia.org/wiki/Self-help_book",
+    "status": "learned"
+  },
+  {
+    "topic": "Human psychology",
+    "url": "https://en.wikipedia.org/wiki/Psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "Cognitive psychology",
+    "url": "https://en.wikipedia.org/wiki/Cognitive_psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "Behaviorism",
+    "url": "https://en.wikipedia.org/wiki/Behaviorism",
+    "status": "learned"
+  },
+  {
+    "topic": "Social psychology",
+    "url": "https://en.wikipedia.org/wiki/Social_psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "Developmental psychology",
+    "url": "https://en.wikipedia.org/wiki/Developmental_psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "Neuroscience",
+    "url": "https://en.wikipedia.org/wiki/Neuroscience",
+    "status": "learned"
+  },
+  {
+    "topic": "Memory",
+    "url": "https://en.wikipedia.org/wiki/Memory",
+    "status": "learned"
+  },
+  {
+    "topic": "Emotion",
+    "url": "https://en.wikipedia.org/wiki/Emotion",
+    "status": "learned"
+  },
+  {
+    "topic": "Motivation",
+    "url": "https://en.wikipedia.org/wiki/Motivation",
+    "status": "learned"
+  },
+  {
+    "topic": "Decision making",
+    "url": "https://en.wikipedia.org/wiki/Decision-making",
+    "status": "learned"
+  },
+  {
+    "topic": "Critical thinking",
+    "url": "https://en.wikipedia.org/wiki/Critical_thinking",
+    "status": "learned"
+  },
+  {
+    "topic": "Cognitive bias",
+    "url": "https://en.wikipedia.org/wiki/Cognitive_bias",
+    "status": "learned"
+  },
+  {
+    "topic": "Personality psychology",
+    "url": "https://en.wikipedia.org/wiki/Personality_psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "Learning theory",
+    "url": "https://en.wikipedia.org/wiki/Learning_theory",
+    "status": "learned"
+  },
+  {
+    "topic": "Intelligence",
+    "url": "https://en.wikipedia.org/wiki/Intelligence",
+    "status": "learned"
+  },
+  {
+    "topic": "Language",
+    "url": "https://en.wikipedia.org/wiki/Language",
+    "status": "learned"
+  },
+  {
+    "topic": "Communication",
+    "url": "https://en.wikipedia.org/wiki/Communication",
+    "status": "learned"
+  },
+  {
+    "topic": "Speech",
+    "url": "https://en.wikipedia.org/wiki/Speech",
+    "status": "learned"
+  },
+  {
+    "topic": "Conversation",
+    "url": "https://en.wikipedia.org/wiki/Conversation",
+    "status": "learned"
+  },
+  {
+    "topic": "Discourse",
+    "url": "https://en.wikipedia.org/wiki/Discourse",
+    "status": "learned"
+  },
+  {
+    "topic": "Natural language processing",
+    "url": "https://en.wikipedia.org/wiki/Natural_language_processing",
+    "status": "learned"
+  },
+  {
+    "topic": "Computational linguistics",
+    "url": "https://en.wikipedia.org/wiki/Computational_linguistics",
+    "status": "learned"
+  },
+  {
+    "topic": "Algorithm",
+    "url": "https://en.wikipedia.org/wiki/Algorithm",
+    "status": "learned"
+  },
+  {
+    "topic": "Data structure",
+    "url": "https://en.wikipedia.org/wiki/Data_structure",
+    "status": "learned"
+  },
+  {
+    "topic": "Software engineering",
+    "url": "https://en.wikipedia.org/wiki/Software_engineering",
+    "status": "learned"
+  },
+  {
+    "topic": "Object-oriented programming",
+    "url": "https://en.wikipedia.org/wiki/Object-oriented_programming",
+    "status": "learned"
+  },
+  {
+    "topic": "Functional programming",
+    "url": "https://en.wikipedia.org/wiki/Functional_programming",
+    "status": "learned"
+  },
+  {
+    "topic": "Interpreter",
+    "url": "https://en.wikipedia.org/wiki/Interpreter_(computing)",
+    "status": "learned"
+  },
+  {
+    "topic": "Machine learning",
+    "url": "https://en.wikipedia.org/wiki/Machine_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Artificial intelligence",
+    "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "status": "learned"
+  },
+  {
+    "topic": "Neural network",
+    "url": "https://en.wikipedia.org/wiki/Artificial_neural_network",
+    "status": "learned"
+  },
+  {
+    "topic": "Human",
+    "url": "https://en.wikipedia.org/wiki/Human",
+    "status": "learned"
+  },
+  {
+    "topic": "Human nature",
+    "url": "https://en.wikipedia.org/wiki/Human_nature",
+    "status": "learned"
+  },
+  {
+    "topic": "Anthropology",
+    "url": "https://en.wikipedia.org/wiki/Anthropology",
+    "status": "learned"
+  },
+  {
+    "topic": "Evolution of humans",
+    "url": "https://en.wikipedia.org/wiki/Human_evolution",
+    "status": "learned"
+  },
+  {
+    "topic": "Consciousness",
+    "url": "https://en.wikipedia.org/wiki/Consciousness",
+    "status": "learned"
+  },
+  {
+    "topic": "Empathy",
+    "url": "https://en.wikipedia.org/wiki/Empathy",
+    "status": "learned"
+  },
+  {
+    "topic": "Morality",
+    "url": "https://en.wikipedia.org/wiki/Morality",
+    "status": "learned"
+  },
+  {
+    "topic": "Ethics",
+    "url": "https://en.wikipedia.org/wiki/Ethics",
+    "status": "learned"
+  },
+  {
+    "topic": "Social behavior",
+    "url": "https://en.wikipedia.org/wiki/Social_behavior",
+    "status": "learned"
+  },
+  {
+    "topic": "Human body",
+    "url": "https://en.wikipedia.org/wiki/Human_body",
+    "status": "learned"
+  },
+  {
+    "topic": "Anatomy",
+    "url": "https://en.wikipedia.org/wiki/Anatomy",
+    "status": "learned"
+  },
+  {
+    "topic": "Physiology",
+    "url": "https://en.wikipedia.org/wiki/Physiology",
+    "status": "learned"
+  },
+  {
+    "topic": "Cell (biology)",
+    "url": "https://en.wikipedia.org/wiki/Cell_(biology)",
+    "status": "learned"
+  },
+  {
+    "topic": "Tissue (biology)",
+    "url": "https://en.wikipedia.org/wiki/Tissue_(biology)",
+    "status": "learned"
+  },
+  {
+    "topic": "Organ (biology)",
+    "url": "https://en.wikipedia.org/wiki/Organ_(biology)",
+    "status": "learned"
+  },
+  {
+    "topic": "Nervous system",
+    "url": "https://en.wikipedia.org/wiki/Nervous_system",
+    "status": "learned"
+  },
+  {
+    "topic": "Brain",
+    "url": "https://en.wikipedia.org/wiki/Brain",
+    "status": "learned"
+  },
+  {
+    "topic": "Heart",
+    "url": "https://en.wikipedia.org/wiki/Heart",
+    "status": "learned"
+  },
+  {
+    "topic": "Blood",
+    "url": "https://en.wikipedia.org/wiki/Blood",
+    "status": "learned"
+  },
+  {
+    "topic": "Immune system",
+    "url": "https://en.wikipedia.org/wiki/Immune_system",
+    "status": "learned"
+  },
+  {
+    "topic": "Disease",
+    "url": "https://en.wikipedia.org/wiki/Disease",
+    "status": "learned"
+  },
+  {
+    "topic": "Pathology",
+    "url": "https://en.wikipedia.org/wiki/Pathology",
+    "status": "learned"
+  },
+  {
+    "topic": "Pharmacology",
+    "url": "https://en.wikipedia.org/wiki/Pharmacology",
+    "status": "learned"
+  },
+  {
+    "topic": "Surgery",
+    "url": "https://en.wikipedia.org/wiki/Surgery",
+    "status": "learned"
+  },
+  {
+    "topic": "Animal",
+    "url": "https://en.wikipedia.org/wiki/Animal",
+    "status": "learned"
+  },
+  {
+    "topic": "Zoology",
+    "url": "https://en.wikipedia.org/wiki/Zoology",
+    "status": "learned"
+  },
+  {
+    "topic": "Mammal",
+    "url": "https://en.wikipedia.org/wiki/Mammal",
+    "status": "learned"
+  },
+  {
+    "topic": "Bird",
+    "url": "https://en.wikipedia.org/wiki/Bird",
+    "status": "learned"
+  },
+  {
+    "topic": "Reptile",
+    "url": "https://en.wikipedia.org/wiki/Reptile",
+    "status": "learned"
+  },
+  {
+    "topic": "Amphibian",
+    "url": "https://en.wikipedia.org/wiki/Amphibian",
+    "status": "learned"
+  },
+  {
+    "topic": "Fish",
+    "url": "https://en.wikipedia.org/wiki/Fish",
+    "status": "learned"
+  },
+  {
+    "topic": "Insect",
+    "url": "https://en.wikipedia.org/wiki/Insect",
+    "status": "learned"
+  },
+  {
+    "topic": "Wildlife",
+    "url": "https://en.wikipedia.org/wiki/Wildlife",
+    "status": "learned"
+  },
+  {
+    "topic": "Ecosystem",
+    "url": "https://en.wikipedia.org/wiki/Ecosystem",
+    "status": "learned"
+  },
+  {
+    "topic": "Food chain",
+    "url": "https://en.wikipedia.org/wiki/Food_chain",
+    "status": "learned"
+  },
+  {
+    "topic": "Habitat",
+    "url": "https://en.wikipedia.org/wiki/Habitat",
+    "status": "learned"
+  },
+  {
+    "topic": "Predation",
+    "url": "https://en.wikipedia.org/wiki/Predation",
+    "status": "learned"
+  },
+  {
+    "topic": "Biodiversity",
+    "url": "https://en.wikipedia.org/wiki/Biodiversity",
+    "status": "learned"
+  },
+  {
+    "topic": "Extinction",
+    "url": "https://en.wikipedia.org/wiki/Extinction",
+    "status": "learned"
+  },
+  {
+    "topic": "Biology",
+    "url": "https://en.wikipedia.org/wiki/Biology",
+    "status": "learned"
+  },
+  {
+    "topic": "Genetics",
+    "url": "https://en.wikipedia.org/wiki/Genetics",
+    "status": "learned"
+  },
+  {
+    "topic": "DNA",
+    "url": "https://en.wikipedia.org/wiki/DNA",
+    "status": "learned"
+  },
+  {
+    "topic": "RNA",
+    "url": "https://en.wikipedia.org/wiki/RNA",
+    "status": "learned"
+  },
+  {
+    "topic": "Protein",
+    "url": "https://en.wikipedia.org/wiki/Protein",
+    "status": "learned"
+  },
+  {
+    "topic": "Enzyme",
+    "url": "https://en.wikipedia.org/wiki/Enzyme",
+    "status": "learned"
+  },
+  {
+    "topic": "Microbiology",
+    "url": "https://en.wikipedia.org/wiki/Microbiology",
+    "status": "learned"
+  },
+  {
+    "topic": "Bacteria",
+    "url": "https://en.wikipedia.org/wiki/Bacteria",
+    "status": "learned"
+  },
+  {
+    "topic": "Virus",
+    "url": "https://en.wikipedia.org/wiki/Virus",
+    "status": "learned"
+  },
+  {
+    "topic": "Photosynthesis",
+    "url": "https://en.wikipedia.org/wiki/Photosynthesis",
+    "status": "learned"
+  },
+  {
+    "topic": "Evolution",
+    "url": "https://en.wikipedia.org/wiki/Evolution",
+    "status": "learned"
+  },
+  {
+    "topic": "Natural selection",
+    "url": "https://en.wikipedia.org/wiki/Natural_selection",
+    "status": "learned"
+  },
+  {
+    "topic": "Mutation",
+    "url": "https://en.wikipedia.org/wiki/Mutation",
+    "status": "learned"
+  },
+  {
+    "topic": "Ecology",
+    "url": "https://en.wikipedia.org/wiki/Ecology",
+    "status": "learned"
+  },
+  {
+    "topic": "Cell division",
+    "url": "https://en.wikipedia.org/wiki/Cell_division",
+    "status": "learned"
+  },
+  {
+    "topic": "Chemistry",
+    "url": "https://en.wikipedia.org/wiki/Chemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Organic chemistry",
+    "url": "https://en.wikipedia.org/wiki/Organic_chemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Inorganic chemistry",
+    "url": "https://en.wikipedia.org/wiki/Inorganic_chemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Physical chemistry",
+    "url": "https://en.wikipedia.org/wiki/Physical_chemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Biochemistry",
+    "url": "https://en.wikipedia.org/wiki/Biochemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Chemical bond",
+    "url": "https://en.wikipedia.org/wiki/Chemical_bond",
+    "status": "learned"
+  },
+  {
+    "topic": "Atom",
+    "url": "https://en.wikipedia.org/wiki/Atom",
+    "status": "learned"
+  },
+  {
+    "topic": "Molecule",
+    "url": "https://en.wikipedia.org/wiki/Molecule",
+    "status": "learned"
+  },
+  {
+    "topic": "Periodic table",
+    "url": "https://en.wikipedia.org/wiki/Periodic_table",
+    "status": "learned"
+  },
+  {
+    "topic": "Acid",
+    "url": "https://en.wikipedia.org/wiki/Acid",
+    "status": "learned"
+  },
+  {
+    "topic": "Base (chemistry)",
+    "url": "https://en.wikipedia.org/wiki/Base_(chemistry)",
+    "status": "learned"
+  },
+  {
+    "topic": "Chemical reaction",
+    "url": "https://en.wikipedia.org/wiki/Chemical_reaction",
+    "status": "learned"
+  },
+  {
+    "topic": "Thermodynamics",
+    "url": "https://en.wikipedia.org/wiki/Thermodynamics",
+    "status": "learned"
+  },
+  {
+    "topic": "Electrochemistry",
+    "url": "https://en.wikipedia.org/wiki/Electrochemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Quantum chemistry",
+    "url": "https://en.wikipedia.org/wiki/Quantum_chemistry",
+    "status": "learned"
+  },
+  {
+    "topic": "Cognitive neuroscience",
+    "url": "https://en.wikipedia.org/wiki/Cognitive_neuroscience",
+    "status": "learned"
+  },
+  {
+    "topic": "Neuroplasticity",
+    "url": "https://en.wikipedia.org/wiki/Neuroplasticity",
+    "status": "learned"
+  },
+  {
+    "topic": "Synapse",
+    "url": "https://en.wikipedia.org/wiki/Synapse",
+    "status": "learned"
+  },
+  {
+    "topic": "Neurotransmitter",
+    "url": "https://en.wikipedia.org/wiki/Neurotransmitter",
+    "status": "learned"
+  },
+  {
+    "topic": "Prefrontal cortex",
+    "url": "https://en.wikipedia.org/wiki/Prefrontal_cortex",
+    "status": "learned"
+  },
+  {
+    "topic": "Amygdala",
+    "url": "https://en.wikipedia.org/wiki/Amygdala",
+    "status": "learned"
+  },
+  {
+    "topic": "Hippocampus",
+    "url": "https://en.wikipedia.org/wiki/Hippocampus",
+    "status": "learned"
+  },
+  {
+    "topic": "Neural coding",
+    "url": "https://en.wikipedia.org/wiki/Neural_coding",
+    "status": "learned"
+  },
+  {
+    "topic": "Brain–computer interface",
+    "url": "https://en.wikipedia.org/wiki/Brain%E2%80%93computer_interface",
+    "status": "learned"
+  },
+  {
+    "topic": "Genetic engineering",
+    "url": "https://en.wikipedia.org/wiki/Genetic_engineering",
+    "status": "learned"
+  },
+  {
+    "topic": "CRISPR",
+    "url": "https://en.wikipedia.org/wiki/CRISPR",
+    "status": "learned"
+  },
+  {
+    "topic": "Genome",
+    "url": "https://en.wikipedia.org/wiki/Genome",
+    "status": "learned"
+  },
+  {
+    "topic": "Gene expression",
+    "url": "https://en.wikipedia.org/wiki/Gene_expression",
+    "status": "learned"
+  },
+  {
+    "topic": "Epigenetics",
+    "url": "https://en.wikipedia.org/wiki/Epigenetics",
+    "status": "learned"
+  },
+  {
+    "topic": "Recombinant DNA",
+    "url": "https://en.wikipedia.org/wiki/Recombinant_DNA",
+    "status": "learned"
+  },
+  {
+    "topic": "Genomics",
+    "url": "https://en.wikipedia.org/wiki/Genomics",
+    "status": "learned"
+  },
+  {
+    "topic": "Proteomics",
+    "url": "https://en.wikipedia.org/wiki/Proteomics",
+    "status": "learned"
+  },
+  {
+    "topic": "Bioinformatics",
+    "url": "https://en.wikipedia.org/wiki/Bioinformatics",
+    "status": "learned"
+  },
+  {
+    "topic": "Molecular cloning",
+    "url": "https://en.wikipedia.org/wiki/Molecular_cloning",
+    "status": "learned"
+  },
+  {
+    "topic": "Virology",
+    "url": "https://en.wikipedia.org/wiki/Virology",
+    "status": "learned"
+  },
+  {
+    "topic": "Immunology",
+    "url": "https://en.wikipedia.org/wiki/Immunology",
+    "status": "learned"
+  },
+  {
+    "topic": "Pathogen",
+    "url": "https://en.wikipedia.org/wiki/Pathogen",
+    "status": "learned"
+  },
+  {
+    "topic": "Antibiotic resistance",
+    "url": "https://en.wikipedia.org/wiki/Antimicrobial_resistance",
+    "status": "learned"
+  },
+  {
+    "topic": "Vaccination",
+    "url": "https://en.wikipedia.org/wiki/Vaccination",
+    "status": "learned"
+  },
+  {
+    "topic": "Microbiome",
+    "url": "https://en.wikipedia.org/wiki/Microbiota",
+    "status": "learned"
+  },
+  {
+    "topic": "Parasitology",
+    "url": "https://en.wikipedia.org/wiki/Parasitology",
+    "status": "learned"
+  },
+  {
+    "topic": "Mycology",
+    "url": "https://en.wikipedia.org/wiki/Mycology",
+    "status": "learned"
+  },
+  {
+    "topic": "Epidemiology",
+    "url": "https://en.wikipedia.org/wiki/Epidemiology",
+    "status": "learned"
+  },
+  {
+    "topic": "Public health",
+    "url": "https://en.wikipedia.org/wiki/Public_health",
+    "status": "learned"
+  },
+  {
+    "topic": "Cardiology",
+    "url": "https://en.wikipedia.org/wiki/Cardiology",
+    "status": "learned"
+  },
+  {
+    "topic": "Oncology",
+    "url": "https://en.wikipedia.org/wiki/Oncology",
+    "status": "learned"
+  },
+  {
+    "topic": "Neurology",
+    "url": "https://en.wikipedia.org/wiki/Neurology",
+    "status": "learned"
+  },
+  {
+    "topic": "Endocrinology",
+    "url": "https://en.wikipedia.org/wiki/Endocrinology",
+    "status": "learned"
+  },
+  {
+    "topic": "Gastroenterology",
+    "url": "https://en.wikipedia.org/wiki/Gastroenterology",
+    "status": "learned"
+  },
+  {
+    "topic": "Hematology",
+    "url": "https://en.wikipedia.org/wiki/Hematology",
+    "status": "learned"
+  },
+  {
+    "topic": "Radiology",
+    "url": "https://en.wikipedia.org/wiki/Radiology",
+    "status": "learned"
+  },
+  {
+    "topic": "Anesthesia",
+    "url": "https://en.wikipedia.org/wiki/Anesthesia",
+    "status": "learned"
+  },
+  {
+    "topic": "Intensive care medicine",
+    "url": "https://en.wikipedia.org/wiki/Intensive_care_medicine",
+    "status": "learned"
+  },
+  {
+    "topic": "Clinical psychology",
+    "url": "https://en.wikipedia.org/wiki/Clinical_psychology",
+    "status": "learned"
+  },
+  {
+    "topic": "On the Origin of Species",
+    "url": "https://en.wikipedia.org/wiki/On_the_Origin_of_Species",
+    "status": "learned"
+  },
+  {
+    "topic": "The Selfish Gene",
+    "url": "https://en.wikipedia.org/wiki/The_Selfish_Gene",
+    "status": "learned"
+  },
+  {
+    "topic": "The Structure of Scientific Revolutions",
+    "url": "https://en.wikipedia.org/wiki/The_Structure_of_Scientific_Revolutions",
+    "status": "learned"
+  },
+  {
+    "topic": "A Brief History of Time",
+    "url": "https://en.wikipedia.org/wiki/A_Brief_History_of_Time",
+    "status": "learned"
+  },
+  {
+    "topic": "The Double Helix",
+    "url": "https://en.wikipedia.org/wiki/The_Double_Helix",
+    "status": "learned"
+  },
+  {
+    "topic": "The Descent of Man",
+    "url": "https://en.wikipedia.org/wiki/The_Descent_of_Man",
+    "status": "learned"
+  },
+  {
+    "topic": "The Man Who Mistook His Wife for a Hat",
+    "url": "https://en.wikipedia.org/wiki/The_Man_Who_Mistook_His_Wife_for_a_Hat",
+    "status": "learned"
+  },
+  {
+    "topic": "Silent Spring",
+    "url": "https://en.wikipedia.org/wiki/Silent_Spring",
+    "status": "learned"
+  },
+  {
+    "topic": "The Elegant Universe",
+    "url": "https://en.wikipedia.org/wiki/The_Elegant_Universe",
+    "status": "learned"
+  },
+  {
+    "topic": "The Blind Watchmaker",
+    "url": "https://en.wikipedia.org/wiki/The_Blind_Watchmaker",
+    "status": "learned"
+  },
+  {
+    "topic": "Artificial general intelligence",
+    "url": "https://en.wikipedia.org/wiki/Artificial_general_intelligence",
+    "status": "learned"
+  },
+  {
+    "topic": "Deep learning",
+    "url": "https://en.wikipedia.org/wiki/Deep_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Transformer (machine learning model)",
+    "url": "https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)",
+    "status": "learned"
+  },
+  {
+    "topic": "Large language model",
+    "url": "https://en.wikipedia.org/wiki/Large_language_model",
+    "status": "learned"
+  },
+  {
+    "topic": "Generative artificial intelligence",
+    "url": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+    "status": "learned"
+  },
+  {
+    "topic": "Self-supervised learning",
+    "url": "https://en.wikipedia.org/wiki/Self-supervised_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Reinforcement learning",
+    "url": "https://en.wikipedia.org/wiki/Reinforcement_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Meta-learning",
+    "url": "https://en.wikipedia.org/wiki/Meta_learning_(computer_science)",
+    "status": "learned"
+  },
+  {
+    "topic": "Autonomous agent",
+    "url": "https://en.wikipedia.org/wiki/Intelligent_agent",
+    "status": "learned"
+  },
+  {
+    "topic": "Multi-agent system",
+    "url": "https://en.wikipedia.org/wiki/Multi-agent_system",
+    "status": "learned"
+  },
+  {
+    "topic": "Autonomous robotics",
+    "url": "https://en.wikipedia.org/wiki/Robotics",
+    "status": "learned"
+  },
+  {
+    "topic": "Cognitive architecture",
+    "url": "https://en.wikipedia.org/wiki/Cognitive_architecture",
+    "status": "learned"
+  },
+  {
+    "topic": "Bayesian network",
+    "url": "https://en.wikipedia.org/wiki/Bayesian_network",
+    "status": "learned"
+  },
+  {
+    "topic": "Markov decision process",
+    "url": "https://en.wikipedia.org/wiki/Markov_decision_process",
+    "status": "learned"
+  },
+  {
+    "topic": "Evolutionary algorithm",
+    "url": "https://en.wikipedia.org/wiki/Evolutionary_algorithm",
+    "status": "learned"
+  },
+  {
+    "topic": "Genetic programming",
+    "url": "https://en.wikipedia.org/wiki/Genetic_programming",
+    "status": "learned"
+  },
+  {
+    "topic": "Swarm intelligence",
+    "url": "https://en.wikipedia.org/wiki/Swarm_intelligence",
+    "status": "learned"
+  },
+  {
+    "topic": "Artificial life",
+    "url": "https://en.wikipedia.org/wiki/Artificial_life",
+    "status": "learned"
+  },
+  {
+    "topic": "Generative model",
+    "url": "https://en.wikipedia.org/wiki/Generative_model",
+    "status": "learned"
+  },
+  {
+    "topic": "Variational autoencoder",
+    "url": "https://en.wikipedia.org/wiki/Variational_autoencoder",
+    "status": "learned"
+  },
+  {
+    "topic": "Generative adversarial network",
+    "url": "https://en.wikipedia.org/wiki/Generative_adversarial_network",
+    "status": "learned"
+  },
+  {
+    "topic": "Diffusion model",
+    "url": "https://en.wikipedia.org/wiki/Diffusion_model",
+    "status": "learned"
+  },
+  {
+    "topic": "Neural text generation",
+    "url": "https://en.wikipedia.org/wiki/Text_generation",
+    "status": "learned"
+  },
+  {
+    "topic": "Prompt engineering",
+    "url": "https://en.wikipedia.org/wiki/Prompt_engineering",
+    "status": "learned"
+  },
+  {
+    "topic": "Transfer learning",
+    "url": "https://en.wikipedia.org/wiki/Transfer_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Curriculum learning",
+    "url": "https://en.wikipedia.org/wiki/Curriculum_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Neuroevolution",
+    "url": "https://en.wikipedia.org/wiki/Neuroevolution",
+    "status": "learned"
+  },
+  {
+    "topic": "AutoML",
+    "url": "https://en.wikipedia.org/wiki/Automated_machine_learning",
+    "status": "learned"
+  },
+  {
+    "topic": "Program synthesis",
+    "url": "https://en.wikipedia.org/wiki/Program_synthesis",
+    "status": "learned"
+  },
+  {
+    "topic": "Reflection (computer programming)",
+    "url": "https://en.wikipedia.org/wiki/Reflection_(computer_programming)",
+    "status": "learned"
+  },
+  {
+    "topic": "Metaprogramming",
+    "url": "https://en.wikipedia.org/wiki/Metaprogramming",
+    "status": "learned"
+  },
+  {
+    "topic": "Self-hosting compiler",
+    "url": "https://en.wikipedia.org/wiki/Self-hosting",
+    "status": "learned"
+  },
+  {
+    "topic": "Software sandbox",
+    "url": "https://en.wikipedia.org/wiki/Sandbox_(computer_security)",
+    "status": "learned"
+  },
+  {
+    "topic": "AI alignment",
+    "url": "https://en.wikipedia.org/wiki/AI_alignment",
+    "status": "learned"
+  },
+  {
+    "topic": "AI safety",
+    "url": "https://en.wikipedia.org/wiki/AI_safety",
+    "status": "learned"
+  },
+  {
+    "topic": "Value alignment problem",
+    "url": "https://en.wikipedia.org/wiki/AI_alignment_problem",
+    "status": "learned"
+  },
+  {
+    "topic": "Recursive self-improvement",
+    "url": "https://en.wikipedia.org/wiki/Recursive_self-improvement",
+    "status": "learned"
+  },
+  {
+    "topic": "Technological singularity",
+    "url": "https://en.wikipedia.org/wiki/Technological_singularity",
+    "status": "learned"
+  }
+]

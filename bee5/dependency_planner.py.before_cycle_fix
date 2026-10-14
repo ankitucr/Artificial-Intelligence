@@ -1,0 +1,470 @@
+#!/usr/bin/env python3
+
+import json
+import re
+from collections import defaultdict, deque
+from pathlib import Path
+
+from capability_graph import build_graph, find_candidates
+from capability_contracts import build_all
+from bee5_runtime import load_registry
+
+
+ROOT = Path(__file__).resolve().parent
+MEMORY = ROOT / "memory"
+PLAN_PATH = MEMORY / "dependency_plan.json"
+
+
+FIELD_ALIASES = {
+    "text": {
+        "text",
+        "cleaned_text",
+        "raw_text",
+        "input_text",
+    },
+    "input": {
+        "input",
+        "text",
+        "cleaned_text",
+    },
+}
+
+
+def field_compatible(required, produced):
+    required = str(required).lower()
+    produced = str(produced).lower()
+
+    if required == produced:
+        return True
+
+    aliases = FIELD_ALIASES.get(
+        required,
+        {required}
+    )
+
+    return produced in aliases
+
+
+def producer_candidates(
+    required_field,
+    contracts,
+    exclude=None
+):
+    results = []
+
+    for skill, contract in contracts.items():
+        if skill == exclude:
+            continue
+
+        outputs = contract.get(
+            "outputs",
+            {}
+        )
+
+        for output in outputs:
+            if field_compatible(
+                required_field,
+                output
+            ):
+                results.append(
+                    (skill, output)
+                )
+
+    return results
+
+
+def choose_skill_for_goal(
+    goal,
+    limit=5
+):
+    candidates = find_candidates(
+        goal,
+        limit=limit
+    )
+
+    if not candidates:
+        return None
+
+    return candidates[0]["skill"]
+
+
+def build_dependency_graph(
+    selected_skills,
+    contracts
+):
+    dependencies = defaultdict(set)
+
+    for skill in selected_skills:
+        inputs = contracts.get(
+            skill,
+            {}
+        ).get(
+            "inputs",
+            {}
+        )
+
+        for required_field in inputs:
+            producers = producer_candidates(
+                required_field,
+                contracts,
+                exclude=skill
+            )
+
+            selected = [
+                item
+                for item in producers
+                if item[0] in selected_skills
+            ]
+
+            if selected:
+                producer = selected[0][0]
+                dependencies[skill].add(
+                    producer
+                )
+
+    return dependencies
+
+
+def topological_order(
+    selected_skills,
+    dependencies
+):
+    graph = {
+        skill: set(
+            dependencies.get(
+                skill,
+                set()
+            )
+        )
+        for skill in selected_skills
+    }
+
+    result = []
+
+    while graph:
+        ready = sorted(
+            skill
+            for skill, deps in graph.items()
+            if not deps
+        )
+
+        if not ready:
+            raise RuntimeError(
+                "Cyclic skill dependency detected."
+            )
+
+        for skill in ready:
+            result.append(skill)
+            del graph[skill]
+
+        for deps in graph.values():
+            deps.difference_update(
+                ready
+            )
+
+    return result
+
+
+def build_args_templates(
+    ordered_skills,
+    contracts,
+    step_numbers
+):
+    templates = {}
+
+    for skill in ordered_skills:
+        inputs = contracts.get(
+            skill,
+            {}
+        ).get(
+            "inputs",
+            {}
+        )
+
+        args = {}
+
+        for required_field in inputs:
+
+            if required_field in {
+                "text",
+                "input",
+                "query"
+            }:
+                # Original user input unless a producer exists.
+                producers = []
+
+                for previous_skill in ordered_skills:
+                    if step_numbers[
+                        previous_skill
+                    ] >= step_numbers[skill]:
+                        continue
+
+                    outputs = contracts.get(
+                        previous_skill,
+                        {}
+                    ).get(
+                        "outputs",
+                        {}
+                    )
+
+                    for produced in outputs:
+                        if field_compatible(
+                            required_field,
+                            produced
+                        ):
+                            producers.append(
+                                (
+                                    step_numbers[
+                                        previous_skill
+                                    ],
+                                    produced
+                                )
+                            )
+
+                if producers:
+                    _, produced = producers[-1]
+                    producer_step = ordered_skills[
+                        step_numbers_reverse(
+                            step_numbers,
+                            _
+                        )
+                    ] if False else None
+
+                # Simpler deterministic lookup.
+                chosen = None
+
+                for previous_skill in reversed(
+                    ordered_skills
+                ):
+                    if step_numbers[
+                        previous_skill
+                    ] >= step_numbers[skill]:
+                        continue
+
+                    outputs = contracts.get(
+                        previous_skill,
+                        {}
+                    ).get(
+                        "outputs",
+                        {}
+                    )
+
+                    for produced in outputs:
+                        if field_compatible(
+                            required_field,
+                            produced
+                        ):
+                            chosen = (
+                                step_numbers[
+                                    previous_skill
+                                ],
+                                produced
+                            )
+                            break
+
+                    if chosen:
+                        break
+
+                if chosen:
+                    args[required_field] = (
+                        f"${{step{chosen[0]}.{chosen[1]}}}"
+                    )
+                else:
+                    args[required_field] = "${input}"
+
+                continue
+
+            chosen = None
+
+            for previous_skill in reversed(
+                ordered_skills
+            ):
+                if step_numbers[
+                    previous_skill
+                ] >= step_numbers[skill]:
+                    continue
+
+                outputs = contracts.get(
+                    previous_skill,
+                    {}
+                ).get(
+                    "outputs",
+                    {}
+                )
+
+                for produced in outputs:
+                    if field_compatible(
+                        required_field,
+                        produced
+                    ):
+                        chosen = (
+                            step_numbers[
+                                previous_skill
+                            ],
+                            produced
+                        )
+                        break
+
+                if chosen:
+                    break
+
+            if chosen:
+                args[required_field] = (
+                    f"${{step{chosen[0]}.{chosen[1]}}}"
+                )
+
+        templates[skill] = args
+
+    return templates
+
+
+def create_plan(user_task, goals):
+    build_graph()
+
+    contracts = build_all()
+    registry = load_registry()
+
+    selected = []
+
+    for goal in goals:
+
+        skill = choose_skill_for_goal(
+            goal
+        )
+
+        if (
+            skill
+            and skill in registry
+            and skill in contracts
+        ):
+            if skill not in selected:
+                selected.append(skill)
+
+    if not selected:
+        return {
+            "query": user_task,
+            "steps": [],
+            "planner": "dependency_solver"
+        }
+
+    # Add required producers recursively.
+    changed = True
+
+    while changed:
+        changed = False
+
+        current = list(selected)
+
+        for skill in current:
+
+            inputs = contracts.get(
+                skill,
+                {}
+            ).get(
+                "inputs",
+                {}
+            )
+
+            for required_field in inputs:
+
+                producers = producer_candidates(
+                    required_field,
+                    contracts,
+                    exclude=skill
+                )
+
+                for producer, _ in producers:
+                    if producer in registry and producer not in selected:
+                        selected.append(
+                            producer
+                        )
+                        changed = True
+                        break
+
+    dependencies = build_dependency_graph(
+        selected,
+        contracts
+    )
+
+    ordered = topological_order(
+        selected,
+        dependencies
+    )
+
+    step_numbers = {
+        skill: index + 1
+        for index, skill in enumerate(
+            ordered
+        )
+    }
+
+    args_templates = build_args_templates(
+        ordered,
+        contracts,
+        step_numbers
+    )
+
+    steps = []
+
+    for skill in ordered:
+        steps.append({
+            "order": step_numbers[skill],
+            "skill": skill,
+            "args_template": args_templates[
+                skill
+            ],
+            "reason": (
+                "Selected by capability retrieval "
+                "and dependency resolution."
+            )
+        })
+
+    plan = {
+        "query": user_task,
+        "steps": steps,
+        "planner": "dependency_solver"
+    }
+
+    PLAN_PATH.write_text(
+        json.dumps(
+            plan,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+    return plan
+
+
+def main():
+    import sys
+
+    if len(sys.argv) < 3:
+        print(
+            'Usage: python dependency_planner.py "task" '
+            '"goal1" "goal2" ...'
+        )
+        return 1
+
+    task = sys.argv[1]
+    goals = sys.argv[2:]
+
+    plan = create_plan(
+        task,
+        goals
+    )
+
+    print(
+        json.dumps(
+            plan,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
+
+    return 0 if plan["steps"] else 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,68 @@
+{
+  "hello_skill": {
+    "skill": "hello_skill",
+    "valid": true,
+    "inputs": {
+      "text": "unknown"
+    },
+    "outputs": {
+      "length": "unknown",
+      "ok": "boolean",
+      "skill": "string",
+      "text": "unknown"
+    },
+    "source": "skills/active/hello_skill.py"
+  },
+  "text_analyzer": {
+    "skill": "text_analyzer",
+    "valid": true,
+    "inputs": {
+      "text": "unknown"
+    },
+    "outputs": {
+      "longest_word": "unknown",
+      "ok": "boolean",
+      "skill": "string",
+      "text": "unknown",
+      "top_words": "unknown",
+      "unique_word_count": "unknown",
+      "word_count": "unknown"
+    },
+    "source": "skills/active/text_analyzer.py"
+  },
+  "text_cleaner": {
+    "skill": "text_cleaner",
+    "valid": true,
+    "inputs": {
+      "text": "unknown"
+    },
+    "outputs": {
+      "char_count": "unknown",
+      "cleaned_text": "unknown",
+      "ok": "boolean",
+      "skill": "string",
+      "word_count": "unknown"
+    },
+    "source": "skills/active/text_cleaner.py"
+  },
+  "text_reporter": {
+    "skill": "text_reporter",
+    "valid": true,
+    "inputs": {
+      "longest_word": "unknown",
+      "text": "unknown",
+      "unique_word_count": "unknown",
+      "word_count": "unknown"
+    },
+    "outputs": {
+      "longest_word": "unknown",
+      "ok": "boolean",
+      "report": "unknown",
+      "skill": "string",
+      "text": "unknown",
+      "unique_word_count": "unknown",
+      "word_count": "unknown"
+    },
+    "source": "skills/active/text_reporter.py"
+  }
+}

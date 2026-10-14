@@ -1,0 +1,9 @@
+# ==========================================
+# MASTER SYLLABUS - EVOLUTION DIRECTIVES
+# ==========================================
+# AI Instructions: Parse these topics and seek data matching these domains.
+
+Advanced Cryptography and Blockchain Consensus
+Forex Market Macroeconomic Indicators
+Autonomous Self-Evolving Computer Systems
+Neural Synaptic Pruning Algorithms

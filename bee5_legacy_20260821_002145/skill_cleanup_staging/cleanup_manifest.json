@@ -1,0 +1,1892 @@
+[
+  {
+    "file": "skill_module_-2207569957912109588.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_-2207569957912109588.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_-2207569957912109588.py"
+  },
+  {
+    "file": "skill_module_-4251365629200264271.py",
+    "decision": "BROKEN_SYNTAX",
+    "bucket": "BROKEN",
+    "source": "permanent_skills/skill_module_-4251365629200264271.py",
+    "staged": "skill_cleanup_staging/BROKEN/skill_module_-4251365629200264271.py"
+  },
+  {
+    "file": "skill_module_044cfa68af415e5a78eb12cbffb34774024c36d982e03af8096bfe2ebe054d4c.py",
+    "decision": "UNTESTED",
+    "bucket": "UNTESTED",
+    "source": "permanent_skills/skill_module_044cfa68af415e5a78eb12cbffb34774024c36d982e03af8096bfe2ebe054d4c.py",
+    "staged": "skill_cleanup_staging/UNTESTED/skill_module_044cfa68af415e5a78eb12cbffb34774024c36d982e03af8096bfe2ebe054d4c.py"
+  },
+  {
+    "file": "skill_module_0a7a8b491e2432b0e071d631c1474c8051d94bd2195374c39a4dcbaefac7c6d7.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_0a7a8b491e2432b0e071d631c1474c8051d94bd2195374c39a4dcbaefac7c6d7.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_0a7a8b491e2432b0e071d631c1474c8051d94bd2195374c39a4dcbaefac7c6d7.py"
+  },
+  {
+    "file": "skill_module_1.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_1.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_1.py"
+  },
+  {
+    "file": "skill_module_10.py",
+    "decision": "INFRASTRUCTURE_BROKEN",
+    "bucket": "BROKEN",
+    "source": "permanent_skills/skill_module_10.py",
+    "staged": "skill_cleanup_staging/BROKEN/skill_module_10.py"
+  },
+  {
+    "file": "skill_module_100.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_100.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_100.py"
+  },
+  {
+    "file": "skill_module_101.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_101.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_101.py"
+  },
+  {
+    "file": "skill_module_102.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_102.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_102.py"
+  },
+  {
+    "file": "skill_module_103.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_103.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_103.py"
+  },
+  {
+    "file": "skill_module_104.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_104.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_104.py"
+  },
+  {
+    "file": "skill_module_105.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_105.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_105.py"
+  },
+  {
+    "file": "skill_module_106.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_106.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_106.py"
+  },
+  {
+    "file": "skill_module_107.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_107.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_107.py"
+  },
+  {
+    "file": "skill_module_108.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_108.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_108.py"
+  },
+  {
+    "file": "skill_module_109.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_109.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_109.py"
+  },
+  {
+    "file": "skill_module_11.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_11.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_11.py"
+  },
+  {
+    "file": "skill_module_110.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_110.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_110.py"
+  },
+  {
+    "file": "skill_module_111.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_111.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_111.py"
+  },
+  {
+    "file": "skill_module_112.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_112.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_112.py"
+  },
+  {
+    "file": "skill_module_113.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_113.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_113.py"
+  },
+  {
+    "file": "skill_module_114.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_114.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_114.py"
+  },
+  {
+    "file": "skill_module_114919849907165822428072449381462377024950193360833656421391113702899205159582.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_114919849907165822428072449381462377024950193360833656421391113702899205159582.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_114919849907165822428072449381462377024950193360833656421391113702899205159582.py"
+  },
+  {
+    "file": "skill_module_115.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_115.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_115.py"
+  },
+  {
+    "file": "skill_module_116.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_116.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_116.py"
+  },
+  {
+    "file": "skill_module_117.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_117.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_117.py"
+  },
+  {
+    "file": "skill_module_118.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_118.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_118.py"
+  },
+  {
+    "file": "skill_module_119.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_119.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_119.py"
+  },
+  {
+    "file": "skill_module_12.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_12.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_12.py"
+  },
+  {
+    "file": "skill_module_120.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_120.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_120.py"
+  },
+  {
+    "file": "skill_module_121.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_121.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_121.py"
+  },
+  {
+    "file": "skill_module_122.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_122.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_122.py"
+  },
+  {
+    "file": "skill_module_123.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_123.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_123.py"
+  },
+  {
+    "file": "skill_module_124.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_124.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_124.py"
+  },
+  {
+    "file": "skill_module_125.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_125.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_125.py"
+  },
+  {
+    "file": "skill_module_126.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_126.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_126.py"
+  },
+  {
+    "file": "skill_module_127.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_127.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_127.py"
+  },
+  {
+    "file": "skill_module_128.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_128.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_128.py"
+  },
+  {
+    "file": "skill_module_129.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_129.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_129.py"
+  },
+  {
+    "file": "skill_module_13.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_13.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_13.py"
+  },
+  {
+    "file": "skill_module_130.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_130.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_130.py"
+  },
+  {
+    "file": "skill_module_131.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_131.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_131.py"
+  },
+  {
+    "file": "skill_module_132.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_132.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_132.py"
+  },
+  {
+    "file": "skill_module_133.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_133.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_133.py"
+  },
+  {
+    "file": "skill_module_134.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_134.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_134.py"
+  },
+  {
+    "file": "skill_module_135.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_135.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_135.py"
+  },
+  {
+    "file": "skill_module_136.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_136.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_136.py"
+  },
+  {
+    "file": "skill_module_137.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_137.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_137.py"
+  },
+  {
+    "file": "skill_module_138.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_138.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_138.py"
+  },
+  {
+    "file": "skill_module_139.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_139.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_139.py"
+  },
+  {
+    "file": "skill_module_14.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_14.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_14.py"
+  },
+  {
+    "file": "skill_module_140.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_140.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_140.py"
+  },
+  {
+    "file": "skill_module_141.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_141.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_141.py"
+  },
+  {
+    "file": "skill_module_142.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_142.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_142.py"
+  },
+  {
+    "file": "skill_module_143.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_143.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_143.py"
+  },
+  {
+    "file": "skill_module_144.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_144.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_144.py"
+  },
+  {
+    "file": "skill_module_145.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_145.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_145.py"
+  },
+  {
+    "file": "skill_module_146.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_146.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_146.py"
+  },
+  {
+    "file": "skill_module_147.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_147.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_147.py"
+  },
+  {
+    "file": "skill_module_148.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_148.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_148.py"
+  },
+  {
+    "file": "skill_module_149.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_149.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_149.py"
+  },
+  {
+    "file": "skill_module_15.py",
+    "decision": "INFRASTRUCTURE_BROKEN",
+    "bucket": "BROKEN",
+    "source": "permanent_skills/skill_module_15.py",
+    "staged": "skill_cleanup_staging/BROKEN/skill_module_15.py"
+  },
+  {
+    "file": "skill_module_150.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_150.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_150.py"
+  },
+  {
+    "file": "skill_module_152.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_152.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_152.py"
+  },
+  {
+    "file": "skill_module_153.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_153.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_153.py"
+  },
+  {
+    "file": "skill_module_155.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_155.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_155.py"
+  },
+  {
+    "file": "skill_module_157.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_157.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_157.py"
+  },
+  {
+    "file": "skill_module_159.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_159.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_159.py"
+  },
+  {
+    "file": "skill_module_16.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_16.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_16.py"
+  },
+  {
+    "file": "skill_module_161.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_161.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_161.py"
+  },
+  {
+    "file": "skill_module_163.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_163.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_163.py"
+  },
+  {
+    "file": "skill_module_165.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_165.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_165.py"
+  },
+  {
+    "file": "skill_module_167.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_167.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_167.py"
+  },
+  {
+    "file": "skill_module_169.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_169.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_169.py"
+  },
+  {
+    "file": "skill_module_17.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_17.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_17.py"
+  },
+  {
+    "file": "skill_module_170.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_170.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_170.py"
+  },
+  {
+    "file": "skill_module_171.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_171.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_171.py"
+  },
+  {
+    "file": "skill_module_172.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_172.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_172.py"
+  },
+  {
+    "file": "skill_module_173.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_173.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_173.py"
+  },
+  {
+    "file": "skill_module_174.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_174.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_174.py"
+  },
+  {
+    "file": "skill_module_175.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_175.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_175.py"
+  },
+  {
+    "file": "skill_module_176.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_176.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_176.py"
+  },
+  {
+    "file": "skill_module_1764123586497443160.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_1764123586497443160.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_1764123586497443160.py"
+  },
+  {
+    "file": "skill_module_177.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_177.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_177.py"
+  },
+  {
+    "file": "skill_module_178.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_178.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_178.py"
+  },
+  {
+    "file": "skill_module_18.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_18.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_18.py"
+  },
+  {
+    "file": "skill_module_180.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_180.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_180.py"
+  },
+  {
+    "file": "skill_module_181.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_181.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_181.py"
+  },
+  {
+    "file": "skill_module_182.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_182.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_182.py"
+  },
+  {
+    "file": "skill_module_183.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_183.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_183.py"
+  },
+  {
+    "file": "skill_module_184.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_184.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_184.py"
+  },
+  {
+    "file": "skill_module_185.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_185.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_185.py"
+  },
+  {
+    "file": "skill_module_186.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_186.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_186.py"
+  },
+  {
+    "file": "skill_module_187.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_187.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_187.py"
+  },
+  {
+    "file": "skill_module_188.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_188.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_188.py"
+  },
+  {
+    "file": "skill_module_189.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_189.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_189.py"
+  },
+  {
+    "file": "skill_module_19.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_19.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_19.py"
+  },
+  {
+    "file": "skill_module_190.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_190.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_190.py"
+  },
+  {
+    "file": "skill_module_191.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_191.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_191.py"
+  },
+  {
+    "file": "skill_module_192.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_192.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_192.py"
+  },
+  {
+    "file": "skill_module_193.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_193.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_193.py"
+  },
+  {
+    "file": "skill_module_194.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_194.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_194.py"
+  },
+  {
+    "file": "skill_module_195.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_195.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_195.py"
+  },
+  {
+    "file": "skill_module_196.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_196.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_196.py"
+  },
+  {
+    "file": "skill_module_197.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_197.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_197.py"
+  },
+  {
+    "file": "skill_module_198.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_198.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_198.py"
+  },
+  {
+    "file": "skill_module_199.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_199.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_199.py"
+  },
+  {
+    "file": "skill_module_2.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_2.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_2.py"
+  },
+  {
+    "file": "skill_module_20.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_20.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_20.py"
+  },
+  {
+    "file": "skill_module_200.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_200.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_200.py"
+  },
+  {
+    "file": "skill_module_201.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_201.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_201.py"
+  },
+  {
+    "file": "skill_module_202.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_202.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_202.py"
+  },
+  {
+    "file": "skill_module_203.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_203.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_203.py"
+  },
+  {
+    "file": "skill_module_204.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_204.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_204.py"
+  },
+  {
+    "file": "skill_module_205.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_205.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_205.py"
+  },
+  {
+    "file": "skill_module_206.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_206.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_206.py"
+  },
+  {
+    "file": "skill_module_207.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_207.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_207.py"
+  },
+  {
+    "file": "skill_module_208.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_208.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_208.py"
+  },
+  {
+    "file": "skill_module_209.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_209.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_209.py"
+  },
+  {
+    "file": "skill_module_21.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_21.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_21.py"
+  },
+  {
+    "file": "skill_module_211.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_211.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_211.py"
+  },
+  {
+    "file": "skill_module_213.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_213.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_213.py"
+  },
+  {
+    "file": "skill_module_215.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_215.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_215.py"
+  },
+  {
+    "file": "skill_module_217.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_217.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_217.py"
+  },
+  {
+    "file": "skill_module_219.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_219.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_219.py"
+  },
+  {
+    "file": "skill_module_22.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_22.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_22.py"
+  },
+  {
+    "file": "skill_module_221.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_221.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_221.py"
+  },
+  {
+    "file": "skill_module_223.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_223.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_223.py"
+  },
+  {
+    "file": "skill_module_225.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_225.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_225.py"
+  },
+  {
+    "file": "skill_module_227.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_227.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_227.py"
+  },
+  {
+    "file": "skill_module_229.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_229.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_229.py"
+  },
+  {
+    "file": "skill_module_23.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_23.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_23.py"
+  },
+  {
+    "file": "skill_module_231.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_231.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_231.py"
+  },
+  {
+    "file": "skill_module_233.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_233.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_233.py"
+  },
+  {
+    "file": "skill_module_235.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_235.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_235.py"
+  },
+  {
+    "file": "skill_module_237.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_237.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_237.py"
+  },
+  {
+    "file": "skill_module_239.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_239.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_239.py"
+  },
+  {
+    "file": "skill_module_24.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_24.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_24.py"
+  },
+  {
+    "file": "skill_module_241.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_241.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_241.py"
+  },
+  {
+    "file": "skill_module_243.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_243.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_243.py"
+  },
+  {
+    "file": "skill_module_246.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_246.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_246.py"
+  },
+  {
+    "file": "skill_module_248.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_248.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_248.py"
+  },
+  {
+    "file": "skill_module_25.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_25.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_25.py"
+  },
+  {
+    "file": "skill_module_250.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_250.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_250.py"
+  },
+  {
+    "file": "skill_module_252.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_252.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_252.py"
+  },
+  {
+    "file": "skill_module_254.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_254.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_254.py"
+  },
+  {
+    "file": "skill_module_257.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_257.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_257.py"
+  },
+  {
+    "file": "skill_module_26.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_26.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_26.py"
+  },
+  {
+    "file": "skill_module_260.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_260.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_260.py"
+  },
+  {
+    "file": "skill_module_263.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_263.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_263.py"
+  },
+  {
+    "file": "skill_module_266.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_266.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_266.py"
+  },
+  {
+    "file": "skill_module_269.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_269.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_269.py"
+  },
+  {
+    "file": "skill_module_27.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_27.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_27.py"
+  },
+  {
+    "file": "skill_module_272.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_272.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_272.py"
+  },
+  {
+    "file": "skill_module_275.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_275.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_275.py"
+  },
+  {
+    "file": "skill_module_275142064971636550058847793213212940709.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_275142064971636550058847793213212940709.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_275142064971636550058847793213212940709.py"
+  },
+  {
+    "file": "skill_module_278.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_278.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_278.py"
+  },
+  {
+    "file": "skill_module_28.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_28.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_28.py"
+  },
+  {
+    "file": "skill_module_282.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_282.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_282.py"
+  },
+  {
+    "file": "skill_module_286.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_286.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_286.py"
+  },
+  {
+    "file": "skill_module_29.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_29.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_29.py"
+  },
+  {
+    "file": "skill_module_290.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_290.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_290.py"
+  },
+  {
+    "file": "skill_module_295.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_295.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_295.py"
+  },
+  {
+    "file": "skill_module_3.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_3.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_3.py"
+  },
+  {
+    "file": "skill_module_300.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_300.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_300.py"
+  },
+  {
+    "file": "skill_module_305.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_305.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_305.py"
+  },
+  {
+    "file": "skill_module_31.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_31.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_31.py"
+  },
+  {
+    "file": "skill_module_310.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_310.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_310.py"
+  },
+  {
+    "file": "skill_module_315.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_315.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_315.py"
+  },
+  {
+    "file": "skill_module_32.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_32.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_32.py"
+  },
+  {
+    "file": "skill_module_320.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_320.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_320.py"
+  },
+  {
+    "file": "skill_module_325.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_325.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_325.py"
+  },
+  {
+    "file": "skill_module_33.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_33.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_33.py"
+  },
+  {
+    "file": "skill_module_330.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_330.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_330.py"
+  },
+  {
+    "file": "skill_module_34.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_34.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_34.py"
+  },
+  {
+    "file": "skill_module_344.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_344.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_344.py"
+  },
+  {
+    "file": "skill_module_345.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_345.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_345.py"
+  },
+  {
+    "file": "skill_module_35.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_35.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_35.py"
+  },
+  {
+    "file": "skill_module_356966c6e825f35ae297e7908a0bfc652f1c1c5452f3c99c619419e3ca57e95b.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_356966c6e825f35ae297e7908a0bfc652f1c1c5452f3c99c619419e3ca57e95b.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_356966c6e825f35ae297e7908a0bfc652f1c1c5452f3c99c619419e3ca57e95b.py"
+  },
+  {
+    "file": "skill_module_35f4bcc0.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_35f4bcc0.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_35f4bcc0.py"
+  },
+  {
+    "file": "skill_module_36.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_36.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_36.py"
+  },
+  {
+    "file": "skill_module_37.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_37.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_37.py"
+  },
+  {
+    "file": "skill_module_38.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_38.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_38.py"
+  },
+  {
+    "file": "skill_module_39.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_39.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_39.py"
+  },
+  {
+    "file": "skill_module_4.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_4.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_4.py"
+  },
+  {
+    "file": "skill_module_40.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_40.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_40.py"
+  },
+  {
+    "file": "skill_module_42.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_42.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_42.py"
+  },
+  {
+    "file": "skill_module_43.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_43.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_43.py"
+  },
+  {
+    "file": "skill_module_44.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_44.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_44.py"
+  },
+  {
+    "file": "skill_module_45.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_45.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_45.py"
+  },
+  {
+    "file": "skill_module_46.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_46.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_46.py"
+  },
+  {
+    "file": "skill_module_47.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_47.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_47.py"
+  },
+  {
+    "file": "skill_module_48.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_48.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_48.py"
+  },
+  {
+    "file": "skill_module_49.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_49.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_49.py"
+  },
+  {
+    "file": "skill_module_4cea24b3.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_4cea24b3.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_4cea24b3.py"
+  },
+  {
+    "file": "skill_module_5.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_5.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_5.py"
+  },
+  {
+    "file": "skill_module_50.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_50.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_50.py"
+  },
+  {
+    "file": "skill_module_51.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_51.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_51.py"
+  },
+  {
+    "file": "skill_module_52.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_52.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_52.py"
+  },
+  {
+    "file": "skill_module_53.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_53.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_53.py"
+  },
+  {
+    "file": "skill_module_54.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_54.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_54.py"
+  },
+  {
+    "file": "skill_module_55.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_55.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_55.py"
+  },
+  {
+    "file": "skill_module_553255f5.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_553255f5.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_553255f5.py"
+  },
+  {
+    "file": "skill_module_56.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_56.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_56.py"
+  },
+  {
+    "file": "skill_module_5623.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_5623.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_5623.py"
+  },
+  {
+    "file": "skill_module_58.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_58.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_58.py"
+  },
+  {
+    "file": "skill_module_59.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_59.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_59.py"
+  },
+  {
+    "file": "skill_module_5912.py",
+    "decision": "DATA_OR_SCRIPT",
+    "bucket": "UNTESTED",
+    "source": "permanent_skills/skill_module_5912.py",
+    "staged": "skill_cleanup_staging/UNTESTED/skill_module_5912.py"
+  },
+  {
+    "file": "skill_module_6.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_6.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_6.py"
+  },
+  {
+    "file": "skill_module_60.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_60.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_60.py"
+  },
+  {
+    "file": "skill_module_61.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_61.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_61.py"
+  },
+  {
+    "file": "skill_module_62.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_62.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_62.py"
+  },
+  {
+    "file": "skill_module_6242.py",
+    "decision": "UNTESTED",
+    "bucket": "UNTESTED",
+    "source": "permanent_skills/skill_module_6242.py",
+    "staged": "skill_cleanup_staging/UNTESTED/skill_module_6242.py"
+  },
+  {
+    "file": "skill_module_64.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_64.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_64.py"
+  },
+  {
+    "file": "skill_module_65.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_65.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_65.py"
+  },
+  {
+    "file": "skill_module_66.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_66.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_66.py"
+  },
+  {
+    "file": "skill_module_67.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_67.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_67.py"
+  },
+  {
+    "file": "skill_module_674a6c2f.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_674a6c2f.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_674a6c2f.py"
+  },
+  {
+    "file": "skill_module_68.py",
+    "decision": "INFRASTRUCTURE_GENERATOR",
+    "bucket": "GENERATORS",
+    "source": "permanent_skills/skill_module_68.py",
+    "staged": "skill_cleanup_staging/GENERATORS/skill_module_68.py"
+  },
+  {
+    "file": "skill_module_69.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_69.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_69.py"
+  },
+  {
+    "file": "skill_module_7.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_7.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_7.py"
+  },
+  {
+    "file": "skill_module_70.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_70.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_70.py"
+  },
+  {
+    "file": "skill_module_71.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_71.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_71.py"
+  },
+  {
+    "file": "skill_module_72.py",
+    "decision": "INFRASTRUCTURE_BROKEN",
+    "bucket": "BROKEN",
+    "source": "permanent_skills/skill_module_72.py",
+    "staged": "skill_cleanup_staging/BROKEN/skill_module_72.py"
+  },
+  {
+    "file": "skill_module_74.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_74.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_74.py"
+  },
+  {
+    "file": "skill_module_75.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_75.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_75.py"
+  },
+  {
+    "file": "skill_module_76.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_76.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_76.py"
+  },
+  {
+    "file": "skill_module_77.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_77.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_77.py"
+  },
+  {
+    "file": "skill_module_7737377146923657469.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_7737377146923657469.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_7737377146923657469.py"
+  },
+  {
+    "file": "skill_module_78.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_78.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_78.py"
+  },
+  {
+    "file": "skill_module_79.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_79.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_79.py"
+  },
+  {
+    "file": "skill_module_8.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_8.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_8.py"
+  },
+  {
+    "file": "skill_module_80.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_80.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_80.py"
+  },
+  {
+    "file": "skill_module_81.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_81.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_81.py"
+  },
+  {
+    "file": "skill_module_82.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_82.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_82.py"
+  },
+  {
+    "file": "skill_module_8276.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_8276.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_8276.py"
+  },
+  {
+    "file": "skill_module_83.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_83.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_83.py"
+  },
+  {
+    "file": "skill_module_84.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_84.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_84.py"
+  },
+  {
+    "file": "skill_module_85.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_85.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_85.py"
+  },
+  {
+    "file": "skill_module_86.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_86.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_86.py"
+  },
+  {
+    "file": "skill_module_87.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_87.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_87.py"
+  },
+  {
+    "file": "skill_module_88.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_88.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_88.py"
+  },
+  {
+    "file": "skill_module_89.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_89.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_89.py"
+  },
+  {
+    "file": "skill_module_9.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_9.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_9.py"
+  },
+  {
+    "file": "skill_module_90.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_90.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_90.py"
+  },
+  {
+    "file": "skill_module_91.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_91.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_91.py"
+  },
+  {
+    "file": "skill_module_92.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_92.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_92.py"
+  },
+  {
+    "file": "skill_module_93.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_93.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_93.py"
+  },
+  {
+    "file": "skill_module_93e4a3579c6cb75240c377d1dea3f0a4b3cab8f9db9f27be1d470a119145c439.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_93e4a3579c6cb75240c377d1dea3f0a4b3cab8f9db9f27be1d470a119145c439.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_93e4a3579c6cb75240c377d1dea3f0a4b3cab8f9db9f27be1d470a119145c439.py"
+  },
+  {
+    "file": "skill_module_94.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_94.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_94.py"
+  },
+  {
+    "file": "skill_module_95.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_95.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_95.py"
+  },
+  {
+    "file": "skill_module_96.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_96.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_96.py"
+  },
+  {
+    "file": "skill_module_97.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_97.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_97.py"
+  },
+  {
+    "file": "skill_module_98.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_98.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_98.py"
+  },
+  {
+    "file": "skill_module_99.py",
+    "decision": "REAL_DUPLICATE_CANDIDATE",
+    "bucket": "DUPLICATE_CANDIDATES",
+    "source": "permanent_skills/skill_module_99.py",
+    "staged": "skill_cleanup_staging/DUPLICATE_CANDIDATES/skill_module_99.py"
+  },
+  {
+    "file": "skill_module_SOgqkadu9g1lXvtx.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_SOgqkadu9g1lXvtx.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_SOgqkadu9g1lXvtx.py"
+  },
+  {
+    "file": "skill_module_c16eb3b17c03e36d77b2bb745701f6fe34a80ae4bd1ab095af1cfbba76900499.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_c16eb3b17c03e36d77b2bb745701f6fe34a80ae4bd1ab095af1cfbba76900499.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_c16eb3b17c03e36d77b2bb745701f6fe34a80ae4bd1ab095af1cfbba76900499.py"
+  },
+  {
+    "file": "skill_module_ceafdc45330d43b5a959871316459f58.py",
+    "decision": "UNTESTED",
+    "bucket": "UNTESTED",
+    "source": "permanent_skills/skill_module_ceafdc45330d43b5a959871316459f58.py",
+    "staged": "skill_cleanup_staging/UNTESTED/skill_module_ceafdc45330d43b5a959871316459f58.py"
+  },
+  {
+    "file": "skill_module_dca1359033649317d19726fe4d911aa0ef2e6fc096838944f2cc9952dfda26ec.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_dca1359033649317d19726fe4d911aa0ef2e6fc096838944f2cc9952dfda26ec.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_dca1359033649317d19726fe4d911aa0ef2e6fc096838944f2cc9952dfda26ec.py"
+  },
+  {
+    "file": "skill_module_ddg_reader.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_ddg_reader.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_ddg_reader.py"
+  },
+  {
+    "file": "skill_module_duckduckgo.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_duckduckgo.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_duckduckgo.py"
+  },
+  {
+    "file": "skill_module_duckduckgo_learning.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_duckduckgo_learning.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_duckduckgo_learning.py"
+  },
+  {
+    "file": "skill_module_duckduckgo_reader.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_duckduckgo_reader.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_duckduckgo_reader.py"
+  },
+  {
+    "file": "skill_module_duckduckgo_search.py",
+    "decision": "INFRASTRUCTURE_BROKEN",
+    "bucket": "BROKEN",
+    "source": "permanent_skills/skill_module_duckduckgo_search.py",
+    "staged": "skill_cleanup_staging/BROKEN/skill_module_duckduckgo_search.py"
+  },
+  {
+    "file": "skill_module_f83461cc.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_f83461cc.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_f83461cc.py"
+  },
+  {
+    "file": "skill_module_f8c7d5bb08f8ef80b30e1566f692b98ef427607c7400ff97a873919e667360a8.py",
+    "decision": "NETWORK",
+    "bucket": "NETWORK",
+    "source": "permanent_skills/skill_module_f8c7d5bb08f8ef80b30e1566f692b98ef427607c7400ff97a873919e667360a8.py",
+    "staged": "skill_cleanup_staging/NETWORK/skill_module_f8c7d5bb08f8ef80b30e1566f692b98ef427607c7400ff97a873919e667360a8.py"
+  },
+  {
+    "file": "skill_module_neural_network_node.py",
+    "decision": "INFRASTRUCTURE",
+    "bucket": "INFRASTRUCTURE",
+    "source": "permanent_skills/skill_module_neural_network_node.py",
+    "staged": "skill_cleanup_staging/INFRASTRUCTURE/skill_module_neural_network_node.py"
+  },
+  {
+    "file": "skill_module_text_summarization.py",
+    "decision": "REAL_CAPABILITY",
+    "bucket": "REAL_CAPABILITIES",
+    "source": "permanent_skills/skill_module_text_summarization.py",
+    "staged": "skill_cleanup_staging/REAL_CAPABILITIES/skill_module_text_summarization.py"
+  },
+  {
+    "file": "skill_module_web_search.py",
+    "decision": "UNTESTED",
+    "bucket": "UNTESTED",
+    "source": "permanent_skills/skill_module_web_search.py",
+    "staged": "skill_cleanup_staging/UNTESTED/skill_module_web_search.py"
+  },
+  {
+    "file": "skill_module_wiki_info.py",
+    "decision": "PLACEHOLDER",
+    "bucket": "PLACEHOLDER",
+    "source": "permanent_skills/skill_module_wiki_info.py",
+    "staged": "skill_cleanup_staging/PLACEHOLDER/skill_module_wiki_info.py"
+  }
+]

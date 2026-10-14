@@ -1,0 +1,943 @@
+{
+  "learned": [
+    {
+      "topic": "Cottontown, Tennessee",
+      "summary": "Cottontown is an unincorporated community and census-designated place in Sumner and Robertson counties, Tennessee, United States. As of the 2020 census, its population was 370. It is located along State Route 25, northwest of neighboring Gallatin. Cottontown has a post office with ZIP code 37048.",
+      "source": "https://en.wikipedia.org/wiki/Cottontown%2C_Tennessee",
+      "learnedAt": "2026-08-19T07:50:27.225Z"
+    },
+    {
+      "topic": "Unincorporated communities in Sumner County, Tennessee",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T07:55:28.291Z"
+    },
+    {
+      "topic": "Census-designated places in Sumner County, Tennessee",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T07:55:53.460Z"
+    },
+    {
+      "topic": "Census-designated places in Tennessee",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:02:07.921Z"
+    },
+    {
+      "topic": "Dvor, Žužemberk",
+      "summary": "Dvor is a village on the right bank of the Krka River in the Municipality of Žužemberk in southeastern Slovenia. The area is part of the historical region of Lower Carniola. The municipality is now included in the Southeast Slovenia Statistical Region.",
+      "source": "https://en.wikipedia.org/wiki/Dvor%2C_%C5%BDu%C5%BEemberk",
+      "learnedAt": "2026-08-19T08:03:09.730Z"
+    },
+    {
+      "topic": "Populated places in the Municipality of Žužemberk",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:04:10.134Z"
+    },
+    {
+      "topic": "New England Rugby Football Union",
+      "summary": "The New England Rugby Football Union is a Geographical Union for rugby union teams in New England. Prior to 2013, NERFU had been a local area union, and part of the Northeast Rugby Union, which is the governing body for three LAU's. There are currently over 80 active teams and over 3,000 registered players in the New England area.",
+      "source": "https://en.wikipedia.org/wiki/New_England_Rugby_Football_Union",
+      "learnedAt": "2026-08-19T08:05:11.737Z"
+    },
+    {
+      "topic": "Rugby union governing bodies in the United States",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:06:12.898Z"
+    },
+    {
+      "topic": "Rugby union in Massachusetts",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:07:13.298Z"
+    },
+    {
+      "topic": "Ben Moreell",
+      "summary": "Admiral Ben Moreell was the chief of the U.S. Navy's Bureau of Yards and Docks and of the Civil Engineer Corps. Best known to the American public as the father of the Navy's Seabees, Moreell's life spanned eight decades, two world wars, a great depression and the evolution of the United States as a superpower. He was a distinguished naval officer, an engineer, an industrial giant and a national spokesman.",
+      "source": "https://en.wikipedia.org/wiki/Ben_Moreell",
+      "learnedAt": "2026-08-19T08:08:14.880Z"
+    },
+    {
+      "topic": "Seabees",
+      "summary": "United States Naval Construction Battalions, better known as the Navy Seabees, form the U.S. Naval Construction Forces. The Seabee nickname is a heterograph of the initial letters \"CB\" from the words \"Construction Battalion\". Depending upon context, \"Seabee\" can refer to all enlisted personnel in the USN's occupational field 13, all personnel in the Naval Construction Force, or Construction Battalion. Seabees serve both in and outside the NCF. The men in the NCF considered these units to be \"Seabee\". During World War II they were plank-holders of both the Naval Combat Demolition Units and the Underwater Demolition Teams. In addition, Seabees served as elements of the United States Marine Corps, organized in specialized, self-sustaining, advanced base units known as Lions, Cubs, and Acorns. They also provided the manpower for the top secret CWS Flame Tank Group.",
+      "source": "https://en.wikipedia.org/wiki/Seabee",
+      "learnedAt": "2026-08-19T08:09:15.191Z"
+    },
+    {
+      "topic": "Military personnel from St. Louis",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:10:15.564Z"
+    },
+    {
+      "topic": "20th-century American military personnel",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:11:15.933Z"
+    },
+    {
+      "topic": "United States Navy World War II admirals",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:12:16.304Z"
+    },
+    {
+      "topic": "Military engineering of the United States",
+      "summary": "The United States first formed a military engineering capability on 16 June 1775, when the Continental Congress established an army with a chief engineer and two assistants. Subsequently, on 16 March 1802, the Corps of Engineers was organized by the President. Today, Military Engineers are grouped separately within each of the armed services.",
+      "source": "https://en.wikipedia.org/wiki/Military_engineering_of_the_United_States",
+      "learnedAt": "2026-08-19T08:13:16.766Z"
+    },
+    {
+      "topic": "Naval Mobile Construction Battalion 1",
+      "summary": "Naval Mobile Construction Battalion 1, is a United States Navy Seabee battalion. NMCB ONE, the original \"Pioneers\", has a long history as the very first Naval Construction Battalion of the service that would become known as the Seabees.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Mobile_Construction_Battalion_1",
+      "learnedAt": "2026-08-19T08:14:17.115Z"
+    },
+    {
+      "topic": "Naval Mobile Construction Battalion 3",
+      "summary": "Naval Mobile Construction Battalion THREE is a United States Navy Seabee that was one of the three original Construction Battalions authorized to be formed in 1942. In May 1942 Naval Construction Battalion 3 deployed to the Territory of Hawaii and designated Brigade Headquarters Battalion for the Hawaiian Area NCF. After seeing service in the South Pacific, the battalion was decommissioned mid-1944. In 1950 the battalion was reactivated and today is home-ported at Port Hueneme, California.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Mobile_Construction_Battalion_3",
+      "learnedAt": "2026-08-19T08:15:17.428Z"
+    },
+    {
+      "topic": "Naval Mobile Construction Battalion 4",
+      "summary": "Naval Mobile Construction Battalion 4 is a Navy Seabee battalion homeported at Port Hueneme, California. Nicknamed the \"Pioneers\", it is the first of the many CBs created after the original three. The battalion's current insignia first appeared on its 1953–55 cruisebook.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Mobile_Construction_Battalion_4",
+      "learnedAt": "2026-08-19T08:16:17.889Z"
+    },
+    {
+      "topic": "Naval Mobile Construction Battalion 5",
+      "summary": "Naval Construction Battalion 5 was commissioned on May 25, 1942 at Camp Allen Va. The battalion went to Port Hueneme and shipped out for the first of two deployments in the Pacific. When the war ended CB 5 was decommissioned in the Philippines. On July 10, 1951 the Battalion was re-commissioned as a MCB and remains an active unit today.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Mobile_Construction_Battalion_5",
+      "learnedAt": "2026-08-19T08:17:18.714Z"
+    },
+    {
+      "topic": "Naval Mobile Construction Battalion 11",
+      "summary": "Naval Mobile Construction Battalion 11 is a United States Navy Construction Battalion, otherwise known as a Seabee Battalion, presently home-ported at the Naval Construction Battalion Center. The unit was formed during World War II as the 11th Naval Construction Battalion at Camp Allen on 28 June 1942. On 1 July, she moved to the new Seabee base Camp Bradford. Seabee battalions were numbered sequentially in the order they were stood up. The battalion lost one man during the war to a construction accident. The 11th CB was inactivated on 1 December 1945, at Subic Bay, Philippines. The unit was reactivated as Mobile Construction Battalion 11 in the fall 1953, only to be decommissioned again in December 1969. However, MCB 11 made four tours in Vietnam. Eleven's fourth Seabee Technical Assistance Team was sent to a Special Forces camp near the junction of two jungle routes, one called the Ho Chi Minh trail.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Mobile_Construction_Battalion_11",
+      "learnedAt": "2026-08-19T08:18:19.256Z"
+    },
+    {
+      "topic": "Seabee units and formations",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:19:19.930Z"
+    },
+    {
+      "topic": "United States Navy ratings",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:20:20.570Z"
+    },
+    {
+      "topic": "United States Navy organization",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:21:21.218Z"
+    },
+    {
+      "topic": "Military engineering of the United States Category",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:22:21.973Z"
+    },
+    {
+      "topic": "Amphibious Construction Battalion 1 (ACB-1).",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:23:22.451Z"
+    },
+    {
+      "topic": "Amphibious Construction Battalion 2 (ACB-2).",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:24:23.111Z"
+    },
+    {
+      "topic": "Civil Engineer Corps United States Navy.",
+      "summary": "The Civil Engineer Corps is a staff corps of the United States Navy. CEC officers are professional engineers and architects, acquisitions specialists, and Seabee combat warfare officers who qualify within Seabee units. They are responsible for executing and managing the planning, design, acquisition, construction, operation, and maintenance of the Navy's shore facilities. The Civil Engineer Corps is under the command of the Chief of Civil Engineers and Commander, Naval Facilities Engineering Systems Command. On 12 August 2022, RADM Dean VanderLey relieved RADM John W. Korka, becoming the 46th commander of NAVFAC and Chief of Civil Engineers. Present day CEC ranks range from CWO4 to RADM, though the community is phasing out Chief Warrant Officer ranks in favor of limited duty officers.",
+      "source": "https://en.wikipedia.org/wiki/Civil_Engineer_Corps",
+      "learnedAt": "2026-08-19T08:25:23.564Z"
+    },
+    {
+      "topic": "Naval Construction Battalion aka Seabee .",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:26:24.164Z"
+    },
+    {
+      "topic": "Naval Amphibious Base Little Creek",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:27:26.628Z"
+    },
+    {
+      "topic": "Naval Amphibious Base Coronado",
+      "summary": "Naval Amphibious Base Coronado is a US naval installation in Coronado, California. The base, situated on Silver Strand between San Diego Bay and the Pacific Ocean, is a major United States Navy shore command, supporting over 30 tenant commands, and is the West Coast focal point for special and expeditionary warfare training and operations. The on‑base population is 5,000 military personnel and 7,000 students and reservists. The base is one of the eight components of Naval Base Coronado.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Amphibious_Base_Coronado",
+      "learnedAt": "2026-08-19T08:28:27.186Z"
+    },
+    {
+      "topic": "Naval Construction Battalion",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:29:27.658Z"
+    },
+    {
+      "topic": "Admiralty Islands campaign",
+      "summary": "The Admiralty Islands campaign was a series of battles in the New Guinea campaign of World War II in which the United States Army's 1st Cavalry Division took the Japanese-held Admiralty Islands. Acting on reports from airmen that there were no signs of enemy activity and the islands might have been evacuated, General Douglas MacArthur accelerated his timetable for capturing the Admiralties and ordered an immediate reconnaissance in force. The campaign began on 29 February 1944 when a force landed on Los Negros, the third-largest island in the group. By using a small, isolated beach where the Japanese had not anticipated an assault, the force achieved tactical surprise, but the islands proved to be far from unoccupied. A furious battle over the islands ensued. In the end, air superiority and command of the sea allowed the Allies to heavily reinforce their position on Los Negros. The 1st Cavalry Division could then overrun the islands. The campaign officially ended on 18 May 1944.",
+      "source": "https://en.wikipedia.org/wiki/Admiralty_Islands_campaign",
+      "learnedAt": "2026-08-19T08:30:28.160Z"
+    },
+    {
+      "topic": "Battle of Đồng Xoài",
+      "summary": "The Battle of Đồng Xoài was a major battle fought during the Vietnam War as part of the Viet Cong Summer Offensive of 1965. It took place in Phước Long Province, South Vietnam, between 9 and 13 June 1965. Political instability in Saigon gave North Vietnamese leaders an opportunity to step up their military campaign in the south. They believed that the South Vietnamese government's power relied on the country's strong military, so the North Vietnamese People's Army of Vietnam and VC launched the Summer Offensive of 1965 to inflict significant losses on South Vietnamese forces. In Phước Long Province, the PAVN/VC summer offensive culminated in the Đồng Xoài campaign. The fight for Đồng Xoài began on the evening of 9 June 1965, when the VC 272nd Regiment attacked and captured the Civilian Irregular Defense Group and US Special Forces camp there.",
+      "source": "https://en.wikipedia.org/wiki/Battle_of_%C4%90%E1%BB%93ng_Xo%C3%A0i",
+      "learnedAt": "2026-08-19T08:31:29.108Z"
+    },
+    {
+      "topic": "Battle of Lang Vei",
+      "summary": "The Battle of Lang Vei began on the evening of 6 February 1968 and concluded during the early hours of 7 February, in Quảng Trị Province, South Vietnam. Towards the end of 1967, the 198th Tank Battalion of the People's Army of Vietnam's 202nd Armored Regiment received instructions from the North Vietnamese Ministry of Defense to reinforce the 304th Division as part of the Route 9–Khe Sanh Campaign. After an arduous journey down the Ho Chi Minh trail in January 1968, the 198th Tank Battalion linked up with the 304th Division for an offensive along Highway 9, which stretched from the Laotian border through to Quảng Trị Province. On 23 January, the 24th Regiment attacked the small Laotian outpost at Bane Houei Sane, under the control of the Royal Laos Army BV-33 \"Elephant\" Battalion. In that battle, the 198th Tank Battalion failed to reach the battle on time because its crews struggled to navigate their tanks through the rough local terrain.",
+      "source": "https://en.wikipedia.org/wiki/Battle_of_Lang_Vei",
+      "learnedAt": "2026-08-19T08:32:29.500Z"
+    },
+    {
+      "topic": "Seabees in World War II",
+      "summary": "The United States Naval Construction Battalions were formed on 5 March 1942 during the induction of The United States in World War II. They primarily served the role of construction in service of the logistics of the war, though some Battalions served in Naval Combat Demolition Units, UDTs, Marine Corps Engineers/Pioneers and the top secret Chemical Warfare Service Flame tank Group. First conceived at the Bureau of Yards and Docks in the 1930s, the onset of hostilities clarified the need for developing advance bases for the logistical burden of wartime. Primarily beginning as a volunteer force of already skilled trasdeman, the initial maximum age of service in the Seabees was waived to age 50. It was later found that several past 60 had managed to get in. Men were given advanced rank/pay based upon experience making the Seabees the highest-paid group in the U.S. military. The first 60 battalions had an average age of 37.",
+      "source": "https://en.wikipedia.org/wiki/Seabees_in_World_War_II",
+      "learnedAt": "2026-08-19T08:33:29.920Z"
+    },
+    {
+      "topic": "Underwater Construction Teams",
+      "summary": "Underwater Construction Teams are the United States Navy Seabees' underwater construction units numbered 1 and 2 that were created in 1974. A team is composed of divers qualified in both underwater construction and underwater demolition. Possible tasks can be: battle damage repairs, structural inspections and assessments, demolition of waterline facilities or submerged obstructions, installation of submerged surveillance systems, or harbor and channel clearance. As needed, teams may test and or evaluate new or existing aquatic systems or equipment. Extending construction, whether vertical or horizontal, beyond the shoreline and waterline is their specialty. Reflecting Seabee tradition, teams are expected to execute underwater construction anywhere, anytime, under any conditions.",
+      "source": "https://en.wikipedia.org/wiki/Underwater_Construction_Teams",
+      "learnedAt": "2026-08-19T08:34:30.279Z"
+    },
+    {
+      "topic": "California during World War II",
+      "summary": "California was a major contributor to the World War II effort. After the Japanese attack on Pearl Harbor, the majority of manufacturing in California shifted to accommodate the war effort, causing the state to become a major ship builder and aircraft manufacturer, along with expanding oil and mineral production. Agriculture, ranches, and farms were used to feed the troops around the world. Existing military installations were enlarged and many new ones were built to keep up with the demand. The state trained many of the troops before their oversea deployment, causing the population to grow significantly. Along with the servicemen stationed at the new military bases and training facilities, there was a mass influx of people from around the U.S. coming to work in the growing defense industries. Over 800,000 Californians served in the United States Armed Forces. With all the new economic activity, California was lifted out of the Great Depression.",
+      "source": "https://en.wikipedia.org/wiki/California_during_World_War_II",
+      "learnedAt": "2026-08-19T08:35:30.652Z"
+    },
+    {
+      "topic": "Military in San Diego",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:36:31.098Z"
+    },
+    {
+      "topic": "Military facilities in San Diego County, California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:37:31.597Z"
+    },
+    {
+      "topic": "Coronado, California",
+      "summary": "Coronado is a beach city in San Diego County, California, United States, across San Diego Bay from downtown San Diego. It was founded in the 1880s and incorporated in 1890. Its population was 20,192 in 2020. Coronado is a tied island which is connected to the mainland by a tombolo called Silver Strand. Along the coast of Southern California lie four islands that were spotted by Sebastian Vizcaino and his crew. They named them \"Los Coronados\". In the mid-1880s, businessmen bought the peninsula near Los Coronados with hopes to turn it into a resort. Later in 1886, the owners of this peninsula hosted a naming contest with the people resulting in the name \"Miramar\" winning, which was soon overturned due to the public not being satisfied with the name, so they borrowed from their cousin islands \"Los Coronados\" and named it \"Coronado\". Coronado is the Spanish term for \"crowned\" and thus it is nicknamed The Crown City.",
+      "source": "https://en.wikipedia.org/wiki/Coronado%2C_California",
+      "learnedAt": "2026-08-19T08:38:32.040Z"
+    },
+    {
+      "topic": "San Diego Bay",
+      "summary": "San Diego Bay is a natural harbor and deepwater port in San Diego County, California, near the Mexico–United States border. The bay, which is 12 miles long and 1 to 3 miles wide, is the third largest of the three large, protected natural bays on California's 840 miles of coastline, after San Francisco Bay and Humboldt Bay. The highly urbanized land adjacent to the bay includes the city of San Diego and four other cities: National City, Chula Vista, Imperial Beach and Coronado. The bay is considered to be one of the premier natural harbors on the West Coast. San Diego Bay was colonized by Spain beginning in 1769. It served as the base headquarters of major ships of the United States Navy in the Pacific until just before the United States entered World War II, when the newly organized United States Pacific Fleet primary base was transferred to Pearl Harbor. The bay remains as a home port of major assets, including several aircraft carriers of the United States Pacific Fleet.",
+      "source": "https://en.wikipedia.org/wiki/San_Diego_Bay",
+      "learnedAt": "2026-08-19T08:39:32.515Z"
+    },
+    {
+      "topic": "Admiralty Islands campaign order of battle",
+      "summary": "This is the order of battle of Allied and Japanese forces during the Admiralty Islands campaign of 1944.",
+      "source": "https://en.wikipedia.org/wiki/Admiralty_Islands_campaign_order_of_battle",
+      "learnedAt": "2026-08-19T08:40:32.836Z"
+    },
+    {
+      "topic": "Manus Naval Base",
+      "summary": "Manus Naval Base was a number of bases built after the World War II Battle of Manus by United States Navy on the Manus Island and a smaller island just east, Los Negros Island in the Admiralty Islands chain. The major naval base construction started with the Los Negros landings on February 28, 1944. The Navy repaired and did the expansion of the airfields on the Admiralty Islands. United States Navy Seabee built or repaired the facilities on the islands. The large Manus Naval Base, also called the Admiralty Island base, supported United States Seventh Fleet, Southwest Pacific command, and part of the Pacific Fleet. The base was abandoned by the US Navy after the war.",
+      "source": "https://en.wikipedia.org/wiki/Manus_Naval_Base",
+      "learnedAt": "2026-08-19T08:41:33.376Z"
+    },
+    {
+      "topic": "Operation Cartwheel",
+      "summary": "Operation Cartwheel was a major military operation undertaken by the Allies in the Pacific theatre of World War II. The ultimate goal of Cartwheel was to neutralize the major Japanese base at Rabaul. The operation was directed by the Supreme Allied Commander in the South West Pacific Area, General Douglas MacArthur, whose forces had advanced along the northeast coast of New Guinea and occupied nearby islands. US forces from the South Pacific Area, under Admiral William Halsey, advanced through the Solomon Islands toward Bougainville. Allied forces from Australia, the Netherlands, New Zealand, and various Pacific Islands took part in the operation.",
+      "source": "https://en.wikipedia.org/wiki/Operation_Cartwheel",
+      "learnedAt": "2026-08-19T08:42:33.776Z"
+    },
+    {
+      "topic": "Territory of New Guinea",
+      "summary": "The Territory of New Guinea was an Australian-administered territory, first as a League of Nations mandate and then as a United Nations trust territory, in the northeastern part of the island of New Guinea and nearby islands, from 1914 until 1975. In 1949, it was united with the Territory of Papua to create the Territory of Papua and New Guinea. That administrative union was renamed as Papua New Guinea in 1971. Notwithstanding that it was part of an administrative union, the Territory of New Guinea at all times retained a distinct legal status and identity until the advent of the Independent State of Papua New Guinea.",
+      "source": "https://en.wikipedia.org/wiki/Territory_of_New_Guinea",
+      "learnedAt": "2026-08-19T08:43:34.105Z"
+    },
+    {
+      "topic": "South West Pacific theatre of World War II",
+      "summary": "The South West Pacific theatre, during World War II, was a major theatre of the war between the Allies and the Axis. It included the Philippines, the Dutch East Indies, Borneo, Australia, its mandate Territory of New Guinea and the Solomon Islands' western part. This area was defined by the Allied powers' South West Pacific Area command. Japanese forces fought primarily against the United States and Australian forces in the South West Pacific theatre. The Philippines, New Zealand, the Netherlands, the United Kingdom, and other Allied nations also contributed forces. The South Pacific became a major theatre of the war following the Japanese attack on Pearl Harbor in December 1941. Initially, US war plans called for a counteroffensive across the Central Pacific, but this was disrupted by the loss of battleships at Pearl Harbor. During the First South Pacific Campaign, US forces sought to establish a defensive perimeter against additional Japanese attacks.",
+      "source": "https://en.wikipedia.org/wiki/South_West_Pacific_theatre_of_World_War_II",
+      "learnedAt": "2026-08-19T08:44:34.619Z"
+    },
+    {
+      "topic": "Battles of the Vietnam War involving the United States",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:45:35.058Z"
+    },
+    {
+      "topic": "Battle of Ban Houei Sane",
+      "summary": "The Battle of Ban Houei Sane took place during the Vietnam War, beginning on the night of 23 January 1968, when the 24th Regiment of the People's Army of Vietnam 304th Division overran the small Royal Lao Army outpost at Ban Houei Sane. The fighting at Ban Houei Sane was one in a series of battles fought between North Vietnamese and Allied forces during the Tet Offensive. The small outpost, defended by the 700 man Bataillon Volontaire, was attacked and overwhelmed by the vastly superior PAVN and their PT-76 light tanks. The failure of BV-33 to defend their outpost at Ban Houei Sane had negative consequences only a few weeks later, when the PAVN struck again at Lang Vei.",
+      "source": "https://en.wikipedia.org/wiki/Battle_of_Ban_Houei_Sane",
+      "learnedAt": "2026-08-19T08:49:24.421Z"
+    },
+    {
+      "topic": "Battle of Khe Sanh",
+      "summary": "The Battle of Khe Sanh was conducted in the Khe Sanh area of northwestern Quảng Trị Province, Republic of Vietnam, during the Vietnam War. The main US forces defending Khe Sanh Combat Base were two regiments of the United States Marine Corps supported by elements from the United States Army, the United States Air Force and the Royal Australian Air Force, as well as a small number of Army of the Republic of Vietnam troops. These were pitted against two to three divisional-size elements of the North Vietnamese People's Army of Vietnam. The US command in Saigon initially believed that combat operations around KSCB during 1967 were part of a series of minor PAVN offensives in the border regions, but when the PAVN was found to be moving major forces into the area, the U.S. force at KSCB was reinforced. On 21 January 1968, the PAVN surrounded and besieged the Marine base.",
+      "source": "https://en.wikipedia.org/wiki/Battle_of_Khe_Sanh",
+      "learnedAt": "2026-08-19T08:50:24.918Z"
+    },
+    {
+      "topic": "17th Marine Regiment (Engineer) 19th CB.",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T08:54:52.801Z"
+    },
+    {
+      "topic": "18th Marine Regiment (Engineer) 18th CB.",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:00:14.872Z"
+    },
+    {
+      "topic": "19th Marine Regiment (Engineer) 25th CB.",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:04:13.767Z"
+    },
+    {
+      "topic": "20th Marine Regiment (Engineer) 121st CB.",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:05:14.254Z"
+    },
+    {
+      "topic": "Seabees Memorial",
+      "summary": "The Seabees Memorial is a sculpture and memorial to Seabees by Felix de Weldon, installed along Memorial Drive near the entrance of Arlington National Cemetery. It is administered by the National Park Service as part of George Washington Memorial Parkway in Arlington, Virginia. Congress authorized the placement of a memorial on public land by the Seabee Memorial Association in September 1972. It was dedicated on Memorial Day 1974.",
+      "source": "https://en.wikipedia.org/wiki/Seabees_Memorial",
+      "learnedAt": "2026-08-19T09:06:14.794Z"
+    },
+    {
+      "topic": "Amphibious Construction Battalion 1",
+      "summary": "Amphibious Construction Battalion ONE is an amphibious construction battalion in the United States Navy based in Coronado, California, and last in type unit. Amphibious Construction Battalion TWO was its sister unit based in Little Creek, Virginia.",
+      "source": "https://en.wikipedia.org/wiki/Amphibious_Construction_Battalion_1",
+      "learnedAt": "2026-08-19T09:07:15.191Z"
+    },
+    {
+      "topic": "Amphibious Construction Battalion 2",
+      "summary": "Amphibious Construction Battalion TWO was an amphibious construction battalion in the United States Navy based in Little Creek, Virginia. ACB 2 was decommissioned on 31 March 2023. Amphibious Construction Battalion ONE is its sister unit based in Coronado, California.",
+      "source": "https://en.wikipedia.org/wiki/Amphibious_Construction_Battalion_2",
+      "learnedAt": "2026-08-19T09:08:15.582Z"
+    },
+    {
+      "topic": "Army engineer diver",
+      "summary": "Army engineer divers are members of national armies who are trained to undertake tasks underwater, including reconnaissance, demolition, and salvage. These divers have similar skills and qualifications as professional divers. Army divers use both surface supplied \"Hard hat\" and SCUBA to perform their missions. In the United States Army, they are members of the Corps of Engineers. In the British Army, they may be Royal Engineer Divers or Commando Engineer Divers.",
+      "source": "https://en.wikipedia.org/wiki/Army_engineer_diver",
+      "learnedAt": "2026-08-19T09:09:16.132Z"
+    },
+    {
+      "topic": "Civil Engineer Corps",
+      "summary": "The Civil Engineer Corps is a staff corps of the United States Navy. CEC officers are professional engineers and architects, acquisitions specialists, and Seabee combat warfare officers who qualify within Seabee units. They are responsible for executing and managing the planning, design, acquisition, construction, operation, and maintenance of the Navy's shore facilities. The Civil Engineer Corps is under the command of the Chief of Civil Engineers and Commander, Naval Facilities Engineering Systems Command. On 12 August 2022, RADM Dean VanderLey relieved RADM John W. Korka, becoming the 46th commander of NAVFAC and Chief of Civil Engineers. Present day CEC ranks range from CWO4 to RADM, though the community is phasing out Chief Warrant Officer ranks in favor of limited duty officers.",
+      "source": "https://en.wikipedia.org/wiki/Civil_Engineer_Corps",
+      "learnedAt": "2026-08-19T09:10:16.636Z"
+    },
+    {
+      "topic": "Clearance diver",
+      "summary": "A clearance diver was originally a specialist naval diver who used explosives underwater to remove obstructions to make harbours and shipping channels safe to navigate, but the term \"clearance diver\" was later used to include other naval underwater work. Units of clearance divers were first formed during and after World War II to clear ports and harbours in the Mediterranean and Northern Europe of unexploded ordnance and shipwrecks and booby traps laid by the Germans.",
+      "source": "https://en.wikipedia.org/wiki/Clearance_diver",
+      "learnedAt": "2026-08-19T09:11:17.117Z"
+    },
+    {
+      "topic": "United States special operations forces",
+      "summary": "United States special operations forces are the active and reserve component forces of the United States Army, Marine Corps, Navy and Air Force within the US military, as designated by the secretary of defense and specifically organized, trained, and equipped to conduct and support special operations. All active and reserve special operations forces are assigned to the United States Special Operations Command.",
+      "source": "https://en.wikipedia.org/wiki/United_States_special_operations_forces",
+      "learnedAt": "2026-08-19T09:12:17.545Z"
+    },
+    {
+      "topic": "Arizona during World War II",
+      "summary": "The history of Arizona during World War II begins in 1940, when the United States government began constructing military bases within the state in preparation for war. Arizona's contribution to the Allied war effort was significant both in terms of manpower and facilities supported in the state. Prisoner of war camps were operated at Camp Florence and Papago Park. Also, two incarceration camps – the Gila River War Relocation Center and the Poston War Relocation Center – housed Japanese-American citizens and Japanese immigrants who had been forcibly removed from the West Coast. The war years provided great economic stimulus, both because of the numbers of troops at camps in the state, and increase in demand, and the expansion of wartime demand for such materials as copper and other metals. Industries expanded, adding to the state's recovery from the Great Depression.",
+      "source": "https://en.wikipedia.org/wiki/Arizona_during_World_War_II",
+      "learnedAt": "2026-08-19T09:13:18.062Z"
+    },
+    {
+      "topic": "Desert Training Center",
+      "summary": "The Desert Training Center, also known as California–Arizona Maneuver Area, was a World War II training facility established in the Mojave Desert and Sonoran Desert, largely in Southern California and Western Arizona in 1942. Its mission was to train United States Army and Army Air Forces units and personnel to live and fight in the desert, to test and develop suitable equipment, and to develop tactical doctrines, techniques and training methods. It was a key training facility for units engaged in combat during the 1942–1943 North African campaign. It stretched from the outskirts of Pomona, California, eastward to within 50 miles of Phoenix, Arizona, southward to the suburbs of Yuma, Arizona, and northward into the southern tip of Nevada.",
+      "source": "https://en.wikipedia.org/wiki/Desert_Training_Center",
+      "learnedAt": "2026-08-19T09:14:18.539Z"
+    },
+    {
+      "topic": "Military history of the United States during World War II",
+      "summary": "The military history of the United States during World War II covers the nation's role as one of the major Allies in their victory over the Axis powers. The United States is generally considered to have entered the conflict with the 7 December 1941 surprise attack on Pearl Harbor by Japan and exited it with the surrender of Japan on 2 September 1945. During the first two years of World War II, the U.S. maintained formal neutrality, which was officially announced in the Quarantine Speech delivered by President Franklin D. Roosevelt in 1937. While officially neutral, the U.S. supplied Britain, the Soviet Union, and China with war materiel through the Lend-Lease Act signed into law on 11 March 1941, and deployed the U.S. military to replace the British forces stationed in Iceland.",
+      "source": "https://en.wikipedia.org/wiki/Military_history_of_the_United_States_during_World_War_II",
+      "learnedAt": "2026-08-19T09:15:18.997Z"
+    },
+    {
+      "topic": "New Mexico during World War II",
+      "summary": "The history of New Mexico during World War II is characterized by dramatic and lasting changes to its economy, society, and politics. The state played a central role in the American war effort, contributing a disproportionately high number of servicemen and natural resources; most famously, it hosted the sites where the world's first nuclear weapon was designed, developed, and tested. When the United States entered World War II in December 1941, New Mexico had been a state for only three decades and was largely marginal in national affairs. Its sparse population, remoteness, and geography proved ideally suited for top secret military bases and scientific laboratories—most notably at Los Alamos, which undertook the advanced nuclear research that led to the atomic bomb. New Mexico also hosted a variety of military installations, from training facilities to army hospitals, as well as several camps for prisoners of war and Japanese American internees.",
+      "source": "https://en.wikipedia.org/wiki/New_Mexico_during_World_War_II",
+      "learnedAt": "2026-08-19T09:16:19.625Z"
+    },
+    {
+      "topic": "United States home front during World War II",
+      "summary": "The United States home front during World War II supported the war effort in many ways, including a wide range of volunteer efforts and submitting to government-managed rationing and price controls. There was a general feeling of agreement that the sacrifices were for the national good during the war. The labor market changed radically during World War II. Peacetime conflicts concerning race and labor took on a special dimension because of the pressure for national unity. The Hollywood film industry was important for propaganda. Every aspect of life from politics to personal savings changed when put on a wartime footing. This was achieved by tens of millions of workers moving from low to high productivity jobs in industrial centers. Millions of students, retirees, housewives, and unemployed moved into the active labor force. The hours they had to work increased dramatically as the time for leisure activities declined sharply.",
+      "source": "https://en.wikipedia.org/wiki/United_States_home_front_during_World_War_II",
+      "learnedAt": "2026-08-19T09:17:20.054Z"
+    },
+    {
+      "topic": "Arnold Scheme",
+      "summary": "The Arnold Scheme was established to train British RAF pilots in the United States of America during World War II. Its name derived from US General Henry H. Arnold, Chief of the United States Army Air Forces, the instigator of the scheme, which ran from June 1941 to March 1943.",
+      "source": "https://en.wikipedia.org/wiki/Arnold_Scheme",
+      "learnedAt": "2026-08-19T09:18:20.528Z"
+    },
+    {
+      "topic": "United States during World War II by state",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:19:20.990Z"
+    },
+    {
+      "topic": "Economy of California",
+      "summary": "The economy of the State of California is the largest in the United States, with a $4.048 trillion gross state product as of 2024. It is the largest sub-national economy in the world. If California were an independent nation, it would rank as the fourth largest economy in the world in nominal terms, behind Germany and ahead of Japan. California's Silicon Valley is home to some of the world's most valuable technology companies, including Apple, Alphabet, and Nvidia. As of June 2025, 58 of the Fortune 500 companies are headquartered in California. As both the most populous US state and one of the most climatologically diverse states, the economy of California is varied, with many sizable sectors. The most dominant of these sectors include finance, business services, government and manufacturing.",
+      "source": "https://en.wikipedia.org/wiki/Economy_of_California",
+      "learnedAt": "2026-08-19T09:20:21.386Z"
+    },
+    {
+      "topic": "Military history of California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:21:22.103Z"
+    },
+    {
+      "topic": "1940s in California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:22:22.713Z"
+    },
+    {
+      "topic": "Coronado, California Category",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:23:23.153Z"
+    },
+    {
+      "topic": "Archipelagoes of the United States",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:24:23.747Z"
+    },
+    {
+      "topic": "Seaside resorts in California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:25:24.183Z"
+    },
+    {
+      "topic": "Cities in San Diego County, California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:26:24.818Z"
+    },
+    {
+      "topic": "San Diego metropolitan area",
+      "summary": "San Diego County, officially the County of San Diego, is located in the southwest corner of the U.S. state of California, north to its border with Mexico. As of the 2020 census, the population was 3,298,634; it is the second-most populous county in California and the fifth-most populous in the United States. Its county seat is San Diego, the second-most populous city in California and the eighth-most populous in the U.S. It is the southwesternmost county in the 48 contiguous U.S., and is a border county. It is home to 18 Indian reservations, the most of any county in the U.S. There are 16 military installations of the U.S. Navy, Marine Corps, and Coast Guard in the county.",
+      "source": "https://en.wikipedia.org/wiki/San_Diego_County%2C_California",
+      "learnedAt": "2026-08-19T09:27:25.332Z"
+    },
+    {
+      "topic": "Populated coastal places in California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:28:25.756Z"
+    },
+    {
+      "topic": "Incorporated cities and towns in California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:29:26.283Z"
+    },
+    {
+      "topic": "San Diego Bay Category",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:30:26.848Z"
+    },
+    {
+      "topic": "Lagoons of San Diego County, California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:31:27.292Z"
+    },
+    {
+      "topic": "Bays of California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:32:27.801Z"
+    },
+    {
+      "topic": "South Bay (San Diego County)",
+      "summary": "The South Bay, also known as South County, is a region in southwestern San Diego County, California, consisting of the cities and unincorporated communities of Bonita, Chula Vista, Otay Mesa, East Otay Mesa, Otay Mesa West, Imperial Beach, Lincoln Acres, National City, and South San Diego. Defined by its proximity to San Diego Bay and the Mexico-United States border, the South Bay is a mix of heavy industrial complexes and shipyards alongside beaches and residential developments. One of its cities, Imperial Beach, bills itself as \"Classic Southern California\" for being relatively untouched in terms of other coastal cities.",
+      "source": "https://en.wikipedia.org/wiki/South_Bay_(San_Diego_County)",
+      "learnedAt": "2026-08-19T09:33:28.273Z"
+    },
+    {
+      "topic": "Geography of San Diego",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:34:28.696Z"
+    },
+    {
+      "topic": "Bodies of water of San Diego County, California",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:35:29.116Z"
+    },
+    {
+      "topic": "World War II orders of battle",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:36:29.537Z"
+    },
+    {
+      "topic": "U.S. Naval Base Subic Bay",
+      "summary": "Naval Base Subic Bay was a major ship-repair, supply, and rest and recreation facility of the Spanish Navy and, subsequently, the United States Navy located in Olongapo City, Philippines. The base was 262 square miles – about the size of Singapore. The Navy Exchange had the largest volume of sales of any exchange in the world and the Naval Supply Depot handled the largest volume of fuel oil of any navy facility in the world. The naval base was the largest overseas military installation of the United States Armed Forces, after Clark Air Base in Angeles City was closed in 1991. Following its closure in 1992, it was transformed into the Subic Bay Freeport Zone by the Filipino government. In late 2022, plans to reopen the base under the Enhanced Defense Cooperation Agreement emerged after the Filipino Navy reoccupied a portion of the base and a U.S. investment firm, Cerberus Capital Management, purchased the remainder of the port.",
+      "source": "https://en.wikipedia.org/wiki/U.S._Naval_Base_Subic_Bay",
+      "learnedAt": "2026-08-19T09:37:29.935Z"
+    },
+    {
+      "topic": "Espiritu Santo Naval Base",
+      "summary": "Naval Advance Base Espiritu Santo or Naval Base Espiritu Santo, most often just called Espiritu Santo, was a major advance Naval base that the U.S. Navy Seabees built during World War II to support the Allied effort in the Pacific. The base was located on the island of Espiritu Santo in the New Hebrides, now Vanuatu, in the South Pacific. The base also supported the U.S. Army and Army Air Corps, U.S. Coast Guard, and US Marine Corps. It was the first large advance base built in the Pacific. By the end of the war it had become the second-largest base in the theater. To keep ships tactically available there was a demand for bases that could repair and resupply the fleet at advance locations, rather than return them to the United States. Prior to December 7th, Pearl Harbor was the U.S. fleet's largest advance base in the Pacific.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Advance_Base_Espiritu_Santo",
+      "learnedAt": "2026-08-19T09:38:30.332Z"
+    },
+    {
+      "topic": "US Naval Advance Bases",
+      "summary": "US Naval Advance Bases were built globally by the United States Navy during World War II to support and project U.S. naval operations worldwide. A few were built on Allied soil, but most were captured enemy facilities or completely new. Advance bases provided the fleet with support to keep ships tactically available with repair and supply depots of facilities, rather than return them to the continental United States. Before Japan declared war on the United States the U.S. Navy had a single fleet-sized advance base in the Territory of Hawaii at Naval Station Pearl Harbor. During the war the U.S. Navy Seabees built over 400 advance bases categorized by size. Naval bases were either Lions or Cubs while airfields were either Oaks or Acorns. Lions and Oaks were major facilities while Cubs and Acorns were minor. PT Boats typically would get a Cub and airfields with single runways were Acorns.",
+      "source": "https://en.wikipedia.org/wiki/US_Naval_Advance_Bases",
+      "learnedAt": "2026-08-19T09:40:07.412Z"
+    },
+    {
+      "topic": "Naval Advance Base Saipan",
+      "summary": "Naval Base Saipan or Naval Advance Base Saipan or Naval Air Base Saipan was a United States Navy Naval base built during World War II to support Pacific Ocean theater of war and the many warships and troops fighting the war. The base was on the island of Saipan in the Northern Mariana Islands. The base was part of the Pacific island hopping campaign. The base construction started after the Battle of Saipan ended on July 9, 1944. US Naval Advance Base Saipan was constructed by the Seabees Naval Mobile Construction Battalions. The base was under the Commander Naval Forces Marianas. Saipan is 12 miles long and 5 miles wide. About 70% of the island was sugarcane cultivation at the start of the base construction. At the start of the Battle of Saipan, the island's population had about 30,000 Japanese troops and about 20,000 Japanese civilians. The city of Garapan was the administrative center for the Saipan governmental district.",
+      "source": "https://en.wikipedia.org/wiki/Naval_Advance_Base_Saipan",
+      "learnedAt": "2026-08-19T09:43:08.291Z"
+    },
+    {
+      "topic": "Manus Regional Processing Centre",
+      "summary": "The Manus Regional Processing Centre, or Manus Island Regional Processing Centre, was one of a number of offshore Australian immigration detention facilities. The centre was located on the PNG Navy Base Lombrum on Los Negros Island in Manus Province, Papua New Guinea. It was originally established in 2001, along with Nauru Regional Processing Centre, as an \"offshore processing centre\" as part of the Pacific Solution policy created by the Howard government. After falling into disuse in 2003, it was formally closed by the first Rudd government in 2008, but reopened by the Gillard government in 2012. As part of the PNG Solution by the second Rudd government, it was announced in July 2013 that those sent to PNG would never be resettled in Australia. After Tony Abbott became PM in a change of government a few months later, the government announced its Operation Sovereign Borders policy, aimed at stopping maritime arrivals of asylum seekers to Australia, commencing on 18 September 2013.",
+      "source": "https://en.wikipedia.org/wiki/Manus_Regional_Processing_Centre",
+      "learnedAt": "2026-08-19T09:44:08.737Z"
+    },
+    {
+      "topic": "Manus Province",
+      "summary": "Manus Province is the smallest province in Papua New Guinea in terms of both land area and population, with a land area of 2,000 square kilometres, but with more than 220,000 square kilometres of water, and the total population is 69,560. The provincial town of Manus is Lorengau. The province consists of only one district, 12 Local Level Governments and 127 Wards. The province is made up of the Admiralty Islands, as well as Wuvulu Island and nearby atolls in the west, which collectively are referred to as the Western Islands. The largest island in the group is Manus Island, where Lorengau and a former Australian immigration detention centre are located.",
+      "source": "https://en.wikipedia.org/wiki/Manus_Province",
+      "learnedAt": "2026-08-19T09:45:21.303Z"
+    },
+    {
+      "topic": "World War II sites in Papua New Guinea",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:50:06.968Z"
+    },
+    {
+      "topic": "World War II operations and battles of the Pacific theatre",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:52:33.269Z"
+    },
+    {
+      "topic": "Military installations closed in the 1940s",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:53:33.597Z"
+    },
+    {
+      "topic": "Operation Cartwheel Category",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:54:34.039Z"
+    },
+    {
+      "topic": "Solomon Islands in World War II",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:55:38.409Z"
+    },
+    {
+      "topic": "Battles of World War II involving Australia",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:57:49.770Z"
+    },
+    {
+      "topic": "Battles of World War II involving the United States",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:58:50.225Z"
+    },
+    {
+      "topic": "Territory of New Guinea Category",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T09:59:50.756Z"
+    },
+    {
+      "topic": "Former colonies in Oceania",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:00:51.385Z"
+    },
+    {
+      "topic": "Australia–Papua New Guinea relations",
+      "summary": "Papua New Guinea is Australia's closest neighbour and a former territory of Australia. Papua New Guinea has developed much closer relations with Australia than with Indonesia, the only country which it shares a land border with. The two countries are Commonwealth realms. In contemporary times, Papua New Guinea is one of the largest recipients of Australian aid. Some critics have pointed to instances where this has led to an outsized Australian influence on Papua New Guinea politics.",
+      "source": "https://en.wikipedia.org/wiki/Australia-Papua_New_Guinea_relations",
+      "learnedAt": "2026-08-19T10:01:51.880Z"
+    },
+    {
+      "topic": "History of the foreign relations of Australia",
+      "summary": "The diplomatic history of Australia encompasses the historical events surrounding Australian foreign relations. Following the global change in the dynamics of international state of affairs in the 20th century, this saw a transition within Australia's diplomatic situation to broaden outside of exclusively commonwealth and western European nations. Its core relationship was with Great Britain until 1941, and with the United States and New Zealand since then as represented by ANZUS. In the 21st century trade has soared with China. However, relations have cycled back and forth from friendly to strained.",
+      "source": "https://en.wikipedia.org/wiki/Diplomatic_history_of_Australia",
+      "learnedAt": "2026-08-19T10:02:52.366Z"
+    },
+    {
+      "topic": "League of Nations mandates",
+      "summary": "A League of Nations mandate represented a legal status under international law for specific territories following World War I, involving the transfer of control from one nation to another. These mandates served as legal documents establishing the internationally agreed terms for administering the territory on behalf of the League of Nations. Combining elements of both a treaty and a constitution, these mandates contained minority rights clauses that provided for the rights of petition and adjudication by the Permanent Court of International Justice. The mandate system was established under Article 22 of the Covenant of the League of Nations, signed on 28 June 1919 and entered into force on 10 January 1920. Two governing principles formed the core of the Mandate System: non-annexation of the territory and its administration as a \"sacred trust of civilisation\" to develop the territory for the benefit of its native people.",
+      "source": "https://en.wikipedia.org/wiki/League_of_Nations_mandate",
+      "learnedAt": "2026-08-19T10:03:52.868Z"
+    },
+    {
+      "topic": "South West Pacific theatre of World War II Category",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:04:53.449Z"
+    },
+    {
+      "topic": "Military history of New Zealand during World War II",
+      "summary": "The military history of New Zealand during World War II began when New Zealand entered the Second World War by declaring war on Nazi Germany with the United Kingdom in 1939, and expanded to the Pacific War when New Zealand declared war on Imperial Japan following the attack on Pearl Harbor in 1941. New Zealand's forces were soon serving across Europe and beyond, where their reputation was generally very good. In particular, the force of the New Zealanders who were stationed in Northern Africa and Southern Europe was known for its strength and determination, and uniquely so on both sides. New Zealand provided personnel for service in the Royal Air Force and in the Royal Navy and was prepared to have New Zealanders serving under British command. There were many instances of New Zealanders commanding troops on their own, whether their own or a mixture of theirs and foreign ones; notable commanders include Lieutenant-General Bernard Freyberg and Lieutenant-Colonel Fred Baker.",
+      "source": "https://en.wikipedia.org/wiki/Military_history_of_New_Zealand_during_World_War_II",
+      "learnedAt": "2026-08-19T10:05:54.032Z"
+    },
+    {
+      "topic": "Military history of Australia during World War II",
+      "summary": "Australia entered World War II on 3 September 1939, following the government's acceptance of the United Kingdom's declaration of war on Nazi Germany. Australia later entered into a state of war with other members of the Axis powers, including the Kingdom of Italy on 11 June 1940, and the Empire of Japan on 9 December 1941. By the end of the war almost one million Australians had served in the armed forces, whose military units fought primarily in the European theatre, North African campaign, and the South West Pacific theatre. In addition, Australia came under direct attack for the first time in its post-colonial history. Its casualties from enemy action during the war were 27,073 killed and 23,477 wounded. Many more suffered from tropical disease, hunger, and harsh conditions in captivity; of the 21,467 Australian prisoners taken by the Japanese, only 14,000 survived.",
+      "source": "https://en.wikipedia.org/wiki/Military_history_of_Australia_during_World_War_II",
+      "learnedAt": "2026-08-19T10:06:54.555Z"
+    },
+    {
+      "topic": "Military history of the Philippines during World War II",
+      "summary": "The Commonwealth of the Philippines was attacked by the Empire of Japan on 8 December 1941, nine hours after the attack on Pearl Harbor. Although it was governed by a semi-independent commonwealth government, the United States controlled the Philippines at the time and possessed important military bases there. The combined Filipino-American army was defeated in the Battle of Bataan, which saw many war crimes committed, and the Battle of Corregidor in April 1942, but guerrilla resistance against the Japanese continued throughout the war. Uncaptured Filipino army units, a communist insurgency, and supporting American agents all played a role in the resistance. Due to the huge number of islands, the Japanese never occupied many of the smaller and more minor islands. The Japanese control over the countryside and smaller towns was often tenuous at best. In 1944, Allied forces liberated the islands from Japanese control in a naval invasion.",
+      "source": "https://en.wikipedia.org/wiki/Military_history_of_the_Philippines_during_World_War_II",
+      "learnedAt": "2026-08-19T10:07:55.118Z"
+    },
+    {
+      "topic": "Laotian Civil War",
+      "summary": "The Laotian Civil War was waged between the Communist Pathet Lao and the Royal Lao Government from 23 May 1959 to 2 December 1975. The Kingdom of Laos was a covert theater during the Vietnam War with both sides receiving heavy external support in a proxy war between the global Cold War superpowers. The fighting also involved the North Vietnamese, South Vietnamese, American and Thai armies, both directly and through irregular proxies. The war is known as the \"Secret War\" among the American CIA Special Activities Center, and Hmong and Mien veterans of the conflict. The Franco–Lao Treaty of Amity and Association transferred remaining French powers to the Royal Lao Government, establishing Laos as an independent member of the French Union. However, this government did not include representatives from the left wing of the Lao Issara anti-colonial armed movement.",
+      "source": "https://en.wikipedia.org/wiki/Laotian_Civil_War",
+      "learnedAt": "2026-08-19T10:08:55.515Z"
+    },
+    {
+      "topic": "United States Marine Corps in the Vietnam War",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:09:56.020Z"
+    },
+    {
+      "topic": "United States Navy Memorial",
+      "summary": "The United States Navy Memorial is a memorial in Washington, D.C. honoring those who have served or are currently serving in the Navy, Marine Corps, Coast Guard, and the Merchant Marine. It lies on Pennsylvania Avenue NW between 7th Street Northwest and 9th Street Northwest, adjacent to the Archives station of the Washington Metro and the National Archives building. The National Park Service, through its National Mall and Memorial Parks administrative unit, provides technical and maintenance assistance to the foundation. The plaza is part of Pennsylvania Avenue National Historic Site. Associated with the memorial is the Naval Heritage Center, which offers spaces available for rent, and is open year-round.",
+      "source": "https://en.wikipedia.org/wiki/United_States_Navy_Memorial",
+      "learnedAt": "2026-08-19T10:10:56.534Z"
+    },
+    {
+      "topic": "Naval monuments and memorials",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:11:57.013Z"
+    },
+    {
+      "topic": "Statues in Virginia",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:12:57.500Z"
+    },
+    {
+      "topic": "George Washington Memorial Parkway",
+      "summary": "The George Washington Memorial Parkway, colloquially the G.W. Parkway, is a 25-mile-long limited-access parkway that runs along the south bank of the Potomac River from Mount Vernon, northwest to McLean, Virginia, United States, and is maintained by the National Park Service. It is located almost entirely in Northern Virginia, except for a short portion of the parkway northwest of the Arlington Memorial Bridge that passes over Columbia Island in Washington, D.C. The parkway is separated into two sections joined by Washington Street in Alexandria. A third section, which is the Clara Barton Parkway, runs on the opposite side of the Potomac River in the District of Columbia and suburban Montgomery County, Maryland. A fourth section was originally proposed for Fort Washington, Maryland, but never built. The parkway has been designated an All-American Road. Virginia's official state designation for the parkway is State Route 90005.",
+      "source": "https://en.wikipedia.org/wiki/George_Washington_Memorial_Parkway",
+      "learnedAt": "2026-08-19T10:13:57.897Z"
+    },
+    {
+      "topic": "Outdoor sculptures in Virginia",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:14:58.536Z"
+    },
+    {
+      "topic": "Sculptures of men in Virginia",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:15:59.039Z"
+    },
+    {
+      "topic": "Monuments and memorials in Virginia",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:16:59.405Z"
+    },
+    {
+      "topic": "Military monuments and memorials in the United States",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:17:59.857Z"
+    },
+    {
+      "topic": "Military in Virginia Beach, Virginia",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:19:00.244Z"
+    },
+    {
+      "topic": "Armed forces diving",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:20:00.606Z"
+    },
+    {
+      "topic": "United States Army Corps of Engineers",
+      "summary": "The United States Army Corps of Engineers is the military engineering branch of the United States Army. A Direct Reporting Unit, it has three primary mission areas: Engineer Regiment, military construction, and civil works. USACE has 37,000 civilian and military personnel, making it one of the world's largest public engineering, design, and construction management agencies. The USACE workforce is approximately 97% civilian and 3% active duty military. The civilian workforce is mainly located in the United States, Europe, and in select Middle East office locations. Civilians do not function as active duty military and are not required to be in active war and combat zones; however, volunteer opportunities do exist for civilians to do so. The day-to-day activities of the three mission areas are administered by a lieutenant general known as the chief of engineers/commanding general.",
+      "source": "https://en.wikipedia.org/wiki/United_States_Army_Corps_of_Engineers",
+      "learnedAt": "2026-08-19T10:21:02.497Z"
+    },
+    {
+      "topic": "Royal Navy specialisms",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:22:02.834Z"
+    },
+    {
+      "topic": "U.S. Coast Guard Deployable Specialized Forces (DSF)",
+      "summary": "Kuch specific nahi mila is topic par.",
+      "source": null,
+      "learnedAt": "2026-08-19T10:23:03.205Z"
+    },
+    {
+      "topic": "Intelligence Support Activity",
+      "summary": "The Intelligence Support Activity, also known at various times as Mission Support Activity, Office of Military Support, Field Operations Group, Studies and Analysis Activity, Tactical Concept Activity, Tactical Support Team, Tactical Coordination Detachment, and also nicknamed \"The Activity\" and the \"Army of Northern Virginia\", is a United States Army Special Operations unit which serves as the field military intelligence gathering component of Joint Special Operations Command. Within JSOC, the unit is often referred to as Task Force Orange. Originally subordinated to the United States Army Intelligence and Security Command, it is one of the least known intelligence components of the United States military, tasked with clandestine human intelligence operations and collecting actionable intelligence during or prior to JSOC missions.",
+      "source": "https://en.wikipedia.org/wiki/Intelligence_Support_Activity",
+      "learnedAt": "2026-08-19T10:24:03.709Z"
+    }
+  ],
+  "toExplore": [
+    "Military Liaison Element",
+    "Special Activities Center",
+    "American Theater (World War II)",
+    "Battle of Ambos Nogales",
+    "Bisbee Riot",
+    "Fort Lawton Riot",
+    "Nevada during World War II",
+    "Wars fought in Arizona",
+    "Economy of Arizona",
+    "Military history of Arizona",
+    "1940s in Arizona",
+    "History of Arizona",
+    "California during World War II",
+    "U.S. Army Air Force flight training Twentynine Palms",
+    "US Naval Bases North Africa",
+    "Military facilities in Arizona",
+    "Colorado Desert",
+    "History of Riverside County, California",
+    "Formerly Used Defense Sites in California",
+    "History of San Bernardino County, California",
+    "Mojave Desert",
+    "Allied war crimes during World War II",
+    "Diplomatic history of World War II",
+    "Equipment losses in World War II",
+    "Foreign policy of the Franklin D. Roosevelt administration",
+    "Foreign policy of the United States",
+    "1940s in the United States",
+    "United States in World War II",
+    "Military history of the United States",
+    "Arizona during World War II",
+    "Battle of Columbus (1916)",
+    "Military history of the United States during World War II",
+    "Military history of Nevada",
+    "History of New Mexico",
+    "United States home front during World War II Category",
+    "American music during World War II",
+    "Greatest Generation",
+    "Home front during World War II , for rest of world.",
+    "Japanese occupation of the Philippines",
+    "Cultural history of World War II",
+    "United States Army Air Forces",
+    "History of the Royal Air Force during World War II",
+    "Flight training",
+    "United Kingdom–United States relations",
+    "Economy of California Category",
+    "California unemployment statistics",
+    "San Diego County, California Category",
+    "San Diego Association of Governments (SANDAG)",
+    "Metropolitan areas of California",
+    "Counties in Southern California",
+    "San Diego metropolitan area",
+    "Geography of San Diego County, California",
+    "California counties",
+    "South Bay (San Diego County) Category",
+    "North County",
+    "East County",
+    "Otay River",
+    "Sweetwater River",
+    "San Diego Bay",
+    "Regions of California",
+    "Naval Air Station Cubi Point",
+    "U.S. Naval Hospital, Subic Bay",
+    "U.S. Naval Radio Facility Bagobantay",
+    "U.S. Naval Station Sangley Point",
+    "San Miguel Naval Communications Station",
+    "Mount Santa Rita Naval Link Station",
+    "Buildings and structures in Olongapo",
+    "Tales of the South Pacific",
+    "Roi Mata",
+    "Battle of the Eastern Solomons",
+    "Espiritu Santo",
+    "The Fighting Seabees",
+    "Army Transport Service",
+    "Naval Mobile Construction Battalion 25",
+    "Combat engineer",
+    "Underwater Demolition Team",
+    "United States Army Air Forces in the South Pacific Area",
+    "United States Navy",
+    "US Naval Advance Bases",
+    "Tinian Naval Base",
+    "Asylum in Australia",
+    "Australian immigration detention facilities",
+    "NZYQ v Minister for Immigration",
+    "Immigrant health in Australia",
+    "Right of asylum in Australia",
+    "Australian diaspora",
+    "Human rights in Australia",
+    "Buildings and structures in Papua New Guinea",
+    "Human rights in Oceania",
+    "Manus Province Category",
+    "Admiralty Islands",
+    "Provinces of Papua New Guinea",
+    "Colonialism",
+    "Commonwealth of Nations",
+    "Politics of Australia",
+    "Politics of Papua New Guinea",
+    "Torres Strait Treaty",
+    "Papua New Guinea and the Commonwealth of Nations",
+    "Australia–Papua New Guinea relations",
+    "Bilateral relations of Papua New Guinea",
+    "Australia and the Commonwealth of Nations",
+    "Bilateral relations of Australia",
+    "Peace movements in Australia",
+    "Basic Treaty of Friendship and Cooperation , with Japan.",
+    "Canberra Pact , called ANZAC Pact.",
+    "Colombo Plan",
+    "Pacific class patrol boat",
+    "Petrov Affair",
+    "History of the foreign relations of Australia",
+    "Political history of Australia",
+    "United Nations trust territories",
+    "20th century in Japan",
+    "League of Nations mandates",
+    "French colonial empire",
+    "Governance of the British Empire",
+    "Coastal Forces of the Royal New Zealand Navy",
+    "Coastal fortifications of New Zealand",
+    "Australian home front during World War II",
+    "Military history of New Zealand",
+    "New Zealand in World War II",
+    "Germany–New Zealand relations",
+    "Military history of the Mediterranean",
+    "Military history of Australia during World War II Category",
+    "Military history of New Zealand during World War II",
+    "Australia in World War II",
+    "Wars involving Australia",
+    "Pacific Ocean theatre of World War II",
+    "Gen. Alfredo M. Santos",
+    "Bataan Death March",
+    "César Basa",
+    "Chick Parsons",
+    "US Naval Base Philippines",
+    "Comfort women",
+    "1940s in the Philippines",
+    "Philippines in World War II",
+    "United States military in the Philippines",
+    "Military history of the Philippines",
+    "South West Pacific theatre of World War II",
+    "Laotian Civil War Category",
+    "Bomb Harvest",
+    "The Center for Public Policy Analysis",
+    "CIA activities in Laos",
+    "First Indochina War",
+    "Hmong Veterans' Naturalization Act of 2000",
+    "Conflict in Laos involving the Hmong",
+    "1950s in Laos",
+    "1960s in Laos",
+    "1970s in Laos",
+    "Foreign relations of Laos",
+    "Politics of Laos",
+    "20th century in Laos",
+    "Wars involving Laos",
+    "Laos–United States relations",
+    "Wars involving Thailand",
+    "Hmong-American culture and history",
+    "Wars involving the Philippines",
+    "Communist revolutions",
+    "Military history of Laos during the Vietnam War",
+    "Revolution-based civil wars",
+    "Cold War conflicts",
+    "Wars involving the United States",
+    "Vietnam War",
+    "Proxy wars",
+    "Marine Corps War Memorial",
+    "Michigan Soldiers' and Sailors' Monument",
+    "U.S. Navy Museum",
+    "Fountains in Washington, D.C.",
+    "Military and war museums in Washington, D.C.",
+    "United States Marine Corps memorials",
+    "United States Coast Guard",
+    "Outdoor sculptures in Washington, D.C.",
+    "Monuments and memorials in Washington, D.C.",
+    "George Washington Memorial Parkway Category",
+    "United States federal parkways",
+    "Historic American Landscapes Survey in Virginia",
+    "Historic districts in Arlington County, Virginia",
+    "National Park Service areas in Maryland",
+    "National Park Service areas in Virginia",
+    "All-American Roads",
+    "Transportation in Alexandria, Virginia",
+    "Historic American Engineering Record in Virginia",
+    "Monuments and memorials to George Washington",
+    "Transportation in Arlington County, Virginia",
+    "National Park Service areas in Washington, D.C.",
+    "Transportation in Fairfax County, Virginia",
+    "United States Army Corps of Engineers Category",
+    "United States Engineer Regiments in World War II",
+    "Combat Pin for Civilian Service",
+    "SDEF",
+    "Title 33 of the Code of Federal Regulations",
+    "United States Navy Seabee s",
+    "United States Army Direct Reporting Units",
+    "Engineering units and formations of the United States Army",
+    "Military units and formations of the Mexican–American War",
+    "Civil engineering organizations",
+    "Corps of the United States in World War II",
+    "Military units and formations of the Continental Army",
+    "Branches of the United States Army",
+    "United States Army units and formations in the Korean War",
+    "Organizations based in Washington, D.C.",
+    "1st Special Forces Operational Detachment – Delta",
+    "24th Special Tactics Squadron",
+    "Naval Special Warfare Development Group",
+    "75th Ranger Regimental Reconnaissance Company",
+    "United States Joint Special Operations Command"
+  ]
+}

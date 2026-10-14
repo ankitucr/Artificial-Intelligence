@@ -1,0 +1,49 @@
+{
+  "name": "Roman Numeral Converter",
+  "capability": "This skill adds the ability to convert integers to Roman numerals and vice versa.",
+  "purpose": "This capability is useful for converting numbers to a more readable and historical format, and for converting Roman numerals to integers for easier computation.",
+  "primary_function": "roman_numeral_converter",
+  "code": "def roman_numeral_converter(**kwargs):\n    roman_numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    int_to_roman = {1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L', 90: 'XC', 100: 'C', 400: 'CD', 500: 'D', 900: 'CM', 1000: 'M'}\n    if 'num' in kwargs:\n        num = kwargs['num']\n        result = ''\n        for value in sorted(int_to_roman.keys(), reverse=True):\n            while num >= value:\n                result += int_to_roman[value]\n                num -= value\n        return result\n    elif 'roman' in kwargs:\n        roman = kwargs['roman']\n        result = 0\n        i = 0\n        while i < len(roman):\n            if i + 1 < len(roman) and roman_numerals[roman[i]] < roman_numerals[roman[i+1]]:\n                result += roman_numerals[roman[i+1]] - roman_numerals[roman[i]]\n                i += 2\n            else:\n                result += roman_numerals[roman[i]]\n                i += 1\n        return result\n    else:\n        return None",
+  "tests": [
+    {
+      "args": [],
+      "kwargs": {
+        "num": 4,
+        "roman": null
+      },
+      "expected": "IV"
+    },
+    {
+      "args": [],
+      "kwargs": {
+        "num": null,
+        "roman": "IX"
+      },
+      "expected": 9
+    },
+    {
+      "args": [],
+      "kwargs": {
+        "num": 1000,
+        "roman": null
+      },
+      "expected": "M"
+    },
+    {
+      "args": [],
+      "kwargs": {
+        "num": null,
+        "roman": "MMXXI"
+      },
+      "expected": 2021
+    },
+    {
+      "args": [],
+      "kwargs": {
+        "num": null,
+        "roman": null
+      },
+      "expected": null
+    }
+  ]
+}

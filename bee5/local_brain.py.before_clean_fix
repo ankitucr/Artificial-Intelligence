@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+
+import subprocess
+import json
+from pathlib import Path
+
+MODEL = Path.home() / "bee5" / "models" / "bee5-model.gguf"
+LLAMA = Path.home() / "llama.cpp" / "build" / "bin" / "llama-cli"
+
+SYSTEM_PROMPT = """You are BEE5, a private local AI brain.
+
+Your role:
+- Understand the user's request.
+- Use the knowledge and skills provided by the BEE5 system.
+- Do not pretend to have abilities that are not available.
+- Skills are manually provided to BEE5 and may later be used as tools.
+- You are running locally through llama.cpp.
+- Be concise, accurate and practical.
+"""
+
+def check():
+    if not LLAMA.exists():
+        raise FileNotFoundError(f"llama-cli not found: {LLAMA}")
+
+    if not MODEL.exists():
+        raise FileNotFoundError(f"Model not found: {MODEL}")
+
+def ask(prompt: str) -> str:
+    check()
+
+    full_prompt = (
+        SYSTEM_PROMPT
+        + "\n\nUser:\n"
+        + prompt
+        + "\n\nBEE5:\n"
+    )
+
+    command = [
+        str(LLAMA),
+        "-m", str(MODEL),
+        "-p", full_prompt,
+        "-n", "160",
+        "--temp", "0.7",
+        "--no-display-prompt",
+    ]
+
+    result = subprocess.run(
+        command,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=180,
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.strip() or "llama-cli failed")
+
+    return result.stdout.strip()
+
+
+def status():
+    check()
+
+    print("========================================")
+    print("          BEE5 LOCAL BRAIN")
+    print("========================================")
+    print(f"Model : {MODEL}")
+    print(f"LLAMA : {LLAMA}")
+    print("Backend : llama.cpp")
+    print("Network : NOT REQUIRED")
+    print("========================================")
+
+
+def main():
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage:")
+        print("  python local_brain.py status")
+        print("  python local_brain.py ask \"your question\"")
+        return
+
+    command = sys.argv[1]
+
+    if command == "status":
+        status()
+        return
+
+    if command == "ask":
+        if len(sys.argv) < 3:
+            print('Usage: python local_brain.py ask "your question"')
+            return
+
+        answer = ask(sys.argv[2])
+        print(answer)
+        return
+
+    print(f"Unknown command: {command}")
+
+
+if __name__ == "__main__":
+    main()

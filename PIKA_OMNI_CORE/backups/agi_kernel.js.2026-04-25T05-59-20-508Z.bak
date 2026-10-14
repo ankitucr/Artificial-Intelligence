@@ -1,0 +1,69 @@
+const express = require('express');
+const app = express();
+const { v4: uuidv4 } = require('uuid');
+const { Graph, Node, Edge } = require('graphology');
+const graph = new Graph();
+
+class KnowledgeGraph {
+  constructor() {
+    this.graph = graph;
+  }
+
+  addNode(nodeId, nodeData) {
+    if (!this.graph.hasNode(nodeId)) {
+      this.graph.addNode(nodeId, nodeData);
+    }
+  }
+
+  addEdge(edgeId, source, target, edgeData) {
+    if (!this.graph.hasEdge(edgeId)) {
+      this.graph.addEdge(edgeId, source, target, edgeData);
+    }
+  }
+
+  updateNode(nodeId, nodeData) {
+    if (this.graph.hasNode(nodeId)) {
+      this.graph.setNodeAttribute(nodeId, nodeData);
+    }
+  }
+
+  updateEdge(edgeId, edgeData) {
+    if (this.graph.hasEdge(edgeId)) {
+      this.graph.setEdgeAttribute(edgeId, edgeData);
+    }
+  }
+
+  expandDomainAdaptation(newNodeData, newEdgeData) {
+    const newNodeId = uuidv4();
+    const newEdgeId = uuidv4();
+    this.addNode(newNodeId, newNodeData);
+    this.addEdge(newEdgeId, newNodeId, 'root', newEdgeData);
+  }
+}
+
+const knowledgeGraph = new KnowledgeGraph();
+
+app.post('/update-node', (req, res) => {
+  const nodeId = req.body.nodeId;
+  const nodeData = req.body.nodeData;
+  knowledgeGraph.updateNode(nodeId, nodeData);
+  res.send(`Node ${nodeId} updated successfully`);
+});
+
+app.post('/update-edge', (req, res) => {
+  const edgeId = req.body.edgeId;
+  const edgeData = req.body.edgeData;
+  knowledgeGraph.updateEdge(edgeId, edgeData);
+  res.send(`Edge ${edgeId} updated successfully`);
+});
+
+app.post('/expand-domain-adaptation', (req, res) => {
+  const newNodeData = req.body.newNodeData;
+  const newEdgeData = req.body.newEdgeData;
+  knowledgeGraph.expandDomainAdaptation(newNodeData, newEdgeData);
+  res.send('Domain adaptation expanded successfully');
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});

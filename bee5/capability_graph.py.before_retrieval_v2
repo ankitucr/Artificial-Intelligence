@@ -1,0 +1,351 @@
+#!/usr/bin/env python3
+
+import json
+import re
+from pathlib import Path
+from collections import defaultdict
+
+ROOT = Path(__file__).resolve().parent
+REGISTRY = ROOT / "memory" / "registry.json"
+STATS = ROOT / "memory" / "skill_stats.json"
+GRAPH = ROOT / "memory" / "capability_graph.json"
+
+
+def load_json(path, default):
+    if not path.exists():
+        return default
+
+    try:
+        data = json.loads(
+            path.read_text(encoding="utf-8")
+        )
+        return data
+    except Exception:
+        return default
+
+
+def save_json(path, data):
+    path.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    path.write_text(
+        json.dumps(
+            data,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+
+def tokenize(text):
+    return set(
+        re.findall(
+            r"[a-zA-Z0-9_]+",
+            str(text).lower()
+        )
+    )
+
+
+def build_graph():
+    registry = load_json(
+        REGISTRY,
+        {}
+    )
+
+    stats = load_json(
+        STATS,
+        {}
+    )
+
+    nodes = {}
+    edges = []
+
+    for name, info in registry.items():
+
+        skill_stats = stats.get(
+            name,
+            {}
+        )
+
+        description = info.get(
+            "description",
+            ""
+        )
+
+        functions = info.get(
+            "functions",
+            []
+        )
+
+        classes = info.get(
+            "classes",
+            []
+        )
+
+        source = info.get(
+            "source",
+            f"skills/active/{name}.py"
+        )
+
+        nodes[name] = {
+            "name": name,
+            "description": description,
+            "functions": functions,
+            "classes": classes,
+            "source": source,
+            "version": info.get(
+                "version",
+                "unknown"
+            ),
+            "dangerous": bool(
+                info.get("dangerous")
+            ),
+            "sha256": info.get(
+                "sha256",
+                ""
+            ),
+            "usage": {
+                "runs": skill_stats.get(
+                    "runs",
+                    0
+                ),
+                "successes": skill_stats.get(
+                    "successes",
+                    0
+                ),
+                "failures": skill_stats.get(
+                    "failures",
+                    0
+                )
+            }
+        }
+
+    names = list(nodes)
+
+    # Build lightweight semantic relationships.
+    for i, first in enumerate(names):
+        first_text = " ".join([
+            first,
+            nodes[first]["description"],
+            " ".join(nodes[first]["functions"]),
+            " ".join(nodes[first]["classes"])
+        ])
+
+        first_tokens = tokenize(first_text)
+
+        for second in names[i + 1:]:
+            second_text = " ".join([
+                second,
+                nodes[second]["description"],
+                " ".join(nodes[second]["functions"]),
+                " ".join(nodes[second]["classes"])
+            ])
+
+            second_tokens = tokenize(second_text)
+
+            shared = sorted(
+                first_tokens & second_tokens
+            )
+
+            if shared:
+                edges.append({
+                    "from": first,
+                    "to": second,
+                    "type": "semantic_related",
+                    "shared_terms": shared
+                })
+
+    graph = {
+        "version": 1,
+        "nodes": nodes,
+        "edges": edges
+    }
+
+    save_json(
+        GRAPH,
+        graph
+    )
+
+    return graph
+
+
+def find_candidates(query, limit=5):
+    graph = load_json(
+        GRAPH,
+        {}
+    )
+
+    nodes = graph.get(
+        "nodes",
+        {}
+    )
+
+    query_tokens = tokenize(query)
+    ranked = []
+
+    for name, node in nodes.items():
+
+        text = " ".join([
+            name,
+            node.get(
+                "description",
+                ""
+            ),
+            " ".join(
+                node.get(
+                    "functions",
+                    []
+                )
+            ),
+            " ".join(
+                node.get(
+                    "classes",
+                    []
+                )
+            )
+        ])
+
+        score = len(
+            query_tokens &
+            tokenize(text)
+        )
+
+        success = node.get(
+            "usage",
+            {}
+        ).get(
+            "successes",
+            0
+        )
+
+        failures = node.get(
+            "usage",
+            {}
+        ).get(
+            "failures",
+            0
+        )
+
+        reliability = (
+            success / (success + failures)
+            if (success + failures)
+            else 0.0
+        )
+
+        ranked.append({
+            "skill": name,
+            "score": score,
+            "reliability": reliability,
+            "description": node.get(
+                "description",
+                ""
+            )
+        })
+
+    ranked.sort(
+        key=lambda x: (
+            x["score"],
+            x["reliability"]
+        ),
+        reverse=True
+    )
+
+    return ranked[:limit]
+
+
+def status():
+    graph = load_json(
+        GRAPH,
+        {}
+    )
+
+    nodes = graph.get(
+        "nodes",
+        {}
+    )
+
+    edges = graph.get(
+        "edges",
+        []
+    )
+
+    print("========================================")
+    print("         BEE5 CAPABILITY GRAPH")
+    print("========================================")
+    print(f"Skills : {len(nodes)}")
+    print(f"Edges  : {len(edges)}")
+
+    for name, node in nodes.items():
+        usage = node.get(
+            "usage",
+            {}
+        )
+
+        print(
+            f"- {name} "
+            f"(runs={usage.get('runs', 0)}, "
+            f"success={usage.get('successes', 0)}, "
+            f"failure={usage.get('failures', 0)})"
+        )
+
+    print("========================================")
+
+
+def main():
+    import sys
+
+    if len(sys.argv) < 2:
+        print(
+            "Usage:\n"
+            "  python capability_graph.py build\n"
+            "  python capability_graph.py status\n"
+            '  python capability_graph.py find "query"'
+        )
+        return 1
+
+    command = sys.argv[1]
+
+    if command == "build":
+        graph = build_graph()
+
+        print(
+            f"✅ Capability graph built: "
+            f"{len(graph['nodes'])} skills, "
+            f"{len(graph['edges'])} relationships"
+        )
+        return 0
+
+    if command == "status":
+        status()
+        return 0
+
+    if command == "find":
+
+        if len(sys.argv) < 3:
+            print(
+                'Usage: python capability_graph.py find "query"'
+            )
+            return 1
+
+        graph = build_graph()
+
+        print(
+            json.dumps(
+                find_candidates(
+                    sys.argv[2]
+                ),
+                ensure_ascii=False,
+                indent=2
+            )
+        )
+        return 0
+
+    print(f"Unknown command: {command}")
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

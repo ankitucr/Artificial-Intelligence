@@ -1,0 +1,17 @@
+[
+  {
+    "round": "llm-1",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: error while handling argument \"--reasoning-budget\": invalid value\n\nusage:\n--reasoning-budget N                    controls the amount of thinking allowed; currently only one of: -1 for\n                                        unrestricted thinking budget, or 0 to disable thinking (default: -1)\n                                        (env: LLAMA_ARG_THINK_BUDGET)\n\n\nto show complete usage, run with -h"
+  },
+  {
+    "round": "llm-2",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: error while handling argument \"--reasoning-budget\": invalid value\n\nusage:\n--reasoning-budget N                    controls the amount of thinking allowed; currently only one of: -1 for\n                                        unrestricted thinking budget, or 0 to disable thinking (default: -1)\n                                        (env: LLAMA_ARG_THINK_BUDGET)\n\n\nto show complete usage, run with -h"
+  },
+  {
+    "round": "llm-3",
+    "stage": "generation",
+    "error": "Structured mutation generation failed after 3 attempts. Last error: error while handling argument \"--reasoning-budget\": invalid value\n\nusage:\n--reasoning-budget N                    controls the amount of thinking allowed; currently only one of: -1 for\n                                        unrestricted thinking budget, or 0 to disable thinking (default: -1)\n                                        (env: LLAMA_ARG_THINK_BUDGET)\n\n\nto show complete usage, run with -h"
+  }
+]

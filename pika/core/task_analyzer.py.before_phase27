@@ -1,0 +1,344 @@
+from typing import Any
+
+
+class TaskAnalyzer:
+    """
+    Phase 10 task intelligence.
+
+    Determines:
+    - task type
+    - capabilities
+    - complexity
+    - whether a deterministic tool can solve the task
+    """
+
+    def analyze(
+        self,
+        task: str,
+        memories: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+
+        text = task.lower().strip()
+
+        capabilities: list[str] = []
+        tool_capabilities: list[str] = []
+
+        # ---------------------------------------------------------
+        # Calculation / deterministic tool tasks
+        # ---------------------------------------------------------
+
+        calculation_markers = [
+            "calculate",
+            "calculation",
+            "add ",
+            "sum",
+            "multiply",
+            "product",
+            "subtract",
+            "divide",
+        ]
+
+        if any(
+            marker in text
+            for marker in calculation_markers
+        ):
+            capabilities.append("calculation")
+            tool_capabilities.append("calculation")
+
+        # ---------------------------------------------------------
+        # Text tools
+        # ---------------------------------------------------------
+
+        text_markers = [
+            "length of this text",
+            "character count",
+            "count characters",
+            "text length",
+        ]
+
+        if any(
+            marker in text
+            for marker in text_markers
+        ):
+            capabilities.append("text")
+            tool_capabilities.append("text")
+
+        # ---------------------------------------------------------
+        # Coding
+        # ---------------------------------------------------------
+
+        coding_markers = [
+            "code",
+            "python",
+            "javascript",
+            "typescript",
+            "function",
+            "class ",
+            "api",
+            "debug",
+            "bug",
+            "implement",
+            "program",
+            "script",
+        ]
+
+        if any(
+            marker in text
+            for marker in coding_markers
+        ):
+            capabilities.append("coding")
+
+        # ---------------------------------------------------------
+        # Debugging
+        # ---------------------------------------------------------
+
+        debugging_markers = [
+            "debug",
+            "error",
+            "exception",
+            "traceback",
+            "fix",
+            "broken",
+            "not working",
+            "fails",
+            "failure",
+        ]
+
+        if any(
+            marker in text
+            for marker in debugging_markers
+        ):
+            capabilities.append("debugging")
+
+        # ---------------------------------------------------------
+        # Analysis
+        # ---------------------------------------------------------
+
+        analysis_markers = [
+            "analyze",
+            "analysis",
+            "compare",
+            "explain",
+            "evaluate",
+            "inspect",
+            "review",
+            "why",
+        ]
+
+        if any(
+            marker in text
+            for marker in analysis_markers
+        ):
+            capabilities.append("analysis")
+
+        # ---------------------------------------------------------
+        # Planning
+        # ---------------------------------------------------------
+
+        planning_markers = [
+            "plan",
+            "planning",
+            "architecture",
+            "design",
+            "roadmap",
+            "strategy",
+        ]
+
+        if any(
+            marker in text
+            for marker in planning_markers
+        ):
+            capabilities.append("planning")
+
+        # ---------------------------------------------------------
+        # Generation
+        # ---------------------------------------------------------
+
+        generation_markers = [
+            "write",
+            "create",
+            "generate",
+            "build",
+            "make",
+            "produce",
+        ]
+
+        if any(
+            marker in text
+            for marker in generation_markers
+        ):
+            capabilities.append("generation")
+
+        # ---------------------------------------------------------
+        # Reasoning
+        # ---------------------------------------------------------
+
+        reasoning_markers = [
+            "solve",
+            "reason",
+            "calculate",
+            "logic",
+            "figure out",
+            "determine",
+        ]
+
+        if any(
+            marker in text
+            for marker in reasoning_markers
+        ):
+            capabilities.append("reasoning")
+
+        # ---------------------------------------------------------
+        # Remove duplicates
+        # ---------------------------------------------------------
+
+        capabilities = list(
+            dict.fromkeys(capabilities)
+        )
+
+        tool_capabilities = list(
+            dict.fromkeys(tool_capabilities)
+        )
+
+        if not capabilities:
+            capabilities.append("reasoning")
+
+        # ---------------------------------------------------------
+        # Task type
+        # ---------------------------------------------------------
+
+        if "calculation" in capabilities:
+            task_type = "calculation"
+
+        elif "text" in capabilities:
+            task_type = "text"
+
+        elif "debugging" in capabilities:
+            task_type = "debugging"
+
+        elif "coding" in capabilities:
+            task_type = "coding"
+
+        elif "planning" in capabilities:
+            task_type = "planning"
+
+        elif "analysis" in capabilities:
+            task_type = "analysis"
+
+        elif "generation" in capabilities:
+            task_type = "generation"
+
+        else:
+            task_type = "reasoning"
+
+        complexity = self._complexity(
+            text,
+            capabilities,
+        )
+
+        tool_required = bool(
+            tool_capabilities
+        )
+
+        strategy = self._strategy(
+            task_type,
+            complexity,
+            tool_required,
+        )
+
+        return {
+            "task": task,
+            "task_type": task_type,
+            "capabilities": capabilities,
+            "tool_capabilities": tool_capabilities,
+            "tool_required": tool_required,
+            "complexity": complexity,
+            "strategy": strategy,
+            "memory_available": bool(memories),
+        }
+
+    @staticmethod
+    def _complexity(
+        text: str,
+        capabilities: list[str],
+    ) -> str:
+
+        score = 0
+
+        if len(text) > 120:
+            score += 1
+
+        if len(text) > 300:
+            score += 1
+
+        complex_markers = [
+            "architecture",
+            "system",
+            "multiple",
+            "integrate",
+            "refactor",
+            "production",
+            "security",
+            "database",
+            "distributed",
+            "optimize",
+        ]
+
+        score += sum(
+            1
+            for marker in complex_markers
+            if marker in text
+        )
+
+        if len(capabilities) >= 3:
+            score += 1
+
+        if score >= 4:
+            return "high"
+
+        if score >= 2:
+            return "medium"
+
+        return "low"
+
+    @staticmethod
+    def _strategy(
+        task_type: str,
+        complexity: str,
+        tool_required: bool,
+    ) -> str:
+
+        if tool_required:
+            return (
+                "Prefer a registered deterministic tool when "
+                "one can directly satisfy the task."
+            )
+
+        if task_type == "debugging":
+            return (
+                "Inspect the failure, identify the root cause, "
+                "produce a correction, then validate it."
+            )
+
+        if task_type == "coding":
+            return (
+                "Understand the requested behavior, implement "
+                "the solution, then independently validate it."
+            )
+
+        if task_type == "planning":
+            return (
+                "Decompose the objective into ordered steps "
+                "and identify required capabilities."
+            )
+
+        if task_type == "analysis":
+            return (
+                "Extract relevant evidence, analyze it, "
+                "and produce a justified result."
+            )
+
+        return (
+            "Break the task into logical steps and verify "
+            "the resulting answer."
+        )

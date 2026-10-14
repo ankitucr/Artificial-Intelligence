@@ -1,0 +1,10 @@
+{
+  "name": "BEE5",
+  "version": "0.1.0",
+  "neural_backend": "local",
+  "llama_cli": "llama-cli",
+  "model": "",
+  "max_skill_runtime": 20,
+  "auto_evolution": false,
+  "human_approval_for_evolution": true
+}

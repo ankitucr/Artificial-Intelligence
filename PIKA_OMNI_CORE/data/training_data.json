@@ -1,0 +1,25 @@
+[
+  {"text": "do you know about the book human psychology", "intent": "SEARCH_INFO"},
+  {"text": "what is black hole", "intent": "SEARCH_INFO"},
+  {"text": "who is the prime minister of india", "intent": "SEARCH_INFO"},
+  {"text": "tell me about quantum physics", "intent": "SEARCH_INFO"},
+  {"text": "android studio kya hai", "intent": "SEARCH_INFO"},
+  
+  {"text": "python code dikhao", "intent": "FIND_CODE"},
+  {"text": "mera user management wala code do", "intent": "FIND_CODE"},
+  {"text": "haal chaal app ka firebase logic kahan hai", "intent": "FIND_CODE"},
+  {"text": "show me the function for login", "intent": "FIND_CODE"},
+  {"text": "database connection script dikhao", "intent": "FIND_CODE"},
+  
+  {"text": "yaad rakho mera naam ankit hai", "intent": "TEACH_AI"},
+  {"text": "pika yaad rakho haal chaal ek social media app hai", "intent": "TEACH_AI"},
+  {"text": "save this information", "intent": "TEACH_AI"},
+  
+  {"text": "who are you", "intent": "STATUS_CHECK"},
+  {"text": "tum kaun ho", "intent": "STATUS_CHECK"},
+  {"text": "tumhari skills kya hain", "intent": "STATUS_CHECK"},
+  
+  {"text": "in dono me se better kaunsa hai", "intent": "COMPARE_TECH"},
+  {"text": "compare react and angular", "intent": "COMPARE_TECH"},
+  {"text": "firebase aur mongodb me kya difference hai", "intent": "COMPARE_TECH"}
+]

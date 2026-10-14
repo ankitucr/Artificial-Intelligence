@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>PKA_CORE_HELIX_EARTH_CORE</title>
+    <style>
+        :root {
+            --ai-color: #00ffff;
+            --user-color: #00ff00;
+            --bg-dark: #000000;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            background-color: var(--bg-dark);
+            color: var(--ai-color);
+            font-family: 'Courier New', Courier, monospace;
+            height: 100dvh; 
+            width: 100vw;
+            overflow: hidden;
+            position: fixed; 
+            top: 0; left: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 1. TOP BAR */
+        .top-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 45px;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.4);
+            background: #000;
+            z-index: 100;
+        }
+        .top-bar .active-text { color: var(--user-color); }
+
+        /* 2. VISUAL DECK (LOCKED AT TOP) */
+        #visual-deck {
+            position: absolute;
+            top: 45px; left: 0; width: 100%; 
+            height: 35vh; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 50; 
+            pointer-events: none; 
+        }
+
+        .code-stream {
+            width: 25%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            font-size: 10px;
+            line-height: 1.6;
+            color: rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(0,255,255,0.1);
+            overflow: hidden;
+        }
+        .code-line { transition: color 0.3s; opacity: 0.8; }
+
+        #orb-container {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 0 25px rgba(255, 100, 0, 0.25)); /* Warm Earth Core Glow */
+        }
+        #pka-orb-canvas { max-width: 100%; border-radius: 50%; }
+
+        /* 3. CHAT SECTION (LOCKED BELOW ORB) */
+        #chat-section {
+            position: absolute;
+            top: 38vh; left: 0; width: 100%; bottom: 65px; 
+            display: flex;
+            flex-direction: column;
+            z-index: 10; 
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 5%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, transparent 5%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);
+        }
+
+        #chat-history {
+            flex: 1;
+            overflow-y: auto; 
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; 
+            pointer-events: auto; 
+        }
+
+        .chat-spacer { height: 10vh; flex-shrink: 0; }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            background: transparent; 
+            border-radius: 4px; 
+        }
+        
+        .ai-msg {
+            align-self: flex-start;
+            border: 1px solid var(--ai-color);
+            color: var(--ai-color);
+        }
+        
+        .user-msg {
+            align-self: flex-end;
+            border: 1px solid var(--user-color);
+            color: var(--user-color);
+        }
+
+        /* 4. EXACT INPUT AREA */
+        #input-area {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 65px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            gap: 12px;
+            background: #000;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            z-index: 100;
+        }
+
+        .mic-btn {
+            background: transparent;
+            border: none;
+            color: var(--ai-color);
+            padding: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+        .mic-listening {
+            color: #ff0000 !important;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse { from { transform: scale(1); filter: drop-shadow(0 0 5px red); } to { transform: scale(1.2); filter: drop-shadow(0 0 10px red); } }
+
+        #chat-input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid var(--ai-color);
+            color: var(--ai-color);
+            padding: 10px 15px;
+            border-radius: 4px; 
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #send-btn {
+            background: var(--user-color);
+            border: none;
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            color: #000;
+        }
+        #send-btn svg { width: 18px; height: 18px; fill: currentColor; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        PKA_CORE_v14.0 &bull; EARTH_CORE: <span class="active-text">LOCKED</span>
+    </div>
+
+    <div id="visual-deck">
+        <div class="code-stream" id="code-left"></div>
+        <div id="orb-container">
+            <canvas id="pka-orb-canvas" width="240" height="240"></canvas>
+        </div>
+        <div class="code-stream" id="code-right"></div>
+    </div>
+
+    <div id="chat-section">
+        <div id="chat-history">
+            <div class="chat-spacer"></div>
+            <div class="message ai-msg">Earth Core embedded successfully. Smooth Helix Waveform initialized for voice feedback.</div>
+            <div id="chat-anchor" style="height: 1px;"></div>
+        </div>
+    </div>
+        
+    <div id="input-area">
+        <button class="mic-btn" id="mic-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+        </button>
+        <input type="text" id="chat-input" placeholder="Command PKA..." autocomplete="off">
+        <button id="send-btn">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+    </div>
+
+    <script>
+        // ==========================================
+        // 💻 MATRIX CODE STREAM 
+        // ==========================================
+        const codeSnippets = [
+            "SYS_MEM: OK", "CORE: EARTH", "SYNAPSE: HELIX", "0x8F4A9", 
+            "V8_JIT_COMP", "AWAITING_CMD", "NEURAL_CORE: UP", "VAULT_FETCH", 
+            "THREAD(10)", "HASH: VALID", "AI_COMPUTING", "PKA_MATRIX"
+        ];
+
+        function setupCodeStream(elementId) {
+            const container = document.getElementById(elementId);
+            const lines = [];
+            for(let i=0; i<8; i++) {
+                let div = document.createElement('div');
+                div.className = 'code-line';
+                div.innerHTML = "&nbsp;";
+                container.appendChild(div);
+                lines.push(div);
+            }
+            return lines;
+        }
+
+        const leftLines = setupCodeStream('code-left');
+        const rightLines = setupCodeStream('code-right');
+
+        function updateCodeStream(linesArray) {
+            for(let i=0; i < linesArray.length - 1; i++) {
+                linesArray[i].innerText = linesArray[i+1].innerText;
+            }
+            const hex = "0x" + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
+            linesArray[linesArray.length - 1].innerText = `${hex} > ${codeSnippets[Math.floor(Math.random()*codeSnippets.length)]}`;
+        }
+
+        setInterval(() => updateCodeStream(leftLines), 500);
+        setInterval(() => updateCodeStream(rightLines), 700);
+
+        // ==========================================
+        // 🔮 EARTH CORE ENCLOSURE + HELIX WAVE ENGINE
+        // ==========================================
+        const canvas = document.getElementById('pka-orb-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let shellParticles = [];
+        
+        const shellRadius = 95; // Bada Cyan Gola
+        const solidCoreRadius = 40; // Andar ka thos Prithvi (Earth) Core
+        
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        let angleX = 0; let angleY = 0;
+        
+        let isSpeaking = false; 
+        let currentWaveAmplitude = 0; // Smooth transition handler
+
+        // Generate Outer Shell Grid (Very dense for smooth waves)
+        const latLines = 35; 
+        const lonLines = 35;
+        for (let i = 0; i <= latLines; i++) {
+            let lat = Math.PI * i / latLines - Math.PI / 2;
+            for (let j = 0; j < lonLines; j++) {
+                let lon = 2 * Math.PI * j / lonLines;
+                shellParticles.push({
+                    baseX: shellRadius * Math.cos(lat) * Math.cos(lon),
+                    baseY: shellRadius * Math.sin(lat),
+                    baseZ: shellRadius * Math.cos(lat) * Math.sin(lon),
+                    lat: lat, 
+                    lon: lon
+                });
+            }
+        }
+
+        function drawOrb() {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Soft Background Aura for the Earth Core
+            let auraSize = Math.max(1, solidCoreRadius * 2.5);
+            let coreGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, auraSize);
+            let auraAlpha = Math.max(0, Math.min(1, 0.2 + currentWaveAmplitude * 0.15));
+            coreGlow.addColorStop(0, `rgba(255, 80, 0, ${auraAlpha})`); 
+            coreGlow.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.fillStyle = coreGlow;
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+
+            // Default blending for front cyan particles
+            ctx.globalCompositeOperation = "lighter"; 
+
+            // Extremely Smooth Rotation
+            angleX += 0.0025; 
+            angleY += 0.0035;             
+
+            const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+            const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+
+            const time = Date.now() * 0.001; 
+
+            // Smoothly build up or calm down the wave
+            if (isSpeaking) {
+                currentWaveAmplitude += (1.0 - currentWaveAmplitude) * 0.1; 
+            } else {
+                currentWaveAmplitude += (0.0 - currentWaveAmplitude) * 0.05; 
+            }
+
+            let renderList = [];
+
+            // 🔴 INSERT THE SOLID EARTH CORE AT EXACTLY Z = 0
+            // This is the secret to perfectly trapping it inside the sphere!
+            renderList.push({ type: 'solid_core', z: 0 });
+
+            // --- PROCESS SHELL (PERFECT SPHERE WHEN IDLE, HELIX WHEN SPEAKING) ---
+            for (let p of shellParticles) {
+                
+                // 🧬 HELIX WAVE MATH: Triggers only when speaking
+                let waveScale = 1;
+                if (currentWaveAmplitude > 0.001) {
+                    // This creates diagonal twisting DNA-like waves across the sphere
+                    let helixMath = Math.sin(p.lat * 6 + p.lon * 4 - time * 12);
+                    waveScale = 1 + (helixMath * 0.12 * currentWaveAmplitude);
+                }
+
+                // Apply the wave scale to physically move the dot
+                let px_scaled = p.baseX * waveScale;
+                let py_scaled = p.baseY * waveScale;
+                let pz_scaled = p.baseZ * waveScale;
+
+                // 3D Rotation Math
+                let x1 = px_scaled * cosY - pz_scaled * sinY;
+                let z1 = pz_scaled * cosY + px_scaled * sinY;
+                let y2 = py_scaled * cosX - z1 * sinX;
+                let z2 = z1 * cosX + py_scaled * sinX;
+
+                renderList.push({ x: x1, y: y2, z: z2, type: 'shell', baseRad: shellRadius });
+            }
+
+            // 🌟 TRUE 3D DEPTH SORTING (Back to Front) 🌟
+            renderList.sort((a, b) => b.z - a.z);
+
+            // --- DRAW IN ORDER ---
+            for (let p of renderList) {
+                
+                if (p.type === 'solid_core') {
+                    // 🌍 DRAW SOLID EARTH CORE (Acts as a physical wall)
+                    
+                    // Core beats slightly when speaking
+                    let beat = Math.pow(Math.abs(Math.sin(time * 8)), 2) * 0.1 * currentWaveAmplitude;
+                    let currentSolidRad = solidCoreRadius * (1 + beat); 
+                    
+                    // Switch to source-over so it blocks the dots behind it completely
+                    ctx.globalCompositeOperation = "source-over"; 
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, currentSolidRad, 0, Math.PI * 2);
+                    
+                    // Rich Earth/Magma Gradient
+                    let solidGrad = ctx.createRadialGradient(
+                        centerX - 8, centerY - 8, 0, 
+                        centerX, centerY, currentSolidRad
+                    );
+                    solidGrad.addColorStop(0, "rgba(255, 230, 80, 1)");  // Bright Yellow/White center
+                    solidGrad.addColorStop(0.5, "rgba(255, 100, 0, 1)"); // Intense Orange Magma
+                    solidGrad.addColorStop(1, "rgba(120, 10, 0, 1)");    // Dark Red Crust edge
+                    
+                    ctx.fillStyle = solidGrad;
+                    ctx.fill();
+                    
+                    // Switch back to lighter for the front particles to glow over the core
+                    ctx.globalCompositeOperation = "lighter"; 
+                    continue;
+                }
+
+                // DRAW OUTER CYAN DOTS
+                const perspective = 250 / (250 + p.z);
+                const px_final = centerX + (p.x * perspective);
+                const py_final = centerY + (p.y * perspective);
+                
+                let size = Math.max(0.6, 1.4 * perspective); 
+                
+                // Dots in the far back fade out slightly, dots in front glow bright
+                let alpha = Math.min(1, Math.max(0.15, (p.z + p.baseRad) / (2 * p.baseRad)));
+
+                ctx.beginPath(); 
+                ctx.arc(px_final, py_final, size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 255, 255, ${alpha})`; 
+                ctx.fill();
+            }
+            requestAnimationFrame(drawOrb);
+        }
+        drawOrb(); 
+
+        // ==========================================
+        // 🎙️ VOICE SYSTEM & UNLOCK LOGIC
+        // ==========================================
+        const synth = window.speechSynthesis;
+        let pikaVoice = null;
+        let voiceUnlocked = false;
+
+        synth.onvoiceschanged = () => {
+            const voices = synth.getVoices();
+            pikaVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Female')) || voices[0];
+        };
+
+        function unlockVoiceAPI() {
+            if(!voiceUnlocked) {
+                let silentUtter = new SpeechSynthesisUtterance('');
+                silentUtter.volume = 0;
+                synth.speak(silentUtter);
+                voiceUnlocked = true;
+            }
+        }
+
+        function playAIVoice(text) {
+            if(synth.speaking) synth.cancel();
+            
+            let lowerText = text.toLowerCase();
+            if (lowerText.includes("hello") || lowerText.includes("pika") || lowerText.includes("help")) {
+                let audio = new Audio("download.wav"); 
+                isSpeaking = true;
+                audio.play().catch(e => console.log(e));
+                audio.onended = () => { isSpeaking = false; };
+                return;
+            }
+
+            let cleanText = text.replace(/[^a-zA-Z0-9.,?\s]/g, "");
+            let utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            if(pikaVoice) utterance.voice = pikaVoice;
+            utterance.pitch = 1.1; 
+            utterance.rate = 1.0;  
+
+            utterance.onstart = () => { isSpeaking = true; }; 
+            utterance.onend = () => { isSpeaking = false; };  
+            utterance.onerror = () => { isSpeaking = false; };
+            
+            synth.speak(utterance);
+        }
+
+        // ==========================================
+        // 🎤 VOICE RECOGNITION 
+        // ==========================================
+        const micBtn = document.getElementById('mic-btn');
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'hi-IN';
+
+            recognition.onstart = () => { micBtn.classList.add('mic-listening'); };
+            recognition.onend = () => { micBtn.classList.remove('mic-listening'); };
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('chat-input').value = transcript;
+                unlockVoiceAPI(); 
+                triggerBackendCall(transcript); 
+            };
+        }
+
+        micBtn.addEventListener('click', () => {
+            unlockVoiceAPI(); 
+            if (recognition) {
+                micBtn.classList.contains('mic-listening') ? recognition.stop() : recognition.start();
+            }
+        });
+
+        // ==========================================
+        // 💬 CHAT LOGIC
+        // ==========================================
+        const chatSection = document.getElementById('chat-section');
+        const chatHistory = document.getElementById('chat-history');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatAnchor = document.getElementById('chat-anchor');
+
+        function scrollToBottom() {
+            setTimeout(() => {
+                chatAnchor.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 50);
+        }
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender === 'user' ? 'user-msg' : 'ai-msg');
+            
+            if (text.includes('**PIKA CORE STATUS**')) {
+                msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+            } else {
+                msgDiv.innerText = text;
+            }
+
+            chatHistory.insertBefore(msgDiv, chatAnchor);
+            scrollToBottom();
+        }
+
+        function handleInputSubmit() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            unlockVoiceAPI(); 
+            triggerBackendCall(text);
+        }
+
+        async function triggerBackendCall(text) {
+            addMessage(text, 'user');
+            chatInput.value = '';
+            
+            try {
+                const response = await fetch('http://localhost:3000/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                
+                if (!response.ok) throw new Error("Network Error");
+                const data = await response.json();
+                
+                addMessage(data.reply, 'ai');
+                playAIVoice(data.reply); 
+                
+            } catch (error) {
+                addMessage("[SYSTEM ERROR] Backend Offline.", 'ai');
+            }
+        }
+
+        sendBtn.addEventListener('click', handleInputSubmit);
+        chatInput.addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') { e.preventDefault(); handleInputSubmit(); }
+        });
+    </script>
+</body>
+</html>

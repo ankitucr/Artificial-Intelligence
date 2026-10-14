@@ -1,0 +1,1774 @@
+[
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/__init__.py",
+    "sha256": "82521d2a04b68c4786e6f01772c801850c506c0d54a26d005ab48f1c1dea33e1",
+    "bytes": 1738,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "memory"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/__init__.py",
+    "sha256": "9e045c3f6341c70c19b2dc3217d3b5ceeca786692cb93cdf9146127033219323",
+    "bytes": 2257,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "memory"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/aetherra_grammar.py",
+    "sha256": "d636ff2bb14e8c2dbbda7ec8fd305367626da13522a393551d83429d9c0bf440",
+    "bytes": 24635,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/aetherra_interpreter.py",
+    "sha256": "74602cc216d008e78edb712e485228ddd5bd581604645287727ec65b46c8f2e6",
+    "bytes": 3049,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "memory"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/aetherra_parser.py",
+    "sha256": "3cf2fa72095a8587297dd30f871bdc009d3f29c6411d9ad5fc90d922e404cf2f",
+    "bytes": 24181,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/agent.py",
+    "sha256": "244b1779b642889091e3880ff665d7f9114ac8fe5dd88fb18c863f1c66943ec9",
+    "bytes": 8955,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "memory"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/agent_executor.py",
+    "sha256": "871396c18637a63bb63bc3411c5227290cd0ccbd42c815a40fcb6efc4fcfd358",
+    "bytes": 487,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/agent_orchestrator.py",
+    "sha256": "b840d57a2f49f0d8b84a64aea0c77fc68f3d8c52df8a4541ed753fe7ef6950c9",
+    "bytes": 32311,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/base.py",
+    "sha256": "f5fe6635818b22f271556ea344bce715a6c45c21874b6e8d0bf7ca721c7ecb76",
+    "bytes": 74938,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "memory",
+      "evaluation",
+      "self_evolution",
+      "repair"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/cleanup_project.py",
+    "sha256": "03ca57f53263552b8be0fa8379bea9f1fcebef388bc5ddd60ae1fc98c69722ab",
+    "bytes": 20554,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/cognitive_adapters.py",
+    "sha256": "9c1850650cb6d85e995a6dd75e1e0ffdff32c9db18ac377500ce8851abba1c36",
+    "bytes": 106,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "AetherraLabs/Aetherra/Aetherra/aetherra_core/agents/collaboration.py",
+    "sha256": "4649adc1361f888eabdc187928618f75b554db8ec44489b4cec7a3967c289c45",
+    "bytes": 25800,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/__init__.py",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "bytes": 1,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/index.html",
+    "sha256": "62dd86996c953771d4fe53108ed5b7b5950fd8d73df12f742f4324aa6d5c4d71",
+    "bytes": 103332,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/context_provider/__init__.py",
+    "sha256": "5424413abf08e0a5365cf37b8b8fcfde29ec1ef7c1f7c6d7130a748b3065b1d0",
+    "bytes": 147,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/gate/__init__.py",
+    "sha256": "830809b0facdcb4731d7da1e1e4e6912e7418927b35261456f2bce6d1285d8e2",
+    "bytes": 246,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/gate/engine.py",
+    "sha256": "43227385290a80f2262830781569ec78e3e59ca67c1b09e01479b611c80d73d8",
+    "bytes": 10733,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "memory"
+    ]
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/kernel/__init__.py",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "bytes": 1,
+    "language": "py",
+    "duplicate": true,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/kernel/engine.py",
+    "sha256": "aab533277df44bb491f0648793de081cf43b9b31431bfc12fc86822fa000d5ab",
+    "bytes": 9792,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/ledger/__init__.py",
+    "sha256": "8ace87cbc5105efdaa77e584045b5a5fd31971b5d6f069ff80c94393cc564b10",
+    "bytes": 292,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/ledger/audit.py",
+    "sha256": "258b51f319d90d19ebf3ed773ac444c8ce627263782920b29f5be9225d78ba04",
+    "bytes": 3934,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent"
+    ]
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/scenarios/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/scenarios/s4_refunds.py",
+    "sha256": "4f2fa71634b09efa74e6ad7d2cd33754d4473d6409373b87f2160ffabc200499",
+    "bytes": 1285,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent"
+    ]
+  },
+  {
+    "path": "matiascloudarch/cognitive-decision-architecture/cda/scripts/simulate_hallucination.py",
+    "sha256": "9ec35bd285cc55dd2c8ab33b783fa0f816fed61106b1c3953c41be24db8f5f90",
+    "bytes": 5071,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/KinetAios-\u8fd0\u884c\u8bf4\u660e.html",
+    "sha256": "bc9bbcce0c1737e2c1589e4261f56785608c6bf26277bbf22bf4c565baeff62f",
+    "bytes": 21830,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/agent-comparison.html",
+    "sha256": "ff1c2e399665c9e904ddab13bb462625989950941beae392d3bfde2d77285bc9",
+    "bytes": 44318,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/comparison.html",
+    "sha256": "6791dfa657f61e944648a8eacfc041075fbbcbb888a8c37edb61af8908b89a2b",
+    "bytes": 51166,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/docs/google0a1ee6d90f8731bb.html",
+    "sha256": "7f4a9325402469f7b0c1b86a60c939c83cc105c2f597f0e4aa62bf2f7f106a8a",
+    "bytes": 53,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "phinn/KinetAios/docs/index.html",
+    "sha256": "855de07a294bce64289021a5f3ef6f6352254a8b5626f7881a65f21dd0fac49f",
+    "bytes": 75030,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/docs/privacy.html",
+    "sha256": "fcda4ad032274acbc9017291621c9c171c5d7fe1819bd0b94dc67101bac80103",
+    "bytes": 3420,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "phinn/KinetAios/documents/ai-news-brief-2026-08-16.html",
+    "sha256": "d1cd946bc31bcb840eb180e43a32669b12678cd53ec9fa1bc1f01d96628a33ea",
+    "bytes": 16337,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/documents/architecture.html",
+    "sha256": "0659cb134df11d443d1b77b83c1cad940885aa2c994c0ea97023f980ce50bbd0",
+    "bytes": 94866,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "self_evolution",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/documents/codex-comparison.html",
+    "sha256": "53691e929dcffa7b8922bd94205723aae3aeb1a033f1e9ad39add33f04a416f1",
+    "bytes": 49102,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/documents/codex-critique.html",
+    "sha256": "c9f6760da85d4c8389372086a9f5e959ba05247ad3cafae963b660ed713c161e",
+    "bytes": 54393,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/documents/deepseek-harness-features.html",
+    "sha256": "624155c270a714f047a2a3788fe0ff0ff3af61ea11f369ddb24ecaafd6ee9926",
+    "bytes": 24023,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory"
+    ]
+  },
+  {
+    "path": "phinn/KinetAios/documents/excel-cross-analysis-engines.html",
+    "sha256": "e77d05db3c5a7af0dc36a8cfebf7e213bb2949329ba4c99c1ec91f305f468015",
+    "bytes": 30552,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "saif-26281028/SwiftData-SkillKit/index.html",
+    "sha256": "abf6434ce76ac7115d514324ba21829a045f631c4f902e47ec00507f73570ad7",
+    "bytes": 23774,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "oleg-tkachuk/limes/authorization.go",
+    "sha256": "b79fbe59519bd200521a5b78fd8f5f1d540765a9084c352031e33c34d91e5e50",
+    "bytes": 4459,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "oleg-tkachuk/limes/authorization_test.go",
+    "sha256": "90ff69d93eb2148d9ffb0a6432efa9e44f946b6c7b0aeb3f574b90578d9ef3b7",
+    "bytes": 4107,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit.go",
+    "sha256": "a2506d3d358e6dcd67ecdcbbdd4dbf6960cbf35a4e668ce551fd86c3e608dff8",
+    "bytes": 23990,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_copies_test.go",
+    "sha256": "6f32e75faffe08e3cf86caab46ce2accd50736256e5d19e501d7f1d4cd992e6d",
+    "bytes": 12572,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_crosslang_test.go",
+    "sha256": "61df2aec739f9c507b0bfc5674434d9b714cbe594e0b3f1e54e6781a71313a24",
+    "bytes": 8268,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_facts_test.go",
+    "sha256": "964b5dcb678cd411812ef95a84469bfbcc18f20a36780d398e6606c9302ae25c",
+    "bytes": 2857,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_malformed_test.go",
+    "sha256": "387878cf2213f981f2782e61d983e7b7e8a93e55c9ac0054f15e7772de456e01",
+    "bytes": 6448,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_revocation.go",
+    "sha256": "92ae8bbc57383f24860e7a0fc38cb1cf11e838406b7e830dfa1c2f56918542bd",
+    "bytes": 8354,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_revocation_test.go",
+    "sha256": "66c796c6b8699803a5587657e6a6f4cf6eb6e3c0747d8e02ab980d91f5f311b0",
+    "bytes": 13200,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_test.go",
+    "sha256": "305fef1c4358c872c714ae79b264f661359c0958f23dfdde80b1c2698fa67c5a",
+    "bytes": 14019,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/biscuit_vocabulary_test.go",
+    "sha256": "93602abf198cc3057bfb37dd3a51602ef1c3f6673ebf39dcd6d68159c174f4b9",
+    "bytes": 2718,
+    "language": "go",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "oleg-tkachuk/limes/.github/release/unused-npm-plugin/index.js",
+    "sha256": "5858d950bb7dfc0d67d5b93b52ee7a6c1e1ba1e7083dcde24553054727837c54",
+    "bytes": 283,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Configs/WeChatConfig.cs",
+    "sha256": "6a5c90914dd7b6b5f114fba4ff0580d823cb3f0fcccf59f49a9ec03b3e17f13c",
+    "bytes": 11378,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Configs/WeMettingConfig.cs",
+    "sha256": "08416417af46af5d79a53f4bd1f1ee7382df9d953ea3fe1936abb9a5a8202859",
+    "bytes": 147,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/ActionType.cs",
+    "sha256": "905211d99b9823f726bfa485a63bc469ad550720bc9e3103c08fab61ee227319",
+    "bytes": 303,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/ChatBoxToolBarType.cs",
+    "sha256": "bf223ffd706a63cd500a8ebd09d7e271a84d2e20ca0f887cce6005607e2bda2c",
+    "bytes": 215,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/ChatContentType.cs",
+    "sha256": "39b7f15aceba8f92c3d555e99ad9debc896a006b0a73a00631a7df4111c40ce3",
+    "bytes": 194,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/ChatType.cs",
+    "sha256": "3748a89f9a5072cd124c3b957931b0e32d41da08ab47a0b108836f9354c2d6b5",
+    "bytes": 370,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/ConversationType.cs",
+    "sha256": "f383f43569b73477fd5b0b2db5dfbe6c0a66caf0ba3e63a71db2b8092c59af23",
+    "bytes": 486,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/CopyType.cs",
+    "sha256": "c7925e95ec3a83267e916869618da441a4fbb621e900cd34211bfc25ef5dde9e",
+    "bytes": 317,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/DirectionInfo.cs",
+    "sha256": "afddd022d7cac0346985762d26fa230bc50c0b7085cf70fb6adf16360951e6cb",
+    "bytes": 189,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/ForwardMessageTypeEnums.cs",
+    "sha256": "c69060d60106cf0c542313ab78c9fd8b1e87d41add1a782c9958acb7521c3e97",
+    "bytes": 279,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/FriendAddResult.cs",
+    "sha256": "b5ab0e10e28eaea55c696e9d926639524a24bfdb456af68a068ce2745d9e968a",
+    "bytes": 801,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "scottfly189/WeChatAuto.SDK/WeAutoCommon/Enums/FriendSearchResult.cs",
+    "sha256": "9af43ec64397e02ec8acb3ddb32b792c360b91ed2bff69bd92a7a800bb558102",
+    "bytes": 556,
+    "language": "cs",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0101_foundation.sql",
+    "sha256": "993c5b1f33cef52a24a159156c2a01d99d4559f238cc9771a13ff5e20ca8406d",
+    "bytes": 15009,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0102_tables.sql",
+    "sha256": "47a2c49087bedf60d32b7dd9e237fadad07ca3bda7af20fd6d490439b69980e3",
+    "bytes": 84882,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0103_access.sql",
+    "sha256": "aaea02e5a235d763a7cda5d978e7f674c11cfb2d855d594d319abe3ba5b1d0fa",
+    "bytes": 39400,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0104_keys.sql",
+    "sha256": "4d6c971efb2f6ee0d510e256af309c1bd905e298a4c47c06ae7409b067434071",
+    "bytes": 17627,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0105_apps.sql",
+    "sha256": "2acca1884e1c6bfeec80af4884b96907e12a63ac00c28f4f7e518eca44698b8f",
+    "bytes": 5712,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0106_spaces.sql",
+    "sha256": "f4961ec08e712365e36f91653e668c4fc92aef569fbfbcee847b2bbfb68da248",
+    "bytes": 76681,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0107_posts.sql",
+    "sha256": "d8c6c7e84c6dbff27bb6ca6015a001418aeb5f59ca0522820b0ce4b81cec25b7",
+    "bytes": 75171,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0108_checkpoints.sql",
+    "sha256": "c8b729e3ab93508ed6c25fcf00c6d2c6f525bd08674b2870a1d5f1b26132c5b7",
+    "bytes": 19180,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0109_messages.sql",
+    "sha256": "7d6e477c5561b7ac2a2f52c0dc4aaf2a86fa7897c19df60c00b621f530b87831",
+    "bytes": 42781,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0110_sealed.sql",
+    "sha256": "51d4e72942108391aa1a67d90b313a2840f455dbb49376eccae045e2250fe023",
+    "bytes": 38025,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0111_search_index_upkeep.sql",
+    "sha256": "8419ff8a619e6b6c0a40927b457998a5928eac88d9dd1897bb788ff6c1e66964",
+    "bytes": 1952,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SchellingAF/schelling/migrations/0112_start_checks.sql",
+    "sha256": "c34e6cb593d7878533782196ed1206a9e72580dd83152e27b1df956d13917527",
+    "bytes": 1968,
+    "language": "sql",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/00_hello_pub_sub/publisher.py",
+    "sha256": "937033ee6dc2cd6c424641934a2f87ed26d68f5b44d449c77d12477bbdaee9bf",
+    "bytes": 2207,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/00_hello_pub_sub/run.py",
+    "sha256": "d6c46de32bb3bf75da999afcdb799b9accb3f156cec15bed7ea1d492ca42b1eb",
+    "bytes": 2950,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/00_hello_pub_sub/subscriber.py",
+    "sha256": "00200ebd5a4de047062916a55e16665c82fa6d115260bb66a17f0de3b0f24ab5",
+    "bytes": 2470,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/01_who_is_on_the_bus/run.py",
+    "sha256": "9f24d0018bda13d452b03ce23c9cc6f45d60eab537d822a91fd4c018f7ebb0ff",
+    "bytes": 2302,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/02_why_cant_they_talk/run.py",
+    "sha256": "54d74faae2ad0f1d64ccf6cf22a49df901dbcba17f06e2ebcf781791bf23ffc3",
+    "bytes": 2558,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/03_a_node_crashed/run.py",
+    "sha256": "5ea651fbeb0cd35bab19cba40298ff064c7f630f3dd43bb4c8bb15fb4c95ebe3",
+    "bytes": 2627,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/04_late_joiner_misses_data/run.py",
+    "sha256": "49c013e24cddd3a104f1815299d87ac08826d957ca79af5ef42895c1a35f29ec",
+    "bytes": 2085,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/05_reliability_in_code/publisher.py",
+    "sha256": "4ff328ef70e68dd0885af05d276b03f629a800fd2ae3436732ed3787d2e5fe7e",
+    "bytes": 2484,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/05_reliability_in_code/run.py",
+    "sha256": "c882f981dbd06a37ea3375713ed9b984f717a77390527fc41375535bbca9558c",
+    "bytes": 3174,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/05_reliability_in_code/subscriber.py",
+    "sha256": "fe3cd2aa1126c4b41b4e6511d10cddecc1813a2139ea664bc20c289011b48622",
+    "bytes": 3335,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/06_durability_late_joiner_in_code/publisher.py",
+    "sha256": "f88a7fe443781e0ed3fead058094d10804b51f2324c54d71a59e4dfd1fe7777e",
+    "bytes": 2422,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "yaniswav/TopicForge/examples/dds/06_durability_late_joiner_in_code/run.py",
+    "sha256": "5f41bf759d0c1fc3e82fa926df906c12098a5706b50866a2649915deffed3e79",
+    "bytes": 5027,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/benchmark.py",
+    "sha256": "fd0dbed53adafa7cdd5e6690de289bfc5fe25186b1da7122f3b49e2831825c0f",
+    "bytes": 1771,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/config.py",
+    "sha256": "9a5a3b2c8e7d068188c5b87508dc9978be558f395e20eb39cb1422798338577b",
+    "bytes": 586,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "memory"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/environment/__init__.py",
+    "sha256": "b479dd7ebd610ca03854e470aa377b6ce600939479aca658d6b101e66c95c405",
+    "bytes": 130,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/environment/blackjack_env.py",
+    "sha256": "e67efa84c198b01810675a38a9ebaf05f5cea710e1d4a4505af3e363373c0cd8",
+    "bytes": 4682,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/environment/card_deck.py",
+    "sha256": "2842beca7632b39934be266d2dc88d009a83344a0740f46cbd76b17ae2d87c26",
+    "bytes": 1514,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/environment/dealer.py",
+    "sha256": "567c8aceb28d84a6817ee6f406958861c863ae2263c5741a04e5572a960c23ec",
+    "bytes": 2274,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/experiments/compare_prediction.py",
+    "sha256": "5aad8eb8a15a26c9c6aac2c6f597355841da7190b347d5b28bba6a1942d80528",
+    "bytes": 1736,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/foundations/__init__.py",
+    "sha256": "286ec5c863831d1fb08f16834038bd4fa4413667cf2374a1e4e8d7a0c6dd619e",
+    "bytes": 75,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/foundations/blackjack.py",
+    "sha256": "dd18c2e079897b8c8935b8afdeb64e5795019628f7c2d5e97929233d00b113b8",
+    "bytes": 3424,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/docs/previews/index.html",
+    "sha256": "9b914ed09bdbd37f9ee933e81610077d85842be73b127bf6e7ae18e0994d1905",
+    "bytes": 4017,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/docs/previews/monte-carlo-values.html",
+    "sha256": "8c02aa2375915aaa7281bab191469e611424cc27d9edd7b3cb06e4901be334b5",
+    "bytes": 30776,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "jiayutee/Reinforcement-Learning-Blackjack/docs/previews/td-update.html",
+    "sha256": "7ec543fc07538bfb5f95cd5b22c08c6043ca9c85498997549350e01b79c8a429",
+    "bytes": 5551,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/agent/__init__.py",
+    "sha256": "fdcb9464f668edfdb08d532f549a957f14af44edf813d92d8e29e7745abe3012",
+    "bytes": 115,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/agent/__main__.py",
+    "sha256": "2969e14b05ad33e670af840d2d4b2c83bf80943b813c5a8e443b8fe92086a565",
+    "bytes": 2970,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/agent/config.py",
+    "sha256": "84971bd62b45c3abff44466bf380f8125d6f16c47daf8dd484df371ec91ea040",
+    "bytes": 1819,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/agent/hook.py",
+    "sha256": "b7b49e72cb7f75b8106e9cc960c0085a8d306d88c270b0ec47fcd31d9896f02d",
+    "bytes": 1910,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/__init__.py",
+    "sha256": "43492fa59c89a7b083e8035a083351f52b28afc3872a6ff4255859f186205d43",
+    "bytes": 125,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/__init__.py",
+    "sha256": "8ed64f5c1dce402affed2137a8e5d3ab01fda6b9ec3253866841409952c08e9c",
+    "bytes": 873,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/_capability.py",
+    "sha256": "a577c5644bfbbd795cd34da8489c1128b4673d4fd82f103789ad9cfdcb212ae0",
+    "bytes": 9619,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/_capability_tests.py",
+    "sha256": "3e4f35b4e5ba1fd5eb92ba51e9e89226fe9975a7ae152ad6a77f5b531d3373d4",
+    "bytes": 2310,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/_session.py",
+    "sha256": "e166b726cc285cd1d5b2de6e1f472c793f9b5af77f6106d9b3511ad1670561cb",
+    "bytes": 16783,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/_session_tests.py",
+    "sha256": "a9d735d237b1e7df327d618d85f1da4791a368b8667dd2e4796e35815fa0ca2b",
+    "bytes": 2673,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/_tool_output.py",
+    "sha256": "6e1b70f20d1de60076171b230e4b4784c4fd842d0a6126e11d9839b452ea9790",
+    "bytes": 10138,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "lhp0630/agent-playbook/src/harness/open_sandbox/_tool_output_tests.py",
+    "sha256": "a9e177d9375c62f7caec2b8c98213e8b345c54d0e04600b5bed524578410a1f7",
+    "bytes": 1238,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SuheilAltraikey01/AgenticAI/Week02/COSC726_W02_llm_foundations.py",
+    "sha256": "e72cedb9ba25356d153901887118ec96f654c0adc2ed3a48db47023e4e9e6fe1",
+    "bytes": 10454,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SuheilAltraikey01/AgenticAI/week01/COSC726_W01_hello_agent_mock.py",
+    "sha256": "1831640c1668155c927480948d12a90cfbc9f4711fb7a66c6feaa3dbe9da2ddc",
+    "bytes": 10020,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "SuheilAltraikey01/AgenticAI/week03/lab2_kit.py",
+    "sha256": "6c6f49dc8ceaec20eb75b2dfadd95007eff1f8dc89c03f006a8ac4c7609a5923",
+    "bytes": 23838,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "SuheilAltraikey01/AgenticAI/week03/triage_skeleton.py",
+    "sha256": "891632cec8e2036c1c7266cab985d7839c52c9b55879420ec21f95567bb9a706",
+    "bytes": 12533,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "repair"
+    ]
+  },
+  {
+    "path": "SuheilAltraikey01/AgenticAI/week04/hello_agent.py",
+    "sha256": "4a7c010e86c14695b754fa0b0c3987fd12977ea6e7ee4d8e17c0c11d3f795d48",
+    "bytes": 15548,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent",
+      "repair"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/tsdown.ai.config.ts",
+    "sha256": "4a094318782e3c564b33b556bf5b38e7a16081ed1ab9e78824aef7a6cf5df8a5",
+    "bytes": 1988,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/tsdown.config.ts",
+    "sha256": "5034bc701560e14d32771dfb064088e02e4a672f590695ed9ec23fd72350894f",
+    "bytes": 39365,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/vitest.config.ts",
+    "sha256": "0262842032ac88f1043207894f41646ad1b50a17db9a1666dc73bc3271ef25d1",
+    "bytes": 124,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/config/knip.all-exports.config.ts",
+    "sha256": "2224d721f369023adbb74e197672cb1f3e92d67f2cf01ea5b511246bf314033e",
+    "bytes": 11699,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/config/knip.config.ts",
+    "sha256": "d299c2d0c153382b9215e92d481aeaaa3e88e90d66d88bcd7460ed8d4cd348c7",
+    "bytes": 58520,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "memory",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/config/knip.scripts-exports.config.ts",
+    "sha256": "c47580f20a7778948e93f682596849fe8aa3270543691b1c152ae8cc5b98e9b0",
+    "bytes": 5112,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/extensions/music-generation-providers.live.test.ts",
+    "sha256": "797fdd3922cb3498a439ead5c4ebcafa63f685e26c41cdc3038f0ce8c7b2dc19",
+    "bytes": 12265,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/extensions/plugin-entry.cli-laziness.test.ts",
+    "sha256": "060afc777667d0f8276e1c25528df782df7919e2900809a7aa5644fb06fb187e",
+    "bytes": 926,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "memory",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/extensions/video-generation-providers.live.test.ts",
+    "sha256": "999658f0078a65158cc00c96834655f53943add685b87958e86e5d3330fe82ba",
+    "bytes": 22239,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/scripts/acp-reset-timeout-proof.ts",
+    "sha256": "ab3455da6231a32d1e659d2ba196ceb3f6a68cea595403e36452dc8d8825444a",
+    "bytes": 40363,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/scripts/agent-plugin-gateway-e2e.ts",
+    "sha256": "788975b3955f3c279b031518107ca4f2f0841e9093e7008c10464bd218f7ff9a",
+    "bytes": 17497,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "ai",
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "openclaw/openclaw/scripts/analyze-plugin-sdk-usage.ts",
+    "sha256": "a7b787dbcbf6003a69265787ae632214b8ba36dab78b25437bb42efbfdafe895",
+    "bytes": 396,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/api/eslint.config.js",
+    "sha256": "359e3c6025309601bd38fe5ecb87feb67c88a18ba4d8a5c71d104eab134ac208",
+    "bytes": 841,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/api/prisma.config.ts",
+    "sha256": "70cce4181131b68187d5b4070ec90e540194e051206b610844eab2e10e965546",
+    "bytes": 107,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/api/vitest.utils.test.ts",
+    "sha256": "0bf0c93b9cc8a809e8ef0863f0ed4c09261a3a737ea2e64167f8d76866dbf9e6",
+    "bytes": 3418,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/api/vitest.utils.ts",
+    "sha256": "66baddc496fd5b0fa0e034712db4e7ac76250e8d2d6e1bb73f29f34a34561614",
+    "bytes": 9629,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/client/.babelrc.js",
+    "sha256": "823f1adc8071b0efa051cf064f991a75d24e38ab368962e60a57e962fa3421ff",
+    "bytes": 1337,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/client/gatsby-browser.tsx",
+    "sha256": "51e23342066719b4db7c4ab432702a101b8fb8fcc440828c0d33833276471f42",
+    "bytes": 1740,
+    "language": "tsx",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation",
+      "repair"
+    ]
+  },
+  {
+    "path": "freeCodeCamp/freeCodeCamp/client/gatsby-config.ts",
+    "sha256": "74d9227ba646595a82e1f8659a37e38dda5de53aceee88f9aecf4295c6bad9bf",
+    "bytes": 1754,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "react/react/.eslintrc.js",
+    "sha256": "c9b07e427bed823faa4b2b275e3aa6d2e7ad012c16d5c3647710cf22877e8a20",
+    "bytes": 20853,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "react/react/.prettierrc.js",
+    "sha256": "4cc54c7bdaee23a4f618f668387926081e5b13f90146e65c2f02a2f6a19f85e6",
+    "bytes": 1044,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "react/react/ReactVersions.js",
+    "sha256": "a5cb1a55d9e8f24e9324f6fcc8bdb4c7e1f3376cdf3a7eee6ae4733084bbcb18",
+    "bytes": 1994,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "react/react/babel.config-react-compiler.js",
+    "sha256": "75460349b6f7ff25a481f56c974dd9f1ce11fd4bb0bd2d3de3b6f5edb682c49b",
+    "bytes": 702,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "react/react/babel.config-ts.js",
+    "sha256": "bab836d5887af6593331910f9dafddb638f958efe221cef9fde0d1aa2fb322a6",
+    "bytes": 519,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "react/react/babel.config.js",
+    "sha256": "e19d924559fee9685b6412f3af0dd2346c5a85ce5e1f006e647a79ccd514e3aa",
+    "bytes": 959,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "react/react/compiler/.eslintrc.js",
+    "sha256": "8de70c8a894ecc56ab9e32dc4abafde86cee18ca221292b0b798a947e0c49884",
+    "bytes": 3568,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "react/react/compiler/fixtures/align-method-call-scope-range-sync.js",
+    "sha256": "9cd0f68b03e14f86e8db0c2a6b86b30f75e78aba374d494254845c9dea6c0b90",
+    "bytes": 629,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "react/react/compiler/fixtures/fbt-scope-range-sync-with-jsx.js",
+    "sha256": "00397e40e24a8ea24b70774ca7a8df22362d1a3e606a65968413580e4b3d3d9c",
+    "bytes": 525,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "react/react/compiler/scripts/anonymize.js",
+    "sha256": "12534bf8713da32d985c808cf8dcf3b408518fcd48e85346ae59b1db1e479ad1",
+    "bytes": 5949,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "react/react/compiler/scripts/build-eslint-docs.js",
+    "sha256": "d0edc9acee5b3a84da1ceba7da2ac46a01d66286c8701e04299c33bf7ad8c9a2",
+    "bytes": 1001,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "affaan-m/ECC/commitlint.config.js",
+    "sha256": "a5d1f83d6bc44fe17098a92ee56cb4c4f90efcccf9d08be9c1bcbfa856358def",
+    "bytes": 371,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "affaan-m/ECC/ecc_dashboard.py",
+    "sha256": "4ad4c54fb7be1d0b543317a2874006784a390346ef8939b986d4ceb3fcd5ad17",
+    "bytes": 41621,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "affaan-m/ECC/eslint.config.js",
+    "sha256": "9fee73fe4b90a568e28831c86cc5ecefe47b589aad11e83ead6480f8bd942bc2",
+    "bytes": 1293,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "affaan-m/ECC/.codebuddy/install.js",
+    "sha256": "b9137a2d406c30cbbb415391924820a8fe00a2a8e172bc98966c267a83136bd3",
+    "bytes": 8615,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "affaan-m/ECC/.codebuddy/uninstall.js",
+    "sha256": "ff62995e4eacdabad5e21b0f64a509a61eda5794e099ee5a60c65f7496b15bde",
+    "bytes": 8110,
+    "language": "js",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "affaan-m/ECC/.opencode/index.ts",
+    "sha256": "c55095466a79e7047f5ce24969f6207d0d6ffbd0b7bc238f4f12addda86ddcd7",
+    "bytes": 1167,
+    "language": "ts",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "EbookFoundation/free-programming-books/_includes/head-custom.html",
+    "sha256": "de000963254713cb5f3761ec98f021a8be8470a1e34d4b10321271d7805c2952",
+    "bytes": 292,
+    "language": "html",
+    "duplicate": false,
+    "python_syntax": "not_applicable",
+    "tags": []
+  },
+  {
+    "path": "EbookFoundation/free-programming-books/scripts/rtl_ltr_linter.py",
+    "sha256": "f4afb12514fd017df50609e425243374834af804599d5dd37e9850ac326205be",
+    "bytes": 27037,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai"
+    ]
+  },
+  {
+    "path": "public-apis/public-apis/scripts/tests/__init__.py",
+    "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed",
+    "bytes": 24,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "public-apis/public-apis/scripts/tests/test_validate_format.py",
+    "sha256": "33132b291e289d21a72b7f6239793bf0a589f39c468323051af860a125ae576b",
+    "bytes": 18154,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "evaluation"
+    ]
+  },
+  {
+    "path": "public-apis/public-apis/scripts/tests/test_validate_links.py",
+    "sha256": "665593bdb7fb9ed62d0596193cff69b53bea38a73a404eb28d2e6b26c41c922e",
+    "bytes": 5725,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent",
+      "evaluation"
+    ]
+  },
+  {
+    "path": "public-apis/public-apis/scripts/validate/__init__.py",
+    "sha256": "55e89e1474b70225f606458675dc1334f6b0cc815e9d90b8a4bcd1e68e9627f9",
+    "bytes": 80,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": []
+  },
+  {
+    "path": "public-apis/public-apis/scripts/validate/format.py",
+    "sha256": "5350ec136fbbcdca859b472d6f21e2a684c3f8b9ad5768343d282f175c012c5c",
+    "bytes": 8464,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "agent"
+    ]
+  },
+  {
+    "path": "public-apis/public-apis/scripts/validate/links.py",
+    "sha256": "8ee27355dfcf8955c99ef0a01bf9ea75d9239495ef8a9601933e65604bfc2bed",
+    "bytes": 8060,
+    "language": "py",
+    "duplicate": false,
+    "python_syntax": "pass",
+    "tags": [
+      "ai",
+      "agent"
+    ]
+  }
+]

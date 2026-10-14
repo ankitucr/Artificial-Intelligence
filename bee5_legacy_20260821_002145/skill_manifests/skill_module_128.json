@@ -1,0 +1,164 @@
+{
+  "skill": "skill_module_128",
+  "signature": {
+    "hash": "1013140c485f7eb8c7d12a3b51d025078e885da58d6c9678643e568378b96b9a",
+    "tokens": [
+      "ability",
+      "adds",
+      "and",
+      "capability",
+      "contexts",
+      "convert",
+      "convert_roman_numeral",
+      "converting",
+      "dates",
+      "def",
+      "elif",
+      "else",
+      "for",
+      "formal",
+      "format",
+      "historic",
+      "input",
+      "int",
+      "integers",
+      "invalid",
+      "isinstance",
+      "len",
+      "more",
+      "numbers",
+      "numerals",
+      "often",
+      "other",
+      "raise",
+      "range",
+      "readable",
+      "result",
+      "return",
+      "roman",
+      "roman_numeral_converter",
+      "roman_numerals",
+      "skill",
+      "str",
+      "the",
+      "this",
+      "titles",
+      "type",
+      "used",
+      "useful",
+      "value",
+      "valueerror",
+      "versa",
+      "vice",
+      "while"
+    ],
+    "functions": [
+      "convert_roman_numeral"
+    ],
+    "imports": [],
+    "calls": [
+      "ValueError",
+      "isinstance",
+      "len",
+      "range"
+    ],
+    "operators": [
+      "Gt",
+      "GtE",
+      "Mult",
+      "Sub"
+    ],
+    "capability": "This skill adds the ability to convert integers to Roman numerals and vice versa"
+  },
+  "metadata": {
+    "name": "roman_numeral_converter",
+    "capability": "This skill adds the ability to convert integers to Roman numerals and vice versa",
+    "purpose": "This capability is useful for converting numbers to a more readable and historic format, often used in titles, dates, and other formal contexts",
+    "primary_function": "convert_roman_numeral",
+    "code": "def convert_roman_numeral(value):\n    roman_numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    if isinstance(value, str):\n        result = 0\n        for i in range(len(value)):\n            if i > 0 and roman_numerals[value[i]] > roman_numerals[value[i - 1]]:\n                result += roman_numerals[value[i]] - 2 * roman_numerals[value[i - 1]]\n            else:\n                result += roman_numerals[value[i]]\n        return result\n    elif isinstance(value, int):\n        result = ''\n        while value > 0:\n            if value >= 1000:\n                result += 'M'\n                value -= 1000\n            elif value >= 900:\n                result += 'CM'\n                value -= 900\n            elif value >= 500:\n                result += 'D'\n                value -= 500\n            elif value >= 400:\n                result += 'CD'\n                value -= 400\n            elif value >= 100:\n                result += 'C'\n                value -= 100\n            elif value >= 90:\n                result += 'XC'\n                value -= 90\n            elif value >= 50:\n                result += 'L'\n                value -= 50\n            elif value >= 40:\n                result += 'XL'\n                value -= 40\n            elif value >= 10:\n                result += 'X'\n                value -= 10\n            elif value >= 9:\n                result += 'IX'\n                value -= 9\n            elif value >= 5:\n                result += 'V'\n                value -= 5\n            elif value >= 4:\n                result += 'IV'\n                value -= 4\n            elif value >= 1:\n                result += 'I'\n                value -= 1\n        return result\n    else:\n        raise ValueError('Invalid input type')",
+    "tests": [
+      {
+        "args": [
+          "III"
+        ],
+        "kwargs": {},
+        "expected": 3
+      },
+      {
+        "args": [
+          4
+        ],
+        "kwargs": {},
+        "expected": "IV"
+      },
+      {
+        "args": [
+          "MMXXI"
+        ],
+        "kwargs": {},
+        "expected": 2021
+      },
+      {
+        "args": [
+          0
+        ],
+        "kwargs": {},
+        "expected": ""
+      },
+      {
+        "args": [
+          ""
+        ],
+        "kwargs": {},
+        "expected": 0
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 100.0,
+    "novelty": 1.0,
+    "similarity": 0.0,
+    "closest_skill": null,
+    "tests": {
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 3,
+          "actual": 3
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": "IV",
+          "actual": "IV"
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": 2021,
+          "actual": 2021
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": "",
+          "actual": ""
+        },
+        {
+          "test": 5,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 1,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_172921"
+  },
+  "created_at": "2026-08-20 17:30:47"
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One TD update · Blackjack learning lab</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#081e1b;color:#eaf5ef}*{box-sizing:border-box}body{margin:0}main{max-width:900px;margin:auto;padding:32px 20px}a{color:#a9e7ca}h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.1}p{line-height:1.6;color:#c3d7ce}.tag{color:#b9d8a7;text-transform:uppercase;letter-spacing:.13em;font-size:.8rem}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}section{background:#12302a;border:1px solid #42665a;border-radius:18px;padding:24px}label{display:block;margin:16px 0 6px}input[type=number],select{width:100%;padding:12px;border:1px solid #819c91;border-radius:8px;background:#091f1a;color:inherit;font:inherit}input[type=checkbox]{width:20px;height:20px;vertical-align:middle}button{padding:12px 18px;margin-top:16px;background:#c6e7a9;color:#12221a;border:0;border-radius:8px;font:inherit;cursor:pointer}:focus-visible{outline:3px solid #ffda81;outline-offset:4px}output{display:block;font-size:1.2rem;line-height:1.7;overflow-wrap:anywhere}.value{font-size:2.4rem;color:#d4efb8}small{line-height:1.5;display:block;color:#c3d7ce}footer{margin-top:24px}@media(max-width:650px){.grid{grid-template-columns:1fr}main{padding:24px 16px}section{padding:20px}}
+</style>
+<main>
+<div class="tag">Blackjack learning lab · Lesson 4</div>
+<h1>Learn from one step.</h1>
+<p>TD(0) moves a value estimate toward a target. Change the numbers, then mark the hand as finished to see why terminal transitions are different.</p>
+<div class="grid">
+<section aria-labelledby="inputs-title">
+<h2 id="inputs-title">Your transition</h2>
+<form id="transition">
+<label for="old">Current value V(s)</label><input id="old" type="number" min="-1" max="1" step="any" value="0.2" required>
+<label for="next">Next-state value V(s′)</label><input id="next" type="number" min="-1" max="1" step="any" value="0.6" required>
+<label for="reward">Reward</label><select id="reward"><option value="0">0 · unfinished hit / push</option><option value="1">+1 · win</option><option value="-1">−1 · loss</option></select>
+<label for="alpha">Learning rate α (greater than 0, at most 1)</label><input id="alpha" type="number" min="0.000001" max="1" step="any" value="0.1" required>
+<label><input id="done" type="checkbox"> Hand finished (terminal)</label>
+<button type="reset">Reset example</button>
+</form>
+</section>
+<section aria-labelledby="result-title">
+<h2 id="result-title">One update, explained</h2>
+<output id="result" aria-live="polite" aria-atomic="true"></output>
+<p id="explanation"></p>
+<small>Discount γ = 1. These are hypothetical estimates, not measurements or playing advice. Editing an input recalculates one update; it does not accumulate training.</small>
+</section>
+</div>
+<footer>
+<p>Try a terminal loss, then a terminal push. A reward of zero still allows a next-state estimate if the hand continues. After termination there is no future reward.</p>
+<p>In this blackjack simulator, wins and losses end the hand. Choosing either automatically marks it finished. A terminal push also requires the finished checkbox.</p>
+<a href="../lessons/04-temporal-difference-prediction.md">Read Lesson 4</a> · <a href="../lessons/solutions/04-temporal-difference-prediction.md">Exercise answers</a>
+<p><small>Local teaching preview. No server, accounts, network requests, sound, or public game deployment. Markdown links may open as text or download depending on your browser; read them on GitHub if needed.</small></p>
+</footer>
+<noscript><p>Enable JavaScript for the calculator. The update is V(s) + α × [reward + next value − V(s)], with next value replaced by zero when terminal.</p></noscript>
+</main>
+<script>
+const form=document.querySelector('form');
+const field=id=>document.getElementById(id);
+const fmt=n=>(Math.abs(n)<0.0000005?0:n).toFixed(6).replace(/\.?0+$/,'')||'0';
+function render(){
+ const reward=Number(field('reward').value);
+ if(reward!==0)field('done').checked=true;
+ field('done').disabled=reward!==0;
+ const done=field('done').checked;
+ field('next').disabled=done;
+ const old=Number(field('old').value),next=done?0:Number(field('next').value),alpha=Number(field('alpha').value);
+ if(!form.checkValidity()){
+  field('result').textContent='Enter values from −1 to 1 and a learning rate greater than 0 and at most 1.';
+  field('explanation').textContent='No update calculated with invalid inputs.';return;
+ }
+ const target=reward+next,error=target-old,value=old+alpha*error;
+ field('result').replaceChildren();
+ for(const text of [`Target = ${fmt(reward)} + ${fmt(next)} = ${fmt(target)}`,`Error = ${fmt(target)} − (${fmt(old)}) = ${fmt(error)}`,`New value = ${fmt(old)} + ${fmt(alpha)} × (${fmt(error)})`]){
+  const line=document.createElement('div');line.textContent=text;field('result').append(line);
+ }
+ const final=document.createElement('div');final.className='value';final.id='new-value';final.textContent=fmt(value);field('result').append(final);
+ field('explanation').textContent=done?'The hand is over: ignore the next-state estimate, even if the returned observation looks unchanged.':'The hand continues: the target uses your current prediction of the next state. This is bootstrapping.';
+}
+form.addEventListener('input',render);
+form.addEventListener('submit',event=>event.preventDefault());
+form.addEventListener('reset',()=>setTimeout(render,0));
+render();
+</script>
+</html>

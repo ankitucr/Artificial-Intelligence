@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "experiences": [
+    {
+      "timestamp": 1791734708.402411,
+      "task": "\nRepair the entire checkout implementation in checkout.py.\n\nRequired contract:\n- Each item has price and quantity; subtotal is sum(price * quantity).\n- discount_percent is a percentage from 0 to 100, not a currency amount.\n- discount = subtotal * discount_percent / 100.\n- tax is calculated on subtotal minus discount.\n- Shipping is free when the original subtotal is at least 100.\n- Otherwise use the supplied shipping amount.\n- total = subtotal - discount + tax + shipping.\n- Return correct subtotal, discount, tax, shipping and total fields.\n- Handle an empty cart correctly.\n- Preserve the checkout(items, discount_percent=0, tax_rate=0.08, shipping=10) interface.\nPass every independent test in test_checkout.py.\n",
+      "problem_pattern": "repair the entire checkout implementation in checkout.py. required contract: - each item has price and quantity; subtotal is sum(price * quantity). - discount_percent is a percentage from <n> to <n>, not a currency amount. - discount = subtotal * discount_percent / <n>. - tax is calculated on subtotal minus discount. - shipping is free when the original subtotal is at least <n>. - otherwise use the supplied shipping amount. - total = subtotal - discount + tax + shipping. - return correct subtotal, discount, tax, shipping and total fields. - handle an empty cart correctly. - preserve the checkout(items, discount_percent=<n>, tax_rate=<n>.<n>, shipping=<n>) interface. pass every independent test in test_checkout.py. | test_failure | multiple checkout logic defects: quantities ignored, percentage discount treated as a currency amount, discount added instead of subtracted, incorrect tax base, inverted shipping threshold, and returned totals mapped to incorrect fields | independent checkout tests fail across quantities, discount, tax, shipping threshold, empty cart and result fields",
+      "error_type": "test_failure",
+      "root_cause": "multiple checkout logic defects: quantities ignored, percentage discount treated as a currency amount, discount added instead of subtracted, incorrect tax base, inverted shipping threshold, and returned totals mapped to incorrect fields",
+      "error_message": "independent checkout tests fail across quantities, discount, tax, shipping threshold, empty cart and result fields",
+      "method": "phase33_verified_repair",
+      "solution": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0) * item.get(\"quantity\", 1)\n\n    discount = subtotal * discount_percent / 100\n    taxable = subtotal - discount\n    tax = taxable * tax_rate\n\n    if subtotal >= 100:\n        shipping = 0\n    else:\n        shipping = shipping\n\n    total = subtotal - discount + tax + shipping\n\n    return {\n        \"subtotal\": subtotal,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": total,\n    }",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "checkout.py",
+        "old_text": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0)\n\n    discount = discount_percent\n    taxable = subtotal + discount\n    tax = taxable * tax_rate\n\n    if subtotal > 100:\n        shipping = 10\n    else:\n        shipping = 0\n\n    total = subtotal + discount + tax - shipping\n\n    return {\n        \"subtotal\": total,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": subtotal,\n    }",
+        "test_path": "test_checkout.py"
+      }
+    },
+    {
+      "timestamp": 1791734959.1300058,
+      "task": "Repair the checkout function: calculate subtotal using price times quantity, apply percentage discount, calculate tax after discount, make shipping free at original subtotal >= 100, calculate final total, return correct fields, and handle empty carts.",
+      "problem_pattern": "repair the checkout function: calculate subtotal using price times quantity, apply percentage discount, calculate tax after discount, make shipping free at original subtotal >= <n>, calculate final total, return correct fields, and handle empty carts. | test_failure | checkout has multiple interacting defects in quantity handling, percentage discount, tax base, shipping threshold and returned totals | independent checkout tests fail for quantities, discount, tax, shipping, empty cart and output fields",
+      "error_type": "test_failure",
+      "root_cause": "checkout has multiple interacting defects in quantity handling, percentage discount, tax base, shipping threshold and returned totals",
+      "error_message": "independent checkout tests fail for quantities, discount, tax, shipping, empty cart and output fields",
+      "method": "phase33_verified_repair",
+      "solution": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0) * item.get(\"quantity\", 1)\n\n    discount = subtotal * discount_percent / 100\n    taxable = subtotal - discount\n    tax = taxable * tax_rate\n\n    if subtotal >= 100:\n        shipping = 0\n    else:\n        shipping = shipping\n\n    total = subtotal - discount + tax + shipping\n\n    return {\n        \"subtotal\": subtotal,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": total,\n    }",
+      "verification": {
+        "syntax": true,
+        "test": true,
+        "independent_test": true,
+        "commit": true
+      },
+      "success": true,
+      "trusted": true,
+      "source": "phase33",
+      "metadata": {
+        "stage": "committed"
+      },
+      "replay_context": {
+        "target_path": "checkout_retest.py",
+        "old_text": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0)\n\n    discount = discount_percent\n    taxable = subtotal + discount\n    tax = taxable * tax_rate\n\n    if subtotal > 100:\n        shipping = 10\n    else:\n        shipping = 0\n\n    total = subtotal + discount + tax - shipping\n\n    return {\n        \"subtotal\": total,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": subtotal,\n    }\n",
+        "test_path": "test_checkout_retest.py"
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "problem_pattern": "repair the entire checkout implementation in checkout.py. required contract: - each item has price and quantity; subtotal is sum(price * quantity). - discount_percent is a percentage from <n> to <n>, not a currency amount. - discount = subtotal * discount_percent / <n>. - tax is calculated on subtotal minus discount. - shipping is free when the original subtotal is at least <n>. - otherwise use the supplied shipping amount. - total = subtotal - discount + tax + shipping. - return correct subtotal, discount, tax, shipping and total fields. - handle an empty cart correctly. - preserve the checkout(items, discount_percent=<n>, tax_rate=<n>.<n>, shipping=<n>) interface. pass every independent test in test_checkout.py. | test_failure | multiple checkout logic defects: quantities ignored, percentage discount treated as a currency amount, discount added instead of subtracted, incorrect tax base, inverted shipping threshold, and returned totals mapped to incorrect fields | independent checkout tests fail across quantities, discount, tax, shipping threshold, empty cart and result fields",
+      "error_type": "test_failure",
+      "root_causes": [
+        "multiple checkout logic defects: quantities ignored, percentage discount treated as a currency amount, discount added instead of subtracted, incorrect tax base, inverted shipping threshold, and returned totals mapped to incorrect fields"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0) * item.get(\"quantity\", 1)\n\n    discount = subtotal * discount_percent / 100\n    taxable = subtotal - discount\n    tax = taxable * tax_rate\n\n    if subtotal >= 100:\n        shipping = 0\n    else:\n        shipping = shipping\n\n    total = subtotal - discount + tax + shipping\n\n    return {\n        \"subtotal\": subtotal,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": total,\n    }",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791734708.4024832,
+          "replay_context": {
+            "target_path": "checkout.py",
+            "old_text": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0)\n\n    discount = discount_percent\n    taxable = subtotal + discount\n    tax = taxable * tax_rate\n\n    if subtotal > 100:\n        shipping = 10\n    else:\n        shipping = 0\n\n    total = subtotal + discount + tax - shipping\n\n    return {\n        \"subtotal\": total,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": subtotal,\n    }",
+            "test_path": "test_checkout.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791734708.4025095
+    },
+    {
+      "problem_pattern": "repair the checkout function: calculate subtotal using price times quantity, apply percentage discount, calculate tax after discount, make shipping free at original subtotal >= <n>, calculate final total, return correct fields, and handle empty carts. | test_failure | checkout has multiple interacting defects in quantity handling, percentage discount, tax base, shipping threshold and returned totals | independent checkout tests fail for quantities, discount, tax, shipping, empty cart and output fields",
+      "error_type": "test_failure",
+      "root_causes": [
+        "checkout has multiple interacting defects in quantity handling, percentage discount, tax base, shipping threshold and returned totals"
+      ],
+      "solutions": [
+        {
+          "method": "phase33_verified_repair",
+          "solution": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0) * item.get(\"quantity\", 1)\n\n    discount = subtotal * discount_percent / 100\n    taxable = subtotal - discount\n    tax = taxable * tax_rate\n\n    if subtotal >= 100:\n        shipping = 0\n    else:\n        shipping = shipping\n\n    total = subtotal - discount + tax + shipping\n\n    return {\n        \"subtotal\": subtotal,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": total,\n    }",
+          "success_count": 1,
+          "failure_count": 0,
+          "verified_count": 1,
+          "last_used": 1791734959.1300287,
+          "replay_context": {
+            "target_path": "checkout_retest.py",
+            "old_text": "def checkout(items, discount_percent=0, tax_rate=0.08, shipping=10):\n    subtotal = 0\n    for item in items:\n        subtotal += item.get(\"price\", 0)\n\n    discount = discount_percent\n    taxable = subtotal + discount\n    tax = taxable * tax_rate\n\n    if subtotal > 100:\n        shipping = 10\n    else:\n        shipping = 0\n\n    total = subtotal + discount + tax - shipping\n\n    return {\n        \"subtotal\": total,\n        \"discount\": discount,\n        \"tax\": tax,\n        \"shipping\": shipping,\n        \"total\": subtotal,\n    }\n",
+            "test_path": "test_checkout_retest.py"
+          }
+        }
+      ],
+      "failed_methods": [],
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "confidence": 1.0,
+      "updated_at": 1791734959.130038
+    }
+  ]
+}

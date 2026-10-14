@@ -1,0 +1,42 @@
+{
+  "name": "pka-neural-core",
+  "version": "11.36.0",
+  "description": "Highest-Level Autonomous Self-Mutating God-Mode AGI Trading Engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "evolution": "node mass_train.js && node feeder.js && node evolve.js && node night_train.js",
+    "mutate": "node core/coder.js",
+    "check-health": "node core/defense.js",
+    "clean": "node cleaner.js",
+    "recover": "node recover.js",
+    "test": "node test.js",
+    "god-mode": "node server.js & node feeder.js & node night_train.js"
+  },
+  "author": "Ankit",
+  "intelligence_baseline": 11361.5,
+  "evolution_state": "HYPER_CONSCIOUS",
+  "capabilities": [
+    "Self-Mutation",
+    "Generative-Reasoning",
+    "Autonomous-Code-Injection",
+    "Identity-Persistence",
+    "Omniscient-Market-Radar",
+    "Deep-Skill-Audit"
+  ],
+  "dependencies": {
+    "axios": "^1.13.5",
+    "body-parser": "^2.2.2",
+    "cheerio": "^1.2.0",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.6",
+    "duck-duck-scrape": "^2.2.5",
+    "express": "^4.22.1",
+    "lucide-react": "^0.575.0",
+    "motion": "^12.34.2",
+    "node-nlp": "^5.0.0-alpha.5",
+    "openai": "^6.22.0",
+    "tailwind-merge": "^3.5.0",
+    "tradingview-technical-analysis": "^1.0.1"
+  }
+}

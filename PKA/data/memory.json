@@ -1,0 +1,477 @@
+{
+  "history": [
+    {
+      "id": "MEM-1771831787492",
+      "role": "assistant",
+      "text": "Engine processing error. Rebooting neural link...",
+      "importance": 15,
+      "category": "code_memory",
+      "time": "2/23/2026, 12:59:47 PM"
+    },
+    {
+      "id": "MEM-1771836126359",
+      "role": "user",
+      "text": "Hello",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 2:12:06 PM"
+    },
+    {
+      "id": "MEM-1771836174806",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 2:12:54 PM"
+    },
+    {
+      "id": "MEM-1771840911910",
+      "role": "user",
+      "text": "Hello",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 3:31:51 PM"
+    },
+    {
+      "id": "MEM-1771840929743",
+      "role": "user",
+      "text": "Hello",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 3:32:09 PM"
+    },
+    {
+      "id": "MEM-1771841001479",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 3:33:21 PM"
+    },
+    {
+      "id": "MEM-1771841335128",
+      "role": "user",
+      "text": "Hello",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 3:38:55 PM"
+    },
+    {
+      "id": "MEM-1771841382744",
+      "role": "user",
+      "text": "Status",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 3:39:42 PM"
+    },
+    {
+      "id": "MEM-1771841382763",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1129 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 3:39:42 PM"
+    },
+    {
+      "id": "MEM-1771841394502",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 3:39:54 PM"
+    },
+    {
+      "id": "MEM-1771841585906",
+      "role": "user",
+      "text": "Integrate evolving sestem",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 3:43:05 PM"
+    },
+    {
+      "id": "MEM-1771846781962",
+      "role": "user",
+      "text": "Hello",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 5:09:41 PM"
+    },
+    {
+      "id": "MEM-1771846840077",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 5:10:40 PM"
+    },
+    {
+      "id": "MEM-1771846850906",
+      "role": "user",
+      "text": "Status",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 5:10:50 PM"
+    },
+    {
+      "id": "MEM-1771846850926",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1130 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 5:10:50 PM"
+    },
+    {
+      "id": "MEM-1771868173744",
+      "role": "user",
+      "text": "Status",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/23/2026, 11:06:13 PM"
+    },
+    {
+      "id": "MEM-1771868173807",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3896814.5 | Lvl: 38968 🕸️ Synapses: 1130 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 11:06:13 PM"
+    },
+    {
+      "id": "MEM-1771868196932",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 11:06:36 PM"
+    },
+    {
+      "id": "MEM-1771929532393",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/24/2026, 4:08:52 PM"
+    },
+    {
+      "id": "MEM-1771929532535",
+      "role": "assistant",
+      "text": "PKA Offline Core is active. I am operating completely API-free. Awaiting commands (trade, mutate, sys, termux).",
+      "importance": 50,
+      "category": "trade_rule",
+      "time": "2/24/2026, 4:08:52 PM"
+    },
+    {
+      "id": "MEM-1771929559083",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/24/2026, 4:09:19 PM"
+    },
+    {
+      "id": "MEM-1771929559097",
+      "role": "assistant",
+      "text": "PKA Offline Core is active. I am operating completely API-free. Awaiting commands (trade, mutate, sys, termux).",
+      "importance": 50,
+      "category": "trade_rule",
+      "time": "2/24/2026, 4:09:19 PM"
+    },
+    {
+      "id": "MEM-1771929591350",
+      "role": "user",
+      "text": "Hello",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/24/2026, 4:09:51 PM"
+    },
+    {
+      "id": "MEM-1771929591359",
+      "role": "assistant",
+      "text": "PKA Offline Core is active. I am operating completely API-free. Awaiting commands (trade, mutate, sys, termux).",
+      "importance": 50,
+      "category": "trade_rule",
+      "time": "2/24/2026, 4:09:51 PM"
+    },
+    {
+      "id": "MEM-1771944831403",
+      "role": "user",
+      "text": "Status",
+      "importance": 0,
+      "category": "general_chat",
+      "time": "2/24/2026, 8:23:51 PM"
+    },
+    {
+      "id": "MEM-1771944831493",
+      "role": "assistant",
+      "text": "PKA Offline Core is active. I am operating completely API-free. Awaiting commands (trade, mutate, sys, termux).",
+      "importance": 50,
+      "category": "trade_rule",
+      "time": "2/24/2026, 8:23:51 PM"
+    },
+    {
+      "id": "MEM-1771944853547",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/24/2026, 8:24:13 PM"
+    },
+    {
+      "id": "MEM-1771944853562",
+      "role": "assistant",
+      "text": "PKA Offline Core is active. I am operating completely API-free. Awaiting commands (trade, mutate, sys, termux).",
+      "importance": 50,
+      "category": "trade_rule",
+      "time": "2/24/2026, 8:24:13 PM"
+    },
+    {
+      "id": "MEM-1771957975049",
+      "role": "user",
+      "text": "Hello",
+      "time": "2/25/2026, 12:02:55 AM"
+    },
+    {
+      "id": "MEM-1771957975440",
+      "role": "assistant",
+      "text": "PKA Master Core is active (API-Free Mode). Based on my memory: Update market data",
+      "time": "2/25/2026, 12:02:55 AM"
+    },
+    {
+      "id": "MEM-1771957991539",
+      "role": "user",
+      "text": "Status",
+      "time": "2/25/2026, 12:03:11 AM"
+    },
+    {
+      "id": "MEM-1771957991592",
+      "role": "assistant",
+      "text": "PKA Master Core is active (API-Free Mode). Based on my memory: Market status",
+      "time": "2/25/2026, 12:03:11 AM"
+    },
+    {
+      "id": "MEM-1771958006357",
+      "role": "user",
+      "text": "Hello",
+      "time": "2/25/2026, 12:03:26 AM"
+    },
+    {
+      "id": "MEM-1771958006396",
+      "role": "assistant",
+      "text": "PKA Master Core is active (API-Free Mode). Based on my memory: Update market data",
+      "time": "2/25/2026, 12:03:26 AM"
+    },
+    {
+      "id": "MEM-1771958027885",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "time": "2/25/2026, 12:03:47 AM"
+    },
+    {
+      "id": "MEM-1771958027932",
+      "role": "assistant",
+      "text": "PKA Master Core is active (API-Free Mode). Based on my memory: Artificial intelligence",
+      "time": "2/25/2026, 12:03:47 AM"
+    },
+    {
+      "id": "MEM-1771959150555",
+      "role": "user",
+      "text": "Hello",
+      "time": "2/25/2026, 12:22:30 AM"
+    },
+    {
+      "id": "MEM-1771959150614",
+      "role": "assistant",
+      "text": "PKA Offline Core active. Memory check: Update market data",
+      "time": "2/25/2026, 12:22:30 AM"
+    },
+    {
+      "id": "MEM-1771959518451",
+      "role": "user",
+      "text": "Hello",
+      "time": "2/25/2026, 12:28:38 AM"
+    },
+    {
+      "id": "MEM-1771959518507",
+      "role": "assistant",
+      "text": "PKA Offline Core active. Memory check: Update market data",
+      "time": "2/25/2026, 12:28:38 AM"
+    },
+    {
+      "id": "MEM-1771959531183",
+      "role": "user",
+      "text": "Status",
+      "time": "2/25/2026, 12:28:51 AM"
+    },
+    {
+      "id": "MEM-1771959531240",
+      "role": "assistant",
+      "text": "Running system check. 💻 **System:** Linux localhost 5.15.167-android13-8-o-01144-g371cef69d4b6 #1 SMP PREEMPT Mon Oct 13 14:32:02 UTC 20...",
+      "time": "2/25/2026, 12:28:51 AM"
+    },
+    {
+      "id": "MEM-1771959582506",
+      "role": "user",
+      "text": "Tell me about artificial intelligence",
+      "time": "2/25/2026, 12:29:42 AM"
+    },
+    {
+      "id": "MEM-1771959582508",
+      "role": "assistant",
+      "text": "PKA Offline Core active. Memory check: Update market data",
+      "time": "2/25/2026, 12:29:42 AM"
+    },
+    {
+      "id": "MEM-1771960097889",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "time": "2/25/2026, 12:38:17 AM"
+    },
+    {
+      "id": "MEM-1771960097940",
+      "role": "assistant",
+      "text": "PKA Offline Core active. Awaiting Commands. Memory Context: Update market data",
+      "time": "2/25/2026, 12:38:17 AM"
+    },
+    {
+      "id": "MEM-1771960112519",
+      "role": "user",
+      "text": "Status",
+      "time": "2/25/2026, 12:38:32 AM"
+    },
+    {
+      "id": "MEM-1771960112568",
+      "role": "assistant",
+      "text": "Running system check. 💻 **System:** Linux localhost 5.15.167-android13-8-o-01144-g371cef69d4b6 #1 SMP PREEMPT Mon Oct 13 14:32:02 UTC 20...",
+      "time": "2/25/2026, 12:38:32 AM"
+    },
+    {
+      "id": "MEM-1771960126408",
+      "role": "user",
+      "text": "Nano particles",
+      "time": "2/25/2026, 12:38:46 AM"
+    },
+    {
+      "id": "MEM-1771960126410",
+      "role": "assistant",
+      "text": "PKA Offline Core active. Awaiting Commands. Memory Context: Update market data",
+      "time": "2/25/2026, 12:38:46 AM"
+    }
+  ],
+  "longTerm": [
+    {
+      "id": "MEM-1771792142561",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1127 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 1:59:02 AM"
+    },
+    {
+      "id": "MEM-1771792839077",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1127 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 2:10:39 AM"
+    },
+    {
+      "id": "MEM-1771793547780",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1127 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 2:22:27 AM"
+    },
+    {
+      "id": "MEM-1771793554125",
+      "role": "user",
+      "text": "Artificial intelligence",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 2:22:34 AM"
+    },
+    {
+      "id": "MEM-1771817185487",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1127 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 8:56:25 AM"
+    },
+    {
+      "id": "MEM-1771817215899",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1127 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 8:56:55 AM"
+    },
+    {
+      "id": "MEM-1771819503358",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1127 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 9:35:03 AM"
+    },
+    {
+      "id": "MEM-1771824067033",
+      "role": "user",
+      "text": "Market ka kya haal hai",
+      "importance": 20,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 10:51:07 AM"
+    },
+    {
+      "id": "MEM-1771824084248",
+      "role": "assistant",
+      "text": "**🌌 PKA GOD-MODE CORE** 🧠 IQ: 3893694.5 | Lvl: 187485 🕸️ Synapses: 1129 🎭 Mood: Neutral 👁️ Focus: 100%",
+      "importance": 25,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 10:51:24 AM"
+    },
+    {
+      "id": "MEM-1771824158107",
+      "role": "user",
+      "text": "Market status",
+      "importance": 20,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 10:52:38 AM"
+    },
+    {
+      "id": "MEM-1771825609056",
+      "role": "user",
+      "text": "Market status",
+      "importance": 20,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 11:16:49 AM"
+    },
+    {
+      "id": "MEM-1771827016363",
+      "role": "user",
+      "text": "Market status",
+      "importance": 20,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 11:40:16 AM"
+    },
+    {
+      "id": "MEM-1771827018710",
+      "role": "assistant",
+      "text": "SYS: - OS: Android - CPU: 0% (idle) - RAM: 7.07 GB total, 4.91 GB used (69.4% usage) - Uptime: 73.26 hours MKT: No market data available. TASK: Unknown task. Recommendation: 1. Update market data to get current market information. 2. Identify and prioritize the unknown task. Action: - Update market data using broker_api. - Evolve logic to identify and prioritize the unknown task.",
+      "importance": 60,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 11:40:18 AM"
+    },
+    {
+      "id": "MEM-1771827069961",
+      "role": "user",
+      "text": "Update market data",
+      "importance": 20,
+      "category": "evolution_insight",
+      "time": "2/23/2026, 11:41:09 AM"
+    }
+  ],
+  "stats": {
+    "memoriesProcessed": 84
+  }
+}

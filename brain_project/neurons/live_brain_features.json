@@ -1,0 +1,914 @@
+{
+  "device_orient  Non-wakeup/values/0": {
+    "index": 0,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/0": {
+    "index": 1,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/1": {
+    "index": 2,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/2": {
+    "index": 3,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/3": {
+    "index": 4,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/4": {
+    "index": 5,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/5": {
+    "index": 6,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/6": {
+    "index": 7,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/7": {
+    "index": 8,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/8": {
+    "index": 9,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/9": {
+    "index": 10,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/10": {
+    "index": 11,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/11": {
+    "index": 12,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/12": {
+    "index": 13,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/13": {
+    "index": 14,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/14": {
+    "index": 15,
+    "count": 1226
+  },
+  "elevator_detect  Wakeup/values/15": {
+    "index": 16,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/0": {
+    "index": 17,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/1": {
+    "index": 18,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/2": {
+    "index": 19,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/3": {
+    "index": 20,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/4": {
+    "index": 21,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/5": {
+    "index": 22,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/6": {
+    "index": 23,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/7": {
+    "index": 24,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/8": {
+    "index": 25,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/9": {
+    "index": 26,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/10": {
+    "index": 27,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/11": {
+    "index": 28,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/12": {
+    "index": 29,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/13": {
+    "index": 30,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/14": {
+    "index": 31,
+    "count": 1226
+  },
+  "OPLUS Side Panel Fusion Light Sensor/values/15": {
+    "index": 32,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/0": {
+    "index": 33,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/1": {
+    "index": 34,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/2": {
+    "index": 35,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/3": {
+    "index": 36,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/4": {
+    "index": 37,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/5": {
+    "index": 38,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/6": {
+    "index": 39,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/7": {
+    "index": 40,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/8": {
+    "index": 41,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/9": {
+    "index": 42,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/10": {
+    "index": 43,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/11": {
+    "index": 44,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/12": {
+    "index": 45,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/13": {
+    "index": 46,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/14": {
+    "index": 47,
+    "count": 1226
+  },
+  "OPLUS Fusion Light Sensor/values/15": {
+    "index": 48,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/0": {
+    "index": 49,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/1": {
+    "index": 50,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/2": {
+    "index": 51,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/3": {
+    "index": 52,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/4": {
+    "index": 53,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/5": {
+    "index": 54,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/6": {
+    "index": 55,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/7": {
+    "index": 56,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/8": {
+    "index": 57,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/9": {
+    "index": 58,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/10": {
+    "index": 59,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/11": {
+    "index": 60,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/12": {
+    "index": 61,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/13": {
+    "index": 62,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/14": {
+    "index": 63,
+    "count": 1226
+  },
+  "lay_detect  Non-wakeup/values/15": {
+    "index": 64,
+    "count": 1226
+  },
+  "bmi26x Accelerometer Non-wakeup/values/0": {
+    "index": 65,
+    "count": 1226
+  },
+  "bmi26x Accelerometer Non-wakeup/values/1": {
+    "index": 66,
+    "count": 1226
+  },
+  "bmi26x Accelerometer Non-wakeup/values/2": {
+    "index": 67,
+    "count": 1226
+  },
+  "bmi26x Accelerometer-Uncalibrated Non-wakeup/values/0": {
+    "index": 68,
+    "count": 1226
+  },
+  "bmi26x Accelerometer-Uncalibrated Non-wakeup/values/1": {
+    "index": 69,
+    "count": 1226
+  },
+  "bmi26x Accelerometer-Uncalibrated Non-wakeup/values/2": {
+    "index": 70,
+    "count": 1226
+  },
+  "bmi26x Accelerometer-Uncalibrated Non-wakeup/values/3": {
+    "index": 71,
+    "count": 1226
+  },
+  "bmi26x Accelerometer-Uncalibrated Non-wakeup/values/4": {
+    "index": 72,
+    "count": 1226
+  },
+  "bmi26x Accelerometer-Uncalibrated Non-wakeup/values/5": {
+    "index": 73,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/0": {
+    "index": 74,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/1": {
+    "index": 75,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/2": {
+    "index": 76,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/3": {
+    "index": 77,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/4": {
+    "index": 78,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/5": {
+    "index": 79,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/6": {
+    "index": 80,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/7": {
+    "index": 81,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/8": {
+    "index": 82,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/9": {
+    "index": 83,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/10": {
+    "index": 84,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/11": {
+    "index": 85,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/12": {
+    "index": 86,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/13": {
+    "index": 87,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/14": {
+    "index": 88,
+    "count": 1226
+  },
+  "oplus_activity_recognition  Wakeup/values/15": {
+    "index": 89,
+    "count": 1226
+  },
+  "pedometer  Non-wakeup/values/0": {
+    "index": 90,
+    "count": 1226
+  },
+  "pedometer Oplus Step_detect Sensor Non-wakeup/values/0": {
+    "index": 91,
+    "count": 1226
+  },
+  "bmi26x Gyroscope Non-wakeup/values/0": {
+    "index": 92,
+    "count": 1226
+  },
+  "bmi26x Gyroscope Non-wakeup/values/1": {
+    "index": 93,
+    "count": 1226
+  },
+  "bmi26x Gyroscope Non-wakeup/values/2": {
+    "index": 94,
+    "count": 1226
+  },
+  "gravity  Non-wakeup/values/0": {
+    "index": 95,
+    "count": 1226
+  },
+  "gravity  Non-wakeup/values/1": {
+    "index": 96,
+    "count": 1226
+  },
+  "gravity  Non-wakeup/values/2": {
+    "index": 97,
+    "count": 1226
+  },
+  "Game Rotation Vector  Non-wakeup/values/0": {
+    "index": 98,
+    "count": 1226
+  },
+  "Game Rotation Vector  Non-wakeup/values/1": {
+    "index": 99,
+    "count": 1226
+  },
+  "Game Rotation Vector  Non-wakeup/values/2": {
+    "index": 100,
+    "count": 1226
+  },
+  "Game Rotation Vector  Non-wakeup/values/3": {
+    "index": 101,
+    "count": 1226
+  },
+  "linear_acceleration/values/0": {
+    "index": 102,
+    "count": 1226
+  },
+  "linear_acceleration/values/1": {
+    "index": 103,
+    "count": 1226
+  },
+  "linear_acceleration/values/2": {
+    "index": 104,
+    "count": 1226
+  },
+  "bmi26x Gyroscope-Uncalibrated Non-wakeup/values/0": {
+    "index": 105,
+    "count": 1226
+  },
+  "bmi26x Gyroscope-Uncalibrated Non-wakeup/values/1": {
+    "index": 106,
+    "count": 1226
+  },
+  "bmi26x Gyroscope-Uncalibrated Non-wakeup/values/2": {
+    "index": 107,
+    "count": 1226
+  },
+  "bmi26x Gyroscope-Uncalibrated Non-wakeup/values/3": {
+    "index": 108,
+    "count": 1226
+  },
+  "bmi26x Gyroscope-Uncalibrated Non-wakeup/values/4": {
+    "index": 109,
+    "count": 1226
+  },
+  "bmi26x Gyroscope-Uncalibrated Non-wakeup/values/5": {
+    "index": 110,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/0": {
+    "index": 111,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/1": {
+    "index": 112,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/2": {
+    "index": 113,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/3": {
+    "index": 114,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/4": {
+    "index": 115,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/5": {
+    "index": 116,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/6": {
+    "index": 117,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/7": {
+    "index": 118,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/8": {
+    "index": 119,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/9": {
+    "index": 120,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/10": {
+    "index": 121,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/11": {
+    "index": 122,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/12": {
+    "index": 123,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/13": {
+    "index": 124,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/14": {
+    "index": 125,
+    "count": 1226
+  },
+  "pocket pocket Sensor Wakeup/values/15": {
+    "index": 126,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/0": {
+    "index": 127,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/1": {
+    "index": 128,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/2": {
+    "index": 129,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/3": {
+    "index": 130,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/4": {
+    "index": 131,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/5": {
+    "index": 132,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/6": {
+    "index": 133,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/7": {
+    "index": 134,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/8": {
+    "index": 135,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/9": {
+    "index": 136,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/10": {
+    "index": 137,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/11": {
+    "index": 138,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/12": {
+    "index": 139,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/13": {
+    "index": 140,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/14": {
+    "index": 141,
+    "count": 1226
+  },
+  "sip3535 Oplus Wise Light Sensor Non-wakeup/values/15": {
+    "index": 142,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer Non-wakeup/values/0": {
+    "index": 143,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer Non-wakeup/values/1": {
+    "index": 144,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer Non-wakeup/values/2": {
+    "index": 145,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer-Uncalibrated Non-wakeup/values/0": {
+    "index": 146,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer-Uncalibrated Non-wakeup/values/1": {
+    "index": 147,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer-Uncalibrated Non-wakeup/values/2": {
+    "index": 148,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer-Uncalibrated Non-wakeup/values/3": {
+    "index": 149,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer-Uncalibrated Non-wakeup/values/4": {
+    "index": 150,
+    "count": 1226
+  },
+  "mxg4300 Magnetometer-Uncalibrated Non-wakeup/values/5": {
+    "index": 151,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/0": {
+    "index": 152,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/1": {
+    "index": 153,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/2": {
+    "index": 154,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/3": {
+    "index": 155,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/4": {
+    "index": 156,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/5": {
+    "index": 157,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/6": {
+    "index": 158,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/7": {
+    "index": 159,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/8": {
+    "index": 160,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/9": {
+    "index": 161,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/10": {
+    "index": 162,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/11": {
+    "index": 163,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/12": {
+    "index": 164,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/13": {
+    "index": 165,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/14": {
+    "index": 166,
+    "count": 1226
+  },
+  "lux_aod  Wakeup/values/15": {
+    "index": 167,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/0": {
+    "index": 168,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/1": {
+    "index": 169,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/2": {
+    "index": 170,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/3": {
+    "index": 171,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/4": {
+    "index": 172,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/5": {
+    "index": 173,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/6": {
+    "index": 174,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/7": {
+    "index": 175,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/8": {
+    "index": 176,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/9": {
+    "index": 177,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/10": {
+    "index": 178,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/11": {
+    "index": 179,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/12": {
+    "index": 180,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/13": {
+    "index": 181,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/14": {
+    "index": 182,
+    "count": 1226
+  },
+  "gesture_prox gesture prox Sensor Wakeup/values/15": {
+    "index": 183,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/0": {
+    "index": 184,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/1": {
+    "index": 185,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/2": {
+    "index": 186,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/3": {
+    "index": 187,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/4": {
+    "index": 188,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/5": {
+    "index": 189,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/6": {
+    "index": 190,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/7": {
+    "index": 191,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/8": {
+    "index": 192,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/9": {
+    "index": 193,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/10": {
+    "index": 194,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/11": {
+    "index": 195,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/12": {
+    "index": 196,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/13": {
+    "index": 197,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/14": {
+    "index": 198,
+    "count": 1226
+  },
+  "phone_prox phone prox Sensor Wakeup/values/15": {
+    "index": 199,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/0": {
+    "index": 200,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/1": {
+    "index": 201,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/2": {
+    "index": 202,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/3": {
+    "index": 203,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/4": {
+    "index": 204,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/5": {
+    "index": 205,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/6": {
+    "index": 206,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/7": {
+    "index": 207,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/8": {
+    "index": 208,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/9": {
+    "index": 209,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/10": {
+    "index": 210,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/11": {
+    "index": 211,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/12": {
+    "index": 212,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/13": {
+    "index": 213,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/14": {
+    "index": 214,
+    "count": 1226
+  },
+  "sensor_logger  Non-wakeup/values/15": {
+    "index": 215,
+    "count": 1226
+  },
+  "Rotation Vector  Non-wakeup/values/0": {
+    "index": 216,
+    "count": 1226
+  },
+  "Rotation Vector  Non-wakeup/values/1": {
+    "index": 217,
+    "count": 1226
+  },
+  "Rotation Vector  Non-wakeup/values/2": {
+    "index": 218,
+    "count": 1226
+  },
+  "Rotation Vector  Non-wakeup/values/3": {
+    "index": 219,
+    "count": 856
+  },
+  "Rotation Vector  Non-wakeup/values/4": {
+    "index": 220,
+    "count": 856
+  },
+  "sip3535 Proximity Sensor Wakeup/values/0": {
+    "index": 221,
+    "count": 1226
+  },
+  "sns_geomag_rv  Non-wakeup/values/0": {
+    "index": 222,
+    "count": 1226
+  },
+  "sns_geomag_rv  Non-wakeup/values/1": {
+    "index": 223,
+    "count": 1226
+  },
+  "sns_geomag_rv  Non-wakeup/values/2": {
+    "index": 224,
+    "count": 1226
+  },
+  "sns_geomag_rv  Non-wakeup/values/3": {
+    "index": 225,
+    "count": 1226
+  },
+  "sns_geomag_rv  Non-wakeup/values/4": {
+    "index": 226,
+    "count": 1226
+  },
+  "pick_up_motion  Wakeup/values/0": {
+    "index": 227,
+    "count": 948
+  }
+}

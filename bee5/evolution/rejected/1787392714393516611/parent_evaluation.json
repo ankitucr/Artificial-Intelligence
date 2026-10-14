@@ -1,0 +1,15 @@
+{
+  "passed": 3,
+  "total": 4,
+  "score": 3,
+  "failures": [
+    {
+      "test": 4,
+      "input": "hello ,   world ! ",
+      "expected": "hello, world!",
+      "actual": "hello , world !"
+    }
+  ],
+  "ok": true,
+  "returncode": 0
+}

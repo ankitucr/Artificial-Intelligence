@@ -1,0 +1,109 @@
+{
+  "episodes": [
+    {
+      "timestamp": "2026-10-07T14:59:45.611655+00:00",
+      "task": "Calculate the sum of 10 and 32.",
+      "result": {
+        "success": true,
+        "agent": "tool",
+        "provider": "builtin",
+        "model": null,
+        "output": "42.0",
+        "tool_used": "calculator_sum",
+        "tool_discovery": {
+          "capabilities": [
+            "calculation"
+          ],
+          "skills": [
+            "calculation"
+          ],
+          "tools": [
+            "calculator_sum",
+            "calculator_product"
+          ]
+        },
+        "error": null
+      },
+      "evaluation": {
+        "passed": true,
+        "score": 1.0,
+        "reason": "Output passed independent validation.",
+        "issues": [],
+        "checks": {
+          "worker_success": true,
+          "code_fence_normalized": false,
+          "python_task": false
+        },
+        "feedback": "No validation problems detected.",
+        "normalized_output": "42.0"
+      },
+      "outcome": "success",
+      "lesson": {
+        "type": "success",
+        "task": "Calculate the sum of 10 and 32.",
+        "rule": "The selected worker output passed independent evaluation."
+      }
+    },
+    {
+      "timestamp": "2026-10-07T15:01:05.712129+00:00",
+      "task": "Calculate the sum of 10 and 32.",
+      "result": {
+        "success": true,
+        "agent": "tool",
+        "provider": "builtin",
+        "model": null,
+        "output": "42",
+        "tool_used": "calculator_sum",
+        "tool_discovery": {
+          "capabilities": [
+            "calculation"
+          ],
+          "skills": [
+            "calculation"
+          ],
+          "tools": [
+            "calculator_sum",
+            "calculator_product"
+          ]
+        },
+        "error": null
+      },
+      "evaluation": {
+        "passed": true,
+        "score": 1.0,
+        "reason": "Output passed independent validation.",
+        "issues": [],
+        "checks": {
+          "worker_success": true,
+          "code_fence_normalized": false,
+          "python_task": false
+        },
+        "feedback": "No validation problems detected.",
+        "normalized_output": "42"
+      },
+      "outcome": "success",
+      "lesson": {
+        "type": "success",
+        "task": "Calculate the sum of 10 and 32.",
+        "rule": "The selected worker output passed independent evaluation."
+      }
+    }
+  ],
+  "skills": [],
+  "failures": [],
+  "knowledge": [],
+  "lessons": [
+    {
+      "type": "success",
+      "task": "Calculate the sum of 10 and 32.",
+      "rule": "The selected worker output passed independent evaluation.",
+      "timestamp": "2026-10-07T14:59:45.611655+00:00"
+    },
+    {
+      "type": "success",
+      "task": "Calculate the sum of 10 and 32.",
+      "rule": "The selected worker output passed independent evaluation.",
+      "timestamp": "2026-10-07T15:01:05.712129+00:00"
+    }
+  ]
+}

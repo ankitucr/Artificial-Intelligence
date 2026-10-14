@@ -1,0 +1,34 @@
+{
+  "N0000": {
+    "id": "N0000",
+    "parent": null,
+    "children": [],
+    "born": 1,
+    "cluster": "sensor_state",
+    "fitness": 0.91137815571921
+  },
+  "N0001": {
+    "id": "N0001",
+    "parent": null,
+    "children": [],
+    "born": 1,
+    "cluster": "sensor_state",
+    "fitness": 0.8076592939918897
+  },
+  "N0002": {
+    "id": "N0002",
+    "parent": null,
+    "children": [],
+    "born": 1,
+    "cluster": "sensor_state",
+    "fitness": 0.831567567453278
+  },
+  "N0003": {
+    "id": "N0003",
+    "parent": null,
+    "children": [],
+    "born": 1,
+    "cluster": "sensor_state",
+    "fitness": 0.2
+  }
+}

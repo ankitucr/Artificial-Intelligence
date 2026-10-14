@@ -1,0 +1,450 @@
+
+==================================================
+FILE: core/learning_engine.py
+
+--- learn, lines 124-178 ---
+    def learn(
+        self,
+        *,
+        task: str,
+        error_type: str = "",
+        root_cause: str = "",
+        error_message: str = "",
+        method: str = "",
+        solution: str = "",
+        verification: dict[str, Any] | None = None,
+        success: bool = False,
+        source: str = "local",
+        metadata: dict[str, Any] | None = None,
+        replay_context: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+
+        verification = verification or {}
+        metadata = metadata or {}
+        replay_context = replay_context or {}
+
+        pattern = self.problem_pattern(
+            task=task,
+            error_type=error_type,
+            root_cause=root_cause,
+            error_message=error_message,
+        )
+
+        record = {
+            "timestamp": time.time(),
+            "task": task,
+            "problem_pattern": pattern,
+            "error_type": error_type,
+            "root_cause": root_cause,
+            "error_message": error_message,
+            "method": method,
+            "solution": solution,
+            "verification": verification,
+            "success": bool(success),
+            "trusted": bool(success and self._verified(verification)),
+            "source": source,
+            "metadata": metadata,
+            "replay_context": {
+                "target_path": replay_context.get("target_path", ""),
+                "old_text": replay_context.get("old_text", ""),
+                "test_path": replay_context.get("test_path", ""),
+            },
+        }
+
+        self.data["experiences"].append(record)
+
+        self._update_pattern(record)
+
+        self._save()
+
+        return record
+
+--- retrieve, lines 320-435 ---
+    def retrieve(
+        self,
+        *,
+        task: str,
+        error_type: str = "",
+        root_cause: str = "",
+        error_message: str = "",
+        limit: int = 5,
+    ) -> dict[str, Any]:
+
+        query = self.problem_pattern(
+            task=task,
+            error_type=error_type,
+            root_cause=root_cause,
+            error_message=error_message,
+        )
+
+        query_tokens = self._tokens(query)
+
+        matches = []
+
+        for pattern in self.data.get("patterns", []):
+            candidate = pattern.get("problem_pattern", "")
+            candidate_tokens = self._tokens(candidate)
+
+            if not candidate_tokens:
+                continue
+
+            overlap = len(query_tokens & candidate_tokens)
+
+            similarity = overlap / max(
+                1,
+                len(query_tokens),
+            )
+
+            if similarity >= 0.20:
+                matches.append(
+                    (
+                        similarity,
+                        pattern,
+                    )
+                )
+
+        matches.sort(
+            key=lambda item: (
+                item[0],
+                item[1].get("confidence", 0.0),
+                item[1].get("updated_at", 0.0),
+            ),
+            reverse=True,
+        )
+
+        results = []
+
+        for similarity, pattern in matches[:max(1, limit)]:
+            solutions = []
+
+            for solution in pattern.get("solutions", []):
+                if solution.get("verified_count", 0) <= 0:
+                    continue
+
+                success_count = solution.get(
+                    "success_count",
+                    0,
+                )
+
+                failure_count = solution.get(
+                    "failure_count",
+                    0,
+                )
+
+                score = (
+                    success_count * 3.0
+                    + solution.get("verified_count", 0) * 5.0
+                    - failure_count * 2.0
+                )
+
+                solutions.append(
+                    {
+                        **solution,
+                        "score": score,
+                    }
+                )
+
+            solutions.sort(
+                key=lambda x: x.get("score", 0.0),
+                reverse=True,
+            )
+
+            results.append(
+                {
+                    "similarity": round(similarity, 4),
+                    "problem_pattern": pattern.get(
+                        "problem_pattern"
+                    ),
+                    "root_causes": pattern.get(
+                        "root_causes",
+                        [],
+                    ),
+                    "confidence": pattern.get(
+                        "confidence",
+                        0.0,
+                    ),
+                    "solutions": solutions,
+                    "failed_methods": pattern.get(
+                        "failed_methods",
+                        [],
+                    ),
+                }
+            )
+
+        return {
+            "known": bool(results),
+            "query": query,
+            "matches": results,
+        }
+
+--- best_solution, lines 504-520 ---
+    def best_solution(
+        self,
+        *,
+        task: str,
+        error_type: str = "",
+        root_cause: str = "",
+        error_message: str = "",
+    ) -> dict[str, Any] | None:
+        """Backward-compatible single-solution API."""
+        candidates = self.best_solutions(
+            task=task,
+            error_type=error_type,
+            root_cause=root_cause,
+            error_message=error_message,
+            limit=1,
+        )
+        return candidates[0] if candidates else None
+
+==================================================
+FILE: core/learning_repair_bridge.py
+
+--- find, lines 51-65 ---
+    def find(
+        self,
+        *,
+        task: str = "",
+        error_type: str = "",
+        root_cause: str = "",
+        error_message: str = "",
+    ) -> dict[str, Any] | None:
+
+        return self.learner.best_solution(
+            task=task,
+            error_type=error_type,
+            root_cause=root_cause,
+            error_message=error_message,
+        )
+
+--- build_candidate, lines 71-111 ---
+    def build_candidate(
+        self,
+        solution: dict[str, Any],
+        *,
+        target_path: str,
+        old_text: str,
+        test_path: str,
+    ) -> dict[str, Any]:
+
+        replay = solution.get(
+            "replay_context",
+            {},
+        )
+
+        return {
+            "candidate": solution.get(
+                "solution",
+                "",
+            ),
+            "method": solution.get(
+                "method",
+                "learned-memory",
+            ),
+            "old_text": (
+                old_text
+                or replay.get("old_text", "")
+            ),
+            "target_path": (
+                target_path
+                or replay.get("target_path", "")
+            ),
+            "test_path": (
+                test_path
+                or replay.get("test_path", "")
+            ),
+            "source": "learned_memory",
+            "learning_similarity": solution.get(
+                "similarity",
+                0.0,
+            ),
+        }
+
+--- record, lines 117-145 ---
+    def record(
+        self,
+        *,
+        task: str,
+        error_type: str,
+        root_cause: str,
+        error_message: str,
+        method: str,
+        solution: str,
+        verification: dict[str, Any],
+        success: bool,
+        source: str,
+        metadata: dict[str, Any] | None = None,
+        replay_context: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+
+        return self.learner.learn(
+            task=task,
+            error_type=error_type,
+            root_cause=root_cause,
+            error_message=error_message,
+            method=method,
+            solution=solution,
+            verification=verification,
+            success=success,
+            source=source,
+            metadata=metadata or {},
+            replay_context=replay_context or {},
+        )
+
+==================================================
+FILE: core/semantic_code_memory.py
+
+--- remember, lines 76-152 ---
+    def remember(
+        self,
+        *,
+        intent: str,
+        code: str,
+        language: str = "python",
+        description: str = "",
+        tags: list[str] | None = None,
+        preconditions: list[str] | None = None,
+        test_cases: list[dict[str, Any]] | None = None,
+        verification: str = "unverified",
+        evidence: list[str] | None = None,
+        equivalent_group: str | None = None,
+        replay_context: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        """Save one implementation. Verification must be supported by evidence.
+
+        verification values:
+          unverified, test_verified, formally_verified, failed
+        """
+        allowed = {
+            "unverified", "test_verified", "formally_verified", "failed"
+        }
+        if verification not in allowed:
+            raise ValueError(f"verification must be one of {sorted(allowed)}")
+        if not intent.strip() or not code.strip():
+            raise ValueError("intent and code cannot be empty")
+
+        fingerprint = _digest(code)
+        existing = next(
+            (v for v in self.data["variants"] if v["code_hash"] == fingerprint),
+            None,
+        )
+        if existing:
+            # Never silently promote a failed or unverified variant.
+            existing["last_seen"] = time.time()
+            existing["intent"] = intent
+            existing["description"] = description
+            if replay_context:
+                existing["replay_context"] = dict(replay_context)
+            existing["tags"] = sorted(set(existing.get("tags", [])) | set(tags or []))
+            existing["preconditions"] = list(preconditions or existing.get("preconditions", []))
+            existing["test_cases"] = list(test_cases or existing.get("test_cases", []))
+            existing["evidence"] = list(dict.fromkeys(
+                existing.get("evidence", []) + (evidence or [])
+            ))
+            if verification == "failed":
+                existing["verification"] = "failed"
+            elif verification == "formally_verified" and evidence:
+                existing["verification"] = "formally_verified"
+            elif verification == "test_verified" and evidence:
+                if existing["verification"] != "failed":
+                    existing["verification"] = "test_verified"
+            self._save()
+            return dict(existing)
+
+        record = {
+            "id": fingerprint[:16],
+            "code_hash": fingerprint,
+            "intent": intent.strip(),
+            "description": description.strip(),
+            "language": language.strip().lower(),
+            "code": code,
+            "tags": sorted(set(tags or [])),
+            "preconditions": list(preconditions or []),
+            "test_cases": list(test_cases or []),
+            "verification": verification,
+            "evidence": list(evidence or []),
+            "equivalent_group": equivalent_group,
+            "replay_context": dict(replay_context or {}),
+            "created_at": time.time(),
+            "last_seen": time.time(),
+            "uses": 0,
+        }
+        self.data["variants"].append(record)
+        self._save()
+        return dict(record)
+
+--- record_test_result, lines 154-167 ---
+    def record_test_result(
+        self,
+        variant_id: str,
+        *,
+        passed: bool,
+        evidence: str,
+    ) -> dict[str, Any]:
+        """Record test evidence; a failed run demotes the implementation."""
+        variant = self._find_variant(variant_id)
+        variant.setdefault("evidence", []).append(str(evidence))
+        variant["verification"] = "test_verified" if passed else "failed"
+        variant["last_test_at"] = time.time()
+        self._save()
+        return dict(variant)
+
+--- retrieve, lines 175-233 ---
+    def retrieve(
+        self,
+        query: str,
+        *,
+        language: str | None = None,
+        tags: list[str] | None = None,
+        verified_only: bool = True,
+        limit: int = 5,
+    ) -> list[dict[str, Any]]:
+        """Rank possible matches using intent, description, tags and code tokens.
+
+        This is a candidate finder, not proof that two programs are equivalent.
+        """
+        query_tokens = _tokens(query)
+        requested_tags = {t.lower() for t in (tags or [])}
+        ranked = []
+
+        for variant in self.data["variants"]:
+            if verified_only and variant["verification"] not in {
+                "test_verified", "formally_verified"
+            }:
+                continue
+            if language and variant["language"] != language.lower():
+                continue
+
+            searchable = " ".join([
+                variant["intent"],
+                variant["description"],
+                " ".join(variant["tags"]),
+                variant["code"],
+                " ".join(variant["preconditions"]),
+            ])
+            candidate_tokens = _tokens(searchable)
+            overlap = len(query_tokens & candidate_tokens)
+            if query_tokens and overlap == 0 and not (
+                requested_tags & set(variant["tags"])
+            ):
+                continue
+
+            score = overlap / max(1, len(query_tokens))
+            tag_matches = len(requested_tags & set(variant["tags"]))
+            score += 0.5 * tag_matches
+            if variant["verification"] == "formally_verified":
+                score += 0.1
+            elif variant["verification"] == "test_verified":
+                score += 0.05
+
+            ranked.append((score, variant))
+
+        ranked.sort(
+            key=lambda item: (item[0], item[1].get("uses", 0)),
+            reverse=True,
+        )
+        results = []
+        for score, variant in ranked[:max(0, limit)]:
+            item = dict(variant)
+            item["relevance_score"] = round(score, 4)
+            results.append(item)
+        return results

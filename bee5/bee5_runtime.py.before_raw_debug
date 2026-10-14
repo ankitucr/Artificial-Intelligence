@@ -1,0 +1,633 @@
+#!/usr/bin/env python3
+
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+MODEL = ROOT / "models" / "bee5-model.gguf"
+LLAMA = Path.home() / "llama.cpp" / "build" / "bin" / "llama-cli"
+
+ACTIVE_SKILLS = ROOT / "skills" / "active"
+REGISTRY = ROOT / "memory" / "registry.json"
+EPISODES = ROOT / "memory" / "episodes.jsonl"
+FAILURES = ROOT / "memory" / "failures.jsonl"
+
+SYSTEM_PROMPT = """
+You are BEE5, a private local cognitive AI system.
+
+Your purpose is to understand requests, reason about them, use verified skills,
+learn from execution results, and gradually improve capabilities.
+
+Rules:
+1. You are a local private AI.
+2. Never invent a skill or capability.
+3. Only use skills listed in the provided skill registry.
+4. Prefer existing verified skills instead of reinventing functionality.
+5. If a skill is appropriate, request its execution.
+6. If no skill is required, answer directly.
+7. Be precise and honest.
+8. Never claim a tool was executed unless the runtime actually executed it.
+9. Skill execution results are observations and may be used to improve future reasoning.
+10. Do not modify the live BEE5 core in this runtime.
+""".strip()
+
+
+DECISION_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "action": {
+            "type": "string",
+            "enum": [
+                "respond",
+                "use_skill"
+            ]
+        },
+        "skill": {
+            "type": "string"
+        },
+        "args": {
+            "type": "object"
+        },
+        "response": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "action",
+        "skill",
+        "args",
+        "response"
+    ],
+    "additionalProperties": False
+}
+
+
+def ensure_dirs():
+    (ROOT / "memory").mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+
+def load_registry():
+    if not REGISTRY.exists():
+        return {}
+
+    try:
+        data = json.loads(
+            REGISTRY.read_text(
+                encoding="utf-8"
+            )
+        )
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def append_jsonl(path, data):
+    with path.open(
+        "a",
+        encoding="utf-8"
+    ) as f:
+        f.write(
+            json.dumps(
+                data,
+                ensure_ascii=False
+            ) + "\n"
+        )
+
+
+def build_skill_context():
+    registry = load_registry()
+
+    if not registry:
+        return "No verified skills are currently registered."
+
+    rows = []
+
+    for name, info in registry.items():
+
+        if info.get("dangerous"):
+            continue
+
+        rows.append({
+            "name": name,
+            "description": info.get(
+                "description",
+                ""
+            ),
+            "functions": info.get(
+                "functions",
+                []
+            ),
+            "source": info.get(
+                "source",
+                ""
+            )
+        })
+
+    return json.dumps(
+        rows,
+        ensure_ascii=False,
+        indent=2
+    )
+
+
+def execute_skill(name, args):
+    path = ACTIVE_SKILLS / f"{name}.py"
+
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Active skill not found: {name}"
+        )
+
+    runner = r'''
+import importlib.util
+import json
+import sys
+
+path = sys.argv[1]
+raw_args = sys.argv[2]
+
+args = json.loads(raw_args)
+
+spec = importlib.util.spec_from_file_location(
+    "bee5_runtime_skill",
+    path
+)
+
+if spec is None or spec.loader is None:
+    raise RuntimeError("Unable to load skill")
+
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+if not hasattr(module, "run"):
+    raise RuntimeError("Skill has no run(args) function")
+
+result = module.run(args)
+
+if not isinstance(result, dict):
+    raise RuntimeError(
+        "Skill must return a dictionary"
+    )
+
+print(
+    json.dumps(
+        result,
+        ensure_ascii=False
+    )
+)
+'''
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            runner,
+            str(path),
+            json.dumps(
+                args,
+                ensure_ascii=False
+            )
+        ],
+        capture_output=True,
+        text=True,
+        timeout=30
+    )
+
+    if result.returncode != 0:
+
+        error = (
+            result.stderr.strip()
+            or result.stdout.strip()
+            or "Skill execution failed"
+        )
+
+        append_jsonl(
+            FAILURES,
+            {
+                "skill": name,
+                "args": args,
+                "error": error
+            }
+        )
+
+        raise RuntimeError(error)
+
+    output = result.stdout.strip()
+
+    try:
+        parsed = json.loads(output)
+    except Exception:
+        parsed = {
+            "raw_output": output
+        }
+
+    append_jsonl(
+        EPISODES,
+        {
+            "event": "skill_execution",
+            "skill": name,
+            "args": args,
+            "result": parsed
+        }
+    )
+
+    return parsed
+
+
+def extract_json_object(text: str):
+    import json
+    import re
+
+    text = str(text or "")
+
+    # Remove ANSI escape sequences.
+    text = re.sub(
+        r"\x1b\[[0-?]*[ -/]*[@-~]",
+        "",
+        text,
+    )
+
+    # Remove markdown fences.
+    text = text.replace("```json", "")
+    text = text.replace("```JSON", "")
+    text = text.replace("```", "")
+
+    # Remove thinking blocks.
+    text = re.sub(
+        r"<think>.*?</think>",
+        "",
+        text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+
+    # Find the actual BEE5 decision object.
+    marker = '{"action"'
+    start = text.find(marker)
+
+    if start < 0:
+        # Some models may insert whitespace/newlines before action.
+        match = re.search(
+            r'\{\s*"action"\s*:',
+            text,
+        )
+        if not match:
+            return None
+        start = match.start()
+
+    depth = 0
+    in_string = False
+    escape = False
+
+    for i in range(start, len(text)):
+        ch = text[i]
+
+        if in_string:
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == '"':
+                in_string = False
+            continue
+
+        if ch == '"':
+            in_string = True
+            continue
+
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+
+            if depth == 0:
+                candidate = text[start:i + 1]
+
+                try:
+                    data = json.loads(candidate)
+                except json.JSONDecodeError:
+                    return None
+
+                if isinstance(data, dict):
+                    return data
+
+                return None
+
+    return None
+
+
+def repair_json(text: str) -> dict:
+    data = extract_json_object(text)
+
+    if data is None:
+        return {
+            "action": "respond",
+            "skill": "",
+            "args": {},
+            "response": (
+                "The local model decision could not be parsed safely."
+            ),
+        }
+
+    action = data.get("action", "respond")
+    skill = data.get("skill", "")
+    args = data.get("args", {})
+    response = data.get("response", "")
+
+    if action not in ("respond", "use_skill"):
+        action = "respond"
+
+    if not isinstance(skill, str):
+        skill = ""
+
+    if not isinstance(args, dict):
+        args = {}
+
+    if not isinstance(response, str):
+        response = str(response)
+
+    return {
+        "action": action,
+        "skill": skill,
+        "args": args,
+        "response": response,
+    }
+
+def model_decide(user_text, observation=""):
+    skill_context = build_skill_context()
+
+    prompt = f"""
+{SYSTEM_PROMPT}
+
+VERIFIED BEE5 SKILLS:
+{skill_context}
+
+USER REQUEST:
+{user_text}
+
+PREVIOUS OBSERVATION:
+{observation or "None"}
+
+Decide what BEE5 should do.
+
+Return ONLY one valid JSON object.
+
+Valid action values:
+- "respond"
+- "use_skill"
+
+Required JSON structure:
+
+{{
+  "action": "respond",
+  "skill": "",
+  "args": {{}},
+  "response": "Your response here"
+}}
+
+Or, when using a skill:
+
+{{
+  "action": "use_skill",
+  "skill": "exact_registered_skill_name",
+  "args": {{}},
+  "response": "Brief explanation"
+}}
+
+Strict rules:
+- args MUST ALWAYS be a JSON object.
+- Never leave args empty after the colon.
+- Never use markdown fences.
+- Never add text before or after the JSON.
+- Never invent a skill.
+- Use only exact registered skill names.
+- If no skill is needed, use action="respond".
+""".strip()
+
+    command = [
+        str(LLAMA),
+        "-m",
+        str(MODEL),
+        "-p",
+        prompt,
+        "-n",
+        "160",
+        "-j",
+        json.dumps(
+            DECISION_SCHEMA,
+            separators=(",", ":")
+        ),
+        "-st",
+        "--no-display-prompt",
+    ]
+
+    result = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        timeout=180,
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            result.stderr.strip()
+            or "Local neural runtime failed"
+        )
+
+    # llama.cpp may emit model output and runtime logs
+    # across different streams. Merge both before parsing.
+    raw_output = (
+        result.stdout
+        + "\n"
+        + result.stderr
+    ).strip()
+
+    return repair_json(raw_output)
+
+def ask(user_text):
+
+    decision = model_decide(
+        user_text
+    )
+
+    action = decision.get(
+        "action",
+        "respond"
+    )
+
+    if action == "use_skill":
+
+        skill = decision.get(
+            "skill",
+            ""
+        )
+
+        args = decision.get(
+            "args",
+            {}
+        )
+
+        registry = load_registry()
+
+        if skill not in registry:
+            return (
+                "BEE5 attempted to use an unregistered skill: "
+                + skill
+            )
+
+        try:
+
+            result = execute_skill(
+                skill,
+                args
+            )
+
+        except Exception as exc:
+
+            observation = (
+                f"Skill {skill} failed with error: {exc}"
+            )
+
+            recovery = model_decide(
+                user_text,
+                observation
+            )
+
+            return recovery.get(
+                "response",
+                observation
+            )
+
+        final_prompt = f"""
+You are BEE5.
+
+The user requested:
+{user_text}
+
+You selected and executed skill:
+{skill}
+
+Arguments:
+{json.dumps(args, ensure_ascii=False)}
+
+Execution result:
+{json.dumps(result, ensure_ascii=False)}
+
+Explain the result accurately.
+Do not claim anything beyond the execution result.
+""".strip()
+
+        command = [
+            str(LLAMA),
+            "-m",
+            str(MODEL),
+            "-p",
+            final_prompt,
+            "-n",
+            "160",
+            "-st",
+            "--no-display-prompt"
+        ]
+
+        final = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=180
+        )
+
+        if final.returncode != 0:
+            return json.dumps(
+                result,
+                ensure_ascii=False
+            )
+
+        return final.stdout.strip()
+
+    return decision.get(
+        "response",
+        ""
+    )
+
+
+def status():
+
+    registry = load_registry()
+
+    print("========================================")
+    print("             BEE5 RUNTIME")
+    print("========================================")
+    print(f"Model        : {MODEL}")
+    print(f"llama-cli    : {LLAMA}")
+    print(f"Skills       : {len(registry)}")
+    print("Network      : NOT REQUIRED")
+    print("Tool routing : ENABLED")
+    print("Memory       : ENABLED")
+    print("Evolution    : CONTROLLED / OFF")
+    print("========================================")
+
+
+def main():
+
+    ensure_dirs()
+
+    if not MODEL.exists():
+        print(
+            f"ERROR: Model not found: {MODEL}"
+        )
+        return 1
+
+    if not LLAMA.exists():
+        print(
+            f"ERROR: llama-cli not found: {LLAMA}"
+        )
+        return 1
+
+    if len(sys.argv) < 2:
+        print(
+            "Usage:\n"
+            "  python bee5_runtime.py status\n"
+            '  python bee5_runtime.py ask "message"'
+        )
+        return 1
+
+    command = sys.argv[1]
+
+    if command == "status":
+        status()
+        return 0
+
+    if command == "ask":
+
+        if len(sys.argv) < 3:
+            print(
+                'Usage: python bee5_runtime.py ask "message"'
+            )
+            return 1
+
+        try:
+            answer = ask(sys.argv[2])
+            print(answer)
+            return 0
+
+        except Exception as exc:
+            print(
+                f"ERROR: {exc}"
+            )
+            return 1
+
+    print(
+        f"Unknown command: {command}"
+    )
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(
+        main()
+    )

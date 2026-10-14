@@ -1,0 +1,730 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+from agents.api_load_balancer import APILoadBalancer
+
+
+class RepairCandidateGenerator:
+    """
+    Phase 33 bounded repair-context + candidate generator.
+
+    Responsibilities:
+      1. Inspect the failed Phase 32 worker plan.
+      2. Identify a safe changed Python target.
+      3. Identify the test command when available.
+      4. Ask Cohere for a bounded set of replacement candidates.
+      5. Validate the returned repair context.
+
+    It NEVER edits the workspace.
+    It NEVER executes tests.
+    """
+
+    MAX_CANDIDATES = 3
+
+    def __init__(
+        self,
+        max_candidates: int = 3,
+        worker=None,
+        workspace_root: str | Path | None = None,
+    ):
+        self.max_candidates = max(
+            1,
+            min(int(max_candidates), self.MAX_CANDIDATES),
+        )
+
+        self.worker = worker or APILoadBalancer()
+
+        self.root = (
+            Path(workspace_root).expanduser().resolve()
+            if workspace_root is not None
+            else (Path(__file__).resolve().parents[1] / "workspace").resolve()
+        )
+
+    # ---------------------------------------------------------
+    # JSON HELPERS
+    # ---------------------------------------------------------
+
+    @staticmethod
+    def _parse_json(text: str) -> dict[str, Any]:
+        text = (text or "").strip()
+
+        if not text:
+            raise ValueError("Empty JSON response.")
+
+        if text.startswith("```"):
+            lines = text.splitlines()
+
+            if lines and lines[0].strip().startswith("```"):
+                lines = lines[1:]
+
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+
+            text = "\n".join(lines).strip()
+
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError as exc:
+            start = text.find("{")
+            end = text.rfind("}")
+
+            if start == -1 or end <= start:
+                raise ValueError(
+                    "Response does not contain valid JSON."
+                ) from exc
+
+            data = json.loads(text[start:end + 1])
+
+        if not isinstance(data, dict):
+            raise ValueError("JSON root must be an object.")
+
+        return data
+
+    @staticmethod
+    def _parse_worker_actions(worker_output: str) -> dict[str, Any]:
+        text = (worker_output or "").strip()
+
+        if not text:
+            raise ValueError("Worker output is empty.")
+
+        if text.startswith("```"):
+            lines = text.splitlines()
+
+            if lines and lines[0].strip().startswith("```"):
+                lines = lines[1:]
+
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+
+            text = "\n".join(lines).strip()
+
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError as exc:
+            start = text.find("{")
+            end = text.rfind("}")
+
+            if start == -1 or end <= start:
+                raise ValueError(
+                    "Worker output is not valid workspace JSON."
+                ) from exc
+
+            data = json.loads(text[start:end + 1])
+
+        if not isinstance(data, dict):
+            raise ValueError("Worker workspace plan must be an object.")
+
+        files = data.get("files", [])
+        commands = data.get("commands", [])
+
+        if not isinstance(files, list):
+            files = []
+
+        if not isinstance(commands, list):
+            commands = []
+
+        return {
+            "files": files,
+            "commands": commands,
+        }
+
+    # ---------------------------------------------------------
+    # PATH SECURITY
+    # ---------------------------------------------------------
+
+    def _safe_relative_path(self, value: str) -> str:
+        if not isinstance(value, str):
+            raise ValueError("Path must be a string.")
+
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Path cannot be empty.")
+
+        path = (self.root / value).resolve()
+
+        try:
+            path.relative_to(self.root)
+        except ValueError as exc:
+            raise ValueError(
+                f"Path escapes workspace: {value}"
+            ) from exc
+
+        return path.relative_to(self.root).as_posix()
+
+    # ---------------------------------------------------------
+    # TARGET / TEST DISCOVERY
+    # ---------------------------------------------------------
+
+    def _discover_files(
+        self,
+        actions: dict[str, Any],
+    ) -> list[dict[str, str]]:
+        discovered = []
+
+        for item in actions.get("files", []):
+            if not isinstance(item, dict):
+                continue
+
+            raw_path = item.get("path")
+            proposed_content = item.get("content")
+
+            if not isinstance(raw_path, str):
+                continue
+
+            if not isinstance(proposed_content, str):
+                continue
+
+            try:
+                relative_path = self._safe_relative_path(raw_path)
+            except ValueError:
+                continue
+
+            actual_path = self.root / relative_path
+
+            # Phase 32 rolls back failed execution before Brain
+            # reaches this point, so this is the original source.
+            if not actual_path.exists():
+                continue
+
+            if not actual_path.is_file():
+                continue
+
+            if actual_path.suffix != ".py":
+                continue
+
+            try:
+                source = actual_path.read_text(
+                    encoding="utf-8"
+                )
+            except Exception:
+                continue
+
+            discovered.append(
+                {
+                    "path": relative_path,
+                    "source": source,
+                    "proposed_content": proposed_content,
+                }
+            )
+
+        return discovered
+
+    def _discover_test_path(
+        self,
+        commands: list[Any],
+    ) -> str | None:
+        candidates = []
+
+        for command in commands:
+            if not isinstance(command, list):
+                continue
+
+            if not command:
+                continue
+
+            executable = str(command[0])
+
+            if executable not in {
+                "python",
+                "python3",
+            }:
+                continue
+
+            args = command[1:]
+
+            for index, arg in enumerate(args):
+                if not isinstance(arg, str):
+                    continue
+
+                if arg in {
+                    "-m",
+                    "-c",
+                    "--command",
+                }:
+                    continue
+
+                if arg.startswith("-"):
+                    continue
+
+                try:
+                    relative = self._safe_relative_path(arg)
+                except ValueError:
+                    continue
+
+                if relative.endswith(".py"):
+                    candidates.append(relative)
+                    break
+
+        if not candidates:
+            return None
+
+        return candidates[-1]
+
+    def build_failure_context(
+        self,
+        *,
+        worker_output: str,
+        diagnosis: dict[str, Any],
+    ) -> dict[str, Any]:
+        actions = self._parse_worker_actions(
+            worker_output
+        )
+
+        files = self._discover_files(actions)
+
+        if not files:
+            return {
+                "success": False,
+                "stage": "context",
+                "error": (
+                    "No safe Python files from the failed "
+                    "workspace plan are available for repair."
+                ),
+            }
+
+        test_path = self._discover_test_path(
+            actions.get("commands", [])
+        )
+
+        return {
+            "success": True,
+            "files": files,
+            "test_path": test_path,
+            "diagnosis": diagnosis,
+        }
+
+    # ---------------------------------------------------------
+    # CANDIDATE GENERATION
+    # ---------------------------------------------------------
+
+    async def generate_from_failure(
+        self,
+        *,
+        task: str,
+        diagnosis: dict[str, Any],
+        worker_output: str,
+        previous_feedback: str = "",
+    ) -> dict[str, Any]:
+
+        if isinstance(worker_output, dict):
+            worker_output_text = "\n".join(
+                [
+                    f"{key}: {value}"
+                    for key, value in worker_output.items()
+                ]
+            )
+        elif isinstance(worker_output, str):
+            worker_output_text = worker_output
+        else:
+            worker_output_text = str(
+                worker_output
+            )
+
+        try:
+            # Real Brain/Phase32 execution results are dictionaries,
+            # while older callers may provide plain text.
+            # Normalize both forms without losing structured data.
+            if isinstance(worker_output, dict):
+                normalized_worker_output = worker_output
+            elif isinstance(worker_output, str):
+                normalized_worker_output = worker_output
+            else:
+                normalized_worker_output = str(
+                    worker_output
+                )
+
+            context = self.build_failure_context(
+                worker_output=normalized_worker_output,
+                diagnosis=diagnosis,
+            )
+        except Exception as exc:
+            return {
+                "success": False,
+                "stage": "context",
+                "error": str(exc),
+            }
+
+        if not context.get("success"):
+            return context
+
+        files = context["files"]
+        test_path = context.get("test_path")
+
+        # Phase 33 currently performs a real test after the repair.
+        # Do not invent a test path.
+        if not test_path:
+            return {
+                "success": False,
+                "stage": "context",
+                "error": (
+                    "No Python test command was available for "
+                    "bounded Phase 33 repair."
+                ),
+            }
+
+        compact_files = []
+
+        for item in files:
+            compact_files.append(
+                {
+                    "path": item["path"],
+                    "source": item["source"],
+                    "proposed_content": item["proposed_content"],
+                }
+            )
+
+        system = """
+You are PIKA's bounded repair planner.
+
+A Phase 32 workspace transaction failed and was rolled back.
+
+Your task is ONLY to identify one exact repair location and
+generate up to three minimal replacement candidates.
+
+You do NOT execute code.
+You do NOT modify files.
+You do NOT claim success.
+The candidates will be independently ranked, applied,
+compiled, tested, committed or rolled back by PIKA.
+
+Return ONLY valid JSON in exactly this form:
+
+{
+  "target_path": "relative/path.py",
+  "old_text": "exact existing source text",
+  "test_path": "relative/test.py",
+  "candidates": [
+    "replacement 1",
+    "replacement 2",
+    "replacement 3"
+  ]
+}
+
+Rules:
+- target_path MUST be one of the supplied Python files.
+- old_text MUST be copied exactly from the supplied current source.
+- candidates MUST replace exactly old_text.
+- Return at most 3 candidates.
+- Prefer the smallest repair that addresses the diagnosis.
+- Do not return the entire file.
+- Do not use markdown.
+- Do not invent unrelated changes.
+- Do not add shell execution, subprocess, os.system,
+  destructive filesystem operations, credential access,
+  or data exfiltration.
+- Preserve surrounding program structure.
+"""
+
+        prompt = f"""
+TASK:
+{task}
+
+DIAGNOSIS:
+{json.dumps(diagnosis, ensure_ascii=False)}
+
+AVAILABLE FILES:
+{json.dumps(compact_files, ensure_ascii=False)}
+
+TEST PATH:
+{test_path}
+
+PREVIOUS FEEDBACK:
+{previous_feedback or "None"}
+
+Choose the most likely faulty Python file and exact existing
+source block. Generate up to {self.max_candidates}
+minimal replacement candidates.
+"""
+
+        try:
+            result = await self.worker.ask(
+                prompt=prompt,
+                system=system,
+                role="repair",
+                structured=True,
+            )
+        except Exception as exc:
+            return {
+                "success": False,
+                "stage": "generation",
+                "error": str(exc),
+            }
+
+        if not result.get("success"):
+            return {
+                "success": False,
+                "stage": "generation",
+                "error": result.get(
+                    "error",
+                    "Cohere repair generation failed.",
+                ),
+                "provider": result.get("provider"),
+                "model": result.get("model"),
+            }
+
+        try:
+            data = self._parse_json(
+                result.get("text", "")
+            )
+        except Exception as exc:
+            return {
+                "success": False,
+                "stage": "generation",
+                "error": str(exc),
+                "raw_text": result.get("text", ""),
+            }
+
+        try:
+            target_path = self._safe_relative_path(
+                data.get("target_path", "")
+            )
+        except Exception as exc:
+            return {
+                "success": False,
+                "stage": "validation",
+                "error": f"Invalid target_path: {exc}",
+            }
+
+        allowed = {
+            item["path"]: item
+            for item in files
+        }
+
+        if target_path not in allowed:
+            return {
+                "success": False,
+                "stage": "validation",
+                "error": (
+                    "Cohere selected a file that was not part "
+                    "of the failed workspace action."
+                ),
+            }
+
+        old_text = data.get("old_text")
+
+        if not isinstance(old_text, str) or not old_text:
+            return {
+                "success": False,
+                "stage": "validation",
+                "error": "Cohere returned an invalid old_text.",
+            }
+
+        source = allowed[target_path]["source"]
+
+        if old_text not in source:
+            return {
+                "success": False,
+                "stage": "validation",
+                "error": (
+                    "Returned old_text does not exist in the "
+                    "rolled-back source."
+                ),
+            }
+
+        returned_test = data.get(
+            "test_path",
+            test_path,
+        )
+
+        try:
+            returned_test = self._safe_relative_path(
+                returned_test
+            )
+        except Exception:
+            returned_test = test_path
+
+        if returned_test != test_path:
+            return {
+                "success": False,
+                "stage": "validation",
+                "error": (
+                    "Repair planner changed the verified "
+                    "test path."
+                ),
+            }
+
+        raw_candidates = data.get(
+            "candidates",
+            [],
+        )
+
+        if not isinstance(raw_candidates, list):
+            return {
+                "success": False,
+                "stage": "validation",
+                "error": "Candidates must be a list.",
+            }
+
+        candidates: list[str] = []
+
+        for candidate in raw_candidates:
+            if not isinstance(candidate, str):
+                continue
+
+            if not candidate.strip():
+                continue
+
+            if candidate == old_text:
+                continue
+
+            if candidate in candidates:
+                continue
+
+            candidates.append(candidate)
+
+            if len(candidates) >= self.max_candidates:
+                break
+
+        if not candidates:
+            return {
+                "success": False,
+                "stage": "generation",
+                "error": (
+                    "Cohere generated no usable repair candidates."
+                ),
+                "provider": result.get("provider"),
+                "model": result.get("model"),
+            }
+
+        return {
+            "success": True,
+            "target_path": target_path,
+            "old_text": old_text,
+            "test_path": test_path,
+            "candidates": candidates,
+            "count": len(candidates),
+            "provider": result.get("provider"),
+            "model": result.get("model"),
+            "latency": result.get("latency"),
+        }
+
+    # ---------------------------------------------------------
+    # LEGACY DIRECT GENERATION API
+    # ---------------------------------------------------------
+
+    async def generate(
+        self,
+        *,
+        task: str,
+        diagnosis: dict[str, Any],
+        relative_path: str,
+        source: str,
+        old_text: str,
+        test_path: str,
+        previous_feedback: str = "",
+    ) -> dict[str, Any]:
+
+        system = """
+You are PIKA's bounded repair-candidate generator.
+
+Return ONLY valid JSON:
+
+{
+  "candidates": [
+    "replacement 1",
+    "replacement 2",
+    "replacement 3"
+  ]
+}
+
+Rules:
+- At most 3 candidates.
+- Candidates must replace EXACTLY old_text.
+- Never return the entire file.
+- Prefer minimal repairs.
+- Do not execute code.
+- Do not modify files.
+- Do not introduce shell execution or destructive operations.
+"""
+
+        prompt = f"""
+TASK:
+{task}
+
+DIAGNOSIS:
+{json.dumps(diagnosis, ensure_ascii=False)}
+
+TARGET FILE:
+{relative_path}
+
+TEST FILE:
+{test_path}
+
+EXACT TEXT TO REPLACE:
+{old_text}
+
+CURRENT SOURCE:
+{source}
+
+PREVIOUS FEEDBACK:
+{previous_feedback or "None"}
+"""
+
+        result = await self.worker.ask(
+            prompt=prompt,
+            system=system,
+            role="repair",
+            structured=True,
+        )
+
+        if not result.get("success"):
+            return {
+                "success": False,
+                "error": result.get(
+                    "error",
+                    "Cohere repair generation failed.",
+                ),
+            }
+
+        try:
+            data = self._parse_json(
+                result.get("text", "")
+            )
+        except Exception as exc:
+            return {
+                "success": False,
+                "error": str(exc),
+            }
+
+        raw_candidates = data.get(
+            "candidates",
+            [],
+        )
+
+        candidates = []
+
+        if isinstance(raw_candidates, list):
+            for candidate in raw_candidates:
+                if not isinstance(candidate, str):
+                    continue
+
+                if not candidate.strip():
+                    continue
+
+                if candidate == old_text:
+                    continue
+
+                if candidate not in candidates:
+                    candidates.append(candidate)
+
+                if len(candidates) >= self.max_candidates:
+                    break
+
+        if not candidates:
+            return {
+                "success": False,
+                "error": "No usable repair candidates generated.",
+            }
+
+        return {
+            "success": True,
+            "candidates": candidates,
+            "count": len(candidates),
+            "provider": result.get("provider"),
+            "model": result.get("model"),
+            "latency": result.get("latency"),
+        }

@@ -1,0 +1,978 @@
+{
+  "version": 3,
+  "saved_at": "2026-08-30T19:52:05.229",
+  "generation": 88,
+  "next_id": 4,
+  "total_states": 88,
+  "created_total": 4,
+  "pruned_total": 0,
+  "sensor_count": 225,
+  "feature_names": [
+    "accelerometer_0",
+    "accelerometer_1",
+    "accelerometer_2",
+    "gyroscope_0",
+    "gyroscope_1",
+    "gyroscope_2",
+    "magnetometer_0",
+    "magnetometer_1",
+    "magnetometer_2",
+    "gravity_0",
+    "gravity_1",
+    "gravity_2",
+    "linear_acceleration_0",
+    "linear_acceleration_1",
+    "linear_acceleration_2",
+    "rotation_0",
+    "rotation_1",
+    "rotation_2",
+    "rotation_3",
+    "light",
+    "proximity",
+    "pedometer_mod",
+    "activity_0",
+    "activity_1",
+    "activity_2",
+    "activity_3"
+  ],
+  "neurons": {
+    "N0000": {
+      "id": "N0000",
+      "prototype": [
+        0.5051,
+        0.6575,
+        0.6742,
+        0.46809999999999996,
+        0.339,
+        0.3779,
+        0.48109999999999997,
+        0.3122,
+        0.2036,
+        0.4948,
+        0.6244,
+        0.7087,
+        0.354,
+        0.4145,
+        0.3883,
+        0.5166000000000001,
+        0.4494,
+        0.6912,
+        0.6517000000000001,
+        -0.1178,
+        0.38,
+        0.802,
+        0.08000000000000002,
+        0.08000000000000002,
+        -0.12,
+        0.48,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12,
+        -0.12
+      ],
+      "cluster": "state",
+      "confidence": 0.3,
+      "fitness": 0.2,
+      "age": 0,
+      "parent": null,
+      "children": [],
+      "activation_count": 0,
+      "associated_memories": [],
+      "previous_states": [],
+      "next_states": [],
+      "actions": [],
+      "reward": 0.0,
+      "prediction_error": 0.0,
+      "stability": 0.0,
+      "last_distance": 1.0,
+      "last_activation": 0,
+      "birth_generation": 0
+    },
+    "N0001": {
+      "id": "N0001",
+      "prototype": [
+        0.5851,
+        0.7374999999999999,
+        0.7542,
+        0.5480999999999999,
+        0.41900000000000004,
+        0.45790000000000003,
+        0.5610999999999999,
+        0.3922,
+        0.2836,
+        0.5748,
+        0.7043999999999999,
+        0.7887,
+        0.434,
+        0.4945,
+        0.4683,
+        0.5966,
+        0.5294,
+        0.7712,
+        0.7317,
+        -0.0378,
+        0.46,
+        0.882,
+        0.16,
+        0.16,
+        -0.04,
+        0.5599999999999999,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04,
+        -0.04
+      ],
+      "cluster": "state",
+      "confidence": 0.3,
+      "fitness": 0.2,
+      "age": 0,
+      "parent": null,
+      "children": [],
+      "activation_count": 0,
+      "associated_memories": [],
+      "previous_states": [],
+      "next_states": [],
+      "actions": [],
+      "reward": 0.0,
+      "prediction_error": 0.0,
+      "stability": 0.0,
+      "last_distance": 1.0,
+      "last_activation": 0,
+      "birth_generation": 0
+    },
+    "N0002": {
+      "id": "N0002",
+      "prototype": [
+        0.4362716391780573,
+        0.682285627388169,
+        0.8129133720378315,
+        0.4980512056173436,
+        0.5018232406829035,
+        0.4992015168530691,
+        0.5636413821388265,
+        0.3951262501164514,
+        0.3360710652448693,
+        0.4343944925182712,
+        0.6847806587352306,
+        0.8096221451679976,
+        0.4997230099212421,
+        0.49752988856438746,
+        0.5022026392534507,
+        0.5708794588261938,
+        0.6096470898899861,
+        0.7299923537968859,
+        0.8060415729968762,
+        0.00043112558877233766,
+        0.5001672332459761,
+        0.9221672332459762,
+        0.20016723324597605,
+        0.20016723324597605,
+        0.00016723324597606463,
+        0.6001672332459761,
+        0.01654242414808359,
+        0.010120676846473367,
+        0.011176547562443575,
+        0.0029289942211321142,
+        0.002777854744528266,
+        0.00261602279993085,
+        0.03762111629221705,
+        0.018501317334071905,
+        0.027783859189786413,
+        0.016127397339506834,
+        0.010234558022261454,
+        0.010309659733051672,
+        0.0018926252587849186,
+        0.0017096537387970316,
+        0.0033948720902874634,
+        0.005314705309248541,
+        0.009945617855651154,
+        0.01426248185943397,
+        0.003743695285871233,
+        0.00025151774288149117,
+        0.00016723324597606463,
+        0.00016723324597606463,
+        0.00016723324597606463,
+        0.00016723324597606463,
+        0.00016723324597606463,
+        0.00016723324597606463
+      ],
+      "cluster": "state",
+      "confidence": 0.8853813718922708,
+      "fitness": 0.823295410531014,
+      "age": 88,
+      "parent": null,
+      "children": [],
+      "activation_count": 88,
+      "associated_memories": [
+        {
+          "state_id": 1,
+          "distance": 0.037688,
+          "time": "2026-08-30T19:48:22.876"
+        },
+        {
+          "state_id": 2,
+          "distance": 0.036421,
+          "time": "2026-08-30T19:48:25.293"
+        },
+        {
+          "state_id": 3,
+          "distance": 0.046329,
+          "time": "2026-08-30T19:48:27.715"
+        },
+        {
+          "state_id": 4,
+          "distance": 0.040346,
+          "time": "2026-08-30T19:48:30.144"
+        },
+        {
+          "state_id": 5,
+          "distance": 0.037018,
+          "time": "2026-08-30T19:48:32.609"
+        },
+        {
+          "state_id": 6,
+          "distance": 0.04684,
+          "time": "2026-08-30T19:48:35.036"
+        },
+        {
+          "state_id": 7,
+          "distance": 0.038553,
+          "time": "2026-08-30T19:48:37.449"
+        },
+        {
+          "state_id": 8,
+          "distance": 0.032864,
+          "time": "2026-08-30T19:48:39.941"
+        },
+        {
+          "state_id": 9,
+          "distance": 0.027669,
+          "time": "2026-08-30T19:48:43.029"
+        },
+        {
+          "state_id": 10,
+          "distance": 0.02567,
+          "time": "2026-08-30T19:48:45.760"
+        },
+        {
+          "state_id": 11,
+          "distance": 0.025357,
+          "time": "2026-08-30T19:48:48.280"
+        },
+        {
+          "state_id": 12,
+          "distance": 0.025296,
+          "time": "2026-08-30T19:48:50.731"
+        },
+        {
+          "state_id": 13,
+          "distance": 0.025288,
+          "time": "2026-08-30T19:48:53.204"
+        },
+        {
+          "state_id": 14,
+          "distance": 0.025338,
+          "time": "2026-08-30T19:48:55.835"
+        },
+        {
+          "state_id": 15,
+          "distance": 0.032865,
+          "time": "2026-08-30T19:48:58.425"
+        },
+        {
+          "state_id": 16,
+          "distance": 0.02843,
+          "time": "2026-08-30T19:49:01.084"
+        },
+        {
+          "state_id": 17,
+          "distance": 0.029066,
+          "time": "2026-08-30T19:49:03.640"
+        },
+        {
+          "state_id": 18,
+          "distance": 0.026124,
+          "time": "2026-08-30T19:49:06.217"
+        },
+        {
+          "state_id": 19,
+          "distance": 0.02447,
+          "time": "2026-08-30T19:49:08.772"
+        },
+        {
+          "state_id": 20,
+          "distance": 0.022829,
+          "time": "2026-08-30T19:49:11.305"
+        },
+        {
+          "state_id": 21,
+          "distance": 0.019371,
+          "time": "2026-08-30T19:49:13.852"
+        },
+        {
+          "state_id": 22,
+          "distance": 0.020044,
+          "time": "2026-08-30T19:49:16.519"
+        },
+        {
+          "state_id": 23,
+          "distance": 0.027402,
+          "time": "2026-08-30T19:49:19.275"
+        },
+        {
+          "state_id": 24,
+          "distance": 0.019298,
+          "time": "2026-08-30T19:49:21.807"
+        },
+        {
+          "state_id": 25,
+          "distance": 0.018689,
+          "time": "2026-08-30T19:49:24.306"
+        },
+        {
+          "state_id": 26,
+          "distance": 0.018844,
+          "time": "2026-08-30T19:49:26.845"
+        },
+        {
+          "state_id": 27,
+          "distance": 0.019466,
+          "time": "2026-08-30T19:49:29.251"
+        },
+        {
+          "state_id": 28,
+          "distance": 0.020282,
+          "time": "2026-08-30T19:49:31.659"
+        },
+        {
+          "state_id": 29,
+          "distance": 0.021183,
+          "time": "2026-08-30T19:49:34.083"
+        },
+        {
+          "state_id": 30,
+          "distance": 0.027379,
+          "time": "2026-08-30T19:49:36.539"
+        },
+        {
+          "state_id": 31,
+          "distance": 0.036045,
+          "time": "2026-08-30T19:49:39.028"
+        },
+        {
+          "state_id": 32,
+          "distance": 0.024514,
+          "time": "2026-08-30T19:49:41.506"
+        },
+        {
+          "state_id": 33,
+          "distance": 0.018038,
+          "time": "2026-08-30T19:49:43.981"
+        },
+        {
+          "state_id": 34,
+          "distance": 0.017434,
+          "time": "2026-08-30T19:49:46.446"
+        },
+        {
+          "state_id": 35,
+          "distance": 0.014115,
+          "time": "2026-08-30T19:49:48.993"
+        },
+        {
+          "state_id": 36,
+          "distance": 0.012305,
+          "time": "2026-08-30T19:49:51.653"
+        },
+        {
+          "state_id": 37,
+          "distance": 0.022356,
+          "time": "2026-08-30T19:49:54.307"
+        },
+        {
+          "state_id": 38,
+          "distance": 0.011194,
+          "time": "2026-08-30T19:49:56.801"
+        },
+        {
+          "state_id": 39,
+          "distance": 0.008271,
+          "time": "2026-08-30T19:49:59.326"
+        },
+        {
+          "state_id": 40,
+          "distance": 0.009099,
+          "time": "2026-08-30T19:50:01.827"
+        },
+        {
+          "state_id": 41,
+          "distance": 0.021969,
+          "time": "2026-08-30T19:50:04.517"
+        },
+        {
+          "state_id": 42,
+          "distance": 0.010597,
+          "time": "2026-08-30T19:50:07.135"
+        },
+        {
+          "state_id": 43,
+          "distance": 0.007074,
+          "time": "2026-08-30T19:50:09.722"
+        },
+        {
+          "state_id": 44,
+          "distance": 0.008481,
+          "time": "2026-08-30T19:50:12.309"
+        },
+        {
+          "state_id": 45,
+          "distance": 0.021351,
+          "time": "2026-08-30T19:50:14.829"
+        },
+        {
+          "state_id": 46,
+          "distance": 0.010321,
+          "time": "2026-08-30T19:50:17.335"
+        },
+        {
+          "state_id": 47,
+          "distance": 0.00952,
+          "time": "2026-08-30T19:50:19.839"
+        },
+        {
+          "state_id": 48,
+          "distance": 0.010531,
+          "time": "2026-08-30T19:50:22.331"
+        },
+        {
+          "state_id": 49,
+          "distance": 0.022155,
+          "time": "2026-08-30T19:50:24.890"
+        },
+        {
+          "state_id": 50,
+          "distance": 0.012454,
+          "time": "2026-08-30T19:50:27.464"
+        },
+        {
+          "state_id": 51,
+          "distance": 0.009319,
+          "time": "2026-08-30T19:50:29.986"
+        },
+        {
+          "state_id": 52,
+          "distance": 0.010268,
+          "time": "2026-08-30T19:50:32.574"
+        },
+        {
+          "state_id": 53,
+          "distance": 0.019279,
+          "time": "2026-08-30T19:50:35.145"
+        },
+        {
+          "state_id": 54,
+          "distance": 0.020057,
+          "time": "2026-08-30T19:50:37.657"
+        },
+        {
+          "state_id": 55,
+          "distance": 0.023387,
+          "time": "2026-08-30T19:50:40.127"
+        },
+        {
+          "state_id": 56,
+          "distance": 0.024241,
+          "time": "2026-08-30T19:50:42.635"
+        },
+        {
+          "state_id": 57,
+          "distance": 0.025307,
+          "time": "2026-08-30T19:50:45.161"
+        },
+        {
+          "state_id": 58,
+          "distance": 0.026473,
+          "time": "2026-08-30T19:50:47.666"
+        },
+        {
+          "state_id": 59,
+          "distance": 0.033509,
+          "time": "2026-08-30T19:50:50.166"
+        },
+        {
+          "state_id": 60,
+          "distance": 0.032215,
+          "time": "2026-08-30T19:50:52.666"
+        },
+        {
+          "state_id": 61,
+          "distance": 0.031381,
+          "time": "2026-08-30T19:50:55.215"
+        },
+        {
+          "state_id": 62,
+          "distance": 0.026352,
+          "time": "2026-08-30T19:50:57.823"
+        },
+        {
+          "state_id": 63,
+          "distance": 0.027961,
+          "time": "2026-08-30T19:51:00.404"
+        },
+        {
+          "state_id": 64,
+          "distance": 0.039343,
+          "time": "2026-08-30T19:51:02.872"
+        },
+        {
+          "state_id": 65,
+          "distance": 0.040328,
+          "time": "2026-08-30T19:51:05.392"
+        },
+        {
+          "state_id": 66,
+          "distance": 0.037153,
+          "time": "2026-08-30T19:51:07.999"
+        },
+        {
+          "state_id": 67,
+          "distance": 0.047731,
+          "time": "2026-08-30T19:51:10.564"
+        },
+        {
+          "state_id": 68,
+          "distance": 0.056494,
+          "time": "2026-08-30T19:51:13.172"
+        },
+        {
+          "state_id": 69,
+          "distance": 0.063091,
+          "time": "2026-08-30T19:51:15.807"
+        },
+        {
+          "state_id": 70,
+          "distance": 0.067734,
+          "time": "2026-08-30T19:51:18.321"
+        },
+        {
+          "state_id": 71,
+          "distance": 0.070062,
+          "time": "2026-08-30T19:51:20.805"
+        },
+        {
+          "state_id": 72,
+          "distance": 0.056495,
+          "time": "2026-08-30T19:51:23.382"
+        },
+        {
+          "state_id": 73,
+          "distance": 0.04305,
+          "time": "2026-08-30T19:51:26.021"
+        },
+        {
+          "state_id": 74,
+          "distance": 0.029145,
+          "time": "2026-08-30T19:51:28.575"
+        },
+        {
+          "state_id": 75,
+          "distance": 0.021597,
+          "time": "2026-08-30T19:51:31.071"
+        },
+        {
+          "state_id": 76,
+          "distance": 0.019907,
+          "time": "2026-08-30T19:51:33.628"
+        },
+        {
+          "state_id": 77,
+          "distance": 0.019104,
+          "time": "2026-08-30T19:51:36.156"
+        },
+        {
+          "state_id": 78,
+          "distance": 0.020053,
+          "time": "2026-08-30T19:51:38.714"
+        },
+        {
+          "state_id": 79,
+          "distance": 0.021099,
+          "time": "2026-08-30T19:51:41.244"
+        },
+        {
+          "state_id": 80,
+          "distance": 0.02224,
+          "time": "2026-08-30T19:51:43.735"
+        },
+        {
+          "state_id": 81,
+          "distance": 0.029997,
+          "time": "2026-08-30T19:51:46.183"
+        },
+        {
+          "state_id": 82,
+          "distance": 0.02205,
+          "time": "2026-08-30T19:51:48.631"
+        },
+        {
+          "state_id": 83,
+          "distance": 0.021433,
+          "time": "2026-08-30T19:51:51.124"
+        },
+        {
+          "state_id": 84,
+          "distance": 0.035124,
+          "time": "2026-08-30T19:51:53.594"
+        },
+        {
+          "state_id": 85,
+          "distance": 0.045472,
+          "time": "2026-08-30T19:51:56.057"
+        },
+        {
+          "state_id": 86,
+          "distance": 0.036802,
+          "time": "2026-08-30T19:51:58.765"
+        },
+        {
+          "state_id": 87,
+          "distance": 0.033002,
+          "time": "2026-08-30T19:52:01.485"
+        },
+        {
+          "state_id": 88,
+          "distance": 0.029267,
+          "time": "2026-08-30T19:52:04.828"
+        }
+      ],
+      "previous_states": [],
+      "next_states": [],
+      "actions": [
+        {
+          "time": "2026-08-30T19:49:59.326",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:01.827",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:04.517",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:07.135",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:09.722",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:12.309",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:14.829",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:17.335",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:19.839",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:22.331",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:24.890",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:27.464",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:29.986",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:32.574",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:35.145",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:37.657",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:40.127",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:42.635",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:45.161",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:47.666",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:50.166",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:52.666",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:55.215",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:50:57.823",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:00.404",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:02.872",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:05.392",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:07.999",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:10.564",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:13.172",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:15.807",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:18.321",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:20.805",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:23.382",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:26.021",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:28.575",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:31.071",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:33.627",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:36.155",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:38.714",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:41.244",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:43.735",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:46.183",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:48.631",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:51.124",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:53.594",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:56.057",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:51:58.765",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:52:01.485",
+          "action": "repeat_stable_behavior"
+        },
+        {
+          "time": "2026-08-30T19:52:04.828",
+          "action": "repeat_stable_behavior"
+        }
+      ],
+      "reward": 0.9145983789081887,
+      "prediction_error": 0.030543447132796653,
+      "stability": 0.9597125515710867,
+      "last_distance": 0.027527477631890465,
+      "last_activation": 88,
+      "birth_generation": 0
+    },
+    "N0003": {
+      "id": "N0003",
+      "prototype": [
+        0.7451,
+        0.8975,
+        0.9142,
+        0.7081,
+        0.579,
+        0.6179,
+        0.7211,
+        0.5522,
+        0.4436,
+        0.7348,
+        0.8644,
+        0.9487,
+        0.594,
+        0.6545,
+        0.6283,
+        0.7566,
+        0.6894,
+        0.9312,
+        0.8917,
+        0.12219999999999999,
+        0.62,
+        1.0,
+        0.32,
+        0.32,
+        0.12,
+        0.72,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12
+      ],
+      "cluster": "state",
+      "confidence": 0.3,
+      "fitness": 0.2,
+      "age": 0,
+      "parent": null,
+      "children": [],
+      "activation_count": 0,
+      "associated_memories": [],
+      "previous_states": [],
+      "next_states": [],
+      "actions": [],
+      "reward": 0.0,
+      "prediction_error": 0.0,
+      "stability": 0.0,
+      "last_distance": 1.0,
+      "last_activation": 0,
+      "birth_generation": 0
+    }
+  }
+}

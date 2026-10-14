@@ -1,0 +1,101 @@
+import asyncio
+
+from core.brain import PIKABrain
+from core.planner import Planner
+from core.runtime import create_runtime
+from memory.manager import MemoryManager
+from evaluation.evaluator import Evaluator
+from learning.experience import ExperienceEngine
+
+
+async def main():
+
+    print("=" * 60)
+    print("PIKA PHASE 4")
+    print("REAL EVALUATION + CONTROLLED RETRY")
+    print("=" * 60)
+
+    router = create_runtime()
+
+    memory = MemoryManager()
+
+    brain = PIKABrain(
+        router=router,
+        memory=memory,
+        planner=Planner(),
+        evaluator=Evaluator(),
+        experience=ExperienceEngine(),
+        max_retries=2,
+    )
+
+    print()
+    print("BRAIN: ONLINE")
+    print("WORKER: API")
+    print("PROVIDER: COHERE")
+    print("MODEL: command-a-03-2025")
+
+    print()
+    print("REGISTERED AGENTS:")
+    print(router.list())
+
+    print()
+    print("MAX RETRIES: 2")
+
+    print()
+    print("Thinking...")
+
+    result = await brain.think(
+        "Write a Python function named add_numbers "
+        "that adds two numbers. "
+        "Return only the function code."
+    )
+
+    print()
+    print("=" * 60)
+    print("FINAL RESULT")
+    print("=" * 60)
+
+    print()
+    print("STATUS:")
+    print(result["final_status"])
+
+    print()
+    print("ATTEMPTS:")
+    print(result["attempt_count"])
+
+    print()
+    print("AGENT:")
+    print(result["agent"])
+
+    print()
+    print("PROVIDER:")
+    print(result["result"].get("provider"))
+
+    print()
+    print("MODEL:")
+    print(result["result"].get("model"))
+
+    print()
+    print("FINAL OUTPUT:")
+    print(result["result"].get("output", ""))
+
+    print()
+    print("EVALUATION:")
+    print(result["evaluation"])
+
+    print()
+    print("MEMORY:")
+    print(
+        f"episodes={len(memory.episodes)} "
+        f"failures={len(memory.failures)}"
+    )
+
+    print()
+    if result["evaluation"].get("passed"):
+        print("PIKA PHASE 4 TEST: PASSED")
+    else:
+        print("PIKA PHASE 4 TEST: FAILED")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

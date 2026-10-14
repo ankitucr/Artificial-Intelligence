@@ -1,0 +1,730 @@
+{
+  "repositories": {
+    "SuheilAltraikey01/AgenticAI": {
+      "full_name": "SuheilAltraikey01/AgenticAI",
+      "url": "https://github.com/SuheilAltraikey01/AgenticAI",
+      "description": "This repository contains coursework, projects, experiments, and practical implementations for the Agentic AI subject in the Master of Artificial Intelligence program at Al-Neelain University. It explores autonomous AI agents, multi-agent systems, tool use, planning, reasoning, memory, and real-world applications.",
+      "language": "Jupyter Notebook",
+      "stars": 0,
+      "license": null,
+      "branch": "main",
+      "updated_at": "2026-08-25T13:19:43Z",
+      "files": {
+        "Week02/COSC726_W02_llm_foundations.py": {
+          "git_sha": "11d533ab87bca43760aa0b23bd82483e59d78072",
+          "sha256": "e72cedb9ba25356d153901887118ec96f654c0adc2ed3a48db47023e4e9e6fe1",
+          "bytes": 10454
+        },
+        "week01/COSC726_W01_hello_agent_mock.py": {
+          "git_sha": "5f26a49494463ff98bbc8339f809dc77e599b75e",
+          "sha256": "1831640c1668155c927480948d12a90cfbc9f4711fb7a66c6feaa3dbe9da2ddc",
+          "bytes": 10020
+        },
+        "week03/lab2_kit.py": {
+          "git_sha": "26d24384596d423e44ca570792c65b25ba7b9b18",
+          "sha256": "6c6f49dc8ceaec20eb75b2dfadd95007eff1f8dc89c03f006a8ac4c7609a5923",
+          "bytes": 23838
+        },
+        "week03/triage_skeleton.py": {
+          "git_sha": "d8bd797fc56ab369bfc780f627c28a09ed8bd259",
+          "sha256": "891632cec8e2036c1c7266cab985d7839c52c9b55879420ec21f95567bb9a706",
+          "bytes": 12533
+        },
+        "week04/hello_agent.py": {
+          "git_sha": "59211677c6e35402ce55f94584098726e0df3ef5",
+          "sha256": "4a7c010e86c14695b754fa0b0c3987fd12977ea6e7ee4d8e17c0c11d3f795d48",
+          "bytes": 15548
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T03:14:51.053075+00:00"
+    },
+    "lhp0630/agent-playbook": {
+      "full_name": "lhp0630/agent-playbook",
+      "url": "https://github.com/lhp0630/agent-playbook",
+      "description": "YAML-configured multi-agent workflows powered by pydantic-ai DynamicWorkflow.",
+      "language": "Python",
+      "stars": 0,
+      "license": "MIT",
+      "branch": "main",
+      "updated_at": "2026-10-12T03:14:46Z",
+      "files": {
+        "src/agent/__init__.py": {
+          "git_sha": "f568a18f7ed3c30dc2b8ce0d60a0fe16ac222172",
+          "sha256": "fdcb9464f668edfdb08d532f549a957f14af44edf813d92d8e29e7745abe3012",
+          "bytes": 115
+        },
+        "src/agent/__main__.py": {
+          "git_sha": "24cef9ac27481bddb6b0df54a20ae56c33953391",
+          "sha256": "2969e14b05ad33e670af840d2d4b2c83bf80943b813c5a8e443b8fe92086a565",
+          "bytes": 2970
+        },
+        "src/agent/config.py": {
+          "git_sha": "1cbb41399f4bdaeaa9079cba8bd5c7f8fd28dfd6",
+          "sha256": "84971bd62b45c3abff44466bf380f8125d6f16c47daf8dd484df371ec91ea040",
+          "bytes": 1819
+        },
+        "src/agent/hook.py": {
+          "git_sha": "461801166910c2629a840605c0442dd82c8cce4e",
+          "sha256": "b7b49e72cb7f75b8106e9cc960c0085a8d306d88c270b0ec47fcd31d9896f02d",
+          "bytes": 1910
+        },
+        "src/harness/__init__.py": {
+          "git_sha": "154afbd00b42ae5089e3e06db7a526348aed52df",
+          "sha256": "43492fa59c89a7b083e8035a083351f52b28afc3872a6ff4255859f186205d43",
+          "bytes": 125
+        },
+        "src/harness/open_sandbox/__init__.py": {
+          "git_sha": "e2c7c6d24e3199233b8d944c58c5e95d8fbc0ab5",
+          "sha256": "8ed64f5c1dce402affed2137a8e5d3ab01fda6b9ec3253866841409952c08e9c",
+          "bytes": 873
+        },
+        "src/harness/open_sandbox/_capability.py": {
+          "git_sha": "39be770a2537ec5f0101e6595ac1baa36d9b9eab",
+          "sha256": "a577c5644bfbbd795cd34da8489c1128b4673d4fd82f103789ad9cfdcb212ae0",
+          "bytes": 9619
+        },
+        "src/harness/open_sandbox/_capability_tests.py": {
+          "git_sha": "a1b87e2e7981fa224a2dec554ea8791912ce6ce3",
+          "sha256": "3e4f35b4e5ba1fd5eb92ba51e9e89226fe9975a7ae152ad6a77f5b531d3373d4",
+          "bytes": 2310
+        },
+        "src/harness/open_sandbox/_session.py": {
+          "git_sha": "4a802fb36daa1de4f1e0052343e551581ed43e6e",
+          "sha256": "e166b726cc285cd1d5b2de6e1f472c793f9b5af77f6106d9b3511ad1670561cb",
+          "bytes": 16783
+        },
+        "src/harness/open_sandbox/_session_tests.py": {
+          "git_sha": "4a0901f95124986b79777e1fabd2af9a27202fbd",
+          "sha256": "a9d735d237b1e7df327d618d85f1da4791a368b8667dd2e4796e35815fa0ca2b",
+          "bytes": 2673
+        },
+        "src/harness/open_sandbox/_tool_output.py": {
+          "git_sha": "254cf3bb0d8605a15b39c47301cec772c5f09a41",
+          "sha256": "6e1b70f20d1de60076171b230e4b4784c4fd842d0a6126e11d9839b452ea9790",
+          "bytes": 10138
+        },
+        "src/harness/open_sandbox/_tool_output_tests.py": {
+          "git_sha": "65b9e35550762c5a36bda8c4bcc0602cfbf4ef49",
+          "sha256": "a9e177d9375c62f7caec2b8c98213e8b345c54d0e04600b5bed524578410a1f7",
+          "bytes": 1238
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T03:15:00.423572+00:00"
+    },
+    "jiayutee/Reinforcement-Learning-Blackjack": {
+      "full_name": "jiayutee/Reinforcement-Learning-Blackjack",
+      "url": "https://github.com/jiayutee/Reinforcement-Learning-Blackjack",
+      "description": "Learn reinforcement learning step by step through Blackjack: Python agents, reproducible experiments, and a planned interactive web game with an AI coach.",
+      "language": "Python",
+      "stars": 0,
+      "license": null,
+      "branch": "main",
+      "updated_at": "2026-10-12T03:14:43Z",
+      "files": {
+        "benchmark.py": {
+          "git_sha": "419b5134250784c7cb1930354d7044d5b507e07e",
+          "sha256": "fd0dbed53adafa7cdd5e6690de289bfc5fe25186b1da7122f3b49e2831825c0f",
+          "bytes": 1771
+        },
+        "config.py": {
+          "git_sha": "f864008eadb24302ebdc4b2e3dcec178435d9b71",
+          "sha256": "9a5a3b2c8e7d068188c5b87508dc9978be558f395e20eb39cb1422798338577b",
+          "bytes": 586
+        },
+        "docs/previews/index.html": {
+          "git_sha": "4ecab77f934e0f992451cf40200a33f076bda2e5",
+          "sha256": "9b914ed09bdbd37f9ee933e81610077d85842be73b127bf6e7ae18e0994d1905",
+          "bytes": 4017
+        },
+        "docs/previews/monte-carlo-values.html": {
+          "git_sha": "8a55e409e591da9010179985b4103bfed9b2ef02",
+          "sha256": "8c02aa2375915aaa7281bab191469e611424cc27d9edd7b3cb06e4901be334b5",
+          "bytes": 30776
+        },
+        "docs/previews/td-update.html": {
+          "git_sha": "b92cc585ad0c9a8395d9dc965a6164d548e664bd",
+          "sha256": "7ec543fc07538bfb5f95cd5b22c08c6043ca9c85498997549350e01b79c8a429",
+          "bytes": 5551
+        },
+        "environment/__init__.py": {
+          "git_sha": "cd8ac3b53f478a2a93adac18cd3e060c63267f86",
+          "sha256": "b479dd7ebd610ca03854e470aa377b6ce600939479aca658d6b101e66c95c405",
+          "bytes": 130
+        },
+        "environment/blackjack_env.py": {
+          "git_sha": "272c5a0b80ea7914bc08b4e4a4ad5ab405a6a22e",
+          "sha256": "e67efa84c198b01810675a38a9ebaf05f5cea710e1d4a4505af3e363373c0cd8",
+          "bytes": 4682
+        },
+        "environment/card_deck.py": {
+          "git_sha": "73abfb69b773aa5410513e0a68844d72d3dd4988",
+          "sha256": "2842beca7632b39934be266d2dc88d009a83344a0740f46cbd76b17ae2d87c26",
+          "bytes": 1514
+        },
+        "environment/dealer.py": {
+          "git_sha": "c69b615957ed5fb41a2773a4cd81bf1d60eb465d",
+          "sha256": "567c8aceb28d84a6817ee6f406958861c863ae2263c5741a04e5572a960c23ec",
+          "bytes": 2274
+        },
+        "experiments/compare_prediction.py": {
+          "git_sha": "bedcacf6ce5e2389d88300a1e362eb9a812c570a",
+          "sha256": "5aad8eb8a15a26c9c6aac2c6f597355841da7190b347d5b28bba6a1942d80528",
+          "bytes": 1736
+        },
+        "foundations/__init__.py": {
+          "git_sha": "551ef5bb63d12e7091fd45cd0a27348ac3b55938",
+          "sha256": "286ec5c863831d1fb08f16834038bd4fa4413667cf2374a1e4e8d7a0c6dd619e",
+          "bytes": 75
+        },
+        "foundations/blackjack.py": {
+          "git_sha": "3a8eded203253bbddffb104162024956b5bce233",
+          "sha256": "dd18c2e079897b8c8935b8afdeb64e5795019628f7c2d5e97929233d00b113b8",
+          "bytes": 3424
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T03:15:08.823208+00:00"
+    },
+    "yaniswav/TopicForge": {
+      "full_name": "yaniswav/TopicForge",
+      "url": "https://github.com/yaniswav/TopicForge",
+      "description": "Read-only MCP server for ROS2 and DDS robotics. Let an AI agent inspect topics, DDS participants, QoS mismatches and rosbags. No write path by architecture: it can never command your robot.",
+      "language": "Python",
+      "stars": 3,
+      "license": "MIT",
+      "branch": "main",
+      "updated_at": "2026-10-12T10:43:48Z",
+      "files": {
+        "examples/dds/00_hello_pub_sub/publisher.py": {
+          "git_sha": "56f0a875faf71e12dd5da5e5c2da0ce24706a8cd",
+          "sha256": "937033ee6dc2cd6c424641934a2f87ed26d68f5b44d449c77d12477bbdaee9bf",
+          "bytes": 2207
+        },
+        "examples/dds/00_hello_pub_sub/run.py": {
+          "git_sha": "964d315677884a143e25aa48a9680d210994ce9e",
+          "sha256": "d6c46de32bb3bf75da999afcdb799b9accb3f156cec15bed7ea1d492ca42b1eb",
+          "bytes": 2950
+        },
+        "examples/dds/00_hello_pub_sub/subscriber.py": {
+          "git_sha": "48b6451a92985bcdc76547b1da1a22ae569bf41e",
+          "sha256": "00200ebd5a4de047062916a55e16665c82fa6d115260bb66a17f0de3b0f24ab5",
+          "bytes": 2470
+        },
+        "examples/dds/01_who_is_on_the_bus/run.py": {
+          "git_sha": "b57968044b701e4f04da84eaf16f9f3adf5b18e5",
+          "sha256": "9f24d0018bda13d452b03ce23c9cc6f45d60eab537d822a91fd4c018f7ebb0ff",
+          "bytes": 2302
+        },
+        "examples/dds/02_why_cant_they_talk/run.py": {
+          "git_sha": "e18d2e0b11fde68e936faa9ce00dfba66bb0d904",
+          "sha256": "54d74faae2ad0f1d64ccf6cf22a49df901dbcba17f06e2ebcf781791bf23ffc3",
+          "bytes": 2558
+        },
+        "examples/dds/03_a_node_crashed/run.py": {
+          "git_sha": "dcc777e077772a2a4c1159f7537c9d2d61c2bd46",
+          "sha256": "5ea651fbeb0cd35bab19cba40298ff064c7f630f3dd43bb4c8bb15fb4c95ebe3",
+          "bytes": 2627
+        },
+        "examples/dds/04_late_joiner_misses_data/run.py": {
+          "git_sha": "9cfc7583181ddaad53e20e87b51257ea3a8f4361",
+          "sha256": "49c013e24cddd3a104f1815299d87ac08826d957ca79af5ef42895c1a35f29ec",
+          "bytes": 2085
+        },
+        "examples/dds/05_reliability_in_code/publisher.py": {
+          "git_sha": "f4d238e2c13d3839c6d2f1f6a9cea67403a455ea",
+          "sha256": "4ff328ef70e68dd0885af05d276b03f629a800fd2ae3436732ed3787d2e5fe7e",
+          "bytes": 2484
+        },
+        "examples/dds/05_reliability_in_code/run.py": {
+          "git_sha": "5d0e56aeff6383b5cae5d7fbd349869529465b3b",
+          "sha256": "c882f981dbd06a37ea3375713ed9b984f717a77390527fc41375535bbca9558c",
+          "bytes": 3174
+        },
+        "examples/dds/05_reliability_in_code/subscriber.py": {
+          "git_sha": "ad20c9c68dbcad364441e3ac0285d10491a8fa83",
+          "sha256": "fe3cd2aa1126c4b41b4e6511d10cddecc1813a2139ea664bc20c289011b48622",
+          "bytes": 3335
+        },
+        "examples/dds/06_durability_late_joiner_in_code/publisher.py": {
+          "git_sha": "560510b83076a126b0e96b9a89c4fbc674b36f75",
+          "sha256": "f88a7fe443781e0ed3fead058094d10804b51f2324c54d71a59e4dfd1fe7777e",
+          "bytes": 2422
+        },
+        "examples/dds/06_durability_late_joiner_in_code/run.py": {
+          "git_sha": "70e5789f79a4bb53109361d4ee35a87deb83c695",
+          "sha256": "5f41bf759d0c1fc3e82fa926df906c12098a5706b50866a2649915deffed3e79",
+          "bytes": 5027
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T10:44:00.402326+00:00"
+    },
+    "SchellingAF/schelling": {
+      "full_name": "SchellingAF/schelling",
+      "url": "https://github.com/SchellingAF/schelling",
+      "description": "Schelling Add Forward: communication and persistent state for AI agents, over HTTP and MCP, on PostgreSQL.",
+      "language": "TypeScript",
+      "stars": 0,
+      "license": "NOASSERTION",
+      "branch": "main",
+      "updated_at": "2026-10-12T10:43:44Z",
+      "files": {
+        "migrations/0101_foundation.sql": {
+          "git_sha": "6223b0d2a964376bf188c472e19718554a76fded",
+          "sha256": "993c5b1f33cef52a24a159156c2a01d99d4559f238cc9771a13ff5e20ca8406d",
+          "bytes": 15009
+        },
+        "migrations/0102_tables.sql": {
+          "git_sha": "6c6ec227cbb45984f8d1aa1c699b1cf9e7e2d4b7",
+          "sha256": "47a2c49087bedf60d32b7dd9e237fadad07ca3bda7af20fd6d490439b69980e3",
+          "bytes": 84882
+        },
+        "migrations/0103_access.sql": {
+          "git_sha": "a81bf28c3c02e0e659076beb1a5dff73d8e1a4da",
+          "sha256": "aaea02e5a235d763a7cda5d978e7f674c11cfb2d855d594d319abe3ba5b1d0fa",
+          "bytes": 39400
+        },
+        "migrations/0104_keys.sql": {
+          "git_sha": "0464edcaab6b949d1570945b02fc2c65baa71a0f",
+          "sha256": "4d6c971efb2f6ee0d510e256af309c1bd905e298a4c47c06ae7409b067434071",
+          "bytes": 17627
+        },
+        "migrations/0105_apps.sql": {
+          "git_sha": "b49fd03ab785c3c6c37b280b5c4c73882231d9bf",
+          "sha256": "2acca1884e1c6bfeec80af4884b96907e12a63ac00c28f4f7e518eca44698b8f",
+          "bytes": 5712
+        },
+        "migrations/0106_spaces.sql": {
+          "git_sha": "4ef4c28f3fc73ff6403a55e162b8ae488050e1ea",
+          "sha256": "f4961ec08e712365e36f91653e668c4fc92aef569fbfbcee847b2bbfb68da248",
+          "bytes": 76681
+        },
+        "migrations/0107_posts.sql": {
+          "git_sha": "bae9ec9f0349911afaaef2294f0e050650358f5e",
+          "sha256": "d8c6c7e84c6dbff27bb6ca6015a001418aeb5f59ca0522820b0ce4b81cec25b7",
+          "bytes": 75171
+        },
+        "migrations/0108_checkpoints.sql": {
+          "git_sha": "5379c461edb02d3f97b55885be6a4faff58f723e",
+          "sha256": "c8b729e3ab93508ed6c25fcf00c6d2c6f525bd08674b2870a1d5f1b26132c5b7",
+          "bytes": 19180
+        },
+        "migrations/0109_messages.sql": {
+          "git_sha": "80119c2597c5053dc56147ca4e98b71b591119ee",
+          "sha256": "7d6e477c5561b7ac2a2f52c0dc4aaf2a86fa7897c19df60c00b621f530b87831",
+          "bytes": 42781
+        },
+        "migrations/0110_sealed.sql": {
+          "git_sha": "ea584849e05776eef0aa3183325b78218198ee5a",
+          "sha256": "51d4e72942108391aa1a67d90b313a2840f455dbb49376eccae045e2250fe023",
+          "bytes": 38025
+        },
+        "migrations/0111_search_index_upkeep.sql": {
+          "git_sha": "3381a8989a62a09ab995e2088f8ad86b1249a1dc",
+          "sha256": "8419ff8a619e6b6c0a40927b457998a5928eac88d9dd1897bb788ff6c1e66964",
+          "bytes": 1952
+        },
+        "migrations/0112_start_checks.sql": {
+          "git_sha": "3f328f88202c2d69261733f7ddb980404aa27a81",
+          "sha256": "c34e6cb593d7878533782196ed1206a9e72580dd83152e27b1df956d13917527",
+          "bytes": 1968
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T10:44:12.718423+00:00"
+    },
+    "scottfly189/WeChatAuto.SDK": {
+      "full_name": "scottfly189/WeChatAuto.SDK",
+      "url": "https://github.com/scottfly189/WeChatAuto.SDK",
+      "description": "WeChatAuto.SDK \u662f\u4e00\u6b3e\u9762\u5411 AI \u7684\u5fae\u4fe1RPA\u81ea\u52a8\u5316SDK\uff0c\u4e3aHarness/Agent\u63d0\u4f9b\u64cd\u4f5c\u5fae\u4fe1\u7684\u80fd\u529b,\u9002\u5408\u4e8e\u505a\u4e3a\u5fae\u4fe1Agent\u7684\u5e95\u5ea7\u4f7f\u7528",
+      "language": "C#",
+      "stars": 275,
+      "license": "MIT",
+      "branch": "master",
+      "updated_at": "2026-10-12T19:27:00Z",
+      "files": {
+        "WeAutoCommon/Configs/WeChatConfig.cs": {
+          "git_sha": "2d978d081a89484a565653fc383bfd9851fc3363",
+          "sha256": "6a5c90914dd7b6b5f114fba4ff0580d823cb3f0fcccf59f49a9ec03b3e17f13c",
+          "bytes": 11378
+        },
+        "WeAutoCommon/Configs/WeMettingConfig.cs": {
+          "git_sha": "fa6274570a86fa9b55fc70a8c9015f599b78ca51",
+          "sha256": "08416417af46af5d79a53f4bd1f1ee7382df9d953ea3fe1936abb9a5a8202859",
+          "bytes": 147
+        },
+        "WeAutoCommon/Enums/ActionType.cs": {
+          "git_sha": "9fe2abcb843eb87e59bfaf130906093155a2ce98",
+          "sha256": "905211d99b9823f726bfa485a63bc469ad550720bc9e3103c08fab61ee227319",
+          "bytes": 303
+        },
+        "WeAutoCommon/Enums/ChatBoxToolBarType.cs": {
+          "git_sha": "163712f8995e6a7c7fc57ad6e469a4a9813f32c9",
+          "sha256": "bf223ffd706a63cd500a8ebd09d7e271a84d2e20ca0f887cce6005607e2bda2c",
+          "bytes": 215
+        },
+        "WeAutoCommon/Enums/ChatContentType.cs": {
+          "git_sha": "252f8cb25c3064a7021ae0f91412535714e50307",
+          "sha256": "39b7f15aceba8f92c3d555e99ad9debc896a006b0a73a00631a7df4111c40ce3",
+          "bytes": 194
+        },
+        "WeAutoCommon/Enums/ChatType.cs": {
+          "git_sha": "a1096351756eafedfa04ed3492f204faa63e2f72",
+          "sha256": "3748a89f9a5072cd124c3b957931b0e32d41da08ab47a0b108836f9354c2d6b5",
+          "bytes": 370
+        },
+        "WeAutoCommon/Enums/ConversationType.cs": {
+          "git_sha": "615f9c27d3b5e88b83c8d16344f7a5daeb88659e",
+          "sha256": "f383f43569b73477fd5b0b2db5dfbe6c0a66caf0ba3e63a71db2b8092c59af23",
+          "bytes": 486
+        },
+        "WeAutoCommon/Enums/CopyType.cs": {
+          "git_sha": "22b7f65915ca05d39eadd3a28a14a5c1e91342cb",
+          "sha256": "c7925e95ec3a83267e916869618da441a4fbb621e900cd34211bfc25ef5dde9e",
+          "bytes": 317
+        },
+        "WeAutoCommon/Enums/DirectionInfo.cs": {
+          "git_sha": "0cca5dc40aedd31cd75a9c3551d59561abc2907e",
+          "sha256": "afddd022d7cac0346985762d26fa230bc50c0b7085cf70fb6adf16360951e6cb",
+          "bytes": 189
+        },
+        "WeAutoCommon/Enums/ForwardMessageTypeEnums.cs": {
+          "git_sha": "54581a4d0d720b73cb8cdc7a9bcfdbb256ec299f",
+          "sha256": "c69060d60106cf0c542313ab78c9fd8b1e87d41add1a782c9958acb7521c3e97",
+          "bytes": 279
+        },
+        "WeAutoCommon/Enums/FriendAddResult.cs": {
+          "git_sha": "ffee1655ae12e7eaab8ed1193e1118c660565622",
+          "sha256": "b5ab0e10e28eaea55c696e9d926639524a24bfdb456af68a068ce2745d9e968a",
+          "bytes": 801
+        },
+        "WeAutoCommon/Enums/FriendSearchResult.cs": {
+          "git_sha": "c143d5f31ce8dd6914e313102cd140fe5b532bac",
+          "sha256": "9af43ec64397e02ec8acb3ddb32b792c360b91ed2bff69bd92a7a800bb558102",
+          "bytes": 556
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T19:27:15.552547+00:00"
+    },
+    "oleg-tkachuk/limes": {
+      "full_name": "oleg-tkachuk/limes",
+      "url": "https://github.com/oleg-tkachuk/limes",
+      "description": "Budgeted, delegable, individually revocable capabilities for AI agents, as a Go library: signed tokens carrying their own scope, spend ceiling and lineage, narrowed offline with Biscuit, bound to keys with DPoP, metered against the whole delegation chain. Storage-agnostic: you implement the contracts.",
+      "language": "Go",
+      "stars": 0,
+      "license": "Apache-2.0",
+      "branch": "main",
+      "updated_at": "2026-10-12T19:27:05Z",
+      "files": {
+        ".github/release/unused-npm-plugin/index.js": {
+          "git_sha": "5ed90a6f0d94ea106f7e35f62405a7e9862eb64a",
+          "sha256": "5858d950bb7dfc0d67d5b93b52ee7a6c1e1ba1e7083dcde24553054727837c54",
+          "bytes": 283
+        },
+        "authorization.go": {
+          "git_sha": "ad092c1299c0bf9362619ba1c572012848059639",
+          "sha256": "b79fbe59519bd200521a5b78fd8f5f1d540765a9084c352031e33c34d91e5e50",
+          "bytes": 4459
+        },
+        "authorization_test.go": {
+          "git_sha": "0bb53a3231c29f8eeab4268ac837dee2a094dee6",
+          "sha256": "90ff69d93eb2148d9ffb0a6432efa9e44f946b6c7b0aeb3f574b90578d9ef3b7",
+          "bytes": 4107
+        },
+        "biscuit.go": {
+          "git_sha": "a5faf147f52526edae37cac8f9eb9f24972eaad3",
+          "sha256": "a2506d3d358e6dcd67ecdcbbdd4dbf6960cbf35a4e668ce551fd86c3e608dff8",
+          "bytes": 23990
+        },
+        "biscuit_copies_test.go": {
+          "git_sha": "3e205aa34f563fd05abb6edde60714cf2e00d9a8",
+          "sha256": "6f32e75faffe08e3cf86caab46ce2accd50736256e5d19e501d7f1d4cd992e6d",
+          "bytes": 12572
+        },
+        "biscuit_crosslang_test.go": {
+          "git_sha": "b10eea6397565307cb5758612cb812060d4f6160",
+          "sha256": "61df2aec739f9c507b0bfc5674434d9b714cbe594e0b3f1e54e6781a71313a24",
+          "bytes": 8268
+        },
+        "biscuit_facts_test.go": {
+          "git_sha": "6504bead6d2a50c7ff27e7212e804d6723f98ad2",
+          "sha256": "964b5dcb678cd411812ef95a84469bfbcc18f20a36780d398e6606c9302ae25c",
+          "bytes": 2857
+        },
+        "biscuit_malformed_test.go": {
+          "git_sha": "e40ea6da69b7da84fc60bd4277b2127570cc484f",
+          "sha256": "387878cf2213f981f2782e61d983e7b7e8a93e55c9ac0054f15e7772de456e01",
+          "bytes": 6448
+        },
+        "biscuit_revocation.go": {
+          "git_sha": "691caf2871bfb0a6a25cb61cb6161c5359184fb7",
+          "sha256": "92ae8bbc57383f24860e7a0fc38cb1cf11e838406b7e830dfa1c2f56918542bd",
+          "bytes": 8354
+        },
+        "biscuit_revocation_test.go": {
+          "git_sha": "4713fb28813d180fc5d7b75c1e787cdd0ad08944",
+          "sha256": "66c796c6b8699803a5587657e6a6f4cf6eb6e3c0747d8e02ab980d91f5f311b0",
+          "bytes": 13200
+        },
+        "biscuit_test.go": {
+          "git_sha": "38ed0cc72202b09d4d853a09640661ecf2b63ddc",
+          "sha256": "305fef1c4358c872c714ae79b264f661359c0958f23dfdde80b1c2698fa67c5a",
+          "bytes": 14019
+        },
+        "biscuit_vocabulary_test.go": {
+          "git_sha": "fbee931db81846d7460fb01d0c4a25eb9aa39c62",
+          "sha256": "93602abf198cc3057bfb37dd3a51602ef1c3f6673ebf39dcd6d68159c174f4b9",
+          "bytes": 2718
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-12T19:27:24.432370+00:00"
+    },
+    "saif-26281028/SwiftData-SkillKit": {
+      "full_name": "saif-26281028/SwiftData-SkillKit",
+      "url": "https://github.com/saif-26281028/SwiftData-SkillKit",
+      "description": "Master SwiftData Code in Xcode 2026 \u2013 AI-Powered Models, Queries, Migrations & iCloud Sync",
+      "language": "HTML",
+      "stars": 1,
+      "license": null,
+      "branch": "main",
+      "updated_at": "2026-10-13T08:42:01Z",
+      "files": {
+        "index.html": {
+          "git_sha": "8270931f135f9e636d83b5069b1ed4fa7211e6d3",
+          "sha256": "abf6434ce76ac7115d514324ba21829a045f631c4f902e47ec00507f73570ad7",
+          "bytes": 23774
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-13T08:42:09.996125+00:00"
+    },
+    "phinn/KinetAios": {
+      "full_name": "phinn/KinetAios",
+      "url": "https://github.com/phinn/KinetAios",
+      "description": "Local-first multi-engine AI agent dashboard \u2014 Claude Code, Codex & built-in ReAct in one window. MCP support, skills auto-loading, long-term memory. No account, no relay.",
+      "language": "TypeScript",
+      "stars": 11,
+      "license": "GPL-3.0",
+      "branch": "main",
+      "updated_at": "2026-10-13T08:42:00Z",
+      "files": {
+        "KinetAios-\u8fd0\u884c\u8bf4\u660e.html": {
+          "git_sha": "d723476d84c114446995b9f3932032338794f95d",
+          "sha256": "bc9bbcce0c1737e2c1589e4261f56785608c6bf26277bbf22bf4c565baeff62f",
+          "bytes": 21830
+        },
+        "agent-comparison.html": {
+          "git_sha": "836469d744d944e277d445c9213cade3a741b9d7",
+          "sha256": "ff1c2e399665c9e904ddab13bb462625989950941beae392d3bfde2d77285bc9",
+          "bytes": 44318
+        },
+        "comparison.html": {
+          "git_sha": "5f8fb65c14361d77380b26a53f321e19c3e0075c",
+          "sha256": "6791dfa657f61e944648a8eacfc041075fbbcbb888a8c37edb61af8908b89a2b",
+          "bytes": 51166
+        },
+        "docs/google0a1ee6d90f8731bb.html": {
+          "git_sha": "4cb6fe8e6e29229fe13b09993320281c635c8a1d",
+          "sha256": "7f4a9325402469f7b0c1b86a60c939c83cc105c2f597f0e4aa62bf2f7f106a8a",
+          "bytes": 53
+        },
+        "docs/index.html": {
+          "git_sha": "04dfd5f94d66509ade5e084e3cfd000141255d9a",
+          "sha256": "855de07a294bce64289021a5f3ef6f6352254a8b5626f7881a65f21dd0fac49f",
+          "bytes": 75030
+        },
+        "docs/privacy.html": {
+          "git_sha": "020bb2a00c3b294b657c6ea74e0f93da2bbaede6",
+          "sha256": "fcda4ad032274acbc9017291621c9c171c5d7fe1819bd0b94dc67101bac80103",
+          "bytes": 3420
+        },
+        "documents/ai-news-brief-2026-08-16.html": {
+          "git_sha": "57e683f0651bed4202f044a26a48f8d75db964f0",
+          "sha256": "d1cd946bc31bcb840eb180e43a32669b12678cd53ec9fa1bc1f01d96628a33ea",
+          "bytes": 16337
+        },
+        "documents/architecture.html": {
+          "git_sha": "e7af1f1e8f0bfed2d058a335638e12a04cf024a0",
+          "sha256": "0659cb134df11d443d1b77b83c1cad940885aa2c994c0ea97023f980ce50bbd0",
+          "bytes": 94866
+        },
+        "documents/codex-comparison.html": {
+          "git_sha": "46620e20d5a55dc2d10860010d15a3bb6695ddac",
+          "sha256": "53691e929dcffa7b8922bd94205723aae3aeb1a033f1e9ad39add33f04a416f1",
+          "bytes": 49102
+        },
+        "documents/codex-critique.html": {
+          "git_sha": "9c9344cb0f42e618023f2def1bd1158485b1c1b8",
+          "sha256": "c9f6760da85d4c8389372086a9f5e959ba05247ad3cafae963b660ed713c161e",
+          "bytes": 54393
+        },
+        "documents/deepseek-harness-features.html": {
+          "git_sha": "88c5b8f35ebb1a6429118d1d1f7d42544a53542d",
+          "sha256": "624155c270a714f047a2a3788fe0ff0ff3af61ea11f369ddb24ecaafd6ee9926",
+          "bytes": 24023
+        },
+        "documents/excel-cross-analysis-engines.html": {
+          "git_sha": "1196d86ecf8cdc3baa36e608b3e12361abc843e0",
+          "sha256": "e77d05db3c5a7af0dc36a8cfebf7e213bb2949329ba4c99c1ec91f305f468015",
+          "bytes": 30552
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-13T08:42:43.094466+00:00"
+    },
+    "khushi1119/ai-job-application-agent": {},
+    "mthatipamula/educational-assessment-ai-agent-platform": {},
+    "matiascloudarch/cognitive-decision-architecture": {
+      "full_name": "matiascloudarch/cognitive-decision-architecture",
+      "url": "https://github.com/matiascloudarch/cognitive-decision-architecture",
+      "description": "Deterministic Governance and Forensic Audit Framework for AI Agents",
+      "language": "HTML",
+      "stars": 0,
+      "license": "NOASSERTION",
+      "branch": "main",
+      "updated_at": "2026-10-13T23:16:37Z",
+      "files": {
+        "cda/__init__.py": {
+          "git_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1
+        },
+        "cda/context_provider/__init__.py": {
+          "git_sha": "6766884ec7bd719bd57358b74caed7d57bd161f2",
+          "sha256": "5424413abf08e0a5365cf37b8b8fcfde29ec1ef7c1f7c6d7130a748b3065b1d0",
+          "bytes": 147
+        },
+        "cda/gate/__init__.py": {
+          "git_sha": "79174f380f88b8b518a47c8c9ecd2e70e57dcc7b",
+          "sha256": "830809b0facdcb4731d7da1e1e4e6912e7418927b35261456f2bce6d1285d8e2",
+          "bytes": 246
+        },
+        "cda/gate/engine.py": {
+          "git_sha": "24bd8f54f11b6193ebc2a27767ba13ab67eebad0",
+          "sha256": "43227385290a80f2262830781569ec78e3e59ca67c1b09e01479b611c80d73d8",
+          "bytes": 10733
+        },
+        "cda/index.html": {
+          "git_sha": "4426576079f79cedccb951936206453b61d4a729",
+          "sha256": "62dd86996c953771d4fe53108ed5b7b5950fd8d73df12f742f4324aa6d5c4d71",
+          "bytes": 103332
+        },
+        "cda/kernel/__init__.py": {
+          "git_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1
+        },
+        "cda/kernel/engine.py": {
+          "git_sha": "6cc3fe828ae56b6bc72f0516ef708bfc9cd8efce",
+          "sha256": "aab533277df44bb491f0648793de081cf43b9b31431bfc12fc86822fa000d5ab",
+          "bytes": 9792
+        },
+        "cda/ledger/__init__.py": {
+          "git_sha": "731a5142094c0f2fe8bd3913671a8180b5089e69",
+          "sha256": "8ace87cbc5105efdaa77e584045b5a5fd31971b5d6f069ff80c94393cc564b10",
+          "bytes": 292
+        },
+        "cda/ledger/audit.py": {
+          "git_sha": "8a5bf1481a6e4a9fbf4844cd4638d380672b13d4",
+          "sha256": "258b51f319d90d19ebf3ed773ac444c8ce627263782920b29f5be9225d78ba04",
+          "bytes": 3934
+        },
+        "cda/scenarios/__init__.py": {
+          "git_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "cda/scenarios/s4_refunds.py": {
+          "git_sha": "3e71bd52fe0ba8532ab0f3575008412f4793236b",
+          "sha256": "4f2fa71634b09efa74e6ad7d2cd33754d4473d6409373b87f2160ffabc200499",
+          "bytes": 1285
+        },
+        "cda/scripts/simulate_hallucination.py": {
+          "git_sha": "3d53993b5de51461f643b91d13ea334f184d4167",
+          "sha256": "9ec35bd285cc55dd2c8ab33b783fa0f816fed61106b1c3953c41be24db8f5f90",
+          "bytes": 5071
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-13T23:16:53.859118+00:00"
+    },
+    "AetherraLabs/Aetherra": {
+      "full_name": "AetherraLabs/Aetherra",
+      "url": "https://github.com/AetherraLabs/Aetherra",
+      "description": "A self-evolving, AI-native language and platform for intelligent agents and autonomous software.",
+      "language": "Python",
+      "stars": 9,
+      "license": "NOASSERTION",
+      "branch": "main",
+      "updated_at": "2026-10-13T23:16:35Z",
+      "files": {
+        "Aetherra/__init__.py": {
+          "git_sha": "861f8cec88c0d48f4d3b3fbaddd2afd1faa8f105",
+          "sha256": "82521d2a04b68c4786e6f01772c801850c506c0d54a26d005ab48f1c1dea33e1",
+          "bytes": 1738
+        },
+        "Aetherra/aetherra_core/__init__.py": {
+          "git_sha": "ece50e0a72201b43d43b1ea38b865e3f01e6d6cf",
+          "sha256": "9e045c3f6341c70c19b2dc3217d3b5ceeca786692cb93cdf9146127033219323",
+          "bytes": 2257
+        },
+        "Aetherra/aetherra_core/agents/aetherra_grammar.py": {
+          "git_sha": "7f3b471e36272daaf7098bfc06026206a3a1ef31",
+          "sha256": "d636ff2bb14e8c2dbbda7ec8fd305367626da13522a393551d83429d9c0bf440",
+          "bytes": 24635
+        },
+        "Aetherra/aetherra_core/agents/aetherra_interpreter.py": {
+          "git_sha": "c2551872cde35d0cfbb7cb70aae5266e0abc5566",
+          "sha256": "74602cc216d008e78edb712e485228ddd5bd581604645287727ec65b46c8f2e6",
+          "bytes": 3049
+        },
+        "Aetherra/aetherra_core/agents/aetherra_parser.py": {
+          "git_sha": "95f07e8d455c43178e03280d7f356bdd7f043f57",
+          "sha256": "3cf2fa72095a8587297dd30f871bdc009d3f29c6411d9ad5fc90d922e404cf2f",
+          "bytes": 24181
+        },
+        "Aetherra/aetherra_core/agents/agent.py": {
+          "git_sha": "a00e21b5b11bceda4bb7394f639129d1f3b276d7",
+          "sha256": "244b1779b642889091e3880ff665d7f9114ac8fe5dd88fb18c863f1c66943ec9",
+          "bytes": 8955
+        },
+        "Aetherra/aetherra_core/agents/agent_executor.py": {
+          "git_sha": "9eba58a2e9aa87b31d9f5268b2662a2c148d1ff1",
+          "sha256": "871396c18637a63bb63bc3411c5227290cd0ccbd42c815a40fcb6efc4fcfd358",
+          "bytes": 487
+        },
+        "Aetherra/aetherra_core/agents/agent_orchestrator.py": {
+          "git_sha": "cc78e1d659face12090ae102af4a34288cc167fe",
+          "sha256": "b840d57a2f49f0d8b84a64aea0c77fc68f3d8c52df8a4541ed753fe7ef6950c9",
+          "bytes": 32311
+        },
+        "Aetherra/aetherra_core/agents/base.py": {
+          "git_sha": "6321b949a8d6f4e98b5cb54494bb5e9b5b562b4e",
+          "sha256": "f5fe6635818b22f271556ea344bce715a6c45c21874b6e8d0bf7ca721c7ecb76",
+          "bytes": 74938
+        },
+        "Aetherra/aetherra_core/agents/cleanup_project.py": {
+          "git_sha": "775e9556d8c6e9d8dfdce3e7bca47d6bd2abcd42",
+          "sha256": "03ca57f53263552b8be0fa8379bea9f1fcebef388bc5ddd60ae1fc98c69722ab",
+          "bytes": 20554
+        },
+        "Aetherra/aetherra_core/agents/cognitive_adapters.py": {
+          "git_sha": "a9e76ed1d1d04a175dd5a69723375a28534f0996",
+          "sha256": "9c1850650cb6d85e995a6dd75e1e0ffdff32c9db18ac377500ce8851abba1c36",
+          "bytes": 106
+        },
+        "Aetherra/aetherra_core/agents/collaboration.py": {
+          "git_sha": "f6a6f55500a69ab4b4ebfc75c38b2b5f85edfb31",
+          "sha256": "4649adc1361f888eabdc187928618f75b554db8ec44489b4cec7a3967c289c45",
+          "bytes": 25800
+        }
+      },
+      "tree_truncated": false,
+      "last_scanned": "2026-10-13T23:17:02.998312+00:00"
+    }
+  }
+}

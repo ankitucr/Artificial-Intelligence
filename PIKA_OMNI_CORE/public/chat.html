@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>PKA_CORE_HELIX_EARTH_CORE</title>
+    <style>
+        :root {
+            --ai-color: #00ffff;
+            --user-color: #00ff00;
+            --bg-dark: #000000;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            background-color: var(--bg-dark);
+            color: var(--ai-color);
+            font-family: 'Courier New', Courier, monospace;
+            height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
+            position: fixed;
+            top: 0; left: 0;
+            -webkit-font-smoothing: antialiased;
+            transition: opacity 2s ease;
+        }
+
+        /* Sleep Mode Effect */
+        body.sleep-mode { opacity: 0.6; filter: grayscale(50%); }
+
+        /* 1. TOP BAR */
+        .top-bar {
+            position: absolute; top: 0; left: 0; width: 100%; height: 45px;
+            text-align: center; padding: 12px; font-size: 13px; font-weight: bold;
+            letter-spacing: 1px; border-bottom: 1px solid rgba(0, 255, 255, 0.4);
+            background: #000; z-index: 100;
+        }
+        .top-bar .active-text { color: var(--user-color); }
+        .top-bar .status-text { color: #ff9900; margin-left: 10px; font-style: italic; display: none; }
+        body.sleep-mode .top-bar .status-text { display: inline; }
+
+        /* 2. VISUAL DECK */
+        #visual-deck {
+            position: absolute; top: 45px; left: 0; width: 100%; height: 35vh;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px; z-index: 50; pointer-events: none;
+        }
+        .code-stream {
+            width: 25%; height: 90%; display: flex; flex-direction: column;
+            justify-content: flex-start; font-size: 10px; line-height: 1.6;
+            color: rgba(0, 255, 255, 0.3); text-shadow: 0 0 5px rgba(0,255,255,0.1); overflow: hidden;
+        }
+        .code-line { transition: color 0.3s; opacity: 0.8; }
+        #orb-container {
+            width: 50%; display: flex; justify-content: center; align-items: center;
+            filter: drop-shadow(0 0 25px rgba(255, 100, 0, 0.25)); transition: filter 2s;
+        }
+        body.sleep-mode #orb-container { filter: drop-shadow(0 0 5px rgba(0, 150, 255, 0.2)); }
+        #pka-orb-canvas { max-width: 100%; border-radius: 50%; }
+
+        /* 3. CHAT SECTION */
+        #chat-section {
+            position: absolute; top: 38vh; left: 0; width: 100%; bottom: 65px;
+            display: flex; flex-direction: column; z-index: 10;
+            mask-image: linear-gradient(to bottom, transparent 0%, transparent 5%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 5%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);
+        }
+        
+        #chat-history {
+            flex: 1; overflow-y: auto; padding: 15px; display: flex;
+            flex-direction: column; gap: 15px; scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; pointer-events: auto;
+        }
+
+        /* BONUS UPGRADE: Futuristic Scrollbar */
+        #chat-history::-webkit-scrollbar { width: 4px; }
+        #chat-history::-webkit-scrollbar-track { background: transparent; }
+        #chat-history::-webkit-scrollbar-thumb { background: rgba(0, 255, 255, 0.3); border-radius: 10px; }
+
+        .chat-spacer { height: 10vh; flex-shrink: 0; }
+        .message {
+            max-width: 85%; padding: 12px 15px; font-size: 14px; line-height: 1.5;
+            word-wrap: break-word; background: transparent; border-radius: 4px;
+        }
+        .ai-msg { align-self: flex-start; border: 1px solid var(--ai-color); color: var(--ai-color); }
+        .user-msg { align-self: flex-end; border: 1px solid var(--user-color); color: var(--user-color); }
+        .processing-msg { font-style: italic; color: rgba(0, 255, 255, 0.7); border: 1px dashed rgba(0, 255, 255, 0.5); }
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        /* SMART CODE BOX */
+        .code-box {
+            background: #0a0a0a; border: 1px solid #005555; border-radius: 4px;
+            margin-top: 10px; font-family: monospace; font-size: 12px;
+            overflow-x: auto; position: relative;
+        }
+        .code-header {
+            background: #002222; padding: 5px 10px; display: flex;
+            justify-content: space-between; align-items: center; border-bottom: 1px solid #005555;
+            color: #00ffff; font-size: 10px; text-transform: uppercase;
+        }
+        .copy-btn {
+            background: transparent; border: 1px solid #00ffff; color: #00ffff;
+            padding: 3px 8px; cursor: pointer; border-radius: 3px; font-size: 10px;
+        }
+        .copy-btn:active { background: #00ffff; color: #000; }
+        .code-content { padding: 10px; white-space: pre-wrap; color: #00ffcc; }
+
+        /* THE SHADOW VAULT (Hidden Developer Panel) */
+        #shadow-vault {
+            margin-top: 100px; /* Forces user to scroll deep down */
+            padding: 20px; border: 1px dashed #444; border-radius: 8px;
+            text-align: center; background: rgba(0, 0, 0, 0.8);
+        }
+        .vault-title { font-size: 12px; color: #888; margin-bottom: 15px; letter-spacing: 2px; }
+        .vault-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .vault-btn {
+            background: #111; border: 1px solid #333; color: #00ffff;
+            padding: 10px; cursor: pointer; font-family: monospace; font-size: 11px;
+            transition: all 0.3s;
+        }
+        .vault-btn:hover { border-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.2); }
+
+        /* VAULT MODAL */
+        #vault-modal {
+            display: none; position: fixed; top: 10%; left: 5%; width: 90%; height: 80%;
+            background: rgba(0,0,0,0.95); border: 1px solid var(--ai-color); z-index: 1000;
+            flex-direction: column; box-shadow: 0 0 30px rgba(0,255,255,0.2);
+        }
+        #vault-header {
+            padding: 10px; background: #002222; border-bottom: 1px solid var(--ai-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        #vault-close { background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        #vault-content { flex: 1; overflow-y: auto; padding: 15px; font-size: 12px; white-space: pre-wrap; color: #00ff00; }
+
+        /* 4. EXACT INPUT AREA */
+        #input-area {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 65px;
+            display: flex; align-items: center; padding: 10px 15px; gap: 12px;
+            background: #000; border-top: 1px solid rgba(0, 255, 255, 0.3); z-index: 100;
+        }
+        .mic-btn { background: transparent; border: none; color: var(--ai-color); padding: 5px; cursor: pointer; outline: none; }
+        .mic-listening { color: #ff0000 !important; animation: pulse 1s infinite alternate; }
+        @keyframes pulse { from { transform: scale(1); filter: drop-shadow(0 0 5px red); } to { transform: scale(1.2); filter: drop-shadow(0 0 10px red); } }
+        #chat-input { flex: 1; background: transparent; border: 1px solid var(--ai-color); color: var(--ai-color); padding: 10px 15px; border-radius: 4px; font-family: inherit; font-size: 14px; outline: none; }
+        #send-btn { background: var(--user-color); border: none; border-radius: 4px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; flex-shrink: 0; color: #000; }
+        #send-btn svg { width: 18px; height: 18px; fill: currentColor; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        PKA_CORE_v14.0 &bull; EARTH_CORE: <span class="active-text">LOCKED</span>
+        <span class="status-text">[REM SLEEP ACTIVE]</span>
+    </div>
+
+    <div id="visual-deck">
+        <div class="code-stream" id="code-left"></div>
+        <div id="orb-container">
+            <canvas id="pka-orb-canvas" width="240" height="240"></canvas>
+        </div>
+        <div class="code-stream" id="code-right"></div>
+    </div>
+
+    <div id="chat-section">
+        <div id="chat-history">
+            <div class="chat-spacer"></div>
+            <div class="message ai-msg">Earth Core embedded successfully. Dual-Queue Routing & Shadow Vault Initialized.</div>
+            
+            <div id="shadow-vault">
+                <div class="vault-title">-- [ SHADOW VAULT : DEVELOPER ACCESS ] --</div>
+                <div class="vault-grid">
+                    <button class="vault-btn" onclick="openVault('identity')">[ IDENTITY_CORE ]</button>
+                    <button class="vault-btn" onclick="openVault('memory')">[ SUBCONSCIOUS ]</button>
+                    <button class="vault-btn" onclick="openVault('tracker')">[ SYSTEM_TRACKER ]</button>
+                    <button class="vault-btn" onclick="openVault('config')">[ SEMANTIC_MAP ]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vault-modal">
+        <div id="vault-header">
+            <span id="vault-title-text">FILE_VIEWER</span>
+            <button id="vault-close" onclick="closeVault()">X</button>
+        </div>
+        <div id="vault-content">Loading data...</div>
+    </div>
+
+    <div id="input-area">
+        <button class="mic-btn" id="mic-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+        </button>
+        <input type="text" id="chat-input" placeholder="Command PKA..." autocomplete="off">
+        <button id="send-btn">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+    </div>
+
+    <script>
+        // ==========================================
+        // 💤 VISUAL REM SLEEP SYSTEM
+        // ==========================================
+        let idleTime = 0;
+        let isSleepingMode = false;
+
+        function resetIdle() {
+            idleTime = 0;
+            if (isSleepingMode) {
+                isSleepingMode = false;
+                document.body.classList.remove('sleep-mode');
+            }
+        }
+
+        window.onload = resetIdle;
+        document.onmousemove = resetIdle;
+        document.onkeypress = resetIdle;
+        document.ontouchstart = resetIdle;
+
+        setInterval(() => {
+            idleTime++;
+            if (idleTime >= 300) {
+                if (!isSleepingMode) {
+                    isSleepingMode = true;
+                    document.body.classList.add('sleep-mode');
+                }
+            }
+        }, 1000);
+
+        // ==========================================
+        // 💻 MATRIX CODE STREAM
+        // ==========================================
+        const codeSnippets = ["SYS_MEM: OK", "CORE: EARTH", "SYNAPSE: HELIX", "0x8F4A9", "V8_JIT_COMP", "AWAITING_CMD", "NEURAL_CORE: UP", "VAULT_FETCH", "THREAD(10)", "HASH: VALID", "AI_COMPUTING", "PKA_MATRIX"];
+        function setupCodeStream(elementId) {
+            const container = document.getElementById(elementId);
+            const lines = [];
+            for(let i=0; i<8; i++) {
+                let div = document.createElement('div'); div.className = 'code-line'; div.innerHTML = "&nbsp;"; container.appendChild(div); lines.push(div);
+            }
+            return lines;
+        }
+        const leftLines = setupCodeStream('code-left');
+        const rightLines = setupCodeStream('code-right');
+
+        function updateCodeStream(linesArray) {
+            if (isSleepingMode) return;
+            for(let i=0; i < linesArray.length - 1; i++) linesArray[i].innerText = linesArray[i+1].innerText;
+            const hex = "0x" + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
+            linesArray[linesArray.length - 1].innerText = `${hex} > ${codeSnippets[Math.floor(Math.random()*codeSnippets.length)]}`;
+        }
+        setInterval(() => updateCodeStream(leftLines), 500);
+        setInterval(() => updateCodeStream(rightLines), 700);
+
+        // ==========================================
+        // 🔮 EARTH CORE ENCLOSURE + HELIX WAVE ENGINE
+        // ==========================================
+        const canvas = document.getElementById('pka-orb-canvas');
+        const ctx = canvas.getContext('2d');
+        let shellParticles = [];
+        const shellRadius = 95; const solidCoreRadius = 40;
+        const centerX = canvas.width / 2; const centerY = canvas.height / 2;
+        let angleX = 0; let angleY = 0;
+        let isSpeaking = false; let currentWaveAmplitude = 0;
+
+        for (let i = 0; i <= 35; i++) {
+            let lat = Math.PI * i / 35 - Math.PI / 2;
+            for (let j = 0; j < 35; j++) {
+                let lon = 2 * Math.PI * j / 35;
+                shellParticles.push({ baseX: shellRadius * Math.cos(lat) * Math.cos(lon), baseY: shellRadius * Math.sin(lat), baseZ: shellRadius * Math.cos(lat) * Math.sin(lon), lat: lat, lon: lon });
+            }
+        }
+
+        function drawOrb() {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let auraSize = Math.max(1, solidCoreRadius * 2.5);
+            let coreGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, auraSize);
+            let auraAlpha = Math.max(0, Math.min(1, 0.2 + currentWaveAmplitude * 0.15));
+            coreGlow.addColorStop(0, `rgba(255, 80, 0, ${auraAlpha})`);
+            coreGlow.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.fillStyle = coreGlow; ctx.fillRect(0,0,canvas.width, canvas.height);
+
+            ctx.globalCompositeOperation = "lighter";
+
+            let speedMult = isSleepingMode ? 0.2 : 1;
+            angleX += 0.0025 * speedMult; angleY += 0.0035 * speedMult;
+            const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+            const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+            const time = Date.now() * 0.001;
+
+            if (isSpeaking) currentWaveAmplitude += (1.0 - currentWaveAmplitude) * 0.1;
+            else currentWaveAmplitude += (0.0 - currentWaveAmplitude) * 0.05;
+
+            let renderList = [];
+            renderList.push({ type: 'solid_core', z: 0 });
+
+            for (let p of shellParticles) {
+                let waveScale = 1;
+                if (currentWaveAmplitude > 0.001) {
+                    let helixMath = Math.sin(p.lat * 6 + p.lon * 4 - time * 12);
+                    waveScale = 1 + (helixMath * 0.12 * currentWaveAmplitude);
+                }
+                let px = p.baseX * waveScale, py = p.baseY * waveScale, pz = p.baseZ * waveScale;
+                let x1 = px * cosY - pz * sinY, z1 = pz * cosY + px * sinY;
+                let y2 = py * cosX - z1 * sinX, z2 = z1 * cosX + py * sinX;
+                renderList.push({ x: x1, y: y2, z: z2, type: 'shell', baseRad: shellRadius });
+            }
+
+            renderList.sort((a, b) => b.z - a.z);
+
+            for (let p of renderList) {
+                if (p.type === 'solid_core') {
+                    let beat = Math.pow(Math.abs(Math.sin(time * 8)), 2) * 0.1 * currentWaveAmplitude;
+                    let currentSolidRad = solidCoreRadius * (1 + beat);
+                    ctx.globalCompositeOperation = "source-over";
+                    ctx.beginPath(); ctx.arc(centerX, centerY, currentSolidRad, 0, Math.PI * 2);
+                    let solidGrad = ctx.createRadialGradient(centerX - 8, centerY - 8, 0, centerX, centerY, currentSolidRad);
+
+                    if (isSleepingMode) {
+                        solidGrad.addColorStop(0, "rgba(100, 200, 255, 1)");
+                        solidGrad.addColorStop(1, "rgba(0, 50, 100, 1)");
+                    } else {
+                        solidGrad.addColorStop(0, "rgba(255, 230, 80, 1)");
+                        solidGrad.addColorStop(0.5, "rgba(255, 100, 0, 1)");
+                        solidGrad.addColorStop(1, "rgba(120, 10, 0, 1)");
+                    }
+
+                    ctx.fillStyle = solidGrad; ctx.fill();
+                    ctx.globalCompositeOperation = "lighter"; continue;
+                }
+                const perspective = 250 / (250 + p.z);
+                const px_final = centerX + (p.x * perspective); const py_final = centerY + (p.y * perspective);
+                let size = Math.max(0.6, 1.4 * perspective);
+                let alpha = Math.min(1, Math.max(0.15, (p.z + p.baseRad) / (2 * p.baseRad)));
+
+                if(isSleepingMode) alpha *= 0.3;
+
+                ctx.beginPath(); ctx.arc(px_final, py_final, size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 255, 255, ${alpha})`; ctx.fill();
+            }
+            requestAnimationFrame(drawOrb);
+        }
+        drawOrb();
+
+        // ==========================================
+        // 🎙️ VOICE SYSTEM
+        // ==========================================
+        const synth = window.speechSynthesis;
+        let pikaVoice = null; let voiceUnlocked = false;
+
+        synth.onvoiceschanged = () => {
+            const voices = synth.getVoices();
+            pikaVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Female')) || voices[0];
+        };
+
+        function unlockVoiceAPI() {
+            if(!voiceUnlocked) {
+                let silentUtter = new SpeechSynthesisUtterance(''); silentUtter.volume = 0;
+                synth.speak(silentUtter); voiceUnlocked = true;
+            }
+        }
+
+        function playAIVoice(text) {
+            if(synth.speaking) synth.cancel();
+
+            let cleanText = text.replace(/```[\s\S]*?```/g, " Maine code generate kar diya hai, screen par dekh lo.");
+            cleanText = cleanText.replace(/\[MUTATION_START\][\s\S]*?\[MUTATION_END\]/g, " Maine mutation file ready kar di hai.");
+            cleanText = cleanText.replace(/[^a-zA-Z0-9.,?\s]/g, "");
+
+            let utterance = new SpeechSynthesisUtterance(cleanText);
+            if(pikaVoice) utterance.voice = pikaVoice;
+            utterance.pitch = 1.1; utterance.rate = 1.0;
+            utterance.onstart = () => { isSpeaking = true; };
+            utterance.onend = () => { isSpeaking = false; };
+            utterance.onerror = () => { isSpeaking = false; };
+            synth.speak(utterance);
+        }
+
+        // ==========================================
+        // 🎤 VOICE RECOGNITION
+        // ==========================================
+        const micBtn = document.getElementById('mic-btn');
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition;
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false; recognition.interimResults = false; recognition.lang = 'hi-IN';
+            recognition.onstart = () => { micBtn.classList.add('mic-listening'); resetIdle(); };
+            recognition.onend = () => { micBtn.classList.remove('mic-listening'); };
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('chat-input').value = transcript;
+                unlockVoiceAPI(); triggerBackendCall(transcript);
+            };
+        }
+        micBtn.addEventListener('click', () => {
+            unlockVoiceAPI();
+            if (recognition) micBtn.classList.contains('mic-listening') ? recognition.stop() : recognition.start();
+        });
+
+        // ==========================================
+        // 💬 CHAT LOGIC & SCROLL FIX
+        // ==========================================
+        const chatHistory = document.getElementById('chat-history');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // 🔥 THE FIX: Directly scrolls to the latest message block instead of the anchor
+        function scrollToBottom() {
+            setTimeout(() => {
+                const messages = document.querySelectorAll('.message');
+                if (messages.length > 0) {
+                    messages[messages.length - 1].scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }
+            }, 50);
+        }
+
+        function copyToClipboard(btn, text) {
+            navigator.clipboard.writeText(text);
+            btn.innerText = "COPIED!";
+            setTimeout(() => btn.innerText = "COPY CODE", 2000);
+        }
+
+        function formatMessageHTML(text) {
+            const codeRegex = /```([\w]*)\n([\s\S]*?)```/g;
+            let formatted = text.replace(codeRegex, (match, lang, code) => {
+                let safeCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                let codeId = "code-" + Math.floor(Math.random() * 10000);
+                return `
+                    <div class="code-box">
+                        <div class="code-header">
+                            <span>${lang || 'CODE'}</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this, document.getElementById('${codeId}').innerText)">COPY CODE</button>
+                        </div>
+                        <div class="code-content" id="${codeId}">${safeCode}</div>
+                    </div>`;
+            });
+            const mutationRegex = /\[MUTATION_START\]([\s\S]*?)\[MUTATION_END\]/g;
+            formatted = formatted.replace(mutationRegex, (match, code) => {
+                let safeCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                let codeId = "mut-" + Math.floor(Math.random() * 10000);
+                return `
+                    <div class="code-box" style="border-color: #ff00ff;">
+                        <div class="code-header" style="background: #330033; border-color: #ff00ff; color: #ff00ff;">
+                            <span>🧬 AUTONOMOUS MUTATION TARGET</span>
+                            <button class="copy-btn" style="border-color: #ff00ff; color: #ff00ff;" onclick="copyToClipboard(this, document.getElementById('${codeId}').innerText)">COPY RAW</button>
+                        </div>
+                        <div class="code-content" id="${codeId}" style="color: #ff99ff;">${safeCode}</div>
+                    </div>`;
+            });
+            return formatted.replace(/\n/g, '<br>');
+        }
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender === 'user' ? 'user-msg' : 'ai-msg');
+            msgDiv.innerHTML = sender === 'ai' ? formatMessageHTML(text) : text;
+            chatHistory.insertBefore(msgDiv, document.getElementById('shadow-vault')); 
+            scrollToBottom();
+        }
+
+        function handleInputSubmit() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            resetIdle(); unlockVoiceAPI(); triggerBackendCall(text);
+        }
+
+        async function triggerBackendCall(text) {
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            const processDiv = document.createElement('div');
+            processDiv.classList.add('message', 'ai-msg', 'processing-msg');
+            processDiv.innerHTML = `[SYS] Syncing with Sovereign Core... <span class="blink">_</span>`;
+            chatHistory.insertBefore(processDiv, document.getElementById('shadow-vault'));
+            scrollToBottom();
+
+            const steps = ["Scanning Memory Vault...", "Checking Dual-Queue API Limit...", "Routing via StackOverflow Fallback...", "Executing Neural Synthesis..."];
+            let percent = 0;
+            const processInterval = setInterval(() => {
+                percent += Math.floor(Math.random() * 15) + 5;
+                if (percent > 98) percent = 98;
+                let currentStep = steps[Math.floor((percent / 100) * steps.length)] || steps[steps.length-1];
+                processDiv.innerHTML = `[SYS] ${currentStep} <br>➤ Link Status: ${percent}% <span class="blink">_</span>`;
+            }, 500);
+
+            try {
+                const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text }) });
+                if (!response.ok) throw new Error("Network Error");
+                const data = await response.json();
+
+                clearInterval(processInterval); processDiv.remove();
+                addMessage(data.reply, 'ai');
+                playAIVoice(data.reply);
+            } catch (error) {
+                clearInterval(processInterval); processDiv.remove();
+                addMessage("[CRITICAL ERROR] Core connection failed.", 'ai');
+            }
+        }
+
+        sendBtn.addEventListener('click', handleInputSubmit);
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); handleInputSubmit(); } });
+
+        // ==========================================
+        // 🗄️ THE SHADOW VAULT LOGIC
+        // ==========================================
+        async function openVault(fileKey) {
+            const modal = document.getElementById('vault-modal');
+            const content = document.getElementById('vault-content');
+            const title = document.getElementById('vault-title-text');
+
+            modal.style.display = 'flex';
+            title.innerText = `[ FETCHING: ${fileKey.toUpperCase()} ]`;
+            content.innerText = "Loading data from backend...";
+
+            try {
+                const res = await fetch(`/api/vault?file=${fileKey}`);
+                if(!res.ok) throw new Error("Vault access denied.");
+                const data = await res.json();
+                content.innerText = JSON.stringify(data.content, null, 2);
+            } catch (err) {
+                content.innerText = "[ERROR] Pika server needs /api/vault endpoint upgrade!\n" + err.message;
+            }
+        }
+
+        function closeVault() { document.getElementById('vault-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

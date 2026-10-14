@@ -1,0 +1,995 @@
+from __future__ import annotations
+import time
+
+from pathlib import Path
+from typing import Any
+
+from core.decision import DecisionEngine
+from core.task_analyzer import TaskAnalyzer
+from core.critic import Critic
+from core.workspace_executor import WorkspaceExecutor
+from core.phase32_controller import Phase32Controller
+from core.phase33_controller import Phase33Controller
+from core.repair_candidate_generator import RepairCandidateGenerator
+
+
+class PIKABrain:
+    def __init__(
+        self,
+        router,
+        memory,
+        planner,
+        evaluator,
+        experience,
+        task_analyzer=None,
+        tool_runtime=None,
+        decision_engine=None,
+        max_retries: int = 2,
+        critic=None,
+    ):
+        self.router = router
+        self.memory = memory
+        self.planner = planner
+        self.evaluator = evaluator
+        self.experience = experience
+        self.task_analyzer = (
+            task_analyzer or TaskAnalyzer()
+        )
+        self.tool_runtime = tool_runtime
+        self.decision_engine = (
+            decision_engine or DecisionEngine()
+        )
+
+        self.max_retries = max_retries
+        self.critic = critic
+
+        self.workspace_executor = None
+        self.phase32_controller = None
+        self.phase33_controller = None
+        self.repair_candidate_generator = None
+
+        if self.tool_runtime is not None:
+            self.workspace_executor = WorkspaceExecutor(
+                self.tool_runtime
+            )
+
+            self.phase32_controller = (
+                Phase32Controller(
+                    self.tool_runtime
+                )
+            )
+
+            workspace_root = (
+                Path(__file__).resolve().parents[1]
+                / "workspace"
+            )
+
+            self.phase33_controller = (
+                Phase33Controller(
+                    workspace_root,
+                    max_candidates=3,
+                )
+            )
+
+            self.repair_candidate_generator = (
+                RepairCandidateGenerator(
+                    max_candidates=3,
+                    workspace_root=workspace_root,
+                )
+            )
+
+
+    # =========================================================
+    # WORKSPACE TASK DETECTION
+    # =========================================================
+
+    @staticmethod
+    def _is_workspace_task(
+        task_analysis: dict[str, Any],
+        plan: dict[str, Any],
+    ) -> bool:
+        plan_type = str(
+            plan.get("task_type", "")
+        ).lower()
+
+        analysis_type = str(
+            task_analysis.get("task_type", "")
+        ).lower()
+
+        return (
+            plan_type == "engineering"
+            or analysis_type == "engineering"
+        )
+
+    # =========================================================
+    # EXPERIENCE
+    # =========================================================
+
+    def _remember_success(
+        self,
+        task,
+        result,
+        evaluation,
+        decision,
+    ):
+        experience = self.experience.create_experience(
+            task=task,
+            result=result,
+            evaluation=evaluation,
+            decision=decision,
+        )
+
+        self.memory.remember_episode(
+            experience
+        )
+
+        self.memory.remember_lesson(
+            experience["lesson"]
+        )
+
+        return experience
+
+    # =========================================================
+    # MAIN THINK LOOP
+    # =========================================================
+
+    async def think(
+        self,
+        task: str,
+    ) -> dict[str, Any]:
+
+        memories = self.memory.retrieve(task)
+
+        task_analysis = self.task_analyzer.analyze(
+            task
+        )
+
+        attempts: list[dict[str, Any]] = []
+        decision_trace: list[dict[str, Any]] = []
+
+        feedback = ""
+
+        total_attempts = self.max_retries + 1
+
+        for attempt_number in range(
+            1,
+            total_attempts + 1,
+        ):
+
+            # =================================================
+            # DECISION
+            # =================================================
+
+            decision = self.decision_engine.decide(
+                task_analysis=task_analysis,
+                memories=memories,
+                tool_runtime=self.tool_runtime,
+                attempt=attempt_number,
+                previous_feedback=feedback,
+            )
+
+            decision_trace.append(
+                decision
+            )
+
+            print(
+                "[PIKA DECISION] "
+                f"mode={decision.get('mode')} "
+                f"confidence={decision.get('confidence')}"
+            )
+
+            print(
+                "[PIKA MEMORY] "
+                f"signature={decision.get('task_signature')} "
+                f"history={decision.get('history', {})}"
+            )
+
+            # =================================================
+            # TOOL PATH
+            # =================================================
+
+            if (
+                decision.get("mode") == "tool"
+                and self.tool_runtime is not None
+            ):
+                tool_result = (
+                    self.tool_runtime.execute_for_task(
+                        task=task,
+                        capabilities=task_analysis.get(
+                            "tool_capabilities",
+                            [],
+                        ),
+                    )
+                )
+
+                result = {
+                    "success": bool(
+                        tool_result.get("success")
+                    ),
+                    "agent": "tool",
+                    "provider": "builtin",
+                    "model": None,
+                    "output": tool_result.get(
+                        "output"
+                    ),
+                    "tool_used": tool_result.get(
+                        "tool_used"
+                    ),
+                    "tool_discovery": tool_result.get(
+                        "tool_discovery"
+                    ),
+                    "error": tool_result.get(
+                        "error"
+                    ),
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "strategy": "tool",
+                }
+
+                evaluation = self.evaluator.evaluate(
+                    result,
+                    task=task,
+                )
+
+                attempts.append(
+                    {
+                        "attempt": attempt_number,
+                        "decision": decision,
+                        "result": result,
+                        "evaluation": evaluation,
+                    }
+                )
+
+                if evaluation.get("passed"):
+                    experience = (
+                        self._remember_success(
+                            task,
+                            result,
+                            evaluation,
+                            decision,
+                        )
+                    )
+
+                    return {
+                        "success": True,
+                        "task": task,
+                        "task_analysis": task_analysis,
+                        "decision_trace": decision_trace,
+                        "attempts": attempts,
+                        "agent": "tool",
+                        "tool_used": result.get(
+                            "tool_used"
+                        ),
+                        "output": result.get(
+                            "output"
+                        ),
+                        "evaluation": evaluation,
+                        "experience": experience,
+                    }
+
+                feedback = evaluation.get(
+                    "feedback",
+                    "The deterministic tool failed validation.",
+                )
+
+                self.memory.remember_failure(
+                    {
+                        "task": task,
+                        "task_signature": decision.get(
+                            "task_signature"
+                        ),
+                        "task_analysis": task_analysis,
+                        "result": result,
+                        "evaluation": evaluation,
+                        "decision": decision,
+                        "strategy": "tool",
+                        "feedback": feedback,
+                    }
+                )
+
+                print(
+                    "[PIKA DECISION] "
+                    "Tool path failed."
+                )
+
+                agent_decision = {
+                    "mode": "agent",
+                    "confidence": 0.97,
+                    "reason": (
+                        "tool path failed; escalating "
+                        "to the general worker."
+                    ),
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "attempt": attempt_number,
+                    "history": decision.get(
+                        "history",
+                        {},
+                    ),
+                    "fallback_from": "tool",
+                }
+
+                decision_trace.append(
+                    agent_decision
+                )
+
+                print(
+                    "[PIKA DECISION] "
+                    "Escalating to API worker."
+                )
+
+                decision = agent_decision
+
+            # =================================================
+            # PLAN
+            # =================================================
+
+            plan = self.planner.plan(
+                task,
+                memories=memories,
+            )
+
+            print(
+                "[PIKA PLAN] "
+                f"type={plan.get('task_type')} "
+                f"complexity={plan.get('complexity')} "
+                f"subtasks={plan.get('subtask_count')}"
+            )
+
+            # =================================================
+            # WORKSPACE STATE
+            # =================================================
+
+            workspace_state = {}
+
+            workspace_task = (
+                self.workspace_executor is not None
+                and self._is_workspace_task(
+                    task_analysis,
+                    plan,
+                )
+            )
+
+            if workspace_task:
+                workspace_state = (
+                    self.workspace_executor.inspect()
+                )
+
+                print(
+                    "[PIKA WORKSPACE] "
+                    f"inspect_success="
+                    f"{workspace_state.get('success')}"
+                )
+
+            # =================================================
+            # ADAPTIVE PLAN CONTEXT
+            # =================================================
+
+            agent_context = {
+                "goal": plan.get("goal"),
+                "task_type": plan.get(
+                    "task_type"
+                ),
+                "complexity": plan.get(
+                    "complexity"
+                ),
+                "subtasks": plan.get(
+                    "subtasks",
+                    [],
+                ),
+                "dependencies": plan.get(
+                    "dependencies",
+                    [],
+                ),
+                "execution_order": plan.get(
+                    "execution_order",
+                    [],
+                ),
+                "validation": plan.get(
+                    "validation",
+                    {},
+                ),
+                "strategy": plan.get(
+                    "strategy",
+                    {},
+                ),
+                "memory_hints": plan.get(
+                    "memory_hints",
+                    [],
+                ),
+            }
+
+            # =================================================
+            # WORKSPACE CONTEXT
+            # =================================================
+
+            workspace_context = {}
+
+            if workspace_task:
+                workspace_context = (
+                    self.workspace_executor.build_context(
+                        task=task,
+                        workspace_state=workspace_state,
+                        previous_feedback=feedback,
+                    )
+                )
+
+                print(
+                    "[PIKA WORKSPACE] "
+                    "execution mode enabled"
+                )
+
+            # =================================================
+            # SELECT AGENT
+            # =================================================
+
+            agent = self.router.select(
+                required_capabilities=task_analysis.get(
+                    "capabilities",
+                    [],
+                )
+            )
+
+            if agent is None:
+                result = {
+                    "success": False,
+                    "agent": None,
+                    "error": (
+                        "No suitable agent is "
+                        "registered for this task."
+                    ),
+                    "output": "",
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "strategy": "agent",
+                }
+
+                evaluation = self.evaluator.evaluate(
+                    result,
+                    task=task,
+                )
+
+                attempts.append(
+                    {
+                        "attempt": attempt_number,
+                        "decision": decision,
+                        "result": result,
+                        "evaluation": evaluation,
+                    }
+                )
+
+                feedback = evaluation.get(
+                    "feedback",
+                    "No suitable agent is available.",
+                )
+
+                continue
+
+            # =================================================
+            # COMPLETE WORKER CONTEXT
+            # =================================================
+
+            context = {
+                "plan": plan,
+                "adaptive_plan": agent_context,
+                "memory": memories,
+                "task_analysis": task_analysis,
+                "attempt": attempt_number,
+                "max_attempts": total_attempts,
+                "previous_feedback": feedback,
+                "decision": decision,
+                "workspace": workspace_context,
+            }
+
+            print(
+                "[PIKA AGENT] "
+                f"selected={agent.name}"
+            )
+
+            # =================================================
+            # COHERE WORKER
+            # =================================================
+
+            result = await agent.execute(
+                task,
+                context=context,
+            )
+
+            result["task_signature"] = decision.get(
+                "task_signature"
+            )
+
+            result["strategy"] = "agent"
+            result["decision"] = decision
+
+            # =================================================
+            # PHASE 31 WORKSPACE EXECUTION
+            # =================================================
+
+            if workspace_task:
+                worker_output = result.get(
+                    "output",
+                    "",
+                )
+
+                print(
+                    "[PIKA WORKSPACE] "
+                    "Phase 32 controlled execution"
+                )
+
+                if self.phase32_controller is None:
+                    raise RuntimeError(
+                        "Phase 32 controller is not initialized."
+                    )
+
+                workspace_result = (
+                    self.phase32_controller.execute(
+                        worker_output,
+                        attempt=attempt_number,
+                        worker_result=result,
+                    )
+                )
+
+                result["workspace_execution"] = (
+                    workspace_result
+                )
+
+                if workspace_result.get(
+                    "success"
+                ):
+                    result["output"] = (
+                        "Phase 32 workspace execution "
+                        "committed.\n"
+                        + str(
+                            workspace_result
+                        )
+                    )
+
+                else:
+                    result["success"] = False
+
+                    workspace_error = (
+                        workspace_result.get(
+                            "error",
+                            "Phase 32 workspace execution failed.",
+                        )
+                    )
+
+                    result["error"] = (
+                        workspace_error
+                    )
+
+                    result["output"] = (
+                        worker_output
+                    )
+
+                    feedback = (
+                        workspace_result.get(
+                            "recovery_feedback"
+                        )
+                        or
+                        (
+                            "Phase 32 workspace execution failed. "
+                            f"{workspace_error}\n"
+                            f"Workspace result: "
+                            f"{workspace_result}"
+                        )
+                    )
+
+                    evaluation = {
+                        "passed": False,
+                        "score": 0.0,
+                        "issues": [
+                            workspace_error
+                        ],
+                        "feedback": feedback,
+                    }
+
+                    attempts.append(
+                        {
+                            "attempt": attempt_number,
+                            "decision": decision,
+                            "result": result,
+                            "evaluation": evaluation,
+                        }
+                    )
+
+                    self.memory.remember_failure(
+                        {
+                            "task": task,
+                            "task_signature": decision.get(
+                                "task_signature"
+                            ),
+                            "task_analysis": task_analysis,
+                            "result": result,
+                            "evaluation": evaluation,
+                            "decision": decision,
+                            "strategy": "workspace",
+                            "feedback": feedback,
+                            "phase32_diagnosis": (
+                                workspace_result.get(
+                                    "diagnosis"
+                                )
+                            ),
+                            "phase32_recovery": (
+                                workspace_result.get(
+                                    "recovery"
+                                )
+                            ),
+                        }
+                    )
+
+                    print(
+                        "[PIKA PHASE 32] "
+                        "execution failed; recovery "
+                        "diagnosed and transaction rolled back."
+                    )
+
+                    # =================================================
+                # =================================================
+                # PHASE 33 — BOUNDED SELF-HEALING
+                # =================================================
+
+                phase33_diagnosis = (
+                    workspace_result.get(
+                        "diagnosis",
+                        {},
+                    )
+                )
+
+                phase33_error_type = (
+                    phase33_diagnosis.get(
+                        "error_type"
+                    )
+                )
+
+                if (
+                    self.phase33_controller is not None
+                    and self.repair_candidate_generator is not None
+                    and phase33_error_type in {
+                        "code_error",
+                        "test_failure",
+                    }
+                ):
+                    try:
+                        print(
+                            "[PIKA PHASE 33] "
+                            "bounded self-healing"
+                        )
+
+                        repair_context = (
+                            await self.repair_candidate_generator
+                            .generate_from_failure(
+                                task=task,
+                                diagnosis=phase33_diagnosis,
+                                worker_output=worker_output,
+                                previous_feedback=feedback,
+                            )
+                        )
+
+                        result["phase33_generation"] = (
+                            repair_context
+                        )
+
+                        if repair_context.get("success"):
+
+                            repair_result = (
+                                self.phase33_controller.repair(
+                                    diagnosis=phase33_diagnosis,
+                                    relative_path=(
+                                        repair_context["target_path"]
+                                    ),
+                                    old_text=(
+                                        repair_context["old_text"]
+                                    ),
+                                    candidates=(
+                                        repair_context["candidates"]
+                                    ),
+                                    test_path=(
+                                        repair_context["test_path"]
+                                    ),
+                                    task=task,
+                                )
+                            )
+
+                            result["phase33_repair"] = (
+                                repair_result
+                            )
+
+                            if repair_result.get("success"):
+                                result["success"] = True
+                                result["error"] = None
+                                result["output"] = (
+                                    "Phase 33 self-healing successfully "
+                                    "repaired, verified and committed "
+                                    "the workspace.\n"
+                                    + str(repair_result)
+                                )
+
+                                print(
+                                    "[PIKA PHASE 33] "
+                                    "SELF-HEAL VERIFIED"
+                                )
+
+                                return result
+
+                            feedback = (
+                                feedback
+                                + "\nPhase 33 repair failed: "
+                                + str(repair_result)
+                            )
+
+                            print(
+                                "[PIKA PHASE 33] repair failed; "
+                                "transaction remains safely rolled back."
+                            )
+
+                        else:
+                            print(
+                                "[PIKA PHASE 33] candidate generation "
+                                "unavailable: "
+                                f"{repair_context.get('error')}"
+                            )
+
+                    except Exception as exc:
+                        result["phase33_repair"] = {
+                            "success": False,
+                            "stage": "exception",
+                            "error": str(exc),
+                        }
+
+                        feedback = (
+                            feedback
+                            + "\nPhase 33 integration exception: "
+                            + str(exc)
+                        )
+
+                        print(
+                            "[PIKA PHASE 33] integration exception: "
+                            f"{exc}"
+                        )
+
+                # CONTROLLED NETWORK RECOVERY BACKOFF
+                # =================================================
+                recovery_action = (
+                    workspace_result.get(
+                        "recovery",
+                        {}
+                    ).get(
+                        "action"
+                    )
+                )
+
+                if (
+                    recovery_action == "retry_with_backoff"
+                    and attempt_number < total_attempts
+                ):
+                    backoff_seconds = min(
+                        2 ** attempt_number,
+                        8,
+                    )
+
+                    print(
+                        "[PIKA RECOVERY] "
+                        f"network retry backoff="
+                        f"{backoff_seconds}s"
+                    )
+
+                    time.sleep(backoff_seconds)
+
+                continue
+
+            # =================================================
+            # NORMAL EVALUATION
+            # =================================================
+
+            evaluation = self.evaluator.evaluate(
+                result,
+                task=task,
+            )
+
+            # =================================================
+            # OPTIONAL CRITIC
+            # =================================================
+
+            if (
+                evaluation.get("passed")
+                and self.critic is not None
+            ):
+                critic_result = self.critic.review(
+                    task,
+                    result.get(
+                        "output",
+                        "",
+                    ),
+                )
+
+                result["critic"] = critic_result
+
+                if not critic_result.get(
+                    "passed"
+                ):
+                    evaluation = {
+                        **evaluation,
+                        "passed": False,
+                        "score": min(
+                            evaluation.get(
+                                "score",
+                                0.0,
+                            ),
+                            critic_result.get(
+                                "score",
+                                0.0,
+                            ),
+                        ),
+                        "issues": (
+                            evaluation.get(
+                                "issues",
+                                [],
+                            )
+                            + critic_result.get(
+                                "issues",
+                                [],
+                            )
+                        ),
+                        "feedback": (
+                            "Independent critic "
+                            "rejected the worker "
+                            "output. "
+                            + str(
+                                critic_result.get(
+                                    "feedback",
+                                    "",
+                                )
+                            )
+                        ),
+                    }
+
+            # =================================================
+            # ATTEMPT RECORD
+            # =================================================
+
+            attempts.append(
+                {
+                    "attempt": attempt_number,
+                    "decision": decision,
+                    "result": result,
+                    "evaluation": evaluation,
+                }
+            )
+
+            # =================================================
+            # SUCCESS
+            # =================================================
+
+            if evaluation.get("passed"):
+
+                experience = (
+                    self._remember_success(
+                        task,
+                        result,
+                        evaluation,
+                        decision,
+                    )
+                )
+
+                return {
+                    "success": True,
+                    "task": task,
+                    "task_analysis": task_analysis,
+                    "decision_trace": decision_trace,
+                    "attempts": attempts,
+                    "agent": result.get(
+                        "agent"
+                    ),
+                    "provider": result.get(
+                        "provider"
+                    ),
+                    "model": result.get(
+                        "model"
+                    ),
+                    "output": result.get(
+                        "output"
+                    ),
+                    "evaluation": evaluation,
+                    "experience": experience,
+                }
+
+            # =================================================
+            # FAILURE / RETRY
+            # =================================================
+
+            feedback = evaluation.get(
+                "feedback",
+                "Worker output failed evaluation.",
+            )
+
+            self.memory.remember_failure(
+                {
+                    "task": task,
+                    "task_signature": decision.get(
+                        "task_signature"
+                    ),
+                    "task_analysis": task_analysis,
+                    "result": result,
+                    "evaluation": evaluation,
+                    "decision": decision,
+                    "strategy": "agent",
+                    "feedback": feedback,
+                }
+            )
+
+            print(
+                "[PIKA DECISION] "
+                f"Attempt {attempt_number} failed. "
+                "Preparing retry."
+            )
+
+        # =====================================================
+        # ALL ATTEMPTS FAILED
+        # =====================================================
+
+        final_evaluation = (
+            attempts[-1]["evaluation"]
+            if attempts
+            else {
+                "passed": False,
+                "score": 0.0,
+                "feedback": (
+                    "No attempts were completed."
+                ),
+            }
+        )
+
+        final_result = (
+            attempts[-1]["result"]
+            if attempts
+            else {
+                "success": False,
+                "output": "",
+                "error": (
+                    "No attempts were completed."
+                ),
+            }
+        )
+
+        final_decision = (
+            attempts[-1].get(
+                "decision",
+                {},
+            )
+            if attempts
+            else {}
+        )
+
+        experience = (
+            self.experience.create_experience(
+                task=task,
+                result=final_result,
+                evaluation=final_evaluation,
+                decision=final_decision,
+            )
+        )
+
+        self.memory.remember_lesson(
+            experience["lesson"]
+        )
+
+        return {
+            "success": False,
+            "task": task,
+            "task_analysis": task_analysis,
+            "decision_trace": decision_trace,
+            "attempts": attempts,
+            "agent": final_result.get(
+                "agent"
+            ),
+            "output": final_result.get(
+                "output"
+            ),
+            "evaluation": final_evaluation,
+            "experience": experience,
+        }

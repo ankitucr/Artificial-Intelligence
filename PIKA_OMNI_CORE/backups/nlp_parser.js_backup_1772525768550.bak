@@ -1,0 +1,111 @@
+const nlp = require('compromise');
+const fs = require('fs-extra'); // 🛠️ Updated to fs-extra for consistency
+const path = require('path');
+
+const CONFIG_PATH = path.join(__dirname, '../data/semantic_config.json');
+
+// ==========================================
+// 🛡️ DYNAMIC WEIGHT LOADER (Self-Coding Logic)
+// ==========================================
+function loadSemanticConfig() {
+    try {
+        if (fs.existsSync(CONFIG_PATH)) {
+            return fs.readJsonSync(CONFIG_PATH);
+        }
+    } catch (e) {
+        console.error("[PARSER ERROR] Config load failed, using fallback.");
+    }
+    
+    // Fallback if file doesn't exist yet
+    return {
+        tech_core: ['python', 'javascript', 'api', 'firebase', 'database', 'server', 'code', 'error', 'bug', 'quantum', 'computing', 'react', 'android'],
+        action: ['create', 'make', 'fix', 'solve', 'find', 'search', 'explain', 'compare'],
+        weights: { tech_core: 3.0, action: 2.0, default: 1.0 }
+    };
+}
+
+function getWordWeight(word, config) {
+    let w = word.toLowerCase();
+    
+    // Self-Coding Check: Kya ye naya evolved tech keyword hai?
+    if (config.tech_core.includes(w)) return config.weights.tech_core;
+    
+    // Kya ye evolved action (verb) hai?
+    if (config.action.includes(w)) return config.weights.action;
+    
+    return config.weights.default || 1.0;
+}
+
+// ==========================================
+// ⚡ ATTENTION ENGINE (Contextual Scoring)
+// ==========================================
+function calculateAttentionScores(tokens, config) {
+    let scoredTokens = [];
+
+    for (let i = 0; i < tokens.length; i++) {
+        let currentWord = tokens[i].normal;
+        let baseWeight = getWordWeight(currentWord, config);
+        let posTag = tokens[i].tags; 
+
+        // ✅ Grammar Boost based on POS tagging logic
+        if (posTag && posTag.Noun) baseWeight += 0.5;
+        if (posTag && posTag.Verb) baseWeight += 0.2;
+
+        // Semantic Attention: Aas-paas ke words ka weight check karna
+        let leftNeighbor = (i > 0) ? getWordWeight(tokens[i-1].normal, config) : 0;
+        let rightNeighbor = (i < tokens.length - 1) ? getWordWeight(tokens[i+1].normal, config) : 0;
+
+        // Attention Score Math
+        let attentionScore = baseWeight + (leftNeighbor * 0.1) + (rightNeighbor * 0.1);
+
+        scoredTokens.push({ word: currentWord, score: attentionScore, tags: posTag });
+    }
+
+    return scoredTokens;
+}
+
+// ==========================================
+// 🚀 MASTER ANALYSIS (Evolution Ready)
+// ==========================================
+function analyzeInput(text) {
+    if (!text) return { originalText: "", intent: "CHAT", keywords: [], entity: "" };
+
+    // 1. Refresh Brain (Load latest evolved weights)
+    const config = loadSemanticConfig();
+    
+    let lowerText = text.toLowerCase().trim();
+    let doc = nlp(lowerText);
+    let intent = "CHAT";
+
+    // Intent Discovery
+    if (doc.questions().found || lowerText.includes('kya') || lowerText.includes('kaise')) {
+        intent = "QUESTION";
+    } else if (lowerText.includes('yaad rakh') || lowerText.includes('save')) {
+        intent = "TEACH";
+    }
+
+    // 2. Tokenization with Evolved Attention
+    let tokens = doc.termList();
+    let scoredWords = calculateAttentionScores(tokens, config);
+
+    // 3. Entity Extraction (High Focus Words)
+    let focusWords = scoredWords.filter(t => t.score > 1.2).map(t => t.word);
+    let exactEntity = focusWords.join(' ');
+
+    if (!exactEntity) exactEntity = doc.nouns().out('text');
+
+    // 4. Night Train Filter (Curiosity Generation)
+    let curiosityKeywords = scoredWords
+        .filter(t => (t.tags && (t.tags.Noun || t.tags.Verb)))
+        .filter(t => t.score >= 1.0)
+        .map(t => t.word);
+
+    return {
+        originalText: text,
+        intent: intent,
+        keywords: [...new Set(curiosityKeywords)],
+        entity: exactEntity || text
+    };
+}
+
+module.exports = { analyzeInput };

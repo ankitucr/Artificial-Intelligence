@@ -1,0 +1,49 @@
+{
+  "name": "hamming_distance",
+  "capability": "This skill calculates the Hamming distance between two binary strings of equal length.",
+  "purpose": "The Hamming distance is useful in error detection and correction, as it measures the number of positions at which two strings are different.",
+  "primary_function": "hamming_distance",
+  "code": "def hamming_distance(s1, s2):\n    if len(s1)!= len(s2):\n        raise ValueError('Input strings must be of equal length')\n    return sum(c1!= c2 for c1, c2 in zip(s1, s2))",
+  "tests": [
+    {
+      "args": [
+        "1010",
+        "1100"
+      ],
+      "kwargs": {},
+      "expected": 2
+    },
+    {
+      "args": [
+        "1111",
+        "1111"
+      ],
+      "kwargs": {},
+      "expected": 0
+    },
+    {
+      "args": [
+        "101",
+        "110"
+      ],
+      "kwargs": {},
+      "expected": 2
+    },
+    {
+      "args": [
+        "",
+        ""
+      ],
+      "kwargs": {},
+      "expected": 0
+    },
+    {
+      "args": [
+        "1",
+        "11"
+      ],
+      "kwargs": {},
+      "expected": null
+    }
+  ]
+}

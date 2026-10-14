@@ -1,0 +1,148 @@
+{
+  "skill": "skill_module_162",
+  "signature": {
+    "hash": "eb4a78e25f32cda42839ff31205fb6bd576d67dda8c5a31e7c4e5067352e560c",
+    "tokens": [
+      "and",
+      "are",
+      "between",
+      "binary",
+      "calculates",
+      "coding",
+      "def",
+      "different",
+      "distance",
+      "equal",
+      "for",
+      "hamming",
+      "hamming_distance",
+      "information",
+      "len",
+      "length",
+      "measures",
+      "none",
+      "number",
+      "positions",
+      "return",
+      "skill",
+      "strings",
+      "sum",
+      "the",
+      "theory",
+      "this",
+      "two",
+      "useful",
+      "which",
+      "zip"
+    ],
+    "functions": [
+      "hamming_distance"
+    ],
+    "imports": [],
+    "calls": [
+      "len",
+      "sum",
+      "zip"
+    ],
+    "operators": [
+      "NotEq"
+    ],
+    "capability": "This skill calculates the Hamming distance between two binary strings of equal length."
+  },
+  "metadata": {
+    "name": "hamming_distance",
+    "capability": "This skill calculates the Hamming distance between two binary strings of equal length.",
+    "purpose": "The Hamming distance is useful in information theory and coding theory, as it measures the number of positions at which two strings are different.",
+    "primary_function": "hamming_distance",
+    "code": "def hamming_distance(s1, s2):\n    if len(s1) != len(s2):\n        return None\n    return sum(c1 != c2 for c1, c2 in zip(s1, s2))",
+    "tests": [
+      {
+        "args": [
+          "1010",
+          "1100"
+        ],
+        "kwargs": {},
+        "expected": 2
+      },
+      {
+        "args": [
+          "1111",
+          "1111"
+        ],
+        "kwargs": {},
+        "expected": 0
+      },
+      {
+        "args": [
+          "1010",
+          "101"
+        ],
+        "kwargs": {},
+        "expected": null
+      },
+      {
+        "args": [
+          "",
+          ""
+        ],
+        "kwargs": {},
+        "expected": 0
+      },
+      {
+        "args": [
+          "1",
+          "0"
+        ],
+        "kwargs": {},
+        "expected": 1
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "ACTIVE",
+    "score": 92.71,
+    "novelty": 0.7916,
+    "similarity": 0.2084,
+    "closest_skill": "skill_module_153",
+    "tests": {
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "test": 1,
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "test": 2,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "test": 3,
+          "passed": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "test": 4,
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "test": 5,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    "determinism": true,
+    "generation_attempt": 1,
+    "backup": "/data/data/com.termux/files/home/bee5/backups/20260820_183759"
+  },
+  "created_at": "2026-08-20 18:38:18"
+}

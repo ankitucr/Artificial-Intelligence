@@ -1,0 +1,3931 @@
+{
+  "history": [
+    {
+      "timestamp": "2026-02-22T20:06:12.127Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67458.76,
+        "change": -1.493
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.23"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:11:12.200Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67400.01,
+        "change": -1.659
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.82"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:16:12.215Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67399.45,
+        "change": -1.609
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.96"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:21:12.319Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67442.31,
+        "change": -1.618
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.77"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:26:12.371Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67448.43,
+        "change": -1.667
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.76"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:31:12.432Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67422.03,
+        "change": -1.666
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.08"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:36:12.441Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67419.53,
+        "change": -1.643
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.73"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:41:12.501Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67411.36,
+        "change": -1.386
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.39"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:46:12.523Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67433.07,
+        "change": -1.378
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.83"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:51:12.553Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67433.07,
+        "change": -1.404
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.69"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T20:57:09.402Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67403.39,
+        "change": -1.37
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.88"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:02:09.513Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67430,
+        "change": -1.175
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.71"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:07:09.619Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67461.1,
+        "change": -1.197
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.89"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:12:09.664Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67458.32,
+        "change": -1.146
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.30"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:17:09.699Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67469.98,
+        "change": -1.261
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.19"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:22:09.755Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67473.93,
+        "change": -1.265
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.75"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:27:09.843Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67483.89,
+        "change": -1.278
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.39"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:32:09.945Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67485.35,
+        "change": -1.277
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.09"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:37:09.964Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67541.58,
+        "change": -1.155
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.89"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:42:10.042Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67590.2,
+        "change": -1.091
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.98"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T21:47:10.113Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67591.13,
+        "change": -1.054
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.12"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T22:45:04.276Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67690.43,
+        "change": -0.596
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.45"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T23:04:13.791Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67626.01,
+        "change": -0.464
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.15"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T23:09:13.875Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67620.27,
+        "change": -0.567
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.23"
+      }
+    },
+    {
+      "timestamp": "2026-02-22T23:14:13.961Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 67514.82,
+        "change": -0.696
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.17"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:01:14.383Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64357.32,
+        "change": -5.537
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.05"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:06:14.427Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64622.8,
+        "change": -5.194
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.87"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:11:14.479Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64666.94,
+        "change": -5.171
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.56"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:16:14.553Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64767.3,
+        "change": -4.985
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.68"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:21:14.565Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64761.13,
+        "change": -4.926
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.48"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:26:14.613Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64581.3,
+        "change": -5.167
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.23"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:31:14.714Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64838.99,
+        "change": -4.763
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.70"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:36:14.757Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64835.65,
+        "change": -4.71
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.16"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:41:14.837Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64720.01,
+        "change": -4.836
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.50"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:46:14.923Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64862.04,
+        "change": -4.601
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.45"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:51:15.020Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64810.95,
+        "change": -4.68
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.77"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T02:56:15.091Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64724.64,
+        "change": -4.788
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.15"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:01:15.196Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64795.19,
+        "change": -4.64
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.88"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:06:15.258Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64979.92,
+        "change": -4.391
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.87"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:11:15.282Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64855.66,
+        "change": -4.624
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.95"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:16:15.312Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64883.3,
+        "change": -4.623
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.09"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:21:15.392Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64727.02,
+        "change": -4.603
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.26"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:26:15.419Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64738.89,
+        "change": -4.664
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.93"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T03:47:56.025Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64945.45,
+        "change": -4.457
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.58"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:04:52.498Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64915.75,
+        "change": -4.637
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.56"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:14:50.061Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 65023.02,
+        "change": -4.476
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.19"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:22:20.618Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64818.76,
+        "change": -4.717
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.98"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:27:20.621Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64769.16,
+        "change": -4.76
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.08"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:32:20.650Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64780.01,
+        "change": -4.765
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.87"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:37:20.762Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64719.98,
+        "change": -4.869
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.11"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:42:20.763Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64703.88,
+        "change": -4.805
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.22"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:47:20.778Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64719.39,
+        "change": -4.787
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "1.57"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T04:56:08.623Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64807.99,
+        "change": -4.701
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.43"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T05:01:21.503Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64832,
+        "change": -4.666
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.00"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T05:06:21.566Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 64908.63,
+        "change": -4.535
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "1.50"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T05:11:21.578Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 65103.2,
+        "change": -4.206
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.98"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T05:16:21.670Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 65097.22,
+        "change": -4.147
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "UP",
+        "volatility": "0.70"
+      }
+    },
+    {
+      "timestamp": "2026-02-23T05:21:21.728Z",
+      "crypto": {
+        "asset": "BTC/USDT",
+        "price": 65123.19,
+        "change": -4.123
+      },
+      "forex": {
+        "status": "Awaiting MetaAPI Keys"
+      },
+      "stocks": {
+        "asset": "NIFTY_50",
+        "status": "Simulated_Until_Angel_Auth",
+        "trend": "DOWN",
+        "volatility": "0.88"
+      }
+    },
+    {
+      "timestamp": "2026-02-24T20:01:48.749Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T20:06:48.982Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T20:11:49.029Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T22:04:11.765Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T22:45:01.974Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T23:03:50.824Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T23:13:12.116Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-24T23:22:29.774Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:15:00.810Z",
+      "markets": {
+        "BINANCE:AVAXUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:31:48.329Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:37:20.149Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:42:20.189Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:47:20.218Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:52:20.311Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T02:57:20.409Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T03:02:20.414Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T03:07:20.448Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T03:31:44.559Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T10:25:03.642Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T10:33:31.425Z",
+      "markets": {
+        "BINANCE:LTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T10:38:59.570Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T10:43:59.609Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T10:48:59.700Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T10:55:32.789Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:01:52.437Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:06:54.640Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:11:54.606Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:23:35.805Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:36:59.544Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:41:59.570Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T11:49:21.578Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:GBPJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T12:05:22.005Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:META": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T12:21:19.429Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T12:30:31.618Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T12:35:31.700Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T12:41:37.644Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T12:52:21.645Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:03:49.157Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:08:49.250Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:14:35.131Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:19:35.204Z",
+      "markets": {
+        "BINANCE:AVAXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:29:26.448Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:34:26.407Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:39:26.502Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:44:26.586Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T13:49:57.966Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T14:01:01.333Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T14:47:40.054Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:04:26.070Z",
+      "markets": {
+        "BINANCE:AVAXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:10:34.953Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:21:06.877Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:26:09.180Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:31:24.414Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:37:53.014Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:META": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:54:12.145Z",
+      "markets": {
+        "BINANCE:AVAXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T15:59:29.595Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:06:10.345Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:11:10.448Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:16:10.486Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:41:05.352Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:46:05.529Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:51:35.051Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T16:56:35.039Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T17:01:52.590Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T17:20:20.070Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T17:29:16.917Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T17:34:16.909Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T17:39:16.913Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T17:44:16.932Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T18:35:11.775Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T18:51:53.501Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T18:56:53.527Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:01:53.516Z",
+      "markets": {
+        "BINANCE:LTCUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:06:53.635Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:11:53.689Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:16:53.682Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:GBPJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:21:53.751Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:26:53.861Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:31:53.862Z",
+      "markets": {
+        "BINANCE:LTCUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:36:53.929Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:41:54.028Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T19:46:54.154Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T20:14:45.381Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T20:35:29.650Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T20:40:29.730Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T20:51:33.185Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T20:56:33.270Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:01:33.337Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:06:33.425Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:META": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:11:33.499Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:16:33.596Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:21:33.695Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:26:33.799Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:31:33.878Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:GOOGL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:36:33.955Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:41:34.020Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:46:34.054Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:51:34.155Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T21:56:34.250Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T22:01:34.310Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T22:06:34.370Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T22:11:34.471Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T22:45:01.393Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T23:03:38.893Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T23:12:51.323Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-25T23:21:42.871Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T00:15:01.001Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T00:34:14.536Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T00:43:44.585Z",
+      "markets": {
+        "BINANCE:LTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T00:53:04.474Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T01:27:04.547Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:META": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T01:36:48.594Z",
+      "markets": {
+        "BINANCE:AVAXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T01:41:48.581Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T01:46:48.652Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T01:58:07.291Z",
+      "markets": {
+        "BINANCE:LTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T02:13:39.840Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T02:31:49.051Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T02:36:49.061Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T02:41:49.123Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T02:46:49.165Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T02:51:49.175Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T03:09:17.769Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T03:35:19.403Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T03:45:07.135Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T03:54:46.390Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T03:59:46.472Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:04:46.577Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:09:46.591Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:14:46.662Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:19:46.676Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:24:46.747Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:29:54.250Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:36:22.994Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:44:59.471Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T04:56:05.677Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:01:05.728Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:06:05.731Z",
+      "markets": {
+        "BINANCE:AVAXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:11:16.808Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:18:00.315Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:23:42.898Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:28:42.941Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:35:04.065Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:UNH": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:49:19.471Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:LT": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:54:19.592Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:META": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T05:59:19.586Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:04:19.704Z",
+      "markets": {
+        "BINANCE:XRPUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:09:19.775Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TCS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:14:19.890Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:29:02.889Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HDFCBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:34:16.853Z",
+      "markets": {
+        "BINANCE:LINKUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:39:42.248Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T06:59:25.016Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AMZN": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:04:46.754Z",
+      "markets": {
+        "BINANCE:ETHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:JPM": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:18:49.134Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:28:40.475Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:33:40.558Z",
+      "markets": {
+        "BINANCE:LTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:38:40.610Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:43:40.715Z",
+      "markets": {
+        "BINANCE:DOGEUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SUNPHARMA": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:48:40.719Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:MARUTI": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:53:40.839Z",
+      "markets": {
+        "BINANCE:SHIBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:INFY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T07:58:40.928Z",
+      "markets": {
+        "BINANCE:BCHUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPJPY": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ICICIBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:BRK.B": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:03:41.036Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:AAPL": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:08:41.058Z",
+      "markets": {
+        "BINANCE:TRXUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:MA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:13:42.851Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:XAGUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:BHARTIARTL": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:18:42.897Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:ITC": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:23:42.975Z",
+      "markets": {
+        "BINANCE:BTCUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:GBPUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:28:43.027Z",
+      "markets": {
+        "BINANCE:SOLUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:EURGBP": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:SBIN": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:TSLA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:33:43.130Z",
+      "markets": {
+        "BINANCE:ADAUSDT": {
+          "recommendation": "BUY"
+        },
+        "OANDA:EURCHF": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:PG": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:38:43.223Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:NZDUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:AXISBANK": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:WMT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:44:28.141Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:EURUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:RELIANCE": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:MSFT": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:49:28.221Z",
+      "markets": {
+        "BINANCE:BNBUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:AUDNZD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:M&M": {
+          "recommendation": "NEUTRAL"
+        },
+        "NASDAQ:NVDA": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:54:28.293Z",
+      "markets": {
+        "BINANCE:MATICUSDT": {
+          "recommendation": "NEUTRAL"
+        },
+        "OANDA:XAUUSD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:TATAMOTORS": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:LLY": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-26T08:59:28.318Z",
+      "markets": {
+        "BINANCE:DOTUSDT": {
+          "recommendation": "SELL"
+        },
+        "OANDA:USDCAD": {
+          "recommendation": "NEUTRAL"
+        },
+        "NSE:HINDUNILVR": {
+          "recommendation": "NEUTRAL"
+        },
+        "NYSE:V": {
+          "recommendation": "NEUTRAL"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+==============================================================================
+BEE5 FORENSIC CLASSIFICATION v2
+==============================================================================
+
+BROKEN_SYNTAX                  1
+DATA_OR_SCRIPT                 1
+INFRASTRUCTURE                 24
+INFRASTRUCTURE_BROKEN          4
+INFRASTRUCTURE_GENERATOR       26
+NETWORK                        25
+PLACEHOLDER                    108
+REAL_CAPABILITY                16
+REAL_DUPLICATE_CANDIDATE       61
+UNTESTED                       4
+
+
+DUPLICATE GROUPS
+------------------------------------------------------------------------------
+
+GROUP 1 (8 files)
+  - skill_module_-2207569957912109588.py
+  - skill_module_0a7a8b491e2432b0e071d631c1474c8051d94bd2195374c39a4dcbaefac7c6d7.py
+  - skill_module_1.py
+  - skill_module_1764123586497443160.py
+  - skill_module_7737377146923657469.py
+  - skill_module_93e4a3579c6cb75240c377d1dea3f0a4b3cab8f9db9f27be1d470a119145c439.py
+  - skill_module_c16eb3b17c03e36d77b2bb745701f6fe34a80ae4bd1ab095af1cfbba76900499.py
+  - skill_module_f8c7d5bb08f8ef80b30e1566f692b98ef427607c7400ff97a873919e667360a8.py
+
+GROUP 2 (11 files)
+  - skill_module_100.py
+  - skill_module_102.py
+  - skill_module_108.py
+  - skill_module_111.py
+  - skill_module_112.py
+  - skill_module_113.py
+  - skill_module_114.py
+  - skill_module_120.py
+  - skill_module_124.py
+  - skill_module_90.py
+  - skill_module_96.py
+
+GROUP 3 (2 files)
+  - skill_module_101.py
+  - skill_module_115.py
+
+GROUP 4 (4 files)
+  - skill_module_103.py
+  - skill_module_104.py
+  - skill_module_95.py
+  - skill_module_99.py
+
+GROUP 5 (6 files)
+  - skill_module_105.py
+  - skill_module_106.py
+  - skill_module_107.py
+  - skill_module_109.py
+  - skill_module_118.py
+  - skill_module_119.py
+
+GROUP 6 (5 files)
+  - skill_module_11.py
+  - skill_module_31.py
+  - skill_module_37.py
+  - skill_module_44.py
+  - skill_module_7.py
+
+GROUP 7 (3 files)
+  - skill_module_116.py
+  - skill_module_117.py
+  - skill_module_121.py
+
+GROUP 8 (7 files)
+  - skill_module_122.py
+  - skill_module_123.py
+  - skill_module_92.py
+  - skill_module_93.py
+  - skill_module_94.py
+  - skill_module_97.py
+  - skill_module_98.py
+
+GROUP 9 (8 files)
+  - skill_module_126.py
+  - skill_module_130.py
+  - skill_module_135.py
+  - skill_module_139.py
+  - skill_module_141.py
+  - skill_module_142.py
+  - skill_module_143.py
+  - skill_module_148.py
+
+GROUP 10 (13 files)
+  - skill_module_127.py
+  - skill_module_129.py
+  - skill_module_131.py
+  - skill_module_133.py
+  - skill_module_134.py
+  - skill_module_136.py
+  - skill_module_137.py
+  - skill_module_138.py
+  - skill_module_140.py
+  - skill_module_145.py
+  - skill_module_147.py
+  - skill_module_149.py
+  - skill_module_150.py
+
+GROUP 11 (2 files)
+  - skill_module_14.py
+  - skill_module_67.py
+
+GROUP 12 (3 files)
+  - skill_module_16.py
+  - skill_module_18.py
+  - skill_module_65.py
+
+GROUP 13 (6 files)
+  - skill_module_185.py
+  - skill_module_356966c6e825f35ae297e7908a0bfc652f1c1c5452f3c99c619419e3ca57e95b.py
+  - skill_module_674a6c2f.py
+  - skill_module_duckduckgo.py
+  - skill_module_duckduckgo_reader.py
+  - skill_module_f83461cc.py
+
+GROUP 14 (3 files)
+  - skill_module_345.py
+  - skill_module_ddg_reader.py
+  - skill_module_duckduckgo_learning.py
+
+GROUP 15 (2 files)
+  - skill_module_48.py
+  - skill_module_8.py
+
+GROUP 16 (2 files)
+  - skill_module_79.py
+  - skill_module_85.py
+
+GROUP 17 (2 files)
+  - skill_module_80.py
+  - skill_module_86.py
+
+GROUP 18 (2 files)
+  - skill_module_81.py
+  - skill_module_86.py
+
+
+INDIVIDUAL CLASSIFICATION
+------------------------------------------------------------------------------
+NETWORK                        skill_module_-2207569957912109588.py
+BROKEN_SYNTAX                  skill_module_-4251365629200264271.py
+UNTESTED                       skill_module_044cfa68af415e5a78eb12cbffb34774024c36d982e03af8096bfe2ebe054d4c.py
+NETWORK                        skill_module_0a7a8b491e2432b0e071d631c1474c8051d94bd2195374c39a4dcbaefac7c6d7.py
+REAL_DUPLICATE_CANDIDATE       skill_module_1.py
+INFRASTRUCTURE_BROKEN          skill_module_10.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.OperationalError: table skills has no column named name
+REAL_DUPLICATE_CANDIDATE       skill_module_100.py
+REAL_DUPLICATE_CANDIDATE       skill_module_101.py
+REAL_DUPLICATE_CANDIDATE       skill_module_102.py
+REAL_DUPLICATE_CANDIDATE       skill_module_103.py
+REAL_DUPLICATE_CANDIDATE       skill_module_104.py
+REAL_DUPLICATE_CANDIDATE       skill_module_105.py
+REAL_DUPLICATE_CANDIDATE       skill_module_106.py
+REAL_DUPLICATE_CANDIDATE       skill_module_107.py
+REAL_DUPLICATE_CANDIDATE       skill_module_108.py
+REAL_DUPLICATE_CANDIDATE       skill_module_109.py
+INFRASTRUCTURE                 skill_module_11.py
+REAL_CAPABILITY                skill_module_110.py
+REAL_DUPLICATE_CANDIDATE       skill_module_111.py
+REAL_DUPLICATE_CANDIDATE       skill_module_112.py
+REAL_DUPLICATE_CANDIDATE       skill_module_113.py
+REAL_DUPLICATE_CANDIDATE       skill_module_114.py
+PLACEHOLDER                    skill_module_114919849907165822428072449381462377024950193360833656421391113702899205159582.py
+REAL_DUPLICATE_CANDIDATE       skill_module_115.py
+REAL_DUPLICATE_CANDIDATE       skill_module_116.py
+REAL_DUPLICATE_CANDIDATE       skill_module_117.py
+REAL_DUPLICATE_CANDIDATE       skill_module_118.py
+REAL_DUPLICATE_CANDIDATE       skill_module_119.py
+INFRASTRUCTURE_GENERATOR       skill_module_12.py
+REAL_DUPLICATE_CANDIDATE       skill_module_120.py
+REAL_DUPLICATE_CANDIDATE       skill_module_121.py
+REAL_DUPLICATE_CANDIDATE       skill_module_122.py
+REAL_DUPLICATE_CANDIDATE       skill_module_123.py
+REAL_DUPLICATE_CANDIDATE       skill_module_124.py
+REAL_CAPABILITY                skill_module_125.py
+REAL_DUPLICATE_CANDIDATE       skill_module_126.py
+REAL_DUPLICATE_CANDIDATE       skill_module_127.py
+REAL_CAPABILITY                skill_module_128.py
+REAL_DUPLICATE_CANDIDATE       skill_module_129.py
+INFRASTRUCTURE_GENERATOR       skill_module_13.py
+REAL_DUPLICATE_CANDIDATE       skill_module_130.py
+REAL_DUPLICATE_CANDIDATE       skill_module_131.py
+REAL_CAPABILITY                skill_module_132.py
+REAL_DUPLICATE_CANDIDATE       skill_module_133.py
+REAL_DUPLICATE_CANDIDATE       skill_module_134.py
+REAL_DUPLICATE_CANDIDATE       skill_module_135.py
+REAL_DUPLICATE_CANDIDATE       skill_module_136.py
+REAL_DUPLICATE_CANDIDATE       skill_module_137.py
+REAL_DUPLICATE_CANDIDATE       skill_module_138.py
+REAL_DUPLICATE_CANDIDATE       skill_module_139.py
+NETWORK                        skill_module_14.py
+REAL_DUPLICATE_CANDIDATE       skill_module_140.py
+REAL_DUPLICATE_CANDIDATE       skill_module_141.py
+REAL_DUPLICATE_CANDIDATE       skill_module_142.py
+REAL_DUPLICATE_CANDIDATE       skill_module_143.py
+PLACEHOLDER                    skill_module_144.py
+REAL_DUPLICATE_CANDIDATE       skill_module_145.py
+PLACEHOLDER                    skill_module_146.py
+REAL_DUPLICATE_CANDIDATE       skill_module_147.py
+REAL_DUPLICATE_CANDIDATE       skill_module_148.py
+REAL_DUPLICATE_CANDIDATE       skill_module_149.py
+INFRASTRUCTURE_BROKEN          skill_module_15.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.OperationalError: table skills has no column named name
+REAL_DUPLICATE_CANDIDATE       skill_module_150.py
+PLACEHOLDER                    skill_module_152.py
+PLACEHOLDER                    skill_module_153.py
+PLACEHOLDER                    skill_module_155.py
+PLACEHOLDER                    skill_module_157.py
+PLACEHOLDER                    skill_module_159.py
+INFRASTRUCTURE                 skill_module_16.py
+PLACEHOLDER                    skill_module_161.py
+PLACEHOLDER                    skill_module_163.py
+PLACEHOLDER                    skill_module_165.py
+PLACEHOLDER                    skill_module_167.py
+PLACEHOLDER                    skill_module_169.py
+INFRASTRUCTURE_GENERATOR       skill_module_17.py
+PLACEHOLDER                    skill_module_170.py
+PLACEHOLDER                    skill_module_171.py
+PLACEHOLDER                    skill_module_172.py
+PLACEHOLDER                    skill_module_173.py
+PLACEHOLDER                    skill_module_174.py
+PLACEHOLDER                    skill_module_175.py
+PLACEHOLDER                    skill_module_176.py
+NETWORK                        skill_module_1764123586497443160.py
+PLACEHOLDER                    skill_module_177.py
+PLACEHOLDER                    skill_module_178.py
+INFRASTRUCTURE                 skill_module_18.py
+PLACEHOLDER                    skill_module_180.py
+PLACEHOLDER                    skill_module_181.py
+PLACEHOLDER                    skill_module_182.py
+PLACEHOLDER                    skill_module_183.py
+PLACEHOLDER                    skill_module_184.py
+NETWORK                        skill_module_185.py
+PLACEHOLDER                    skill_module_186.py
+PLACEHOLDER                    skill_module_187.py
+PLACEHOLDER                    skill_module_188.py
+PLACEHOLDER                    skill_module_189.py
+INFRASTRUCTURE_GENERATOR       skill_module_19.py
+PLACEHOLDER                    skill_module_190.py
+PLACEHOLDER                    skill_module_191.py
+PLACEHOLDER                    skill_module_192.py
+PLACEHOLDER                    skill_module_193.py
+PLACEHOLDER                    skill_module_194.py
+PLACEHOLDER                    skill_module_195.py
+PLACEHOLDER                    skill_module_196.py
+PLACEHOLDER                    skill_module_197.py
+PLACEHOLDER                    skill_module_198.py
+PLACEHOLDER                    skill_module_199.py
+INFRASTRUCTURE_GENERATOR       skill_module_2.py
+INFRASTRUCTURE                 skill_module_20.py
+PLACEHOLDER                    skill_module_200.py
+PLACEHOLDER                    skill_module_201.py
+PLACEHOLDER                    skill_module_202.py
+PLACEHOLDER                    skill_module_203.py
+PLACEHOLDER                    skill_module_204.py
+PLACEHOLDER                    skill_module_205.py
+PLACEHOLDER                    skill_module_206.py
+PLACEHOLDER                    skill_module_207.py
+PLACEHOLDER                    skill_module_208.py
+PLACEHOLDER                    skill_module_209.py
+INFRASTRUCTURE                 skill_module_21.py
+PLACEHOLDER                    skill_module_211.py
+PLACEHOLDER                    skill_module_213.py
+PLACEHOLDER                    skill_module_215.py
+PLACEHOLDER                    skill_module_217.py
+PLACEHOLDER                    skill_module_219.py
+NETWORK                        skill_module_22.py
+PLACEHOLDER                    skill_module_221.py
+PLACEHOLDER                    skill_module_223.py
+PLACEHOLDER                    skill_module_225.py
+PLACEHOLDER                    skill_module_227.py
+PLACEHOLDER                    skill_module_229.py
+INFRASTRUCTURE_GENERATOR       skill_module_23.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.OperationalError: no such column: name
+PLACEHOLDER                    skill_module_231.py
+PLACEHOLDER                    skill_module_233.py
+PLACEHOLDER                    skill_module_235.py
+PLACEHOLDER                    skill_module_237.py
+PLACEHOLDER                    skill_module_239.py
+NETWORK                        skill_module_24.py
+PLACEHOLDER                    skill_module_241.py
+PLACEHOLDER                    skill_module_243.py
+PLACEHOLDER                    skill_module_246.py
+PLACEHOLDER                    skill_module_248.py
+INFRASTRUCTURE_GENERATOR       skill_module_25.py
+PLACEHOLDER                    skill_module_250.py
+PLACEHOLDER                    skill_module_252.py
+PLACEHOLDER                    skill_module_254.py
+PLACEHOLDER                    skill_module_257.py
+INFRASTRUCTURE                 skill_module_26.py
+PLACEHOLDER                    skill_module_260.py
+PLACEHOLDER                    skill_module_263.py
+PLACEHOLDER                    skill_module_266.py
+PLACEHOLDER                    skill_module_269.py
+INFRASTRUCTURE                 skill_module_27.py
+PLACEHOLDER                    skill_module_272.py
+PLACEHOLDER                    skill_module_275.py
+PLACEHOLDER                    skill_module_275142064971636550058847793213212940709.py
+PLACEHOLDER                    skill_module_278.py
+NETWORK                        skill_module_28.py
+PLACEHOLDER                    skill_module_282.py
+PLACEHOLDER                    skill_module_286.py
+INFRASTRUCTURE_GENERATOR       skill_module_29.py
+PLACEHOLDER                    skill_module_290.py
+PLACEHOLDER                    skill_module_295.py
+INFRASTRUCTURE                 skill_module_3.py
+PLACEHOLDER                    skill_module_300.py
+PLACEHOLDER                    skill_module_305.py
+INFRASTRUCTURE                 skill_module_31.py
+PLACEHOLDER                    skill_module_310.py
+PLACEHOLDER                    skill_module_315.py
+INFRASTRUCTURE                 skill_module_32.py
+PLACEHOLDER                    skill_module_320.py
+PLACEHOLDER                    skill_module_325.py
+NETWORK                        skill_module_33.py
+PLACEHOLDER                    skill_module_330.py
+INFRASTRUCTURE_GENERATOR       skill_module_34.py
+PLACEHOLDER                    skill_module_344.py
+REAL_DUPLICATE_CANDIDATE       skill_module_345.py
+INFRASTRUCTURE_GENERATOR       skill_module_35.py
+NETWORK                        skill_module_356966c6e825f35ae297e7908a0bfc652f1c1c5452f3c99c619419e3ca57e95b.py
+PLACEHOLDER                    skill_module_35f4bcc0.py
+INFRASTRUCTURE_GENERATOR       skill_module_36.py
+INFRASTRUCTURE                 skill_module_37.py
+INFRASTRUCTURE_GENERATOR       skill_module_38.py
+INFRASTRUCTURE                 skill_module_39.py
+INFRASTRUCTURE                 skill_module_4.py
+INFRASTRUCTURE_GENERATOR       skill_module_40.py
+INFRASTRUCTURE_GENERATOR       skill_module_42.py
+INFRASTRUCTURE_GENERATOR       skill_module_43.py
+INFRASTRUCTURE                 skill_module_44.py
+INFRASTRUCTURE_GENERATOR       skill_module_45.py
+PLACEHOLDER                    skill_module_46.py
+INFRASTRUCTURE_GENERATOR       skill_module_47.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.OperationalError: no such column: name
+INFRASTRUCTURE                 skill_module_48.py
+    ERROR: no such table: main
+INFRASTRUCTURE_GENERATOR       skill_module_49.py
+PLACEHOLDER                    skill_module_4cea24b3.py
+NETWORK                        skill_module_5.py
+INFRASTRUCTURE                 skill_module_50.py
+INFRASTRUCTURE_GENERATOR       skill_module_51.py
+NETWORK                        skill_module_52.py
+INFRASTRUCTURE_GENERATOR       skill_module_53.py
+NETWORK                        skill_module_54.py
+PLACEHOLDER                    skill_module_55.py
+PLACEHOLDER                    skill_module_553255f5.py
+INFRASTRUCTURE_GENERATOR       skill_module_56.py
+PLACEHOLDER                    skill_module_5623.py
+INFRASTRUCTURE_GENERATOR       skill_module_58.py
+INFRASTRUCTURE                 skill_module_59.py
+DATA_OR_SCRIPT                 skill_module_5912.py
+INFRASTRUCTURE                 skill_module_6.py
+PLACEHOLDER                    skill_module_60.py
+INFRASTRUCTURE_GENERATOR       skill_module_61.py
+INFRASTRUCTURE_GENERATOR       skill_module_62.py
+UNTESTED                       skill_module_6242.py
+INFRASTRUCTURE_GENERATOR       skill_module_64.py
+INFRASTRUCTURE                 skill_module_65.py
+PLACEHOLDER                    skill_module_66.py
+NETWORK                        skill_module_67.py
+NETWORK                        skill_module_674a6c2f.py
+INFRASTRUCTURE_GENERATOR       skill_module_68.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.OperationalError: table skills has no column named name
+INFRASTRUCTURE                 skill_module_69.py
+    ERROR: An error occurred: no such table: your_table
+INFRASTRUCTURE                 skill_module_7.py
+PLACEHOLDER                    skill_module_70.py
+INFRASTRUCTURE                 skill_module_71.py
+INFRASTRUCTURE_BROKEN          skill_module_72.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.OperationalError: table bee5 has 2 columns but 1 values were supplied
+PLACEHOLDER                    skill_module_74.py
+REAL_CAPABILITY                skill_module_75.py
+REAL_CAPABILITY                skill_module_76.py
+REAL_CAPABILITY                skill_module_77.py
+NETWORK                        skill_module_7737377146923657469.py
+REAL_CAPABILITY                skill_module_78.py
+REAL_DUPLICATE_CANDIDATE       skill_module_79.py
+INFRASTRUCTURE                 skill_module_8.py
+    ERROR: no such table: table_name
+REAL_DUPLICATE_CANDIDATE       skill_module_80.py
+REAL_DUPLICATE_CANDIDATE       skill_module_81.py
+REAL_CAPABILITY                skill_module_82.py
+PLACEHOLDER                    skill_module_8276.py
+REAL_CAPABILITY                skill_module_83.py
+REAL_CAPABILITY                skill_module_84.py
+REAL_DUPLICATE_CANDIDATE       skill_module_85.py
+REAL_DUPLICATE_CANDIDATE       skill_module_86.py
+REAL_CAPABILITY                skill_module_87.py
+REAL_CAPABILITY                skill_module_88.py
+REAL_CAPABILITY                skill_module_89.py
+PLACEHOLDER                    skill_module_9.py
+REAL_DUPLICATE_CANDIDATE       skill_module_90.py
+REAL_CAPABILITY                skill_module_91.py
+REAL_DUPLICATE_CANDIDATE       skill_module_92.py
+REAL_DUPLICATE_CANDIDATE       skill_module_93.py
+NETWORK                        skill_module_93e4a3579c6cb75240c377d1dea3f0a4b3cab8f9db9f27be1d470a119145c439.py
+REAL_DUPLICATE_CANDIDATE       skill_module_94.py
+REAL_DUPLICATE_CANDIDATE       skill_module_95.py
+REAL_DUPLICATE_CANDIDATE       skill_module_96.py
+REAL_DUPLICATE_CANDIDATE       skill_module_97.py
+REAL_DUPLICATE_CANDIDATE       skill_module_98.py
+REAL_DUPLICATE_CANDIDATE       skill_module_99.py
+PLACEHOLDER                    skill_module_SOgqkadu9g1lXvtx.py
+NETWORK                        skill_module_c16eb3b17c03e36d77b2bb745701f6fe34a80ae4bd1ab095af1cfbba76900499.py
+UNTESTED                       skill_module_ceafdc45330d43b5a959871316459f58.py
+NETWORK                        skill_module_dca1359033649317d19726fe4d911aa0ef2e6fc096838944f2cc9952dfda26ec.py
+NETWORK                        skill_module_ddg_reader.py
+NETWORK                        skill_module_duckduckgo.py
+NETWORK                        skill_module_duckduckgo_learning.py
+NETWORK                        skill_module_duckduckgo_reader.py
+INFRASTRUCTURE_BROKEN          skill_module_duckduckgo_search.py
+    ERROR: Status     : FAILED_EXIT_1 | Traceback (most recent call last): | sqlite3.ProgrammingError: Error binding parameter 1: type 'function' is not supported
+NETWORK                        skill_module_f83461cc.py
+NETWORK                        skill_module_f8c7d5bb08f8ef80b30e1566f692b98ef427607c7400ff97a873919e667360a8.py
+INFRASTRUCTURE                 skill_module_neural_network_node.py
+REAL_CAPABILITY                skill_module_text_summarization.py
+UNTESTED                       skill_module_web_search.py
+PLACEHOLDER                    skill_module_wiki_info.py

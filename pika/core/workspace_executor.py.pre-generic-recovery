@@ -1,0 +1,415 @@
+from __future__ import annotations
+
+import json
+import re
+from typing import Any
+
+
+class WorkspaceExecutor:
+    """
+    Phase 31 controlled workspace execution layer.
+
+    The worker proposes structured file changes.
+    This layer validates and executes those changes through
+    the registered workspace tools.
+    """
+
+    def __init__(self, tool_runtime):
+        self.tool_runtime = tool_runtime
+
+    # ---------------------------------------------------------
+    # TOOL HELPER
+    # ---------------------------------------------------------
+
+    def _execute(self, name: str, **kwargs: Any) -> dict[str, Any]:
+        try:
+            result = self.tool_runtime.execute(
+                name,
+                **kwargs,
+            )
+
+            if isinstance(result, dict):
+                return result
+
+            return {
+                "success": True,
+                "result": result,
+            }
+
+        except Exception as exc:
+            return {
+                "success": False,
+                "error": str(exc),
+                "error_type": "workspace_runtime",
+            }
+
+    # ---------------------------------------------------------
+    # INSPECT
+    # ---------------------------------------------------------
+
+    def inspect(self) -> dict[str, Any]:
+        return self._execute(
+            "workspace_list",
+            path=".",
+        )
+
+    # ---------------------------------------------------------
+    # PARSE WORKER OUTPUT
+    # ---------------------------------------------------------
+
+    def parse_actions(self, output: str) -> dict[str, Any]:
+        if not output:
+            return {
+                "success": False,
+                "error": "Worker returned empty output.",
+            }
+
+        text = output.strip()
+
+        # Remove markdown JSON fences.
+        fenced = re.search(
+            r"```(?:json)?\s*(.*?)\s*```",
+            text,
+            re.DOTALL | re.IGNORECASE,
+        )
+
+        if fenced:
+            text = fenced.group(1).strip()
+
+        # Try complete JSON first.
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+            # Fallback: locate the outermost JSON object.
+            start = text.find("{")
+            end = text.rfind("}")
+
+            if start == -1 or end == -1 or end <= start:
+                return {
+                    "success": False,
+                    "error": (
+                        "Worker output did not contain a valid "
+                        "JSON workspace action plan."
+                    ),
+                }
+
+            try:
+                data = json.loads(
+                    text[start : end + 1]
+                )
+            except json.JSONDecodeError as exc:
+                return {
+                    "success": False,
+                    "error": (
+                        "Worker JSON could not be parsed: "
+                        f"{exc}"
+                    ),
+                }
+
+        if not isinstance(data, dict):
+            return {
+                "success": False,
+                "error": "Workspace action plan must be a JSON object.",
+            }
+
+        files = data.get("files", [])
+        commands = data.get("commands", [])
+
+        if not isinstance(files, list):
+            return {
+                "success": False,
+                "error": "'files' must be a list.",
+            }
+
+        if not isinstance(commands, list):
+            return {
+                "success": False,
+                "error": "'commands' must be a list.",
+            }
+
+        return {
+            "success": True,
+            "files": files,
+            "commands": commands,
+        }
+
+    # ---------------------------------------------------------
+    # APPLY FILE ACTIONS
+    # ---------------------------------------------------------
+
+    def apply_files(
+        self,
+        files: list[Any],
+    ) -> dict[str, Any]:
+        results = []
+
+        for item in files:
+            if not isinstance(item, dict):
+                return {
+                    "success": False,
+                    "error": "Every file action must be an object.",
+                    "results": results,
+                }
+
+            path = item.get("path")
+            content = item.get("content")
+
+            if not isinstance(path, str) or not path.strip():
+                return {
+                    "success": False,
+                    "error": "Every file action requires a valid path.",
+                    "results": results,
+                }
+
+            if not isinstance(content, str):
+                return {
+                    "success": False,
+                    "error": f"File '{path}' has invalid content.",
+                    "results": results,
+                }
+
+            result = self._execute(
+                "workspace_write",
+                path=path,
+                content=content,
+            )
+
+            results.append(
+                {
+                    "path": path,
+                    "result": result,
+                }
+            )
+
+            if not result.get("success"):
+                underlying_error = result.get(
+                    "error",
+                    "Workspace write operation failed.",
+                )
+
+                return {
+                    "success": False,
+                    "error": (
+                        f"Failed to write '{path}': "
+                        f"{underlying_error}"
+                    ),
+                    "failed_path": path,
+                    "underlying_result": result,
+                    "results": results,
+                }
+
+        return {
+            "success": True,
+            "results": results,
+        }
+
+    # ---------------------------------------------------------
+    # VALIDATE PYTHON FILES
+    # ---------------------------------------------------------
+
+    def validate_python_files(
+        self,
+        files: list[Any],
+    ) -> dict[str, Any]:
+        checks = []
+
+        for item in files:
+            if not isinstance(item, dict):
+                continue
+
+            path = item.get("path")
+
+            if not isinstance(path, str):
+                continue
+
+            if not path.endswith(".py"):
+                continue
+
+            result = self._execute(
+                "workspace_check_python",
+                path=path,
+            )
+
+            checks.append(
+                {
+                    "path": path,
+                    "result": result,
+                }
+            )
+
+            if not result.get("success"):
+                return {
+                    "success": False,
+                    "checks": checks,
+                    "error": (
+                        f"Python validation failed for '{path}'."
+                    ),
+                }
+
+        return {
+            "success": True,
+            "checks": checks,
+        }
+
+    # ---------------------------------------------------------
+    # RUN COMMANDS
+    # ---------------------------------------------------------
+
+    def run_commands(
+        self,
+        commands: list[Any],
+    ) -> dict[str, Any]:
+        results = []
+
+        for command in commands:
+            if not isinstance(command, list):
+                return {
+                    "success": False,
+                    "error": (
+                        "Each workspace command must be "
+                        "an argument list."
+                    ),
+                    "results": results,
+                }
+
+            if not command:
+                return {
+                    "success": False,
+                    "error": "Workspace command cannot be empty.",
+                    "results": results,
+                }
+
+            result = self._execute(
+                "workspace_run",
+                command=command,
+            )
+
+            results.append(
+                {
+                    "command": command,
+                    "result": result,
+                }
+            )
+
+            if not result.get("success"):
+                return {
+                    "success": False,
+                    "results": results,
+                    "error": (
+                        "Workspace command failed."
+                    ),
+                }
+
+        return {
+            "success": True,
+            "results": results,
+        }
+
+    # ---------------------------------------------------------
+    # FULL EXECUTION
+    # ---------------------------------------------------------
+
+    def execute_worker_output(
+        self,
+        output: str,
+    ) -> dict[str, Any]:
+        parsed = self.parse_actions(output)
+
+        if not parsed.get("success"):
+            return parsed
+
+        files = parsed.get("files", [])
+        commands = parsed.get("commands", [])
+
+        file_result = self.apply_files(files)
+
+        if not file_result.get("success"):
+            return {
+                "success": False,
+                "stage": "write",
+                "error": file_result.get("error"),
+                "files": file_result,
+            }
+
+        python_result = self.validate_python_files(files)
+
+        if not python_result.get("success"):
+            return {
+                "success": False,
+                "stage": "python_validation",
+                "error": python_result.get("error"),
+                "files": file_result,
+                "validation": python_result,
+            }
+
+        command_result = self.run_commands(commands)
+
+        if not command_result.get("success"):
+            return {
+                "success": False,
+                "stage": "execution",
+                "error": command_result.get("error"),
+                "files": file_result,
+                "validation": python_result,
+                "execution": command_result,
+            }
+
+        return {
+            "success": True,
+            "stage": "complete",
+            "files": file_result,
+            "validation": python_result,
+            "execution": command_result,
+        }
+
+    # ---------------------------------------------------------
+    # BUILD WORKER INSTRUCTIONS
+    # ---------------------------------------------------------
+
+    def build_context(
+        self,
+        task: str,
+        workspace_state: dict[str, Any],
+        previous_feedback: str = "",
+    ) -> dict[str, Any]:
+        return {
+            "workspace_execution": True,
+            "workspace_policy": {
+                "filesystem": (
+                    "Only create or modify files inside the "
+                    "controlled PIKA workspace."
+                ),
+                "commands": (
+                    "Only commands accepted by the workspace "
+                    "runtime may be executed."
+                ),
+                "security": (
+                    "Never use absolute paths or ../ traversal."
+                ),
+            },
+            "task": task,
+            "workspace_state": workspace_state,
+            "previous_feedback": previous_feedback,
+            "output_contract": {
+                "format": "JSON only",
+                "schema": {
+                    "files": [
+                        {
+                            "path": "relative/path",
+                            "content": "complete file content",
+                        }
+                    ],
+                    "commands": [
+                        ["python", "relative/path.py"]
+                    ],
+                },
+                "rules": [
+                    "Return JSON only.",
+                    "Do not use markdown fences.",
+                    "Include complete file contents.",
+                    "Use relative workspace paths only.",
+                    "Do not include explanations outside JSON.",
+                    "Commands must be argument arrays.",
+                ],
+            },
+        }

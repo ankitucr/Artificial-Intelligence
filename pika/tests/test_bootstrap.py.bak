@@ -1,0 +1,27 @@
+import asyncio
+
+from core.brain import PIKABrain
+from core.planner import Planner
+from core.router import create_default_router
+from memory.manager import MemoryManager
+from evaluation.evaluator import Evaluator
+from learning.experience import ExperienceEngine
+
+
+def test_brain_bootstrap():
+
+    async def run():
+        brain = PIKABrain(
+            router=create_default_router(),
+            memory=MemoryManager(),
+            planner=Planner(),
+            evaluator=Evaluator(),
+            experience=ExperienceEngine(),
+        )
+
+        result = await brain.think("test task")
+
+        assert result["evaluation"]["passed"] is True
+        assert len(brain.memory.episodes) == 1
+
+    asyncio.run(run())
