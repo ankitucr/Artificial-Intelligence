@@ -18,31 +18,71 @@ from core.pika_code_learning import PikaCodeLearning
 
 
 
-# PHASE35_VERIFIED_LOOP_V2
+# PHASE35_VERIFIED_LOOP_V3
 def _phase35_save_repair(
     memory, task, candidates, outcome, diagnosis,
     replay_context=None, learning_engine=None
 ):
-    """Save only explicitly tested repairs to existing learning systems."""
+    """Persist a repair only when its executed test and commit records agree."""
     if not isinstance(outcome, dict) or outcome.get("success") is not True:
         return False
-    repair = outcome.get("repair", {})
+
+    repair = outcome.get("repair")
     if not isinstance(repair, dict):
         return False
+
     if outcome.get("test_passed") is not True:
         print("[PHASE35] Independent test evidence missing; save skipped.")
         return False
 
-    accepted = outcome.get("accepted_candidate") or repair.get("final_candidate")
+    accepted = outcome.get("accepted_candidate")
     if not isinstance(accepted, str) or accepted not in candidates:
         print("[PHASE35] Accepted candidate mismatch; save skipped.")
         return False
 
+    def _passed(record):
+        return isinstance(record, dict) and record.get("success") is True
+
+    # Do not trust summary booleans alone. Require the execution records
+    # emitted by SelfHealingEngine after test, validation, and commit.
+    if (
+        repair.get("success") is not True
+        or repair.get("stage") != "healed"
+        or repair.get("final_candidate") != accepted
+        or repair.get("test_passed") is not True
+        or repair.get("validation_passed") is not True
+        or repair.get("commit_passed") is not True
+        or not _passed(repair.get("test"))
+        or not _passed(repair.get("validation"))
+        or not _passed(repair.get("commit"))
+    ):
+        print("[PHASE35] Complete test/validation/commit records missing; save skipped.")
+        return False
+
+    attempts = repair.get("attempts")
+    committed_attempt_exists = isinstance(attempts, list) and any(
+        isinstance(attempt, dict)
+        and attempt.get("success") is True
+        and attempt.get("stage") == "committed"
+        and attempt.get("candidate") == accepted
+        and _passed(attempt.get("test"))
+        and _passed(attempt.get("validation"))
+        and _passed(attempt.get("commit"))
+        for attempt in attempts
+    )
+    if not committed_attempt_exists:
+        print("[PHASE35] No matching committed execution record; save skipped.")
+        return False
+
+    if not isinstance(diagnosis, dict):
+        diagnosis = {}
+
     context = dict(replay_context or {})
     evidence = [
-        "Phase 33 repair success",
-        "test_passed=True",
-        "Accepted candidate matched submitted candidates",
+        "SelfHealingEngine test result success=True",
+        "SelfHealingEngine validation result success=True",
+        "Transaction commit result success=True",
+        "Accepted candidate matches the committed candidate",
     ]
     try:
         memory.remember(
@@ -66,7 +106,10 @@ def _phase35_save_repair(
                 solution=accepted,
                 verification={
                     "independent_test": True,
+                    "test": repair["test"],
                     "test_passed": True,
+                    "syntax": True,
+                    "execution": True,
                     "evidence": evidence,
                 },
                 success=True,
@@ -80,8 +123,6 @@ def _phase35_save_repair(
     except Exception as exc:
         print("[PHASE35] Learning save failed safely:", exc)
         return False
-
-
 
 
 class PIKABrain:
