@@ -28,7 +28,25 @@ def run():
             "success": True,
             "test_passed": True,
             "accepted_candidate": code,
-            "repair": {"final_candidate": code},
+            "repair": {
+                "success": True,
+                "stage": "healed",
+                "final_candidate": code,
+                "test_passed": True,
+                "validation_passed": True,
+                "commit_passed": True,
+                "test": {"success": True},
+                "validation": {"success": True},
+                "commit": {"success": True},
+                "attempts": [{
+                    "success": True,
+                    "stage": "committed",
+                    "candidate": code,
+                    "test": {"success": True},
+                    "validation": {"success": True},
+                    "commit": {"success": True},
+                }],
+            },
         }
 
         # First task: save evidence-backed repair.
