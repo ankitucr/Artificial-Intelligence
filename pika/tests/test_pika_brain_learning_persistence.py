@@ -35,10 +35,29 @@ def run():
         assert semantic.stats()["total_variants"] == 0
         assert len(learner.data.get("experiences", [])) == 0
 
+        repair_details = {
+            "success": True,
+            "stage": "healed",
+            "final_candidate": code,
+            "test_passed": True,
+            "validation_passed": True,
+            "commit_passed": True,
+            "test": {"success": True},
+            "validation": {"success": True},
+            "commit": {"success": True},
+            "attempts": [{
+                "success": True,
+                "stage": "committed",
+                "candidate": code,
+                "test": {"success": True},
+                "validation": {"success": True},
+                "commit": {"success": True},
+            }],
+        }
         passed = _phase35_save_repair(
             semantic, task, [code],
             {"success": True, "test_passed": True,
-             "accepted_candidate": code, "repair": {"final_candidate": code}},
+             "accepted_candidate": code, "repair": repair_details},
             diagnosis, context, learner,
         )
         assert passed is True
