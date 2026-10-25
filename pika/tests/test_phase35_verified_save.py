@@ -15,6 +15,8 @@ def run_test():
             "accepted_candidate": candidate,
             "test_passed": True,
             "repair": {
+                "success": True,
+                "stage": "healed",
                 "final_candidate": candidate,
                 "test_passed": True,
                 "validation_passed": True,
@@ -22,6 +24,14 @@ def run_test():
                 "test": {"success": True},
                 "validation": {"success": True},
                 "commit": {"success": True},
+                "attempts": [{
+                    "success": True,
+                    "stage": "committed",
+                    "candidate": candidate,
+                    "test": {"success": True},
+                    "validation": {"success": True},
+                    "commit": {"success": True},
+                }],
             },
         }
 
@@ -57,6 +67,26 @@ def run_test():
         assert not any(
             v["code"] == "return a / b"
             and v["verification"] in {"test_verified", "formally_verified"}
+            for v in memory.data["variants"]
+        )
+
+        # Summary booleans without execution records are not proof.
+        spoofed = {
+            "success": True,
+            "accepted_candidate": "return a - b",
+            "test_passed": True,
+            "repair": {"final_candidate": "return a - b"},
+        }
+        saved_spoofed = _phase35_save_repair(
+            memory,
+            "Fix calculator subtraction",
+            ["return a - b"],
+            spoofed,
+            {},
+        )
+        assert saved_spoofed is False
+        assert not any(
+            v["code"] == "return a - b"
             for v in memory.data["variants"]
         )
 
